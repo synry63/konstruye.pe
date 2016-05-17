@@ -22,6 +22,14 @@ use Symfony\Component\Validator\Context\ExecutionContextInterface;
  * @ORM\Entity(repositoryClass="AppBundle\Repository\NegocioRepository")
  * @Vich\Uploadable
  * @ORM\Table(name="negocios")
+ * @ORM\InheritanceType("SINGLE_TABLE")
+ * @ORM\DiscriminatorColumn(name="type", type="string")
+ * @ORM\DiscriminatorMap({"negocio" = "Negocio",
+ *                        "inmueble" = "Inmueble",
+ *                        "constructura-inmobiliaria" = "ConstructoraInmobiliaria",
+ *                        "especialista" = "Especialista",
+ *                        "proveedor" = "Proveedor"
+ * })
  */
 class Negocio
 {
@@ -83,6 +91,8 @@ class Negocio
      * @var File
      */
     private $tempFile;
+
+
 
     /**
      * @return \Symfony\Component\HttpFoundation\File\File
