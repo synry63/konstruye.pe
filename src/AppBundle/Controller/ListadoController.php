@@ -28,15 +28,21 @@ class ListadoController extends Controller
 
         if($slug_seccion=="constructoras-e-inmobiliarias"){
             $negocios = $this->getDoctrine()->getRepository('AppBundle:ConstructoraInmobiliaria')->getNegocios();
+            $categorias = $this->getDoctrine()->getRepository('AppBundle:CategoriaListado')->getCategoriasChildren('constructura-inmobiliaria');
         }
         else if($slug_seccion=="compra-venta-y-alquiler-inmuebles"){
             $negocios = $this->getDoctrine()->getRepository('AppBundle:Inmueble')->getNegocios();
+            $categorias = $this->getDoctrine()->getRepository('AppBundle:CategoriaListado')->getCategoriasChildren('inmueble');
+
+
         }
         else if($slug_seccion=="especialistas-servicios-personales"){
             $negocios = $this->getDoctrine()->getRepository('AppBundle:Especialista')->getNegocios();
+            $categorias = $this->getDoctrine()->getRepository('AppBundle:CategoriaListado')->getCategoriasChildren('especialista');
         }
         else{
             $negocios = $this->getDoctrine()->getRepository('AppBundle:Proveedor')->getNegocios();
+            $categorias = $this->getDoctrine()->getRepository('AppBundle:CategoriaListado')->getCategoriasChildren('proveedor');
         }
 
         $paginator  = $this->get('knp_paginator');
@@ -46,17 +52,18 @@ class ListadoController extends Controller
             6
         );
         return $this->render('temp.html.twig',array(
-            'negocios'=>$pagination
+            'negocios'=>$pagination,
+            'categorias_hijas'=>$categorias
         ));
     }
     /**
-     * @Route("/{slug_seccion}/{slug_negocio}", name="lisdato_seccion",defaults={"page" = 1},requirements={
+     * @Route("/{slug_seccion}/{slug_negocio}", name="show_negocio",requirements={
      *      "slug_seccion": "constructoras-e-inmobiliarias|compra-venta-y-alquiler-inmuebles|especialistas-servicios-personales|proveedores"
      * })
      */
     public function showDetailAction(Request $request,$slug_seccion,$slug_negocio)
     {
-        $negocio = $this->getDoctrine()->getRepository('AppBundle:Negocio')->findOneByslug($slug_negocio);
+        $negocio = $this->getDoctrine()->getRepository('AppBundle:Negocio')->findOneBySlug($slug_negocio);
 
         if($negocio!=NULL){
             if($negocio instanceof ConstructoraInmobiliaria){

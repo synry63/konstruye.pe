@@ -17,9 +17,31 @@ class ConstructoraInmobiliariaRepository extends EntityRepository
      */
     public function getNegocios(){
         $qb = $this->createQueryBuilder('n')
-            ->orderBy('n.registeredAt', 'DESC');
+            ->orderBy('n.registeredAt', 'DESC')
+            ->where('n.isActive = :state')
+            ->setParameter('state', true)
+        ;
         $query = $qb->getQuery();
 
         return $query;
+    }
+    /**
+     * @param int $limit
+     * @return mixed
+     */
+    public function getBestNegocios($limit = 5){
+
+        $em = $this->getEntityManager();
+
+        $qb = $em->createQueryBuilder();
+        $qb->select('n as negocio,avg(cp.nota) as mymoy')
+            ->from('AppBundle\Entity\ConstructoraInmobiliaria', 'n')
+            ->join('n.comentarios','cp')
+            ->setMaxResults( $limit );
+        $qb->addOrderBy('mymoy', 'DESC');
+        $qb->addGroupBy('n');
+        $query = $qb->getQuery();
+
+        return $query->getResult();
     }
 }

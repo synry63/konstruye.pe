@@ -13,9 +13,17 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
-        // replace this example code with whatever you need
-        return $this->render('default/index.html.twig', array(
-            'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..'),
+
+        $imobiliarias = $this->getDoctrine()->getRepository('AppBundle:ConstructoraInmobiliaria')->getBestNegocios();
+        $proveedores = $this->getDoctrine()->getRepository('AppBundle:Proveedor')->getBestNegocios();
+        $especialistas = $this->getDoctrine()->getRepository('AppBundle:Especialista')->getBestNegocios();
+        $inmuebles = $this->getDoctrine()->getRepository('AppBundle:Inmueble')->getBestNegocios();
+
+        return $this->render('temp2.html.twig',array(
+            'imobiliarias'=>$imobiliarias,
+            'proveedores'=>$proveedores,
+            'especialistas'=>$especialistas,
+            'inmuebles'=>$inmuebles
         ));
     }
 }

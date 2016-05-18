@@ -38,7 +38,10 @@ class NegocioRepository extends EntityRepository
     }
     public function getNegociosOrderRecent(){
         $qb = $this->createQueryBuilder('p')
-            ->orderBy('p.registeredAt', 'DESC');
+            ->orderBy('p.registeredAt', 'DESC')
+            ->where('n.isActive = :state')
+            ->setParameter('state', true)
+        ;
 
         $query = $qb->getQuery();
 
