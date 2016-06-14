@@ -20,8 +20,6 @@ class NegocioRepository extends EntityRepository
 
         $em = $this->getEntityManager();
 
-
-
         $qb = $em->createQueryBuilder();
         $qb->select('p as negocio,avg(cp.nota) as mymoy')
             ->from('AppBundle\Entity\Proveedor', 'p')
@@ -35,6 +33,17 @@ class NegocioRepository extends EntityRepository
         $query = $qb->getQuery();
 
         return $query->getResult();
+    }
+    public function getNegociosBy($search){
+
+        $qb = $this->createQueryBuilder('n');
+        $qb->where($qb->expr()->like('n.nombre', ':search'))
+           ->setParameter('search', '%' . $search . '%');
+        $qb->orWhere($qb->expr()->like('n.tags', ':search'))
+            ->setParameter('search', '%' . $search . '%');
+        $query = $qb->getQuery();
+        //$negocios = $query->getResult();
+        return $query;
     }
     public function getNegociosOrderRecent(){
         $qb = $this->createQueryBuilder('p')

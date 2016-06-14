@@ -15,14 +15,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
-class ListadoController extends Controller
+class NegocioController extends Controller
 {
-    /**
-     * @Route("/{slug_seccion}/{page}", name="lisdato_seccion",defaults={"page" = 1},requirements={
-     *      "slug_seccion": "constructoras-e-inmobiliarias|compra-venta-y-alquiler-inmuebles|especialistas-servicios-personales|proveedores",
-     *      "page": "\d+"
-     * })
-     */
+
     public function listadoSeccionAction(Request $request,$slug_seccion,$page)
     {
 
@@ -56,13 +51,10 @@ class ListadoController extends Controller
             'categorias_hijas'=>$categorias
         ));
     }
-    /**
-     * @Route("/{slug_seccion}/{slug_negocio}", name="show_negocio",requirements={
-     *      "slug_seccion": "constructoras-e-inmobiliarias|compra-venta-y-alquiler-inmuebles|especialistas-servicios-personales|proveedores"
-     * })
-     */
+
     public function showDetailAction(Request $request,$slug_seccion,$slug_negocio)
     {
+
         $negocio = $this->getDoctrine()->getRepository('AppBundle:Negocio')->findOneBySlug($slug_negocio);
 
         if($negocio!=NULL){
@@ -87,5 +79,17 @@ class ListadoController extends Controller
                 ));
             }
         }
+    }
+    public function searchNegocioAction(Request $request,$search,$page){
+        $negocios = $this->getDoctrine()->getRepository('AppBundle:Negocio')->getNegociosBy($search);
+        $paginator  = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $negocios,
+            $page,
+            6
+        );
+        return $this->render('temp3.html.twig',array(
+            'negocios'=>$pagination,
+        ));
     }
 }

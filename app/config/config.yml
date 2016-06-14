@@ -81,7 +81,11 @@ fos_user:
                type: AppBundle\Form\Type\ProfileType
 vich_uploader:
     db_driver: orm # or mongodb or propel or phpcr
-
+    mappings:
+            negocio_logo:
+                uri_prefix:         /images/negocios/logo
+                upload_destination: %kernel.root_dir%/../web/images/negocios/logo
+                namer:              vich_uploader.namer_uniqid
 knp_paginator:
     template:
         pagination: KnpPaginatorBundle:Pagination:foundation_v5_pagination.html.twig     # sliding pagination controls template

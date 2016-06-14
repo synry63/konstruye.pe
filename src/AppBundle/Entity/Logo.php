@@ -35,7 +35,7 @@ class Logo
     /**
      * NOTE: This is not a mapped field of entity metadata, just a simple property.
      *
-     * @Vich\UploadableField(mapping="proveedor_logo", fileNameProperty="logoName")
+     * @Vich\UploadableField(mapping="negocio_logo", fileNameProperty="logoName")
      * @var File
      */
     private $logoFile;

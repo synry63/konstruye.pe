@@ -35,7 +35,7 @@ class ProveedorRepository extends EntityRepository
 
         $qb = $em->createQueryBuilder();
         $qb->select('n as negocio,avg(cp.nota) as mymoy')
-            ->from('AppBundle\Entity\ConstructoraInmobiliaria', 'n')
+            ->from('AppBundle\Entity\Proveedor', 'n')
             ->join('n.comentarios','cp')
             ->setMaxResults( $limit );
         $qb->addOrderBy('mymoy', 'DESC');

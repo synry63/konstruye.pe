@@ -3,3 +3,26 @@ app:
     type:     annotation
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+homepage:
+    path:      /
+    defaults:  { _controller: AppBundle:Default:index}
+lisdato_seccion:
+    path:      /{slug_seccion}
+    defaults:  { _controller: AppBundle:Negocio:listadoSeccion,page:1}
+    requirements:
+          slug_seccion: constructoras-e-inmobiliarias|compra-venta-y-alquiler-inmuebles|especialistas-servicios-personales|proveedores
+          page:  \d+
+show_negocio:
+    path:      /{slug_seccion}/{slug_negocio}
+    defaults:  { _controller: AppBundle:Negocio:showDetail}
+    requirements:
+          slug_seccion: constructoras-e-inmobiliarias|compra-venta-y-alquiler-inmuebles|especialistas-servicios-personales|proveedores
+search_global_negocios:
+    path:      /resultado-busqueda/negocios/{search}
+    defaults:  { _controller: AppBundle:Negocio:searchNegocio,page:1}
+search_global_productos:
+    path:      /resultado-busqueda/productos/{search}
+    defaults:  { _controller: AppBundle:Producto:searchProducto,page:1}
+show_producto:
+    path:      /producto/{slug_producto}
+    defaults:  { _controller: AppBundle:Producto:showDetail}

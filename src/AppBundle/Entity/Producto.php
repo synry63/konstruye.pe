@@ -11,7 +11,7 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\ProductoRepository")
  * @ORM\Table(name="productos")
  */
 class Producto
@@ -37,12 +37,7 @@ class Producto
     /**
      * @ORM\Column(type="string", length=100)
      */
-    private $img_small;
-
-    /**
-     * @ORM\Column(type="string", length=100)
-     */
-    private $img_large;
+    private $img;
 
     /**
      * @ORM\Column(type="text")
@@ -87,37 +82,6 @@ class Producto
         return $this->id;
     }
 
-    /**
-     * @param mixed $img_large
-     */
-    public function setImgLarge($img_large)
-    {
-        $this->img_large = $img_large;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getImgLarge()
-    {
-        return $this->img_large;
-    }
-
-    /**
-     * @param mixed $img_small
-     */
-    public function setImgSmall($img_small)
-    {
-        $this->img_small = $img_small;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getImgSmall()
-    {
-        return $this->img_small;
-    }
 
     /**
      * @param mixed $nombre
@@ -165,6 +129,22 @@ class Producto
     public function getSlug()
     {
         return $this->slug;
+    }
+
+    /**
+     * @param mixed $img
+     */
+    public function setImg($img)
+    {
+        $this->img = $img;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getImg()
+    {
+        return $this->img;
     }
 
 
