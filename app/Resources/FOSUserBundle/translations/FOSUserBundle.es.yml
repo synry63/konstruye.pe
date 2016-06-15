@@ -53,7 +53,7 @@ resetting:
         message: "Hola %username%!\n\nPara restablecer tu contraseña - por favor visita %confirmationUrl%\n\nAtentamente,\nel Equipo.\n"
 layout:
     logout: Salir
-    login: Entrar
+    login: Iniciar Sesión
     register: Registrar
     logged_in_as: 'Identificado como %username%'
 form:

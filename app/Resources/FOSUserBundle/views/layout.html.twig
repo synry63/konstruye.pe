@@ -2,18 +2,63 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-    </head>
+        <link rel="stylesheet" href="{{ asset('css/bootstrap-theme.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/bootstrap-select.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+        <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,700,700italic' rel='stylesheet' type='text/css'>    </head>
+        <link rel="stylesheet" href="{{ asset('css/content_slider_style.css') }}">
+
     <body>
-        <div>
-            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
-                <a href="{{ path('fos_user_security_logout') }}">
-                    {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
-                </a>
-            {% else %}
-                <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
-            {% endif %}
-        </div>
+
+        <nav class="navbar navbar-default menu_container">
+            <div class="container menu_principal">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">
+                        <img alt="Brand" src="{{ asset('images/logo.png') }}">
+                    </a>
+                </div>
+                <div class="list_menu">
+                    {{ knp_menu_render('AppBundle:Builder:mainMenu') }}
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                                {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
+                                <a href="{{ path('fos_user_security_logout') }}">
+                                    {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+                                </a>
+                            {% else %}
+                                <a href="">Registrar</a>
+                                <a href="{{ path('fos_user_security_login') }}">ó {{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+
+                            {% endif %}
+                        </li>
+                    </ul>
+                </div>
+
+
+                <div class="col-md-6 col-md-offset-3">
+                    <form class="navbar-form navbar-left buscador_principal" role="search">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Buscar">
+                        </div>
+                        <select class="selectpicker form-group">
+                            <option value="0">Selecciona una Categoria</option>
+                            <option value="1">Constructoras e Inmobiliarias</option>
+                            <option value="2">Especialistas y Servicios Personales</option>
+                            <option value="3">Proveedores</option>
+                        </select>
+
+                    </form>
+                </div>
+
+            </div>
+
+        </nav>
+
+
+
 
         {% if app.request.hasPreviousSession %}
             {% for type, messages in app.session.flashbag.all() %}
@@ -29,5 +74,22 @@
             {% block fos_user_content %}
             {% endblock fos_user_content %}
         </div>
+
+        {% block javascripts %}
+            <script type="text/javascript" src="{{ asset('js/jquery-1.11.0.min.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('js/bootstrap-select.min.js') }}"></script>
+
+
+            <script>
+                $('.selectpicker').selectpicker({
+                    style: 'btn btn-default',
+                    size: 4
+                });
+
+            </script>
+        {% endblock javascripts %}
     </body>
+
+
 </html>

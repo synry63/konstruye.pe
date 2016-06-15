@@ -1,0 +1,135 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+body {
+    line-height: 1;
+}
+ol, ul {
+    list-style: none;
+}
+blockquote, q {
+    quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+/*=============
+Colors
+
+celeste bajo: #30BDEF
+celeste fuerte: #1C9CD9
+gris: #CDCCCC
+
+=============*/
+
+
+/*=============
+General
+=============*/
+body{
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 100;
+    background: url("../images/assets/small_steps.png");
+}
+
+/*=============
+Buscador Principal
+=============*/
+.buscador_principal{
+    padding: 10px;
+    background: #30BDEF;
+    border-radius: 10px;
+}
+/*=============
+Menu Principal
+=============*/
+.menu_container{
+    margin-bottom: 0;
+}
+.menu_principal{
+    height: 190px;
+}
+.menu_principal li{
+    text-align: center;
+
+}
+.menu_principal .list_menu li a{
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 100;
+    width: 180px;
+    color:#30BDEF;
+    transition: all .2s;
+}
+.menu_principal .list_menu li a:hover{
+    color: #1C9CD9;
+}
+.menu_principal li:first-child a, .menu_principal li:last-child a{
+    width: auto;
+}
+.navbar-default .menu_principal ul{
+    padding-top: 20px;
+}
+/*=============
+Slider
+=============*/
+.slider img{
+    width: 100%;
+}
+/*=============
+About
+=============*/
+.about-text{
+    padding: 20px;
+    text-align: center;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 100;
+    font-style: italic;
+}
+/*=============
+Mejores Proveedores
+=============*/
+.mejores_tittle{
+    padding: 10px;
+    color: #1C9CD9;
+    text-transform: uppercase;
+    font-style: italic;
+    font-weight: 400;
+}
+.list-mejores{
+    padding: 10px;
+    background: rgba(48,189,239,.2);
+    margin-bottom: 20px;
+}
+
+.list-mejores .content_slider_wrapper{
+    max-height: 200px;
+}
