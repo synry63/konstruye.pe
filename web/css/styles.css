@@ -57,46 +57,21 @@ General
 body{
     font-family: 'Open Sans', sans-serif;
     font-weight: 100;
-    background: url("../images/assets/small_steps.png");
 }
-
 /*=============
 Buscador Principal
 =============*/
 .buscador_principal{
-    padding: 10px;
     background: #30BDEF;
-    border-radius: 10px;
 }
 /*=============
 Menu Principal
 =============*/
-.menu_container{
-    margin-bottom: 0;
-}
-.menu_principal{
-    height: 190px;
-}
-.menu_principal li{
     text-align: center;
-
 }
-.menu_principal .list_menu li a{
-    text-transform: uppercase;
-    font-size: 12px;
-    font-weight: 100;
-    width: 180px;
-    color:#30BDEF;
-    transition: all .2s;
 }
-.menu_principal .list_menu li a:hover{
-    color: #1C9CD9;
-}
-.menu_principal li:first-child a, .menu_principal li:last-child a{
     width: auto;
 }
-.navbar-default .menu_principal ul{
-    padding-top: 20px;
 }
 /*=============
 Slider

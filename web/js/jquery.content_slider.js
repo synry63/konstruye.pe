@@ -1059,7 +1059,7 @@ var content_slider_counter=0;
 		create_html: function () {
 			this.items_counts = this.options.map.length;
 			var i, img, real_i;
-			var html_code = '<div class="'+this.options.container_class+'"><div class="image_more_info"><a href="#"><img alt="" src="'+this.options.plugin_url+'images/more.png"></a></div>';
+			var html_code = '<div class="'+this.options.container_class+'"><div class="image_more_info"><a href="#"><img alt="" src="'+this.options.plugin_url+'../images/more.png"></a></div>';
 			this._start = -1;
 			this._end = this.max_show-1;
 			var pos_size, real_i;
@@ -1239,6 +1239,7 @@ var content_slider_counter=0;
 		},
 		_create_arrows : function () {
 			var html;
+
 			if (this.options.hv_switch) {
 				if (this.options.border_on_off==0 || this.options.use_thin_arrows==1) {
 					html = '<div class="circle_slider_nav_left"><img src="'+this.options.plugin_url+'images/left_vertical2.png" alt="left" /></div>';
@@ -1249,8 +1250,8 @@ var content_slider_counter=0;
 				}
 			} else {
 				if (this.options.border_on_off==0 || this.options.use_thin_arrows==1) {
-					html = '<div class="circle_slider_nav_left"><img src="'+this.options.plugin_url+'images/left2.png" alt="left" /></div>';
-					html += '<div class="circle_slider_nav_right"><img src="'+this.options.plugin_url+'images/right2.png" alt="right" /></div>';
+					html = '<div class="circle_slider_nav_left"><img src="'+this.options.plugin_url+'../images/left2.png" alt="left" /></div>';
+					html += '<div class="circle_slider_nav_right"><img src="'+this.options.plugin_url+'../images/right2.png" alt="right" /></div>';
 				} else {
 					html = '<div class="circle_slider_nav_left"><img src="'+this.options.plugin_url+'images/left.png" alt="left" /></div>';
 					html += '<div class="circle_slider_nav_right"><img src="'+this.options.plugin_url+'images/right.png" alt="right" /></div>';

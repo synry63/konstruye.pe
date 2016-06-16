@@ -2,26 +2,40 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-        <link rel="stylesheet" href="{{ asset('css/bootstrap-theme.min.css') }}">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
         <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
         <link rel="stylesheet" href="{{ asset('css/bootstrap-select.min.css') }}">
         <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
         <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,700,700italic' rel='stylesheet' type='text/css'>    </head>
         <link rel="stylesheet" href="{{ asset('css/content_slider_style.css') }}">
 
     <body>
 
-        <nav class="navbar navbar-default menu_container">
-            <div class="container menu_principal">
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="#">
-                        <img alt="Brand" src="{{ asset('images/logo.png') }}">
-                    </a>
-                </div>
-                <div class="list_menu">
-                    {{ knp_menu_render('AppBundle:Builder:mainMenu') }}
+    <nav class="navbar navbar-default navbar-fixed-top nav-principal">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
 
-                    <ul class="nav navbar-nav navbar-right">
+                <button id="menu-brand" type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <button id="search-brand" type="button" class="navbar-toggle collapsed">
+                    <i class="fa fa-search" aria-hidden="true"></i>
+                </button>
+
+                <a class="navbar-brand logo_prin" href="#"><img alt="Brand" src="{{ asset('images/logo.png') }}"></a>
+                <a class="navbar-brand logo_resp" href="#"><img alt="Brand" src="{{ asset('images/logo_responsive.png') }}"></a>
+
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse menu-principal" id="bs-example-navbar-collapse-1">
+                {{ knp_menu_render('AppBundle:Builder:mainMenu') }}
+                <ul class="nav navbar-nav navbar-right">
                         <li>
                             {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                                 {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
@@ -30,34 +44,46 @@
                                 </a>
                             {% else %}
                                 <a href="">Registrar</a>
-                                <a href="{{ path('fos_user_security_login') }}">ó {{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+                                <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
 
                             {% endif %}
                         </li>
-                    </ul>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+
+            <div id="search-cop" class="col-md-8 col-md-offset-2 col-xs-12">
+                <div class="search-change">
+                    <span id="hide1">Buscador de Negocios</span>
+                    <span>|</span>
+                    <span id="hide2">Buscador de Productos</span>
                 </div>
 
-
-                <div class="col-md-6 col-md-offset-3">
-                    <form class="navbar-form navbar-left buscador_principal" role="search">
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Buscar">
-                        </div>
-                        <select class="selectpicker form-group">
-                            <option value="0">Selecciona una Categoria</option>
-                            <option value="1">Constructoras e Inmobiliarias</option>
-                            <option value="2">Especialistas y Servicios Personales</option>
-                            <option value="3">Proveedores</option>
-                        </select>
-
-                    </form>
-                </div>
-
+                <form id="s1" class="navbar-form navbar-left buscador_principal" role="search">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Buscar Productos">
+                    </div>
+                    <select class="selectpicker">
+                        <option value="0">Selecciona una Categoria</option>
+                        <option value="1">Constructoras e Inmobiliarias</option>
+                        <option value="2">Especialistas y Servicios Personales</option>
+                        <option value="3">Proveedores</option>
+                    </select>
+                </form>
+                <form id="s2" class="navbar-form navbar-left buscador_principal" role="search">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Buscar Negocios">
+                    </div>
+                    <select class="selectpicker">
+                        <option value="0">Selecciona una Categoria</option>
+                        <option value="1">Constructoras e Inmobiliarias</option>
+                        <option value="2">Especialistas y Servicios Personales</option>
+                        <option value="3">Proveedores</option>
+                    </select>
+                </form>
             </div>
 
-        </nav>
-
-
+        </div><!-- /.container-fluid -->
+    </nav>
 
 
         {% if app.request.hasPreviousSession %}
@@ -75,20 +101,77 @@
             {% endblock fos_user_content %}
         </div>
 
+        <footer>
+            <div class="container-fluid footer-menu">
+                <div class="container">
+                    <div  class="col-md-10 col-md-offset-1">
+                        {{ knp_menu_render('AppBundle:Builder:mainMenu') }}
+                    </div>
+
+                    <div class="col-md-2 col-md-offset-5 socials">
+                        <span class="fa-stack fa-lg">
+                      <i id="one" class="fa fa-circle fa-stack-2x"></i>
+                      <i class="fa fa-facebook fa-stack-1x fa-inverse" style="color: #1C9CD9"></i>
+                    </span>
+                    <span class="fa-stack fa-lg">
+                      <i id="two" class="fa fa-circle fa-stack-2x"></i>
+                      <i class="fa fa-twitter fa-stack-1x fa-inverse" style="color: #1C9CD9"></i>
+                    </span>
+                    <span class="fa-stack fa-lg">
+                      <i id="three" class="fa fa-circle fa-stack-2x"></i>
+                      <i class="fa fa-youtube-play fa-stack-1x fa-inverse" style="color: #1C9CD9"></i>
+                    </span>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </footer>
+
+
         {% block javascripts %}
             <script type="text/javascript" src="{{ asset('js/jquery-1.11.0.min.js') }}"></script>
-            <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('js/bootstrap.js') }}"></script>
             <script type="text/javascript" src="{{ asset('js/bootstrap-select.min.js') }}"></script>
-
-
             <script>
+
                 $('.selectpicker').selectpicker({
                     style: 'btn btn-default',
                     size: 4
                 });
 
+                $("#s2").hide();
+                $("#hide1").click(function(){
+                    $("#s2").hide();
+                    $("#s1").show();
+                });
+                $("#hide2").click(function(){
+                    $("#s1").hide();
+                    $("#s2").show();
+                });
+
+
+                $("#search-brand").click(function(){
+                    $("#search-cop").slideToggle();
+                    $("#bs-example-navbar-collapse-1").slideUp();
+                });
+
+                $("#menu-brand").click(function(){
+                    event.preventDefault();
+                    $("#search-cop").slideUp();
+                    $("#bs-example-navbar-collapse-1").slideToggle();
+
+                });
+
+
+
+
+
             </script>
+
         {% endblock javascripts %}
+
     </body>
 
 
