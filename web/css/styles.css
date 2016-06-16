@@ -57,27 +57,67 @@ General
 body{
     font-family: 'Open Sans', sans-serif;
     font-weight: 100;
+    background: url("../images/assets/small_steps2.png");
+}
+.logo_resp{
+    display: none;
 }
 /*=============
 Buscador Principal
 =============*/
 .buscador_principal{
+    margin: 5px 22% 25px 22%;
+    padding: 5px;
     background: #30BDEF;
+    border-radius: 5px;
+}
+.search-change{
+    text-align: center;
+    font-size:13px;
+}
+.search-change span{
+    cursor: pointer;
+    color:#CDCCCC;
+}
+.search-change span:hover{
+    color:#1C9CD9;
+}
+#search-cop{
+    display: block;
 }
 /*=============
 Menu Principal
 =============*/
+.menu-principal ul li{
+    width: 190px;
     text-align: center;
 }
+.menu-principal ul:first-child{
+    margin-top: 15px;
+    margin-left: 4%;
+    margin-right: 4%;
 }
+.menu-principal ul:first-child li:first-child, .menu-principal ul:first-child li:last-child{
     width: auto;
 }
+.nav-principal .menu-principal ul li a{
+    text-transform: uppercase;
+    font-weight: 100;
+    font-size: 12px;
+    color: #30BDEF;
 }
+
 /*=============
 Slider
 =============*/
 .slider img{
     width: 100%;
+}
+.content-slider{
+    margin-top: 187px;
+}
+#search-brand{
+    color: #9E9E9E;
 }
 /*=============
 About
@@ -108,3 +148,58 @@ Mejores Proveedores
 .list-mejores .content_slider_wrapper{
     max-height: 200px;
 }
+
+/*=============
+Footer Menu
+=============*/
+.footer-menu ul{
+    margin-top: 15px;
+}
+.footer-menu a{
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 100;
+}
+.footer-menu li:hover{
+    background: none;
+}
+.footer-menu{
+    height: 200px;
+    background: #1C9CD9;
+}
+footer .footer-menu{
+    color: #fff;
+}  
+.socials{
+    margin-top: 15px;
+}
+/*=============
+Responsive
+=============*/
+@media only screen and (max-width:700px){
+    .content-slider{
+        margin-top: 50px;
+    }
+    #search-cop{
+        display: none;
+    }
+    .buscador_principal{
+        margin: 5px auto 25px auto;
+        padding: 5px;
+        background: #30BDEF;
+        border-radius: 5px;
+    }
+    .menu-principal ul li{
+        width: auto;
+        text-align: center;
+    }
+    .logo_prin{
+        display: none;
+    }
+    .logo_resp{
+        display: block;
+    }
+
+}
+
