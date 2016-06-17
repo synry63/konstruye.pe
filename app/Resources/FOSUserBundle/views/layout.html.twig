@@ -6,16 +6,15 @@
 
         <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
         <link rel="stylesheet" href="{{ asset('css/bootstrap-select.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/content_slider_style.css') }}">
         <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
         <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,700,700italic' rel='stylesheet' type='text/css'>    </head>
-        <link rel="stylesheet" href="{{ asset('css/content_slider_style.css') }}">
 
     <body>
 
-    <nav class="navbar navbar-default navbar-fixed-top nav-principal">
+    <nav  class="navbar navbar-default  nav-principal">
         <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
 
                 <button id="menu-brand" type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -24,6 +23,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
+
                 <button id="search-brand" type="button" class="navbar-toggle collapsed">
                     <i class="fa fa-search" aria-hidden="true"></i>
                 </button>
@@ -32,9 +32,10 @@
                 <a class="navbar-brand logo_resp" href="#"><img alt="Brand" src="{{ asset('images/logo_responsive.png') }}"></a>
 
             </div>
-            <!-- Collect the nav links, forms, and other content for toggling -->
+
             <div class="collapse navbar-collapse menu-principal" id="bs-example-navbar-collapse-1">
-                {{ knp_menu_render('AppBundle:Builder:mainMenu') }}
+                {% set menuItem = knp_menu_get('AppBundle:Builder:mainMenu', [], {'nav': true}) %}
+                {{ knp_menu_render(menuItem) }}
                 <ul class="nav navbar-nav navbar-right">
                         <li>
                             {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
@@ -43,7 +44,7 @@
                                     {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
                                 </a>
                             {% else %}
-                                <a href="">Registrar</a>
+                                <a id="registro" href="">Registrarse</a>
                                 <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
 
                             {% endif %}
@@ -81,12 +82,24 @@
                     </select>
                 </form>
             </div>
+        </div>
+    </nav>
 
-        </div><!-- /.container-fluid -->
+    <nav  class="navbar navbar-default nav-principal2">
+        <div class="menu-principal2">
+            <a class="navbar-brand" href="#"><img alt="Brand" src="{{ asset('images/logo_stiky.png') }}"></a>
+
+            <button class="btn btn-default ">Categorias <span class="bs-caret"><span class="caret"></span></span></button>
+            <div class="menu-stiky">
+                {% set menuItem = knp_menu_get('AppBundle:Builder:mainMenu', [], {'nav': false}) %}
+                {{ knp_menu_render(menuItem) }}
+            </div>
+        </div>
     </nav>
 
 
-        {% if app.request.hasPreviousSession %}
+
+    {% if app.request.hasPreviousSession %}
             {% for type, messages in app.session.flashbag.all() %}
                 {% for message in messages %}
                     <div class="flash-{{ type }}">
@@ -135,7 +148,6 @@
             <script type="text/javascript" src="{{ asset('js/bootstrap.js') }}"></script>
             <script type="text/javascript" src="{{ asset('js/bootstrap-select.min.js') }}"></script>
             <script>
-
                 $('.selectpicker').selectpicker({
                     style: 'btn btn-default',
                     size: 4
@@ -151,7 +163,6 @@
                     $("#s2").show();
                 });
 
-
                 $("#search-brand").click(function(){
                     $("#search-cop").slideToggle();
                     $("#bs-example-navbar-collapse-1").slideUp();
@@ -161,8 +172,8 @@
                     event.preventDefault();
                     $("#search-cop").slideUp();
                     $("#bs-example-navbar-collapse-1").slideToggle();
-
                 });
+
 
 
 

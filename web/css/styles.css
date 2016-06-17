@@ -66,7 +66,7 @@ body{
 Buscador Principal
 =============*/
 .buscador_principal{
-    margin: 5px 22% 25px 22%;
+    margin: 5px 20% 25px 20%;
     padding: 5px;
     background: #30BDEF;
     border-radius: 5px;
@@ -88,6 +88,9 @@ Buscador Principal
 /*=============
 Menu Principal
 =============*/
+.nav-principal{
+    background: #fff;
+}
 .menu-principal ul li{
     width: 190px;
     text-align: center;
@@ -105,6 +108,19 @@ Menu Principal
     font-weight: 100;
     font-size: 12px;
     color: #30BDEF;
+}
+.nav-principal .navbar-right{
+    margin-top: 30px;
+}
+.nav-principal .navbar-right #registro{
+    background: #30BDEF;
+    padding: 5px;
+    border-radius: 5px;
+    color: #fff;
+}
+
+.menu-stiky ul li{
+    display: block;
 }
 
 /*=============
@@ -148,12 +164,17 @@ Mejores Proveedores
 .list-mejores .content_slider_wrapper{
     max-height: 200px;
 }
-
+.list-mejores .content_slider_text_block_wrap span{
+    font-size: 15px;
+    text-transform: uppercase;
+    font-weight: 100;
+    font-family: 'Open Sans', sans-serif;
+}
 /*=============
 Footer Menu
 =============*/
 .footer-menu ul{
-    margin-top: 15px;
+    margin-top: 35px;
 }
 .footer-menu a{
     color: #fff;
@@ -178,6 +199,7 @@ footer .footer-menu{
 Responsive
 =============*/
 @media only screen and (max-width:700px){
+
     .content-slider{
         margin-top: 50px;
     }

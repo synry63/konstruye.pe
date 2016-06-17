@@ -31,7 +31,7 @@ registration:
     check_email: 'Se ha enviado un email a %email%. Contiene un enlace de activación que debes presionar para activar tu cuenta.'
     confirmed: 'Felicidades %username%, tu cuenta está ahora confirmada.'
     back: 'Volver a la página original.'
-    submit: Registrar
+    submit: Registrarse
     flash:
         user_created: 'El usuario se ha creado satisfactoriamente'
     email:
@@ -54,7 +54,7 @@ resetting:
 layout:
     logout: Salir
     login: Iniciar Sesión
-    register: Registrar
+    register: Registrarse
     logged_in_as: 'Identificado como %username%'
 form:
     group_name: 'Nombre de grupo'
