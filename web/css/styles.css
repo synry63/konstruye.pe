@@ -71,6 +71,33 @@ Buscador Principal
     background: #30BDEF;
     border-radius: 5px;
 }
+.buscador_principal2{
+    padding: 5px;
+    background: #30BDEF;
+    border-radius: 5px;
+    position: relative;
+
+}
+.buscador_principal2 form{
+    display: inline-block;
+}
+
+.search-change2{
+    margin-left: 5px;
+    margin-top: 13px;
+    text-align: center;
+    font-size:13px;
+    display: inline-block;
+}
+.search-change2 div{
+    font-size: 17px;
+    cursor: pointer;
+    color:#CDCCCC;
+}
+.search-change2 div:hover{
+    color:#1C9CD9;
+}
+
 .search-change{
     text-align: center;
     font-size:13px;
@@ -85,11 +112,16 @@ Buscador Principal
 #search-cop{
     display: block;
 }
+#search-cop2{
+    display: inline-block;
+    margin-left: 22%;
+}
 /*=============
 Menu Principal
 =============*/
 .nav-principal{
     background: #fff;
+    margin-bottom: 0;
 }
 .menu-principal ul li{
     width: 190px;
@@ -122,16 +154,57 @@ Menu Principal
 .menu-stiky ul li{
     display: block;
 }
+.menu-stiky li{
+    height: 30px;
+}
+.nav-principal2 .navbar-brand img{
+    width: 150px;
+}
 
+.menu-stiky{
+    position: absolute;
+    display: inline-block;
+    margin-top: 8px;
+    margin-left: 60px;
+}
+.menu-stiky ul{
+    position: absolute;
+}
+.menu-stiky button{
+    height: 44px;
+    width: 170px;
+}
+.nav-principal2{
+    /*height: 85px;*/
+    background: #fff;
+    box-shadow: 2px 2px 5px rgba(0,0,0,.05);
+}
+.nav-principal2 .logi-reg{
+    margin-top: 22px;
+    display: inline-block;
+    float: right;
+
+
+}
+.nav-principal2 .logi-reg #registro{
+    background: #30BDEF;
+    padding: 5px;
+    border-radius: 5px;
+    color: #fff;
+}
+.logi-reg a{
+    text-decoration: none;
+}
 /*=============
 Slider
 =============*/
 .slider img{
     width: 100%;
 }
+/*
 .content-slider{
     margin-top: 187px;
-}
+}*/
 #search-brand{
     color: #9E9E9E;
 }
@@ -199,10 +272,14 @@ footer .footer-menu{
 Responsive
 =============*/
 @media only screen and (max-width:700px){
+    .nav-principal2{
+        display: none;
+    }
 
+    /*
     .content-slider{
         margin-top: 50px;
-    }
+    }*/
     #search-cop{
         display: none;
     }
