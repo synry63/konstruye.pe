@@ -22,7 +22,9 @@ class Builder implements ContainerAwareInterface
 
         $menu = $factory->createItem('root');
 
-        $menu->setChildrenAttribute('class', 'nav navbar-nav navbar-left');
+        if($options['nav']==true){
+            $menu->setChildrenAttribute('class', 'nav navbar-nav navbar-left');
+        }
 
         $menu->addChild('home',array(
                 'route' => 'homepage',
@@ -62,10 +64,9 @@ class Builder implements ContainerAwareInterface
         return $menu;
     }
     public function footerMenu(FactoryInterface $factory, array $options){
+
         $menu = $factory->createItem('root');
-
         $menu->setChildrenAttribute('class', 'nav navbar-nav navbar-left');
-
         $menu->addChild('home',array(
                 'route' => 'homepage',
                 'label' => 'Inicio'

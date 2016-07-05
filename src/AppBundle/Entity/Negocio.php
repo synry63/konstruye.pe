@@ -58,10 +58,6 @@ class Negocio
     /**
      * @ORM\Column(type="string",nullable=true, length=64)
      */
-    private $banner;
-    /**
-     * @ORM\Column(type="string",nullable=true, length=64)
-     */
     private $web;
 
     /**
@@ -164,6 +160,11 @@ class Negocio
      * @ORM\OneToOne(targetEntity="Logo",mappedBy="negocio",cascade={"persist"})
      */
     private $logo;
+
+    /**
+     * @ORM\OneToOne(targetEntity="Banner",mappedBy="negocio",cascade={"persist"})
+     */
+    private $banner;
     /**
      * @return mixed
      */
