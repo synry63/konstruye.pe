@@ -1,4 +1,15 @@
-{{ knp_menu_render('AppBundle:Builder:mainMenu') }}
+
 
 {{ dump(negocios) }}
-{{ dump(categorias_hijas) }}
+
+<ul>
+{% for cmain in categorias_hijas %}
+    <li>{{ cmain.nombre }}</li>
+    <ul>
+        {% for csub in cmain.children %}
+        <li>{{ csub.nombre }}</li>
+        {% endfor %}
+    </ul>
+
+{% endfor %}
+</ul>

@@ -19,7 +19,7 @@ class DefaultController extends Controller
         $especialistas = $this->getDoctrine()->getRepository('AppBundle:Especialista')->getBestNegocios();
         $inmuebles = $this->getDoctrine()->getRepository('AppBundle:Inmueble')->getBestNegocios();
 
-        return $this->render('temp2.html.twig',array(
+        return $this->render('index.html.twig',array(
             'imobiliarias'=>$imobiliarias,
             'proveedores'=>$proveedores,
             'especialistas'=>$especialistas,
