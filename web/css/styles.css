@@ -49,15 +49,22 @@ celeste fuerte: #1C9CD9
 gris: #CDCCCC
 
 =============*/
-
-
+#s2{
+    display: none;
+}
+#s3{
+    display: none;
+}
+.nav-principal2{
+    display: none;
+}
 /*=============
 General
 =============*/
 body{
     font-family: 'Open Sans', sans-serif;
     font-weight: 100;
-    background: url("../images/assets/small_steps2.png");
+    background: url("../images/assets/brickwall.png");
 }
 .logo_resp{
     display: none;
@@ -92,24 +99,29 @@ Buscador Principal
 .search-change2 div{
     font-size: 17px;
     cursor: pointer;
-    color:#CDCCCC;
+    color: rgba(0,0,0,.5);
 }
 .search-change2 div:hover{
     color:#1C9CD9;
 }
 
 .search-change{
+    width: 750px;
     text-align: center;
     font-size:13px;
 }
 .search-change span{
     cursor: pointer;
-    color:#CDCCCC;
+    font-weight: 600;
+    color:rgba(0,0,0,.5);
 }
 .search-change span:hover{
     color:#1C9CD9;
 }
 #search-cop{
+    position: absolute;
+    top: 38%;
+    left: 4%;
     display: block;
 }
 #search-cop2{
@@ -123,23 +135,27 @@ Menu Principal
     background: #fff;
     margin-bottom: 0;
 }
-.menu-principal ul li{
+.menu-principal .navbar-left li{
     width: 190px;
     text-align: center;
 }
 .menu-principal ul:first-child{
     margin-top: 15px;
-    margin-left: 4%;
-    margin-right: 4%;
+    /*margin-left: 4%;*/
+    /*margin-right: 4%;*/
 }
 .menu-principal ul:first-child li:first-child, .menu-principal ul:first-child li:last-child{
     width: auto;
 }
 .nav-principal .menu-principal ul li a{
     text-transform: uppercase;
-    font-weight: 100;
+    font-weight: 400;
     font-size: 12px;
     color: #30BDEF;
+}
+.nav-principal .menu-principal .navbar-right li{
+    width: 130px;
+    text-align: center;
 }
 .nav-principal .navbar-right{
     margin-top: 30px;
