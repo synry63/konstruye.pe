@@ -73,11 +73,34 @@ body{
 Buscador Principal
 =============*/
 .buscador_principal{
-    margin: 5px 20% 25px 20%;
     padding: 5px;
-    background: #30BDEF;
+    background: rgba(0, 159, 227,.5);
     border-radius: 5px;
+    width: 535px;
+    margin: 0 auto;
+    box-shadow: 2px 2px 10px rgba(0,0,0,.5)
 }
+
+.buscador_categorias{
+    padding: 5px;
+    background: rgba(0, 159, 227,.6);
+    border-radius: 5px;
+    width: 760px;
+    margin: 0 auto;
+    box-shadow: 2px 2px 10px rgba(0,0,0,.2)
+}
+
+.selectpicker{
+    display: inline-block;
+}
+.buscador{
+    display: inline-block;
+    margin:0;
+    width:300px;
+}
+
+
+
 .buscador_principal2{
     padding: 5px;
     background: #30BDEF;
@@ -106,45 +129,61 @@ Buscador Principal
 }
 
 .search-change{
-    width: 750px;
     text-align: center;
-    font-size:13px;
+    font-size:14px;
+    width: 340px;
+    padding: 10px 5px 5px 5px;
+    margin: 0 auto;
+    border-radius: 5px 5px 0 0;
+    background: rgba(0, 159, 227,.5);
 }
 .search-change span{
     cursor: pointer;
-    font-weight: 600;
-    color:rgba(0,0,0,.5);
+    font-weight: 400;
+    color:rgba(255,255,255,.5);
+    transition: all .5s;
 }
 .search-change span:hover{
-    color:#1C9CD9;
+    color:#fff;
 }
 #search-cop{
     position: absolute;
-    top: 38%;
-    left: 4%;
+    top: 50%;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
     display: block;
 }
 #search-cop2{
     display: inline-block;
     margin-left: 22%;
 }
+#search-cop3{
+    margin: 20px auto;
+}
 /*=============
 Menu Principal
 =============*/
 .nav-principal{
+
     background: #fff;
     margin-bottom: 0;
+    z-index: 2;
+    border-radius: 0;
+    box-shadow: 2px 2px 10px rgba(0,0,0,.2)
 }
 .menu-principal .navbar-left li{
     width: 190px;
     text-align: center;
 }
 .menu-principal ul:first-child{
-    margin-top: 15px;
+    margin-top: 22px;
     /*margin-left: 4%;*/
     /*margin-right: 4%;*/
 }
 .menu-principal ul:first-child li:first-child, .menu-principal ul:first-child li:last-child{
+    padding-top:10px;
     width: auto;
 }
 .nav-principal .menu-principal ul li a{
@@ -217,10 +256,7 @@ Slider
 .slider img{
     width: 100%;
 }
-/*
-.content-slider{
-    margin-top: 187px;
-}*/
+
 #search-brand{
     color: #9E9E9E;
 }
@@ -230,9 +266,9 @@ About
 .about-text{
     padding: 20px;
     text-align: center;
+
     font-family: 'Open Sans', sans-serif;
     font-weight: 100;
-    font-style: italic;
 }
 /*=============
 Mejores Proveedores
@@ -240,8 +276,9 @@ Mejores Proveedores
 .mejores_tittle{
     padding: 10px;
     color: #1C9CD9;
+    text-align: center;
+    font-size: 18px;
     text-transform: uppercase;
-    font-style: italic;
     font-weight: 400;
 }
 .list-mejores{
@@ -275,6 +312,7 @@ Footer Menu
     background: none;
 }
 .footer-menu{
+    margin-top: 30px;
     height: 200px;
     background: #1C9CD9;
 }
@@ -284,14 +322,79 @@ footer .footer-menu{
 .socials{
     margin-top: 15px;
 }
+.footer-menu .nav>li>a:focus,.footer-menu .nav>li>a:hover{
+    background: none;
+}
+/*=============
+Negocio
+=============*/
+hr.style-two:last-child{
+    display: none;
+}
+hr.style-two {
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(28, 156, 217, 0.75), rgba(0, 0, 0, 0));
+}
+.negocio{
+    margin:15px 0;
+}
+.negocio .logotipo{
+    text-align: center;
+}
+.negocio .logotipo img{
+    width: 150px;
+}
+.negocio .description{
+    padding-left: 30px;
+}
+.negocio .description h1{
+    color: #1C9CD9;
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+.negocio .description p{
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+.negocio .description p i{
+    width: 20px;
+    text-align: center;
+    color: #1C9CD9;
+}
+.negocio .banner_pub{
+    text-align: center;
+}
+.negocio .banner_pub img{
+    border-radius: 5px;
+}
 /*=============
 Responsive
 =============*/
 @media only screen and (max-width:700px){
+
+    .menu-principal ul:first-child li:first-child, .menu-principal ul:first-child li:last-child{
+        margin-top: 0;
+        padding-top: 0;
+    }
+    .menu-principal .navbar-left li{
+        width: auto;
+        text-align: center;
+    }
     .nav-principal2{
         display: none;
     }
-
+    .menu-principal2{
+        display: none;
+    }
+    .nav-principal .menu-principal .navbar-right li{
+        width: 100%;
+    }
+    .nav-principal .navbar-right #registro{
+        border-radius: 0;
+    }
     /*
     .content-slider{
         margin-top: 50px;
@@ -302,13 +405,9 @@ Responsive
     .buscador_principal{
         margin: 5px auto 25px auto;
         padding: 5px;
-        background: #30BDEF;
         border-radius: 5px;
     }
-    .menu-principal ul li{
-        width: auto;
-        text-align: center;
-    }
+
     .logo_prin{
         display: none;
     }
