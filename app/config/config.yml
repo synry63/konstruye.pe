@@ -94,6 +94,10 @@ vich_uploader:
                 uri_prefix:         /images/negocios/banner
                 upload_destination: %kernel.root_dir%/../web/images/negocios/logo
                 namer:              vich_uploader.namer_uniqid
+            proyecto_foto:
+                uri_prefix:         /images/negocios/proyectos/fotos
+                upload_destination: %kernel.root_dir%/../web/images/negocios/proyectos/fotos
+                namer:              vich_uploader.namer_uniqid
 knp_paginator:
     template:
         pagination: KnpPaginatorBundle:Pagination:foundation_v5_pagination.html.twig     # sliding pagination controls template

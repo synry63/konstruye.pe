@@ -33,6 +33,11 @@ class Proyecto
     private $nombre;
 
     /**
+     * @ORM\OneToMany(targetEntity="FotoProyecto", mappedBy="proyecto")
+     **/
+    private $fotos;
+
+    /**
      * @ORM\Column(type="text",nullable=true)
      */
     private $description;
@@ -42,6 +47,24 @@ class Proyecto
     @ORM\JoinColumn(name="negocio_id", referencedColumnName="id")
      **/
     private $negocio;
+
+    /**
+     * @param mixed $fotos
+     */
+    public function setFotos($fotos)
+    {
+        $this->fotos = $fotos;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFotos()
+    {
+        return $this->fotos;
+    }
+
+
 
     /**
      * @param mixed $description
