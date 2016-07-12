@@ -1,0 +1,39 @@
+{% extends 'FOSUserBundle::layout.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/jquery.rateyo.min.css') }}">
+{% endblock %}
+
+{% block fos_user_content %}
+    <div class="container-fluid">
+        <div class="row">
+            <img width="100%" src="{{ asset('images/assets/cementos_inka.jpg') }}" alt="">
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="col-md-3">
+            {% for cmain in categorias_hijas %}
+                {{ include('includes/filtros_negocios.html.twig', { 'cmain': cmain }) }}
+            {% endfor %}
+        </div>
+
+        <div class="col-md-9">
+            {% for n in negocios.items %}
+                {{ include('includes/listado_negocios.html.twig', { 'n': n }) }}
+            {% endfor %}
+        </div>
+    </div>
+
+
+{% endblock fos_user_content %}
+
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/jquery.rateyo.min.js') }}"></script>
+    <script>
+        {{ include('includes/js/rateyo.js') }}
+    </script>
+{% endblock javascripts %}

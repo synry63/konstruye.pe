@@ -1,0 +1,18 @@
+{% extends 'FOSUserBundle::layout.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+
+{% endblock %}
+
+{% block fos_user_content %}
+    {{ dump(negocios) }}
+
+
+{% endblock fos_user_content %}
+
+
+{% block javascripts %}
+    {{ parent() }}
+
+{% endblock javascripts %}

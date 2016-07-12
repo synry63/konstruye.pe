@@ -8,7 +8,7 @@
 {% block fos_user_content %}
     <div class="container-fluid">
         <div class="row">
-            <img width="100%" src="{{ asset('images/assets/publicidad.jpg') }}" alt="">
+            <img width="100%" src="{{ asset('images/assets/cosapi_banner.jpg') }}" alt="">
         </div>
     </div>
 
@@ -30,70 +30,24 @@
                 <div class="form-group buscador">
                     <input type="text" class="form-control" placeholder="Ingresa Departamento,Provincia,Distrito o Proyecto">
                 </div>
-
             </form>
-
         </div>
     </div>
+
     <div class="container">
 
         <div class="col-md-3">
             {% for cmain in categorias_hijas %}
-                <div class="list-group">
-                    <a href="#" class="list-group-item disabled">{{ cmain.nombre }}</a>
-                    {% for csub in cmain.children %}
-                        <a href="#" class="list-group-item">{{ csub.nombre }}</a>
-                    {% endfor %}
-                </div>
+                {{ include('includes/filtros_negocios.html.twig', { 'cmain': cmain }) }}
             {% endfor %}
         </div>
 
         <div class="col-md-9">
-            {% for n in negocios %}
-                    <div class="row">
-                        <div class="negocio">
-                            <div class="col-md-2 logotipo">
-                                <img src="{{ vich_uploader_asset(n.negocio.logo, 'logoFile','AppBundle\\Entity\\Logo') }}" alt="{{ n.negocio.nombre }}" />
-                            </div>
-                            <div class="col-md-5 description">
-                                <h1>{{ n.negocio.nombre }}</h1>
-                                <p><i class="fa fa-map-marker" aria-hidden="true"></i> {{ n.negocio.direccion }} - {{ n.negocio.distrito }} - {{ n.negocio.departamento }}</p>
-                                <p><i class="fa fa-phone" aria-hidden="true"></i> {{ n.negocio.telefono }}</p>
-                                <p><i class="fa fa-globe" aria-hidden="true"></i> {{ n.negocio.web }}</p>
-                                <p><i class="fa fa-envelope" aria-hidden="true"></i> {{ n.negocio.email }}</p>
-                                <p>
-                                    {% if n.mymoy is null %}
-                                        <div id="rateYo2" data-rating="0"></div>
-                                    {% else %}
-                                        <div id="rateYo" data-rating="{{ n.mymoy }}"></div>
-                                    {% endif %}
-
-                                </p>
-                            </div>
-                            <div class="col-md-5 banner_pub">
-                                <img src="{{ vich_uploader_asset(n.negocio.banner, 'bannerFile','AppBundle\\Entity\\Banner') }}" alt="{{ n.negocio.nombre }}" />
-
-                            </div>
-                        </div>
-                    </div>
-                    <hr class="style-two">
-
-
+            {% for n in negocios.items %}
+                {{ include('includes/listado_negocios.html.twig', { 'n': n }) }}
             {% endfor %}
-
         </div>
     </div>
-
-
-
-
-
-
-
-
-
-
-
 
 
 {% endblock fos_user_content %}
@@ -103,23 +57,6 @@
     {{ parent() }}
     <script src="{{ asset('js/jquery.rateyo.min.js') }}"></script>
     <script>
-        var color="#30BDEF"
-        var rate = $("#rateYo").attr("data-rating");
-        var rate2 = $("#rateYo2").attr("data-rating");
-
-        $("#rateYo").rateYo({
-            rating: rate,
-            ratedFill: color,
-            starWidth: "20px",
-            normalFill: "#A0A0A0",
-            readOnly: true
-        });
-        $("#rateYo2").rateYo({
-            rating: rate2,
-            ratedFill: color,
-            starWidth: "20px",
-            normalFill: "#A0A0A0",
-            readOnly: true
-        });
+        {{ include('includes/js/rateyo.js') }}
     </script>
 {% endblock javascripts %}
