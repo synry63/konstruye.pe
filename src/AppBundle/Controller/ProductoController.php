@@ -14,6 +14,7 @@ use Symfony\Component\HttpFoundation\Request;
 class ProductoController extends Controller
 {
     public function searchProductoAction(Request $request,$search,$page){
+
         $negocios = $this->getDoctrine()->getRepository('AppBundle:Producto')->getProductos($search);
         $paginator  = $this->get('knp_paginator');
         $pagination = $paginator->paginate(

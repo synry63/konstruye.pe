@@ -76,4 +76,23 @@ class NegocioRepository extends EntityRepository
 
         return $query;
     }
+
+    /**
+     * @param $negocio
+     * @return mixed
+     */
+    public function getNegocioRating($negocio){
+        $em = $this->getEntityManager();
+        $qb = $em->createQueryBuilder();
+        $qb->select('avg(cn.nota) as mymoy')
+            ->from('AppBundle\Entity\Negocio', 'n')
+            ->join('n.comentarios','cn')
+            ->where('n = :negocio')
+            ->setParameter('negocio', $negocio);
+        $qb->addGroupBy('n');
+        $query = $qb->getQuery();
+        $result = $query->getOneOrNullResult();
+        if($result!=null) $result = $result['mymoy'];
+        return $result;
+    }
 }

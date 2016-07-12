@@ -2,21 +2,19 @@
 /**
  * Created by PhpStorm.
  * User: pmary-game
- * Date: 4/6/16
- * Time: 11:36 AM
+ * Date: 7/6/16
+ * Time: 10:33 AM
  */
-
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="AppBundle\Repository\ProductoRepository")
- * @ORM\Table(name="productos")
+ * @ORM\Entity
+ * @ORM\Table(name="proyectos")
  */
-class Producto
+class Proyecto
 {
-
     /**
      * @ORM\Column(type="integer")
      * @ORM\Id
@@ -35,43 +33,15 @@ class Producto
     private $nombre;
 
     /**
-     * @ORM\Column(type="string", length=100)
-     */
-    private $img;
-
-    /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text",nullable=true)
      */
     private $description;
 
     /**
-     @ORM\ManyToOne(targetEntity="Negocio",inversedBy="productos")
-     @ORM\JoinColumn(name="negocio_id", referencedColumnName="id")
+    @ORM\ManyToOne(targetEntity="Negocio",inversedBy="proyectos")
+    @ORM\JoinColumn(name="negocio_id", referencedColumnName="id")
      **/
     private $negocio;
-
-    /**
-     * @ORM\OneToMany(targetEntity="ComentarioProducto", mappedBy="producto")
-     */
-    private $comentarios;
-
-    /**
-     * @param mixed $comentarios
-     */
-    public function setComentarios($comentarios)
-    {
-        $this->comentarios = $comentarios;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getComentarios()
-    {
-        return $this->comentarios;
-    }
-
-
 
     /**
      * @param mixed $description
@@ -105,6 +75,21 @@ class Producto
         return $this->id;
     }
 
+    /**
+     * @param mixed $negocio
+     */
+    public function setNegocio($negocio)
+    {
+        $this->negocio = $negocio;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getNegocio()
+    {
+        return $this->negocio;
+    }
 
     /**
      * @param mixed $nombre
@@ -123,22 +108,6 @@ class Producto
     }
 
     /**
-     * @param mixed $proveedor
-     */
-    public function setNegocio($proveedor)
-    {
-        $this->negocio = $proveedor;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getNegocio()
-    {
-        return $this->negocio;
-    }
-
-    /**
      * @param mixed $slug
      */
     public function setSlug($slug)
@@ -153,27 +122,6 @@ class Producto
     {
         return $this->slug;
     }
-
-    /**
-     * @param mixed $img
-     */
-    public function setImg($img)
-    {
-        $this->img = $img;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getImg()
-    {
-        return $this->img;
-    }
-
-
-
-
-
 
 
 }

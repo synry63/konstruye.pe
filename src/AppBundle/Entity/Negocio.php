@@ -165,6 +165,89 @@ class Negocio
      * @ORM\OneToOne(targetEntity="Banner",mappedBy="negocio",cascade={"persist"})
      */
     private $banner;
+
+    /**
+     * @ORM\Column(type="string",nullable=true, length=64)
+     */
+    private $facebookLink;
+    /**
+     * @ORM\Column(type="string",nullable=true, length=64)
+     */
+    private $twitterLink;
+    /**
+     * @ORM\Column(type="string",nullable=true, length=64)
+     */
+    private $pinteresLink;
+    /**
+     * @ORM\Column(type="string",nullable=true, length=64)
+     */
+    private $instagramLink;
+
+    /**
+     * @param mixed $facebookLink
+     */
+    public function setFacebookLink($facebookLink)
+    {
+        $this->facebookLink = $facebookLink;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFacebookLink()
+    {
+        return $this->facebookLink;
+    }
+
+    /**
+     * @param mixed $instagramLink
+     */
+    public function setInstagramLink($instagramLink)
+    {
+        $this->instagramLink = $instagramLink;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getInstagramLink()
+    {
+        return $this->instagramLink;
+    }
+
+    /**
+     * @param mixed $pinteresLink
+     */
+    public function setPinteresLink($pinteresLink)
+    {
+        $this->pinteresLink = $pinteresLink;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPinteresLink()
+    {
+        return $this->pinteresLink;
+    }
+
+    /**
+     * @param mixed $twitterLink
+     */
+    public function setTwitterLink($twitterLink)
+    {
+        $this->twitterLink = $twitterLink;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTwitterLink()
+    {
+        return $this->twitterLink;
+    }
+
+
     /**
      * @return mixed
      */

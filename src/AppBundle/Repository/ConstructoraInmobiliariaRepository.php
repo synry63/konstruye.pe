@@ -17,10 +17,14 @@ class ConstructoraInmobiliariaRepository extends EntityRepository
      */
     public function getNegocios(){
         $qb = $this->createQueryBuilder('n')
+            ->select('n as negocio,avg(cp.nota) as mymoy')
+            ->leftJoin('n.comentarios','cp')
             ->orderBy('n.registeredAt', 'DESC')
             ->where('n.isActive = :state')
-            ->setParameter('state', true)
+            ->setParameter('state', true);
         ;
+
+        $qb->addGroupBy('n');
         $query = $qb->getQuery();
 
         return $query;

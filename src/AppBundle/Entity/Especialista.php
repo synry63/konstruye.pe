@@ -21,5 +21,26 @@ use Symfony\Component\Validator\Context\ExecutionContextInterface;
  */
 class Especialista extends Negocio
 {
+    /**
+     * @ORM\OneToMany(targetEntity="Proyecto", mappedBy="negocio")
+     **/
+    protected $proyectos;
+
+    /**
+     * @param mixed $proyectos
+     */
+    public function setProyectos($proyectos)
+    {
+        $this->proyectos = $proyectos;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getProyectos()
+    {
+        return $this->proyectos;
+    }
+
 
 }

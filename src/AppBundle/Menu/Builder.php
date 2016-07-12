@@ -103,13 +103,13 @@ class Builder implements ContainerAwareInterface
 
         );
 
-        $menu->addChild('contactenos',array(
+        /*$menu->addChild('contactenos',array(
             'route' => 'lisdato_seccion',
             'label' => 'proveedores',
             'routeParameters' => array('slug_seccion' => 'proveedores')
 
             )
-        );
+        );*/
         return $menu;
     }
 }

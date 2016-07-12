@@ -30,7 +30,7 @@ class Foto
     /**
      * NOTE: This is not a mapped field of entity metadata, just a simple property.
      *
-     * @Vich\UploadableField(mapping="proveedor_image", fileNameProperty="img")
+     * @Vich\UploadableField(mapping="negocio_foto", fileNameProperty="img")
      * @var File
      */
     private $imgFile;

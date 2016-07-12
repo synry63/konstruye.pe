@@ -12,9 +12,9 @@ use Doctrine\ORM\EntityRepository;
 
 class ComentarioNegocioRepository extends EntityRepository
 {
-    public function getAllComments($proveedor){
+    public function getAllComments($negocio){
 
-        $result = $this->findBy(array('negocio' => $proveedor));
+        $result = $this->findBy(array('negocio' => $negocio));
         return $result;
     }
 }
