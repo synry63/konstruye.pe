@@ -70,6 +70,17 @@ body{
     display: none;
 }
 /*=============
+Filtros
+=============*/
+.list-group .tittle-disable{
+    background: #30BDEF;
+    color: #fff;
+}
+.list-group .tittle-disable:hover{
+    background: #30BDEF;
+    color: #fff;
+}
+/*=============
 Buscador Principal
 =============*/
 .buscador_principal{
@@ -382,6 +393,10 @@ Details Page
 =============*/
 .logo_detail_section{
     text-align: center;
+    min-height: 470px;
+}
+.logo_detail_section img{
+    box-shadow: 0 0 5px rgba(0,0,0,.4);
 }
 .logo_detail_section p{
     line-height: 22px;
@@ -453,6 +468,36 @@ Details Page
 }
 .comments_details .media-body p{
     margin-top: 10px;
+}
+.googlemaps img{
+    margin: 30px auto;
+}
+/*=============
+Producto Page
+=============*/
+.product-section{
+    margin-top: 20px;
+}
+.product-section .producto-box{
+    text-align: center;
+    margin: 10px auto;
+}
+.product-section .producto-box a{
+    text-decoration: none;
+}
+.product-section .producto-box  h1{
+    margin: 5px 0;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: #009FE3;
+}
+.product-section .producto-box  h2{
+    font-style: italic;
+    margin: 5px 0;
+    color: rgba(0,0,0,.5);
+}
+.product-section .producto-box p{
+    color: #009FE3;
 }
 /*=============
 Responsive
