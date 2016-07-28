@@ -12,6 +12,7 @@ use AppBundle\Entity\ConstructoraInmobiliaria;
 use AppBundle\Entity\Especialista;
 use AppBundle\Entity\Inmueble;
 use AppBundle\Entity\Proveedor;
+use AppBundle\Form\Type\ComentarioNegocioType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -117,21 +118,19 @@ class NegocioController extends Controller
         );
         if(is_object($user)){
             $comentarioNegocio = $this->getDoctrine()->getRepository('AppBundle:ComentarioNegocio')
-                ->findOneBy(array('proveedor'=>$negocio,'user'=>$user));
+                ->findOneBy(array('negocio'=>$negocio,'user'=>$user));
             if($comentarioNegocio==null){
                 $comentarioNegocio = new ComentarioNegocio();
                 $form = $this->createForm(new ComentarioNegocioType(), $comentarioNegocio);
                 $form->handleRequest($request);
                 if ($form->isValid()) {
-                    //$comentarioNegocio->setUser($user);
+                    $comentarioNegocio->setUser($user);
                     $comentarioNegocio->setNegocio($negocio);
                     $em = $this->getDoctrine()->getManager();
                     $em->persist($comentarioNegocio);
                     $em->flush();
-
                     $request->getSession()->getFlashBag()->add('success', 'Gracias por tu comentario !');
                     return $this->redirectToRoute('show_negocio',array('slug_seccion'=>$slug_seccion,'slug_negocio'=>$slug_negocio));
-
                 }
                 $renderOut['form'] = $form->createView();
             }

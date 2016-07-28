@@ -1,0 +1,8 @@
+<table>
+    <tr>
+        {# sorting of properties based on query components #}
+        <th>{{ knp_pagination_sortable(negocios, 'Id', 'n.id') }}</th>
+        <th{% if negocios.isSorted('n.nombre') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(negocios, 'Nombre', 'n.nombre') }}</th>
+        <th>{{ knp_pagination_sortable(negocios, 'Release', ['n.date', 'n.time']) }}</th>
+    </tr>
+</table>

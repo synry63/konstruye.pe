@@ -26,3 +26,6 @@ search_global_productos:
 show_producto:
     path:      /producto/{slug_producto}
     defaults:  { _controller: AppBundle:Producto:showDetail}
+show_fotos_proyecto:
+    path:      /proyecto/{id}
+    defaults:  { _controller: AppBundle:Foto:showProyectoFotos}

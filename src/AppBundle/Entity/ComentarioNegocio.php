@@ -17,26 +17,50 @@ class ComentarioNegocio
 {
 
     /**
-     * @ORM\Id @ORM\ManyToOne(targetEntity="User")
+     * @ORM\Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+    /**
+     * @ORM\ManyToOne(targetEntity="User")
      **/
     private $user;
 
     /**
-     * @ORM\Id @ORM\ManyToOne(targetEntity="Negocio",inversedBy="comentarios")
+     * @ORM\ManyToOne(targetEntity="Negocio",inversedBy="comentarios")
      **/
     private $negocio;
 
 
-
-    /** @ORM\Column(type="integer")
+    /** @ORM\Column(type="decimal",precision=10,scale=2)
      *  @Assert\NotBlank()
+     *  @Assert\GreaterThan(
+     *     value = 0
+     *  )
+     *  @Assert\LessThanOrEqual(
+     *     value = 5
+     * )
      **/
     private $nota;
 
     /**
+     * @ORM\Column(type="string", length=100)
+     * @Assert\NotBlank()
+     */
+    private $titulo;
+
+    /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank()
      */
     private $comentario;
+    /**
+     * @ORM\Column(type="datetime")
+     *
+     * @var \DateTime
+     */
+    private $adedAt;
 
     /**
      * @param mixed $comentario
@@ -44,6 +68,54 @@ class ComentarioNegocio
     public function setComentario($comentario)
     {
         $this->comentario = $comentario;
+    }
+
+    /**
+     * @param mixed $adedAt
+     */
+    public function setAdedAt($adedAt)
+    {
+        $this->adedAt = $adedAt;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAdedAt()
+    {
+        return $this->adedAt;
+    }
+
+    /**
+     * @param mixed $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param mixed $titulo
+     */
+    public function setTitulo($titulo)
+    {
+        $this->titulo = $titulo;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTitulo()
+    {
+        return $this->titulo;
     }
 
     /**
