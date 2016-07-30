@@ -35,6 +35,10 @@ class FotoProyecto
      */
     private $imgFile;
 
+    /**
+     * @ORM\Column(type="string",nullable=true, length=255)
+     */
+    private $videoUrl;
 
     /**
      * @ORM\Column(type="string", length=100)
@@ -155,6 +159,22 @@ class FotoProyecto
     public function getImg()
     {
         return $this->img;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getVideoUrl()
+    {
+        return $this->videoUrl;
+    }
+
+    /**
+     * @param mixed $videoUrl
+     */
+    public function setVideoUrl($videoUrl)
+    {
+        $this->videoUrl = $videoUrl;
     }
 
 

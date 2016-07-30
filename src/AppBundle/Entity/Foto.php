@@ -49,6 +49,11 @@ class Foto
     private $updatedAt;
 
     /**
+     * @ORM\Column(type="string",nullable=true, length=255)
+     */
+    private $videoUrl;
+
+    /**
     @ORM\ManyToOne(targetEntity="Negocio",inversedBy="fotos")
     @ORM\JoinColumn(name="negocio_id", referencedColumnName="id")
      **/
@@ -133,6 +138,22 @@ class Foto
     public function getImg()
     {
         return $this->img;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getVideoUrl()
+    {
+        return $this->videoUrl;
+    }
+
+    /**
+     * @param mixed $videoUrl
+     */
+    public function setVideoUrl($videoUrl)
+    {
+        $this->videoUrl = $videoUrl;
     }
 
 

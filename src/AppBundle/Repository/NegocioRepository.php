@@ -92,7 +92,12 @@ class NegocioRepository extends EntityRepository
         $qb->addGroupBy('n');
         $query = $qb->getQuery();
         $result = $query->getOneOrNullResult();
-        if($result!=null) $result = $result['mymoy'];
+        if($result!=null){
+            $result = $result['mymoy'];
+        }
+        else{
+            $result = 0;
+        }
         return $result;
     }
 }

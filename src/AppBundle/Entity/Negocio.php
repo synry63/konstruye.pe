@@ -51,7 +51,7 @@ class Negocio
     private $email;
 
     /**
-     * @ORM\Column(type="string",nullable=true, length=64)
+     * @ORM\Column(type="string", length=64)
      */
     private $telefono;
 
@@ -61,17 +61,25 @@ class Negocio
     private $web;
 
     /**
-     * @ORM\Column(type="string",nullable=true, length=64)
+     * @ORM\Column(type="boolean",nullable=true,options={"default": false})
+     */
+    private $isAccepted;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     *
      */
     private $direccion;
 
     /**
-     * @ORM\Column(type="string",nullable=true, length=64)
+     * @ORM\Column(type="string", length=64)
+     *
      */
     private $departamento;
 
     /**
-     * @ORM\Column(type="string",nullable=true, length=64)
+     * @ORM\Column(type="string", length=64)
+     *
      */
     private $distrito;
 
@@ -87,6 +95,21 @@ class Negocio
      * @var File
      */
     private $tempFile;
+
+    /**
+     * @return mixed
+     */
+    public function getIsAccepted()
+    {
+        return $this->isAccepted;
+    }
+    /**
+     * @param mixed $isAccepted
+     */
+    public function setIsAccepted($isAccepted)
+    {
+        $this->isAccepted = $isAccepted;
+    }
 
 
 
@@ -116,10 +139,6 @@ class Negocio
      */
     private $tags;
 
-    /**
-     * @ORM\Column(type="string",nullable=true, length=255)
-     */
-    private $googlemap;
 
     /**
      * @ORM\Column(type="string",nullable=true, length=100)
@@ -152,10 +171,7 @@ class Negocio
      **/
     private $user;
 
-    /**
-     * @ORM\Column(name="is_active", type="boolean")
-     */
-    private $isActive;
+
     /**
      * @ORM\OneToOne(targetEntity="Logo",mappedBy="negocio",cascade={"persist"})
      */
@@ -182,6 +198,16 @@ class Negocio
      * @ORM\Column(type="string",nullable=true, length=64)
      */
     private $instagramLink;
+
+    /**
+     * @ORM\Column(type="float",nullable=true)
+     */
+    private $googleMapLat;
+
+    /**
+     * @ORM\Column(type="float",nullable=true)
+     */
+    private $googleMapLng;
 
     /**
      * @param mixed $facebookLink
@@ -291,28 +317,12 @@ class Negocio
 
 
     public function __construct() {
-        $this->isActive = false;
         $this->registeredAt = new \DateTime('now');
         $this->comentarios = new ArrayCollection();
         $this->productos = new ArrayCollection();
         $this->categoriasListado = new ArrayCollection();
     }
 
-    /**
-     * @param mixed $isActive
-     */
-    public function setIsActive($isActive)
-    {
-        $this->isActive = $isActive;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getIsActive()
-    {
-        return $this->isActive;
-    }
 
     /**
      * @param mixed $logo
@@ -428,20 +438,37 @@ class Negocio
     }
 
     /**
-     * @param mixed $googlemap
+     * @return mixed
      */
-    public function setGooglemap($googlemap)
+    public function getGoogleMapLat()
     {
-        $this->googlemap = $googlemap;
+        return $this->googleMapLat;
+    }
+
+    /**
+     * @param mixed $googleMapLat
+     */
+    public function setGoogleMapLat($googleMapLat)
+    {
+        $this->googleMapLat = $googleMapLat;
     }
 
     /**
      * @return mixed
      */
-    public function getGooglemap()
+    public function getGoogleMapLng()
     {
-        return $this->googlemap;
+        return $this->googleMapLng;
     }
+
+    /**
+     * @param mixed $googleMapLng
+     */
+    public function setGoogleMapLng($googleMapLng)
+    {
+        $this->googleMapLng = $googleMapLng;
+    }
+
 
     /**
      * @param mixed $id

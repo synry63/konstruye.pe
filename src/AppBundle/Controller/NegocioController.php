@@ -18,6 +18,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Ivory\GoogleMap\Overlays\Marker;
 use Ivory\GoogleMap\Overlays\Animation;
+use Ivory\GoogleMap\Places\Autocomplete;
+use Ivory\GoogleMap\Places\AutocompleteComponentRestriction;
+use Ivory\GoogleMap\Places\AutocompleteType;
+use Ivory\GoogleMap\Helper\Places\AutocompleteHelper;
+use Ivory\GoogleMap\Overlays\InfoWindow;
+use Ivory\GoogleMap\Events\MouseEvent;
 
 class NegocioController extends Controller
 {
@@ -88,34 +94,74 @@ class NegocioController extends Controller
         ));
     }
 
+    private function initGoogleMap($negocio,$slug_site){
+        $map = $this->get('ivory_google_map.map');
+        //$map->setApiKey('AIzaSyDSEEQgKuvd-sphCZGDm2nhmAFi9DUXlEk');
+        //$map->setLanguage($this->get('request')->getLocale());
+        $map->setCenter($negocio->getGoogleMapLat(), $negocio->getGoogleMapLng(), true);
+        $map->setAsync(true);
+        // Sets the zoom
+        $map->setAutoZoom(false);
+        $map->setMapOption('zoom', 16);
+        //$map->setBound(-2.1, -3.9, 2.6, 1.4, true, true);
+        $map->setStylesheetOption('width', '100%');
+        $map->setStylesheetOption('height', '300px');
+        $marker = new Marker();
+        $marker->setIcon('http://theeventplanner.pe/images/markers/'.$slug_site.'_marker.png');
+        // Sets your marker animation
+        //$marker->setAnimation(Animation::DROP);
+
+        //$marker->setAnimation('bounce');
+        $marker->setPosition($negocio->getGoogleMapLat(), $negocio->getGoogleMapLng(), true);
+        // Add your marker to the map
+        $map->addMarker($marker);
+
+// Configure your info window options
+
+        $infoWindow = new InfoWindow();
+        $infoWindow->setPrefixJavascriptVariable('info_window_');
+        $infoWindow->setPosition(0, 0, true);
+        $infoWindow->setPixelOffset(1.1, 2.1, 'px', 'pt');
+        $text = $negocio->getDireccion().'<br/>';
+        $infoWindow->setContent('<p class="info-window">'
+            .$text.'</p>');
+        $infoWindow->setOpen(false);
+        $infoWindow->setAutoOpen(true);
+        $infoWindow->setOpenEvent(MouseEvent::CLICK);
+        $infoWindow->setAutoClose(false);
+        $infoWindow->setOption('disableAutoPan', true);
+        $infoWindow->setOption('zIndex', 10);
+        $infoWindow->setOptions(array(
+            'disableAutoPan' => true,
+            'zIndex'         => 10,
+        ));
+
+        $marker->setInfoWindow($infoWindow);
+
+        return $map;
+    }
+
     public function showDetailAction(Request $request,$slug_seccion,$slug_negocio)
     {
+
         $user = $this->container->get('security.context')->getToken()->getUser();
         $negocio = $this->getDoctrine()->getRepository('AppBundle:Negocio')->findOneBySlug($slug_negocio);
         $comments = $this->getDoctrine()->getRepository('AppBundle:ComentarioNegocio')->getAllComments($negocio);
         $moy = $this->getDoctrine()->getRepository('AppBundle:Negocio')->getNegocioRating($negocio);
 
-        $map = $this->get('ivory_google_map.map');
-        $map->setLanguage($this->get('request')->getLocale());
-        $map->setCenter(-12.0552581, -77.080205, true);
-        $map->setMapOption('zoom', 3);
-        $map->setBound(-2.1, -3.9, 2.6, 1.4, true, true);
-        $map->setStylesheetOption('width', '100%');
-        $map->setStylesheetOption('height', '300px');
-        $marker = new Marker();
-        // Sets your marker animation
-        $marker->setAnimation(Animation::BOUNCE);
-        $marker->setAnimation('bounce');
-        $marker->setPosition(-12.0552581, -77.080205, true);
-        // Add your marker to the map
-        $map->addMarker($marker);
-
         $renderOut = array(
             'negocio'=>$negocio,
             'moy'=>$moy,
             'comentarios'=>$comments,
-            'map'=>$map
         );
+
+
+        if($negocio->getGoogleMapLat()!=NULL && $negocio->getGoogleMapLng()!=NULL){
+            $map = $this->initGoogleMap($negocio,$slug_seccion);
+            $renderOut['map'] = $map;
+        }
+
+
         if(is_object($user)){
             $comentarioNegocio = $this->getDoctrine()->getRepository('AppBundle:ComentarioNegocio')
                 ->findOneBy(array('negocio'=>$negocio,'user'=>$user));

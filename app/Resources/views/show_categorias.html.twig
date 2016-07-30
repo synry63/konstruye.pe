@@ -8,6 +8,9 @@
 {% endblock %}
 
 {% block fos_user_content %}
+    {% if map is defined %}
+        {{ google_map(map) }}
+    {% endif %}
     <div class="container">
             <div class="col-md-4 logo_detail_section">
                 <img width="200" src="{{ vich_uploader_asset(negocio.logo, 'logoFile','AppBundle\\Entity\\Logo') }}" alt="" />
@@ -116,7 +119,6 @@
 
     <div class="container-fluid googlemaps">
         <div class="row">
-            {{ negocio.googlemap }}
             <img width="100%" src="http://placehold.it/1920x600x?text=Google+Maps!" alt="" />
         </div>
     </div>
