@@ -20,7 +20,7 @@ class ConstructoraInmobiliariaRepository extends EntityRepository
             ->select('n as negocio,avg(cp.nota) as mymoy')
             ->leftJoin('n.comentarios','cp')
             ->orderBy('n.registeredAt', 'DESC')
-            ->where('n.isActive = :state')
+            ->where('n.isAccepted = :state')
             ->setParameter('state', true);
         ;
 
@@ -47,5 +47,18 @@ class ConstructoraInmobiliariaRepository extends EntityRepository
         $query = $qb->getQuery();
 
         return $query->getResult();
+    }
+    public function searchNegociosNames($search){
+        $em = $this->getEntityManager();
+        $qb = $em->createQueryBuilder();
+        $qb->select('n.nombre as nombre')
+            ->from('AppBundle\Entity\ConstructoraInmobiliaria', 'n')
+            ->where($qb->expr()->like('n.nombre', ':search'))
+            ->setParameter('search', '%' . $search . '%');
+        $query = $qb->getQuery();
+        $negocios = $query->getResult();
+
+        $nombres = array_column($negocios, 'nombre');
+        return $nombres;
     }
 }

@@ -69,6 +69,11 @@ class User extends BaseUser
     protected $dni;
 
     /**
+     * @ORM\OneToOne(targetEntity="FotoProfile",mappedBy="user",cascade={"persist"})
+     */
+    private $profile;
+
+    /**
      * @ORM\OneToMany(targetEntity="Negocio", mappedBy="user")
      */
     private $negocios;
@@ -126,6 +131,23 @@ class User extends BaseUser
     {
         return $this->dni;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getProfile()
+    {
+        return $this->profile;
+    }
+
+    /**
+     * @param mixed $profile
+     */
+    public function setProfile($profile)
+    {
+        $this->profile = $profile;
+    }
+
 
     /**
      * @param mixed $nombres

@@ -39,8 +39,9 @@ class NegocioRepository extends EntityRepository
         $qb = $this->createQueryBuilder('n');
         $qb->where($qb->expr()->like('n.nombre', ':search'))
            ->setParameter('search', '%' . $search . '%');
-        $qb->orWhere($qb->expr()->like('n.tags', ':search'))
+        /*$qb->orWhere($qb->expr()->like('n.tags', ':search'))
             ->setParameter('search', '%' . $search . '%');
+        */
         $query = $qb->getQuery();
         //$negocios = $query->getResult();
         return $query;

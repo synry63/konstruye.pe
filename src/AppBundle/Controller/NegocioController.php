@@ -24,6 +24,7 @@ use Ivory\GoogleMap\Places\AutocompleteType;
 use Ivory\GoogleMap\Helper\Places\AutocompleteHelper;
 use Ivory\GoogleMap\Overlays\InfoWindow;
 use Ivory\GoogleMap\Events\MouseEvent;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class NegocioController extends Controller
 {
@@ -105,9 +106,9 @@ class NegocioController extends Controller
         $map->setMapOption('zoom', 16);
         //$map->setBound(-2.1, -3.9, 2.6, 1.4, true, true);
         $map->setStylesheetOption('width', '100%');
-        $map->setStylesheetOption('height', '300px');
+        $map->setStylesheetOption('height', '400px');
         $marker = new Marker();
-        $marker->setIcon('http://theeventplanner.pe/images/markers/'.$slug_site.'_marker.png');
+        //$marker->setIcon('http://theeventplanner.pe/images/markers/'.$slug_site.'_marker.png');
         // Sets your marker animation
         //$marker->setAnimation(Animation::DROP);
 
@@ -140,10 +141,33 @@ class NegocioController extends Controller
 
         return $map;
     }
-
-    public function showDetailAction(Request $request,$slug_seccion,$slug_negocio)
+    public function buscarListaNegociosAction(Request $request,$slug_seccion)
     {
 
+        $out = array();
+        $search = $request->query->get('q');
+
+        if($slug_seccion=="constructoras-e-inmobiliarias"){
+            $out = $this->getDoctrine()->getRepository('AppBundle:ConstructoraInmobiliaria')->searchNegociosNames($search);
+
+        }
+        else if($slug_seccion=="compra-venta-y-alquiler-inmuebles"){
+        }
+        else if($slug_seccion=="especialistas-servicios-personales"){
+        }
+        else if($slug_seccion=="proveedores"){
+        }
+
+
+        //if($slug_seccion=="null"){
+        //}
+
+        $response = new JsonResponse($out);
+
+        return $response;
+    }
+    public function showDetailAction(Request $request,$slug_seccion,$slug_negocio)
+    {
         $user = $this->container->get('security.context')->getToken()->getUser();
         $negocio = $this->getDoctrine()->getRepository('AppBundle:Negocio')->findOneBySlug($slug_negocio);
         $comments = $this->getDoctrine()->getRepository('AppBundle:ComentarioNegocio')->getAllComments($negocio);
@@ -163,12 +187,14 @@ class NegocioController extends Controller
 
 
         if(is_object($user)){
+
             $comentarioNegocio = $this->getDoctrine()->getRepository('AppBundle:ComentarioNegocio')
                 ->findOneBy(array('negocio'=>$negocio,'user'=>$user));
             if($comentarioNegocio==null){
                 $comentarioNegocio = new ComentarioNegocio();
                 $form = $this->createForm(new ComentarioNegocioType(), $comentarioNegocio);
                 $form->handleRequest($request);
+
                 if ($form->isValid()) {
                     $comentarioNegocio->setUser($user);
                     $comentarioNegocio->setNegocio($negocio);
@@ -198,14 +224,21 @@ class NegocioController extends Controller
         }
     }
     public function searchNegocioAction(Request $request,$search,$page){
-        $negocios = $this->getDoctrine()->getRepository('AppBundle:Negocio')->getNegociosBy($search);
+
+        if(empty($search)){
+            $negocios = array();
+        }
+        else{
+            $negocios = $this->getDoctrine()->getRepository('AppBundle:Negocio')->getNegociosBy($search);
+        }
+
         $paginator  = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
             $negocios,
             $page,
             6
         );
-        return $this->render('temp3.html.twig',array(
+        return $this->render('resultado_busqueda_negocios.html.twig',array(
             'negocios'=>$pagination,
         ));
     }

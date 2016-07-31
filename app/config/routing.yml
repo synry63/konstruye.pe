@@ -12,6 +12,16 @@ lisdato_seccion:
     requirements:
           slug_seccion: constructoras-e-inmobiliarias|compra-venta-y-alquiler-inmuebles|especialistas-servicios-personales|proveedores
           page:  \d+
+buscar_negocios_by_seccion:
+     path:      /buscar-negocios/{slug_seccion}
+     defaults:  { _controller: AppBundle:Negocio:buscarListaNegocios,slug_seccion:null}
+buscar_negocios_by_seccion_null:
+     path:      /buscar-negocios/
+     defaults:  { _controller: AppBundle:Negocio:buscarListaNegocios,slug_seccion:null}
+
+buscar_productos:
+     path:      /buscar-productos/
+     defaults:  { _controller: AppBundle:Producto:buscarListaProductos}
 show_negocio:
     path:      /{slug_seccion}/{slug_negocio}
     defaults:  { _controller: AppBundle:Negocio:showDetail}
@@ -19,10 +29,11 @@ show_negocio:
           slug_seccion: constructoras-e-inmobiliarias|compra-venta-y-alquiler-inmuebles|especialistas-servicios-personales|proveedores
 search_global_negocios:
     path:      /resultado-busqueda/negocios/{search}
-    defaults:  { _controller: AppBundle:Negocio:searchNegocio,page:1}
+    defaults:  { _controller: AppBundle:Negocio:searchNegocio,search:null,page:1}
+
 search_global_productos:
     path:      /resultado-busqueda/productos/{search}
-    defaults:  { _controller: AppBundle:Producto:searchProducto,page:1}
+    defaults:  { _controller: AppBundle:Producto:searchProducto,search:null,page:1}
 show_producto:
     path:      /producto/{slug_producto}
     defaults:  { _controller: AppBundle:Producto:showDetail}

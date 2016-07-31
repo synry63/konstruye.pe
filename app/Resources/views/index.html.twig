@@ -7,6 +7,11 @@
     <link rel="stylesheet" href="{{ asset('css/masterslider.css') }}">
     <link rel="stylesheet" href="{{ asset('css/ms-staff-style.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <style>
+        .ui-autocomplete-loading {
+            background: white url("/images/assets/ui-anim_basic_16x16.gif") right center no-repeat;
+        }
+    </style>
 {% endblock %}
 
 {% block fos_user_content %}
@@ -48,27 +53,24 @@
             <span id="hide2">Buscador de Productos</span>
         </div>
 
-        <form id="s1" class="buscador_principal" role="search">
+        <form id="s1" data-buscar-url="{{ path('buscar_negocios_by_seccion_null') }}" action="{{ path('search_global_negocios') }}" class="buscador_principal" role="search">
             <div class="form-group buscador">
                 <input type="text" class="form-control" placeholder="Buscar Negocios">
             </div>
             <select class="selectpicker">
-                <option value="0">Selecciona una Categoria</option>
-                <option value="1">Constructoras e Inmobiliarias</option>
-                <option value="2">Especialistas y Servicios Personales</option>
-                <option value="3">Proveedores</option>
+                <option value="">Selecciona una Categoria</option>
+                <option value="constructoras-e-inmobiliarias">Constructoras e Inmobiliarias</option>
+                <option value="especialistas-servicios-personales">Especialistas y Servicios Personales</option>
+                <option value="proveedores">Proveedores</option>
             </select>
         </form>
 
-        <form id="s2" class="buscador_principal" role="search">
+        <form id="s2" data-buscar-url="{{ path('buscar_productos') }}"  action="{{ path('search_global_productos') }}" class="buscador_principal" role="search">
             <div class="form-group buscador">
                 <input type="text" class="form-control" placeholder="Buscar Productos">
             </div>
             <select class="selectpicker">
-                <option value="0">Selecciona una Categoria</option>
-                <option value="1">Constructoras e Inmobiliarias</option>
-                <option value="2">Especialistas y Servicios Personales</option>
-                <option value="3">Proveedores</option>
+                <option selected value="proveedores">Proveedores</option>
             </select>
         </form>
     </div>
@@ -190,6 +192,23 @@
     <script src="{{ asset('js/masterslider.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('js/jquery.easing.min.js') }}" type="text/javascript"></script>
     <script>
+
+            function monkeyPatchAutocomplete() {
+
+                // Don't really need to save the old fn,
+                // but I could chain if I wanted to
+                var oldFn = $.ui.autocomplete.prototype._renderItem;
+
+                $.ui.autocomplete.prototype._renderItem = function( ul, item) {
+                    var re = new RegExp("^" + this.term, "i") ;
+                    var t = item.label.replace(re,"<span style='font-weight:bold;color:Blue;'>" + this.term + "</span>");
+                    return $( "<li></li>" )
+                            .data( "item.autocomplete", item )
+                            .append( "<a>" + t + "</a>" )
+                            .appendTo( ul );
+                };
+            }
+
             $(document).ready(function() {
                 var slider = new MasterSlider();
 
@@ -242,6 +261,76 @@
                 slider3.control('slideinfo',{insertTo:'#staff-info2'});
 
             });
+
+            monkeyPatchAutocomplete();
+            var s1_found_data = false;
+            $( "#s1 input" ).autocomplete({
+                source: function( request, response ) {
+                    var seccion = $("#s1 .selectpicker").val();
+                    if(seccion==""){
+                        alert('Seleciona una categoria primero !')
+                    }
+                    var url = $("#s1").attr('data-buscar-url');
+                    s1_found_data = false;
+                    $.ajax( {
+                        url: url+seccion,
+                        //dataType: "jsonp",
+                        data: {
+                            q: request.term
+                        },
+                        success: function( data ) {
+                            //console.log(data);
+                            // Handle 'no match' indicated by [ "" ] response
+                            response( data.length === 0 ? ['Ningun resultado encontrado'] : data );
+                            if(data.length>0) s1_found_data = true;
+                        }
+                    } );
+                },
+                minLength: 3,
+                select: function( event, ui ) {
+                    if(!s1_found_data) return false;
+
+                    $( "#s1 input").attr('value',ui.item.label);
+                    var url = $('#s1').attr('action');
+                    var search = ui.item.label;
+                    window.open(url+'/'+search,'_self',false);
+                    //$('#s2').submit();
+                    //alert(ui.item.label);
+                    //log( "Selected: " + ui.item.label );
+                }
+            });
+
+            var s2_found_data = false;
+            $( "#s2 input" ).autocomplete({
+                source: function( request, response ) {
+                    var url = $("#s2").attr('data-buscar-url');
+                    s2_found_data = false;
+                    $.ajax( {
+                        url: url,
+                        //dataType: "jsonp",
+                        data: {
+                            q: request.term
+                        },
+                        success: function( data ) {
+                            // Handle 'no match' indicated by [ "" ] response
+                            response( data.length === 0 ? ['Ningun resultado encontrado'] : data );
+                            if(data.length>0) s2_found_data = true;
+                            //response( data.length === 1 && data[ 0 ].length === 0 ? ['Ningun resultado encontrado'] : data );
+                        }
+                    } );
+                },
+                minLength: 3,
+                select: function( event, ui ) {
+                    if(!s2_found_data) return false;
+                    $( "#s2 input").attr('value',ui.item.label);
+                    var url = $('#s2').attr('action');
+                    var search = ui.item.label;
+                    window.open(url+'/'+search,'_self',false);
+                    //$('#s2').submit();
+                    //alert(ui.item.label);
+                    //log( "Selected: " + ui.item.label );
+                }
+            } );
 
     </script>
 

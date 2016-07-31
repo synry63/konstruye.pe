@@ -20,7 +20,7 @@ class ProveedorRepository extends EntityRepository
             ->select('n as negocio,avg(cp.nota) as mymoy')
             ->leftJoin('n.comentarios','cp')
             ->orderBy('n.registeredAt', 'DESC')
-            ->where('n.isActive = :state')
+            ->where('n.isAccepted = :state')
             ->setParameter('state', true);
         ;
 

@@ -10,7 +10,7 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\ProyectoRepository")
  * @ORM\Table(name="proyectos")
  */
 class Proyecto
@@ -47,6 +47,13 @@ class Proyecto
     @ORM\JoinColumn(name="negocio_id", referencedColumnName="id")
      **/
     private $negocio;
+
+    /**
+     * @ORM\Column(type="datetime")
+     *
+     * @var \DateTime
+     */
+    private $registeredAt;
 
     /**
      * @param mixed $fotos
@@ -146,5 +153,27 @@ class Proyecto
         return $this->slug;
     }
 
+    /**
+     * @return \DateTime
+     */
+    public function getRegisteredAt()
+    {
+        return $this->registeredAt;
+    }
+
+    /**
+     * @param \DateTime $registeredAt
+     */
+    public function setRegisteredAt($registeredAt)
+    {
+        $this->registeredAt = $registeredAt;
+    }
+
+
+
+    public function __construct()
+    {
+        $this->registeredAt = new \DateTime('now');
+    }
 
 }

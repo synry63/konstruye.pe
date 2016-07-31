@@ -10,22 +10,33 @@ namespace AppBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class ProductoController extends Controller
 {
     public function searchProductoAction(Request $request,$search,$page){
 
-        $negocios = $this->getDoctrine()->getRepository('AppBundle:Producto')->getProductos($search);
+        $productos = $this->getDoctrine()->getRepository('AppBundle:Producto')->getProductos($search);
         $paginator  = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
-            $negocios,
+            $productos,
             $page,
             6
         );
+
         return $this->render('temp4.html.twig',array(
             'productos'=>$pagination,
         ));
     }
+    public function buscarListaProductosAction(Request $request){
+
+        $search = $request->query->get('q');
+        $out = $this->getDoctrine()->getRepository('AppBundle:Producto')->searchProductosNames($search);
+        $response = new JsonResponse($out);
+
+        return $response;
+    }
+
     public function showDetailAction(Request $request,$slug_producto)
     {
         $producto = $this->getDoctrine()->getRepository('AppBundle:Producto')->findOneBySlug($slug_producto);
@@ -35,4 +46,5 @@ class ProductoController extends Controller
 
 
     }
+
 }

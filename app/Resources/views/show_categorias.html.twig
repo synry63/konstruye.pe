@@ -8,9 +8,7 @@
 {% endblock %}
 
 {% block fos_user_content %}
-    {% if map is defined %}
-        {{ google_map(map) }}
-    {% endif %}
+
     <div class="container">
             <div class="col-md-4 logo_detail_section">
                 <img width="200" src="{{ vich_uploader_asset(negocio.logo, 'logoFile','AppBundle\\Entity\\Logo') }}" alt="" />
@@ -119,10 +117,24 @@
 
     <div class="container-fluid googlemaps">
         <div class="row">
-            <img width="100%" src="http://placehold.it/1920x600x?text=Google+Maps!" alt="" />
+            {% if map is defined %}
+                {{ google_map(map) }}
+            {% endif %}
+
         </div>
     </div>
+    <div class="menu-proyectos-right-bar">
+        {{ render(controller(
+        'AppBundle:Proyecto:lastProyectos',
+        { 'id_negocio':negocio.id,'max': 4 }
+        )) }}
+    </div>
 
+    {{ dump(comentarios) }}
+
+    {% if form is defined %}
+        {{ form(form,{attr: {novalidate: 'novalidate'}}) }}
+    {% endif %}
     <div class="container comments_details">
         <div class="col-md-8 col-md-offset-2">
             <div class="media comment">

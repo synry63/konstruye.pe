@@ -145,10 +145,7 @@ class Negocio
      */
     private $slug;
 
-    /**
-     * @ORM\OneToMany(targetEntity="Producto", mappedBy="negocio")
-     **/
-    private $productos;
+
 
     /**
      * @ORM\OneToMany(targetEntity="Foto", mappedBy="negocio")
@@ -503,21 +500,7 @@ class Negocio
         return $this->nombre;
     }
 
-    /**
-     * @param mixed $productos
-     */
-    public function setProductos($productos)
-    {
-        $this->productos = $productos;
-    }
 
-    /**
-     * @return mixed
-     */
-    public function getProductos()
-    {
-        return $this->productos;
-    }
 
     /**
      * @param mixed $slug
