@@ -10,117 +10,13 @@
             <link rel="stylesheet" href="{{ asset('css/main.css') }}">
             <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
-            <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,700,700italic' rel='stylesheet' type='text/css'>
-        {% endblock %}
+            <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300italic,300,400italic,800italic,800,700italic,700,600italic,600' rel='stylesheet' type='text/css'>        {% endblock %}
         {% block title %}
 
         {% endblock title %}
     </head>
 
     <body>
-
-    <nav  class="navbar navbar-default nav-principal">
-        <div class="container">
-            <div class="navbar-header">
-
-                <button id="menu-brand" type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-
-                <button id="search-brand" type="button" class="navbar-toggle collapsed">
-                    <i class="fa fa-search" aria-hidden="true"></i>
-                </button>
-
-                <a class="navbar-brand logo_prin" href="#"><img width="200" alt="Brand" src="{{ asset('images/logo2.png') }}"></a>
-                <a class="navbar-brand logo_resp" href="#"><img alt="Brand" src="{{ asset('images/logo_responsive.png') }}"></a>
-
-            </div>
-
-            <div class="collapse navbar-collapse menu-principal" id="bs-example-navbar-collapse-1">
-                {% set menuItem = knp_menu_get('AppBundle:Builder:mainMenu', [], {'nav': true}) %}
-                {{ knp_menu_render(menuItem) }}
-                <ul class="nav navbar-nav navbar-right">
-                        <li>
-                            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                                {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
-                                <a href="{{ path('fos_user_security_logout') }}">
-                                    {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
-                                </a>
-                            {% else %}
-                                <a id="registro" href="{{ path('fos_user_registration_register') }}">Registrarse</a>
-                                <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
-
-                            {% endif %}
-                        </li>
-                </ul>
-            </div><!-- /.navbar-collapse -->
-
-
-        </div>
-    </nav>
-    <nav  class="navbar navbar-default nav-principal2">
-        <div class="container menu-principal2">
-            <a class="navbar-brand" href="#">
-                <img alt="Brand" src="{{ asset('images/logo_stiky.png') }}">
-            </a>
-
-            <div class="menu-stiky">
-                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categorias<span class="caret"></span></button>
-
-                {% set menuItem = knp_menu_get('AppBundle:Builder:mainMenu', [], {'nav': false}) %}
-                {{ knp_menu_render(menuItem) }}
-            </div>
-
-            <div id="search-cop2" class="buscador-stiky">
-                <div class="search-change2">
-                    <div id="hide3"><i class="fa fa-briefcase" aria-hidden="true"></i></div>
-                    <div id="hide4"><i class="fa fa-shopping-bag" aria-hidden="true"></i></div>
-                </div>
-
-                <form id="s3" class="navbar-form navbar-left buscador_principal2" role="search">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Buscar Productos">
-                    </div>
-                    <select class="selectpicker">
-                        <option value="0">Selecciona una Categoria</option>
-                        <option value="1">Constructoras e Inmobiliarias</option>
-                        <option value="2">Especialistas y Servicios Personales</option>
-                        <option value="3">Proveedores</option>
-                    </select>
-                </form>
-                <form id="s4" class="navbar-form navbar-left buscador_principal2" role="search">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Buscar Negocios">
-                    </div>
-                    <select class="selectpicker">
-                        <option value="0">Selecciona una Categoria</option>
-                        <option value="1">Constructoras e Inmobiliarias</option>
-                        <option value="2">Especialistas y Servicios Personales</option>
-                        <option value="3">Proveedores</option>
-                    </select>
-                </form>
-            </div>
-
-            <ul class="logi-reg" >
-                <li>
-                    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                        {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
-                        <a href="{{ path('fos_user_security_logout') }}">
-                            {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
-                        </a>
-                    {% else %}
-                        <a id="registro" href="">Registrarse</a>
-                        <span>|</span>
-                        <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
-
-                    {% endif %}
-                </li>
-            </ul>
-        </div>
-    </nav>
 
 
 
@@ -135,19 +31,120 @@
         {% endif %}
 
         <div>
+            <nav  class="navbar navbar-default nav-principal">
+                <div class="container">
+                    <div class="navbar-header">
+
+                        <button id="menu-brand" type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+
+                        <button id="search-brand" type="button" class="navbar-toggle collapsed">
+                            <i class="fa fa-search" aria-hidden="true"></i>
+                        </button>
+
+                        <a class="navbar-brand logo_prin" href="#"><img width="200" alt="Brand" src="{{ asset('images/logo2.png') }}"></a>
+                        <a class="navbar-brand logo_resp" href="#"><img alt="Brand" src="{{ asset('images/logo_responsive.png') }}"></a>
+
+                    </div>
+
+                    <div class="collapse navbar-collapse menu-principal" id="bs-example-navbar-collapse-1">
+                        {% set menuItem = knp_menu_get('AppBundle:Builder:mainMenu', [], {'nav': true}) %}
+                        {{ knp_menu_render(menuItem) }}
+                        <ul class="nav navbar-nav navbar-right">
+                            <li>
+                                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                                    {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
+                                    <a href="{{ path('fos_user_security_logout') }}">
+                                        {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+                                    </a>
+                                {% else %}
+                                    <a id="registro" href="{{ path('fos_user_registration_register') }}">Registrarse</a>
+                                    <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+
+                                {% endif %}
+                            </li>
+                        </ul>
+                    </div><!-- /.navbar-collapse -->
+
+
+                </div>
+            </nav>
+            <nav  class="navbar navbar-default nav-principal2">
+                <div class="container menu-principal2">
+                    <a class="navbar-brand" href="#">
+                        <img alt="Brand" src="{{ asset('images/logo_stiky.png') }}">
+                    </a>
+
+                    <div class="menu-stiky">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categorias<span class="caret"></span></button>
+
+                        {% set menuItem = knp_menu_get('AppBundle:Builder:mainMenu', [], {'nav': false}) %}
+                        {{ knp_menu_render(menuItem) }}
+                    </div>
+
+                    <div id="search-cop2" class="buscador-stiky">
+                        <div class="search-change2">
+                            <div id="hide3"><i class="fa fa-briefcase" aria-hidden="true"></i></div>
+                            <div id="hide4"><i class="fa fa-shopping-bag" aria-hidden="true"></i></div>
+                        </div>
+
+                        <form id="s3" class="navbar-form navbar-left buscador_principal2" role="search">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Buscar Productos">
+                            </div>
+                            <select class="selectpicker">
+                                <option value="0">Selecciona una Categoria</option>
+                                <option value="1">Constructoras e Inmobiliarias</option>
+                                <option value="2">Especialistas y Servicios Personales</option>
+                                <option value="3">Proveedores</option>
+                            </select>
+                        </form>
+                        <form id="s4" class="navbar-form navbar-left buscador_principal2" role="search">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Buscar Negocios">
+                            </div>
+                            <select class="selectpicker">
+                                <option value="0">Selecciona una Categoria</option>
+                                <option value="1">Constructoras e Inmobiliarias</option>
+                                <option value="2">Especialistas y Servicios Personales</option>
+                                <option value="3">Proveedores</option>
+                            </select>
+                        </form>
+                    </div>
+
+                    <ul class="logi-reg" >
+                        <li>
+                            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                                {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
+                                <a href="{{ path('fos_user_security_logout') }}">
+                                    {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+                                </a>
+                            {% else %}
+                                <a id="registro" href="">Registrarse</a>
+                                <span>|</span>
+                                <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+
+                            {% endif %}
+                        </li>
+                    </ul>
+                </div>
+            </nav>
             {% block fos_user_content %}
             {% endblock fos_user_content %}
         </div>
 
-
-
         {% block footer %}
-            <footer>
-                <div class="container-fluid footer-menu">
-                    <div class="container">
-                        <div  class="col-md-10 col-md-offset-1">
+            <footer class="container-fluid footer-menu">
+
+                        <div class="menu-footer">
                             {{ knp_menu_render('AppBundle:Builder:footerMenu') }}
                         </div>
+
+
 
                         <div class="col-md-2 col-md-offset-5 socials">
                             <span class="fa-stack fa-lg">
@@ -163,11 +160,6 @@
                           <i class="fa fa-youtube-play fa-stack-1x fa-inverse" style="color: #1C9CD9"></i>
                         </span>
                         </div>
-
-                    </div>
-
-                </div>
-
             </footer>
         {% endblock %}
 

@@ -1,5 +1,27 @@
 {% extends "FOSUserBundle::layout.html.twig" %}
 
+{% block title %}
+    <title>Konstruye.pe | Registro</title>
+{% endblock title %}
 {% block fos_user_content %}
-{% include "FOSUserBundle:Registration:register_content.html.twig" %}
+
+    <div class="frase">
+        <h1>¡Encuentra</h1>
+        <h1>los mejores proveedores!</h1>
+    </div>
+
+
+
+    <div class="form-login registro">
+
+        {% include "FOSUserBundle:Registration:register_content.html.twig" %}
+    </div>
+
+
 {% endblock fos_user_content %}
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $("body").addClass("fondo-register");
+    </script>
+{% endblock javascripts %}

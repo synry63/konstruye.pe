@@ -201,7 +201,7 @@
 
                 $.ui.autocomplete.prototype._renderItem = function( ul, item) {
                     var re = new RegExp("^" + this.term, "i") ;
-                    var t = item.label.replace(re,"<span style='font-weight:bold;color:Blue;'>" + this.term + "</span>");
+                    var t = item.label.replace(re,"<span style='font-weight:bold;color:#009FE3'>" + this.term + "</span>");
                     return $( "<li></li>" )
                             .data( "item.autocomplete", item )
                             .append( "<a>" + t + "</a>" )
