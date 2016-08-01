@@ -45,7 +45,7 @@ class Producto
     private $description;
 
     /**
-     @ORM\ManyToOne(targetEntity="Negocio",inversedBy="productos")
+     @ORM\ManyToOne(targetEntity="Proveedor",inversedBy="productos")
      @ORM\JoinColumn(name="negocio_id", referencedColumnName="id")
      **/
     private $negocio;

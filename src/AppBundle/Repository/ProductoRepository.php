@@ -19,7 +19,6 @@ class ProductoRepository extends EntityRepository
             ->setParameter('search', '%' . $search . '%');
         $query = $qb->getQuery();
 
-        //$negocios = $query->getResult();
         return $query;
     }
     public function searchProductosNames($search){

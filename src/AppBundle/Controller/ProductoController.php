@@ -16,7 +16,14 @@ class ProductoController extends Controller
 {
     public function searchProductoAction(Request $request,$search,$page){
 
-        $productos = $this->getDoctrine()->getRepository('AppBundle:Producto')->getProductos($search);
+        if(empty($search)){
+            $productos = array();
+        }
+        else{
+            $productos = $this->getDoctrine()->getRepository('AppBundle:Producto')->getProductos($search);
+        }
+
+
         $paginator  = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
             $productos,
@@ -24,7 +31,7 @@ class ProductoController extends Controller
             6
         );
 
-        return $this->render('temp4.html.twig',array(
+        return $this->render('resultado_busqueda_productos.html.twig',array(
             'productos'=>$pagination,
         ));
     }

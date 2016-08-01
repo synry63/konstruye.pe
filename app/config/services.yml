@@ -15,3 +15,7 @@ services:
           class: AppBundle\Form\Type\ProfileType
           tags:
               - { name: form.type, alias: app_user_profile }
+
+  authentication_handler:
+      class:        MyUserBundle\Handler\AuthenticationHandler
+      arguments:    [@router, @security.context, @fos_user.user_manager, @service_container]

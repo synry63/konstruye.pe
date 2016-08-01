@@ -207,6 +207,27 @@ class Negocio
     private $googleMapLng;
 
     /**
+     * @ORM\OneToMany(targetEntity="Proyecto", mappedBy="negocio")
+     **/
+    protected $proyectos;
+
+    /**
+     * @param mixed $proyectos
+     */
+    public function setProyectos($proyectos)
+    {
+        $this->proyectos = $proyectos;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getProyectos()
+    {
+        return $this->proyectos;
+    }
+
+    /**
      * @param mixed $facebookLink
      */
     public function setFacebookLink($facebookLink)
