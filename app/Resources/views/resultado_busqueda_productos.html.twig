@@ -1,1 +1,159 @@
-{{ dump(productos) }}
+
+
+{% extends 'FOSUserBundle::layout.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+
+{% endblock %}
+
+{% block fos_user_content %}
+
+    <div class="container resultado">
+        <h1>Resultados de búsqueda: <strong>({{ productos|length }})</strong> Elementos encontrado(s)</h1>
+    </div>
+
+    <div class="container product-section">
+
+        <div class="col-md-3">
+            <div class="list-group">
+                <a href="#" class="list-group-item disabled tittle-disable">Filtro</a>
+                <a href="#" class="list-group-item">Sub-Filtro</a>
+                <a href="#" class="list-group-item">Sub-Filtro</a>
+                <a href="#" class="list-group-item">Sub-Filtro</a>
+                <a href="#" class="list-group-item">Sub-Filtro</a>
+            </div>
+            <div class="list-group">
+                <a href="#" class="list-group-item disabled tittle-disable">Filtro</a>
+                <a href="#" class="list-group-item">Sub-Filtro</a>
+                <a href="#" class="list-group-item">Sub-Filtro</a>
+                <a href="#" class="list-group-item">Sub-Filtro</a>
+                <a href="#" class="list-group-item">Sub-Filtro</a>
+            </div>
+        </div>
+
+        <div class="col-md-9">
+            <div style="width: 100%; color: #009FE3; text-align: right; margin-bottom: 10px">
+                <span>Ordenar por: </span>
+                <span>Más Reciente |</span>
+                <span>Rating |</span>
+                <span style="font-weight: bold">Alfabetico</span>
+            </div>
+
+            <div class="row">
+                {% for pro in productos.items %}
+                    <div class="col-md-4 producto-box">
+                        <a href="">
+                            <img width="220px" src="http://placehold.it/220x220" alt="">
+                        </a>
+                        <a href=""><h1>{{ pro.nombre }}</h1></a>
+                        <a href="{{ path('show_negocio',
+                        {"slug_seccion":'proveedores',"slug_negocio":pro.negocio.slug}) }}"><h2>{{ pro.negocio.nombre }}</h2></a>
+                        <p>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star-o" aria-hidden="true"></i>
+                        </p>
+                    </div>
+                {% endfor %}
+
+                <!--
+                <div class="col-md-4 producto-box">
+                    <a href="">
+                        <img src="http://placehold.it/220x220" alt="">
+                    </a>
+                    <a href=""><h1>Caño 2P</h1></a>
+                    <a href=""><h2>Trebol</h2></a>
+                    <p>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                    </p>
+                </div>
+                <div class="col-md-4 producto-box">
+                    <a href="">
+                        <img src="http://placehold.it/220x220" alt="">
+                    </a>
+                    <a href=""><h1>Caño 2P</h1></a>
+                    <a href=""><h2>Trebol</h2></a>
+                    <p>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                    </p>
+                </div>
+                <div class="col-md-4 producto-box">
+                    <a href="">
+                        <img src="http://placehold.it/220x220" alt="">
+                    </a>
+                    <a href=""><h1>Caño 2P</h1></a>
+                    <a href=""><h2>Trebol</h2></a>
+                    <p>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                    </p>
+                </div>
+                <div class="col-md-4 producto-box">
+                    <a href="">
+                        <img src="http://placehold.it/220x220" alt="">
+                    </a>
+                    <a href=""><h1>Caño 2P</h1></a>
+                    <a href=""><h2>Trebol</h2></a>
+                    <p>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                    </p>
+                </div>
+                <div class="col-md-4 producto-box">
+                    <a href="">
+                        <img src="http://placehold.it/220x220" alt="">
+                    </a>
+                    <a href=""><h1>Caño 2P</h1></a>
+                    <a href=""><h2>Trebol</h2></a>
+                    <p>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                    </p>
+                </div>
+                <div class="col-md-4 producto-box">
+                    <a href="">
+                        <img src="http://placehold.it/220x220" alt="">
+                    </a>
+                    <a href=""><h1>Caño 2P</h1></a>
+                    <a href=""><h2>Trebol</h2></a>
+                    <p>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                    </p>
+                </div>
+
+                -->
+            </div>
+        </div>
+    </div>
+
+{% endblock fos_user_content %}
+
+
+{% block javascripts %}
+    {{ parent() }}
+
+{% endblock javascripts %}

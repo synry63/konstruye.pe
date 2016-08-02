@@ -30,7 +30,7 @@
             {% endfor %}
         {% endif %}
 
-        <div>
+        <div id="wrap">
             <nav  class="navbar navbar-default nav-principal">
                 <div class="container">
                     <div class="navbar-header">
@@ -73,6 +73,7 @@
 
                 </div>
             </nav>
+
             <nav  class="navbar navbar-default nav-principal2">
                 <div class="container menu-principal2">
                     <a class="navbar-brand" href="#">
@@ -133,8 +134,13 @@
                     </ul>
                 </div>
             </nav>
-            {% block fos_user_content %}
-            {% endblock fos_user_content %}
+
+
+            <div class="content-inside">
+                {% block fos_user_content %}
+                {% endblock fos_user_content %}
+            </div>
+
         </div>
 
         {% block footer %}

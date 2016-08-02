@@ -7,7 +7,7 @@
 {% block fos_user_content %}
 
 
-<div class="container">
+<div class="container" style="position: relative">
 
     <div class="frase">
         <h1>¡Estás a un</h1>
@@ -16,15 +16,16 @@
     </div>
 
     <div class="form-login">
+
         <div class="other-session">
             <h1>Iniciar Sesión con:</h1>
             <img width="100%" src="http://placehold.it/348x40/435F9B/fff?text=Facebook">
             <span>No te preocupes, no publicaremos nada en tu red social sin tu permiso.</span>
         </div>
 
-        <div class="middle-line">
+        <hr class="style-eight">
 
-            <hr class="style-eight">
+
 
         <form action="{{ path("fos_user_security_check") }}" novalidate method="post">
             {% if error %}
@@ -60,7 +61,7 @@
     </div>
 </div>
 
-
+</div>
 
 {% endblock fos_user_content %}
 {% block javascripts %}
