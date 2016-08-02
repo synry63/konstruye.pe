@@ -53,5 +53,9 @@ class ProductoController extends Controller
 
 
     }
+    public function showProductosProveedorAction(Request $request){
+        return $this->render('ver_mas.html.twig'
+        );
+    }
 
 }
