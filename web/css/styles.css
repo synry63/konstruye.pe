@@ -41,8 +41,13 @@ table {
     border-collapse: collapse;
     border-spacing: 0;
 }
-
-
+a{
+    text-decoration: none !important;
+    color: rgba(0,0,0,.4);
+}
+a:hover{
+    color: rgba(0,0,0,.8);
+}
 
 
 html, body {
@@ -222,11 +227,47 @@ Filtros
     background: #30BDEF;
     color: #fff;
 }
+.table-filtros{
+    float: right;
+    margin-top: 14px;
+}
+.table-filtros th{
+    margin: 0 10px;
+    display: inline-block;
+}
+.table-filtros th a{
+    color: #30BDEF;
+    transition: all .5s;
+}
+.table-filtros th a:hover{
+    color: #009FE3;
+}
+.table-filtros th.sorted{
+    font-weight: 600;
+}
 /*=============
 Buscador Principal
 =============*/
 #ui-id-1 .ui-menu-item{
     padding: 10px;
+}
+#ui-id-2 .ui-menu-item{
+    padding: 10px;
+}
+#ui-id-3 .ui-menu-item{
+    padding: 10px;
+}
+#ui-id-4 .ui-menu-item{
+    padding: 10px;
+}
+#ui-id-2{
+    z-index: 9999;
+}
+#ui-id-1{
+    z-index: 9999;
+}
+#ui-id-3{
+    z-index: 9999;
 }
 .ui-state-active,
 .ui-widget-content .ui-state-active,
@@ -477,6 +518,7 @@ Mejores Proveedores
     font-weight: 100;
     font-family: 'Open Sans', sans-serif;
 }
+
 /*=============
 Footer Menu
 =============*/

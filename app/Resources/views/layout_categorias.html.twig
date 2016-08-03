@@ -8,18 +8,9 @@
 {% endblock %}
 
 {% block fos_user_content %}
-    <table>
-        <tr>
-            {# sorting of properties based on query components #}
-            {#<th>{{ knp_pagination_sortable(negocios, 'Id', 'n.id') }}</th>#}
-            <th{% if negocios.isSorted('cp.nota') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(negocios, 'Popularidad', 'cp.nota') }}</th>
-            <th{% if negocios.isSorted('n.nombre') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(negocios, 'Alfabetico', 'n.nombre') }}</th>
-            {# <th>{{ knp_pagination_sortable(negocios, 'Release', ['n.date', 'n.time']) }}</th> #}
-            <th{% if negocios.isSorted('n.registeredAt') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(negocios, 'Más reciente ', 'n.registeredAt') }}</th>
-        </tr>
-    </table>
 
-    {{ dump(negocios) }}
+
+
     <div class="container-fluid">
         <div class="row">
             <img width="100%" src="{{ asset('images/assets/cementos_inka.jpg') }}" alt="">
@@ -27,6 +18,20 @@
     </div>
 
     <div class="container">
+
+        <div class="container">
+            <table class="table-filtros">
+                <tr>
+                    {# sorting of properties based on query components #}
+                    {#<th>{{ knp_pagination_sortable(negocios, 'Id', 'n.id') }}</th>#}
+                    <th{% if negocios.isSorted('cp.nota') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(negocios, 'Popularidad', 'cp.nota') }}</th>
+                    <th{% if negocios.isSorted('n.nombre') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(negocios, 'Alfabetico', 'n.nombre') }}</th>
+                    {# <th>{{ knp_pagination_sortable(negocios, 'Release', ['n.date', 'n.time']) }}</th> #}
+                    <th{% if negocios.isSorted('n.registeredAt') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(negocios, 'Más reciente ', 'n.registeredAt') }}</th>
+                </tr>
+            </table>
+        </div>
+
         <div class="col-md-3">
             {% for cmain in categorias_hijas %}
                 {{ include('includes/filtros_negocios.html.twig', { 'cmain': cmain }) }}

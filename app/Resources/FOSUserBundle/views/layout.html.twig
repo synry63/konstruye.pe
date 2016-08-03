@@ -8,6 +8,7 @@
             <link rel="stylesheet" href="{{ asset('css/bootstrap-select.min.css') }}">
             <link rel="stylesheet" href="{{ asset('css/jquery-ui.css') }}">
             <link rel="stylesheet" href="{{ asset('css/main.css') }}">
+            <link rel="stylesheet" href="{{ asset('css/animate.css') }}">
             <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
             <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300italic,300,400italic,800italic,800,700italic,700,600italic,600' rel='stylesheet' type='text/css'>        {% endblock %}
@@ -93,26 +94,26 @@
                             <div id="hide4"><i class="fa fa-shopping-bag" aria-hidden="true"></i></div>
                         </div>
 
-                        <form id="s3" class="navbar-form navbar-left buscador_principal2" role="search">
-                            <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Buscar Productos">
-                            </div>
-                            <select class="selectpicker">
-                                <option value="0">Selecciona una Categoria</option>
-                                <option value="1">Constructoras e Inmobiliarias</option>
-                                <option value="2">Especialistas y Servicios Personales</option>
-                                <option value="3">Proveedores</option>
-                            </select>
-                        </form>
-                        <form id="s4" class="navbar-form navbar-left buscador_principal2" role="search">
+
+                        <form id="s4" data-buscar-url="{{ path('buscar_negocios_by_seccion_null') }}" action="{{ path('search_global_negocios') }}" class="s1 navbar-form navbar-left buscador_principal2" role="search">
                             <div class="form-group">
                                 <input type="text" class="form-control" placeholder="Buscar Negocios">
                             </div>
                             <select class="selectpicker">
-                                <option value="0">Selecciona una Categoria</option>
-                                <option value="1">Constructoras e Inmobiliarias</option>
-                                <option value="2">Especialistas y Servicios Personales</option>
-                                <option value="3">Proveedores</option>
+                                <option value="">Selecciona una Categoria</option>
+                                <option value="constructoras-e-inmobiliarias">Constructoras e Inmobiliarias</option>
+                                <option value="especialistas-servicios-personales">Especialistas y Servicios Personales</option>
+                                <option value="proveedores">Proveedores</option>
+                            </select>
+                        </form>
+
+                        <form id="s3" data-buscar-url="{{ path('buscar_productos') }}"  action="{{ path('search_global_productos') }}" class="s2 navbar-form navbar-left buscador_principal2" role="search">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Buscar Productos">
+                            </div>
+                            <select class="selectpicker">
+                                <option selected value="proveedores">Proveedores</option>
+
                             </select>
                         </form>
                     </div>
@@ -179,6 +180,105 @@
             <script type="text/javascript" src="{{ asset('js/main.js') }}"></script>
 
             <script>
+
+                function monkeyPatchAutocomplete() {
+
+                    // Don't really need to save the old fn,
+                    // but I could chain if I wanted to
+                    var oldFn = $.ui.autocomplete.prototype._renderItem;
+
+                    $.ui.autocomplete.prototype._renderItem = function( ul, item) {
+                        var re = new RegExp("^" + this.term, "i") ;
+                        var t = item.label.replace(re,"<span style='font-weight:bold;color:#009FE3'>" + this.term + "</span>");
+                        return $( "<li></li>" )
+                                .data( "item.autocomplete", item )
+                                .append( "<a>" + t + "</a>" )
+                                .appendTo( ul );
+                    };
+                }
+                monkeyPatchAutocomplete();
+                var s1_found_data = false;
+                $( ".s1 input" ).autocomplete({
+                    source: function( request, response ) {
+                        var seccion = $(".s1 .selectpicker").val();
+                        if(seccion==""){
+                            noty({
+                                text: '¡Escoja una categoria primero!',
+                                animation: {
+                                    open: 'animated bounceInLeft', // Animate.css class names
+                                    close: 'animated bounceOutRight', // Animate.css class names
+                                    easing: 'swing', // easing
+                                    speed: 800 // opening & closing animation speed
+                                },
+                                theme:'defaultTheme',
+                                'layout':'bottomCenter',
+                                type: 'error',
+                                timeout:5000
+                            });
+                        }
+                        var url = $(".s1").attr('data-buscar-url');
+                        s1_found_data = false;
+                        $.ajax( {
+                            url: url+seccion,
+                            //dataType: "jsonp",
+                            data: {
+                                q: request.term
+                            },
+                            success: function( data ) {
+                                //console.log(data);
+                                // Handle 'no match' indicated by [ "" ] response
+                                response( data.length === 0 ? ['Ningun resultado encontrado'] : data );
+                                if(data.length>0) s1_found_data = true;
+                            }
+                        } );
+                    },
+                    minLength: 1,
+                    select: function( event, ui ) {
+                        if(!s1_found_data) return false;
+
+                        $( ".s1 input").attr('value',ui.item.label);
+                        var url = $('.s1').attr('action');
+                        var search = ui.item.label;
+                        window.open(url+'/'+search,'_self',false);
+                        //$('#s2').submit();
+                        //alert(ui.item.label);
+                        //log( "Selected: " + ui.item.label );
+                    }
+                });
+
+                var s2_found_data = false;
+                $( ".s2 input" ).autocomplete({
+                    source: function( request, response ) {
+                        var url = $(".s2").attr('data-buscar-url');
+                        s2_found_data = false;
+                        $.ajax( {
+                            url: url,
+                            //dataType: "jsonp",
+                            data: {
+                                q: request.term
+                            },
+                            success: function( data ) {
+                                // Handle 'no match' indicated by [ "" ] response
+                                response( data.length === 0 ? ['Ningun resultado encontrado'] : data );
+                                if(data.length>0) s2_found_data = true;
+                                //response( data.length === 1 && data[ 0 ].length === 0 ? ['Ningun resultado encontrado'] : data );
+                            }
+                        } );
+                    },
+                    minLength: 1,
+                    select: function( event, ui ) {
+                        if(!s2_found_data) return false;
+                        $( ".s2 input").attr('value',ui.item.label);
+                        var url = $('.s2').attr('action');
+                        var search = ui.item.label;
+                        window.open(url+'/'+search,'_self',false);
+                        //$('#s2').submit();
+                        //alert(ui.item.label);
+                        //log( "Selected: " + ui.item.label );
+                    }
+                } );
+
+
                 $('.selectpicker').selectpicker({
                     style: 'btn btn-default',
                     size: 4

@@ -86,17 +86,28 @@
 
 
     <div class="container">
-        <h1 class="mejores_tittle">Inmobiliaras/Constructoras</h1>
+        <h1 class="mejores_tittle">Constructoras e Inmobiliarias</h1>
     </div>
+
+
 
     <div class="container">
         <div class="ms-staff-carousel ms-round">
             <!-- masterslider -->
             <div class="master-slider2 " id="masterslider2">
-
-
-
-                <div class="ms-slide">
+                {% for im in imobiliarias %}
+                    <div class="ms-slide">
+                        <a href="{{ path('show_negocio',
+                        {"slug_seccion":'constructoras-e-inmobiliarias',"slug_negocio":im.negocio.slug}) }}">
+                            <img src="{{ asset('images/assets/blank.gif') }}" data-src="{{ vich_uploader_asset(im.negocio.logo, 'logoFile','AppBundle\\Entity\\Logo') }}" alt="lorem ipsum dolor sit"/>
+                        </a>
+                        <img src="{{ asset('images/assets/blank.gif') }}" data-src="{{ vich_uploader_asset(im.negocio.logo, 'logoFile','AppBundle\\Entity\\Logo') }}" alt="lorem ipsum dolor sit"/>
+                        <div class="ms-info">
+                            <a href=""><h3>{{ im.negocio.nombre }}</h3></a>
+                        </div>
+                    </div>
+                {% endfor %}
+                <!--  <div class="ms-slide">
                     <img src="{{ asset('images/assets/blank.gif') }}" data-src="{{ asset('images/assets/pro1.png') }}" alt="lorem ipsum dolor sit"/>
                     <div class="ms-info">
                         <h3>JULIA B. MCRAFLANE</h3>
@@ -126,12 +137,13 @@
                         <h3>JOSEPH B. SEWARD</h3>
                     </div>
                 </div>
-
-
+-->
             </div>
             <!-- end of masterslider -->
             <div class="ms-staff-info" id="staff-info"></div>
         </div>
+
+
 
         <div class="container">
             <h1 class="mejores_tittle">Los Mejores Proveedores</h1>
@@ -177,12 +189,12 @@
 
         </div>
     </div>
-    {#
+
     {{ dump(imobiliarias) }}
     {{ dump(inmuebles) }}
     {{ dump(especialistas) }}
     {{ dump(proveedores) }}
-    #}
+
 
 
 {% endblock fos_user_content %}
@@ -194,23 +206,106 @@
     {{ parent() }}
     <script src="{{ asset('js/masterslider.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('js/jquery.easing.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/jquery.noty.packaged.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/default.js') }}" type="text/javascript"></script>
     <script>
+        function monkeyPatchAutocomplete() {
 
-            function monkeyPatchAutocomplete() {
+            // Don't really need to save the old fn,
+            // but I could chain if I wanted to
+            var oldFn = $.ui.autocomplete.prototype._renderItem;
 
-                // Don't really need to save the old fn,
-                // but I could chain if I wanted to
-                var oldFn = $.ui.autocomplete.prototype._renderItem;
+            $.ui.autocomplete.prototype._renderItem = function( ul, item) {
+                var re = new RegExp("^" + this.term, "i") ;
+                var t = item.label.replace(re,"<span style='font-weight:bold;color:#009FE3'>" + this.term + "</span>");
+                return $( "<li></li>" )
+                        .data( "item.autocomplete", item )
+                        .append( "<a>" + t + "</a>" )
+                        .appendTo( ul );
+            };
+        }
+        monkeyPatchAutocomplete();
+        var s1_found_data = false;
+        $( "#s1 input" ).autocomplete({
+            source: function( request, response ) {
+                var seccion = $("#s1 .selectpicker").val();
+                console.log(seccion)
+                if(seccion==""){
+                    noty({
+                        text: '¡Escoja una categoria primero!',
+                        animation: {
+                            open: 'animated bounceInLeft', // Animate.css class names
+                            close: 'animated bounceOutRight', // Animate.css class names
+                            easing: 'swing', // easing
+                            speed: 800 // opening & closing animation speed
+                        },
+                        theme:'defaultTheme',
+                        'layout':'bottomCenter',
+                        type: 'error',
+                        timeout:5000
+                    });
+                }
+                var url = $("#s1").attr('data-buscar-url');
+                s1_found_data = false;
+                $.ajax( {
+                    url: url+seccion,
+                    //dataType: "jsonp",
+                    data: {
+                        q: request.term
+                    },
+                    success: function( data ) {
+                        //console.log(data);
+                        // Handle 'no match' indicated by [ "" ] response
+                        response( data.length === 0 ? ['Ningun resultado encontrado'] : data );
+                        if(data.length>0) s1_found_data = true;
+                    }
+                } );
+            },
+            minLength: 1,
+            select: function( event, ui ) {
+                if(!s1_found_data) return false;
 
-                $.ui.autocomplete.prototype._renderItem = function( ul, item) {
-                    var re = new RegExp("^" + this.term, "i") ;
-                    var t = item.label.replace(re,"<span style='font-weight:bold;color:#009FE3'>" + this.term + "</span>");
-                    return $( "<li></li>" )
-                            .data( "item.autocomplete", item )
-                            .append( "<a>" + t + "</a>" )
-                            .appendTo( ul );
-                };
+                $( "#s1 input").attr('value',ui.item.label);
+                var url = $('#s1').attr('action');
+                var search = ui.item.label;
+                window.open(url+'/'+search,'_self',false);
+                //$('#s2').submit();
+                //alert(ui.item.label);
+                //log( "Selected: " + ui.item.label );
             }
+        });
+
+        var s2_found_data = false;
+        $( "#s2 input" ).autocomplete({
+            source: function( request, response ) {
+                var url = $("#s2").attr('data-buscar-url');
+                s2_found_data = false;
+                $.ajax( {
+                    url: url,
+                    //dataType: "jsonp",
+                    data: {
+                        q: request.term
+                    },
+                    success: function( data ) {
+                        // Handle 'no match' indicated by [ "" ] response
+                        response( data.length === 0 ? ['Ningun resultado encontrado'] : data );
+                        if(data.length>0) s2_found_data = true;
+                        //response( data.length === 1 && data[ 0 ].length === 0 ? ['Ningun resultado encontrado'] : data );
+                    }
+                } );
+            },
+            minLength: 1,
+            select: function( event, ui ) {
+                if(!s2_found_data) return false;
+                $( "#s2 input").attr('value',ui.item.label);
+                var url = $('#s2').attr('action');
+                var search = ui.item.label;
+                window.open(url+'/'+search,'_self',false);
+                //$('#s2').submit();
+                //alert(ui.item.label);
+                //log( "Selected: " + ui.item.label );
+            }
+        } );
 
             $(document).ready(function() {
                 var slider = new MasterSlider();
@@ -225,7 +320,7 @@
                     grabCursor:false,
                     view:'basic',
                     layout:'fullscreen',
-                    fullscreenMargin:57,
+                    fullscreenMargin:112,
                     speed:20
                 });
 
@@ -265,75 +360,10 @@
 
             });
 
-            monkeyPatchAutocomplete();
-            var s1_found_data = false;
-            $( "#s1 input" ).autocomplete({
-                source: function( request, response ) {
-                    var seccion = $("#s1 .selectpicker").val();
-                    if(seccion==""){
-                        alert('Seleciona una categoria primero !')
-                    }
-                    var url = $("#s1").attr('data-buscar-url');
-                    s1_found_data = false;
-                    $.ajax( {
-                        url: url+seccion,
-                        //dataType: "jsonp",
-                        data: {
-                            q: request.term
-                        },
-                        success: function( data ) {
-                            //console.log(data);
-                            // Handle 'no match' indicated by [ "" ] response
-                            response( data.length === 0 ? ['Ningun resultado encontrado'] : data );
-                            if(data.length>0) s1_found_data = true;
-                        }
-                    } );
-                },
-                minLength: 1,
-                select: function( event, ui ) {
-                    if(!s1_found_data) return false;
 
-                    $( "#s1 input").attr('value',ui.item.label);
-                    var url = $('#s1').attr('action');
-                    var search = ui.item.label;
-                    window.open(url+'/'+search,'_self',false);
-                    //$('#s2').submit();
-                    //alert(ui.item.label);
-                    //log( "Selected: " + ui.item.label );
-                }
-            });
 
-            var s2_found_data = false;
-            $( "#s2 input" ).autocomplete({
-                source: function( request, response ) {
-                    var url = $("#s2").attr('data-buscar-url');
-                    s2_found_data = false;
-                    $.ajax( {
-                        url: url,
-                        //dataType: "jsonp",
-                        data: {
-                            q: request.term
-                        },
-                        success: function( data ) {
-                            // Handle 'no match' indicated by [ "" ] response
-                            response( data.length === 0 ? ['Ningun resultado encontrado'] : data );
-                            if(data.length>0) s2_found_data = true;
-                            //response( data.length === 1 && data[ 0 ].length === 0 ? ['Ningun resultado encontrado'] : data );
-                        }
-                    } );
-                },
-                minLength: 1,
-                select: function( event, ui ) {
-                    if(!s2_found_data) return false;
-                    $( "#s2 input").attr('value',ui.item.label);
-                    var url = $('#s2').attr('action');
-                    var search = ui.item.label;
-                    window.open(url+'/'+search,'_self',false);
-                    //$('#s2').submit();
-                    //alert(ui.item.label);
-                    //log( "Selected: " + ui.item.label );
-                }
-            } );
+
+
 
     </script>
 

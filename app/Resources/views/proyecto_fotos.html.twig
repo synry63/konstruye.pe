@@ -1,1 +1,42 @@
-{{ dump(fotos) }}
+{#
+<link rel="stylesheet" href="{{ asset('css/masterslider.css') }}">
+
+#}
+
+<div class="master-slider ms-skin-default" id="masterslider2">
+    
+    {% for f in fotos %}
+        <div class="ms-slide">
+            {% if f.videoUrl is not null %}
+                <a href="{{ f.videoUrl }}" data-type="video"> vimeo video </a>
+            {% endif %}
+            <img src="{{ vich_uploader_asset(f, 'imgFile') }}" alt="" />
+        </div>
+    {% endfor %}
+
+</div>
+
+{#
+<script src="{{ asset('js/jquery-1.11.0.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('js/masterslider.min.js') }}" type="text/javascript"></script>
+
+#}
+
+<script>
+    $(document).ready(function() {
+        var slider2 = new MasterSlider();
+        slider2.control('arrows' ,{insertTo:'#masterslider2'});
+        slider2.control('bullets');
+
+        slider2.setup('masterslider2' , {
+            width:930,
+            height:500,
+            space:0,
+            grabCursor:false,
+            view:'basic',
+            layout:'boxed',
+            speed:20
+        });
+
+    });
+</script>

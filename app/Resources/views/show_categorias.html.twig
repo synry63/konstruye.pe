@@ -75,50 +75,20 @@
 
     </div>
 
-    <div class="menu-proyectos-right-bar">
-        {{ render(controller(
-        'AppBundle:Proyecto:lastProyectos',
-        { 'id_negocio':negocio.id,'max': 4 }
-        )) }}
-    </div>
+
+
+
 
 
     <div class="container proyect-slider">
-        <div class="col-md-9 col-xs-12">
-            <div class="master-slider ms-skin-default" id="masterslider2">
-                <div class="ms-slide">
-                    <a href="http://player.vimeo.com/video/110032321" data-type="video"> vimeo video </a>
-                    <img src="http://placehold.it/930x500x?text=Proyecto+1A" alt="" />
-                </div>
-                <div class="ms-slide">
-                    <img src="http://placehold.it/930x500x?text=Proyecto+1B" alt="" />
-                </div>
-                <div class="ms-slide">
-                    <img src="http://placehold.it/930x500x?text=Proyecto+1C" alt="" />
-                </div>
-                <div class="ms-slide">
-                    <img src="http://placehold.it/930x500x?text=Proyecto+1D" alt="" />
-                </div>
-            </div>
+        <div class="col-md-9 col-xs-12 ajax-proyecto">
+
         </div>
         <div class="col-md-3">
-            <ul>
-                <li>
-                    <img src="http://placehold.it/160x105x?text=Proyecto+1" alt="" />
-                    <span>Proyecto 1</span>
-                </li>
-                <li>
-                    <img src="http://placehold.it/160x105x?text=Proyecto+2" alt="" />
-                    <span>Proyecto 1</span>
-                </li>
-                <li>
-                    <img src="http://placehold.it/160x105x?text=Proyecto+3" alt="" />
-                    <span>Proyecto 1</span>
-                </li>
-                <li>
-                    <img src="http://placehold.it/160x105x?text=Proyecto+4" alt="" />
-                </li>
-            </ul>
+                {{ render(controller(
+                'AppBundle:Proyecto:lastProyectos',
+                { 'id_negocio':negocio.id,'max': 4 }
+                )) }}
         </div>
     </div>
 
@@ -169,6 +139,46 @@
     <script src="{{ asset('js/masterslider.min.js') }}" type="text/javascript"></script>
     <script>
         $(document).ready(function() {
+
+            var rutaproyecto = $('.link_proyecto a').attr('data-url');
+
+
+            $.ajax({
+                // la URL para la petición
+                url : rutaproyecto,
+
+                // la información a enviar
+                // (también es posible utilizar una cadena de datos)
+                //data : { id : 123 },
+
+                // especifica si será una petición POST o GET
+                type : 'GET',
+
+                // el tipo de información que se espera de respuesta
+                //dataType : 'json',
+
+                // código a ejecutar si la petición es satisfactoria;
+                // la respuesta es pasada como argumento a la función
+                success : function(result) {
+                    $( ".ajax-proyecto" ).html( result );
+                },
+
+                // código a ejecutar si la petición falla;
+                // son pasados como argumentos a la función
+                // el objeto de la petición en crudo y código de estatus de la petición
+                error : function(xhr, status) {
+                    alert('Disculpe, existió un problema');
+                },
+
+                // código a ejecutar sin importar si la petición falló o no
+                //complete : function(xhr, status) {
+                //    alert('Petición realizada');
+                //}
+            });
+
+
+
+
             var slider = new MasterSlider();
             slider.control('arrows' ,{insertTo:'#masterslider'});
             slider.control('bullets');

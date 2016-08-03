@@ -1,1 +1,11 @@
-{{ dump(proyectos) }}
+<ul>
+    {% for p in proyectos %}
+        <li class="link_proyecto">
+            <a href="javascript:void(0)" data-url="{{ path('show_fotos_proyecto',{'id':p.id}) }}">
+                <img src="http://placehold.it/160x105x?text=Proyecto+1" alt="" />
+                <span>{{ p.nombre }}</span>
+            </a>
+        </li>
+    {% endfor %}
+
+</ul>
