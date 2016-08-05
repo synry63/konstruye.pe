@@ -307,15 +307,11 @@ a.ui-button:active,
     margin:0;
     width:300px;
 }
-
-
-
 .buscador_principal2{
     padding: 5px;
     background: #30BDEF;
     border-radius: 5px;
     position: relative;
-
 }
 .buscador_principal2 form{
     display: inline-block;
@@ -686,6 +682,10 @@ Details Page
 }
 .googlemaps img{
     margin: 30px auto;
+}
+.googlemaps{
+    margin-top: 30px;
+    margin-bottom: 30px;
 }
 /*=============
 Producto Page
