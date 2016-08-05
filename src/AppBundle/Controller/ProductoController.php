@@ -53,8 +53,19 @@ class ProductoController extends Controller
 
 
     }
-    public function showProductosProveedorAction(Request $request){
-        return $this->render('ver_mas.html.twig'
+    public function showProductosProveedorAction(Request $request,$slug_negocio){
+
+        $negocio = $this->getDoctrine()->getRepository('AppBundle:Proveedor')->findOneBy(
+            array('slug'=>$slug_negocio)
+        );
+        $productos = $this->getDoctrine()->getRepository('AppBundle:Producto')->findBy(
+            array('negocio'=>$negocio)
+        );
+        return $this->render('ver_mas.html.twig',
+            array(
+                'negocio'=>$negocio,
+                'productos'=>$productos
+            )
         );
     }
 

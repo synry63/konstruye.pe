@@ -41,5 +41,5 @@ show_fotos_proyecto:
     path:      /proyecto/{id}
     defaults:  { _controller: AppBundle:Foto:showProyectoFotos}
 ver_mas_productos_proveedor:
-    path:      /ver-mas
+    path:      /ver-mas/{slug_negocio}
     defaults:  { _controller: AppBundle:Producto:showProductosProveedor}

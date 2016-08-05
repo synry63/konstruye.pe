@@ -21,7 +21,7 @@ class FotoController extends Controller
             array('updatedAt' => 'desc')
         );
 
-        return $this->render('temp5.html.twig',array(
+        return $this->render('proyecto_fotos.html.twig',array(
             'fotos'=>$fotos,
         ));
     }
