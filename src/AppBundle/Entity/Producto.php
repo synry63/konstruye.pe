@@ -56,6 +56,28 @@ class Producto
     private $comentarios;
 
     /**
+     * @ORM\OneToMany(targetEntity="FotoProducto", mappedBy="producto")
+     **/
+    private $fotos;
+
+    /**
+     * @param mixed $fotos
+     */
+    public function setFotos($fotos)
+    {
+        $this->fotos = $fotos;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFotos()
+    {
+        return $this->fotos;
+    }
+
+
+    /**
      * @param mixed $comentarios
      */
     public function setComentarios($comentarios)

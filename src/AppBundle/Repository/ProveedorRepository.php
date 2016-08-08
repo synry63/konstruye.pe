@@ -48,4 +48,17 @@ class ProveedorRepository extends EntityRepository
 
         return $query->getResult();
     }
+    public function searchNegociosNames($search){
+        $em = $this->getEntityManager();
+        $qb = $em->createQueryBuilder();
+        $qb->select('n.nombre as nombre')
+            ->from('AppBundle\Entity\Proveedor', 'n')
+            ->where($qb->expr()->like('n.nombre', ':search'))
+            ->setParameter('search', '%' . $search . '%');
+        $query = $qb->getQuery();
+        $negocios = $query->getResult();
+
+        $nombres = array_column($negocios, 'nombre');
+        return $nombres;
+    }
 }

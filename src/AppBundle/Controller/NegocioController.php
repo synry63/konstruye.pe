@@ -149,13 +149,15 @@ class NegocioController extends Controller
 
         if($slug_seccion=="constructoras-e-inmobiliarias"){
             $out = $this->getDoctrine()->getRepository('AppBundle:ConstructoraInmobiliaria')->searchNegociosNames($search);
-
         }
         else if($slug_seccion=="compra-venta-y-alquiler-inmuebles"){
+
         }
         else if($slug_seccion=="especialistas-servicios-personales"){
+            $out = $this->getDoctrine()->getRepository('AppBundle:Especialista')->searchNegociosNames($search);
         }
         else if($slug_seccion=="proveedores"){
+            $out = $this->getDoctrine()->getRepository('AppBundle:Proveedor')->searchNegociosNames($search);
         }
 
 
