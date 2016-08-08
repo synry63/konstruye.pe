@@ -722,6 +722,38 @@ Producto Page
 .product-section .producto-box p{
     color: #009FE3;
 }
+
+/*=============
+Producto Detail Page
+=============*/
+.product-detail-section{
+    margin-top: 30px;
+}
+.product-detail-section h1{
+    font-size: 30px;
+    color: #009FE3;
+    font-weight: bold;
+}
+.product-detail-section h2{
+    padding: 10px 0;
+    font-style: italic;
+}
+.product-detail-section p{
+    color: rgba(0,0,0,.5);
+}
+.product-detail-section span{
+    color: #009FE3;
+    font-size: 20px;
+    padding: 10px 0 0 0;
+    display: block;
+}
+.product-section h4{
+    padding-left: 30px;
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: #009FE3;
+    font-weight: bold;
+}
 /*=============
 Responsive
 =============*/

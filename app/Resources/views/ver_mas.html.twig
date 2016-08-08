@@ -44,11 +44,12 @@
         <div class="row">
             {% for pro in productos %}
                 <div class="col-md-4 producto-box">
-                    <a href="">
+                    <a href="{{ path('show_producto',{'slug_producto':pro.producto.slug}) }}">
                         <img src="http://placehold.it/220x220" alt="">
                     </a>
-                    <a href=""><h1>{{ pro.nombre }}</h1></a>
-                    <a href=""><h2>{{ negocio.nombre }}</h2></a>
+                    <a href="{{ path('show_producto',{'slug_producto':pro.producto.slug}) }}"><h1>{{ pro.producto.nombre }}</h1></a>
+                    <a href="{{ path('show_negocio',
+                    {"slug_seccion":"proveedores","slug_negocio":negocio.slug}) }}"><h2>{{ negocio.nombre }}</h2></a>
                     <p>
                         <i class="fa fa-star" aria-hidden="true"></i>
                         <i class="fa fa-star" aria-hidden="true"></i>

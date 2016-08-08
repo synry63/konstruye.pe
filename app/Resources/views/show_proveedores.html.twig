@@ -94,10 +94,10 @@
 
             {% for nepro  in negocio.productos %}
                 <div class="col-md-3 producto-box">
-                    <a href="">
+                    <a href="{{ path('show_producto',{'slug_producto':nepro.slug}) }}">
                         <img width="220px" src="http://placehold.it/220x220" alt="">
                     </a>
-                    <a href=""><h1>{{ nepro.nombre }}</h1></a>
+                    <a href="{{ path('show_producto',{'slug_producto':nepro.slug}) }}"><h1>{{ nepro.nombre }}</h1></a>
                     <a href="{{ path('show_negocio',
                     {"slug_seccion":app.request.get('slug_seccion'),"slug_negocio":nepro.negocio.slug}) }}"><h2>{{ nepro.negocio.nombre }}</h2></a>
                     <p>

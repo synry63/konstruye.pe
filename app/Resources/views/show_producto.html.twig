@@ -1,0 +1,151 @@
+{% extends 'FOSUserBundle::layout.html.twig' %}
+{% block title %}
+    <title>Konstruye.pe |</title>
+{% endblock title %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/masterslider.css') }}">
+{% endblock %}
+
+{% block fos_user_content %}
+
+    <div class="container product-detail-section">
+        <div class="col-md-6">
+            <div class="ms-showcase2-template ms-showcase2-vertical">
+                <!-- masterslider -->
+                <div class="master-slider ms-skin-default" id="masterslider">
+                    <div class="ms-slide">
+                        <img src="{{ asset('css/loading-2.gif') }}" data-src="http://placehold.it/450x450" alt="lorem ipsum dolor sit"/>
+                        <img class="ms-thumb" src="http://placehold.it/100x100" alt="thumb" />
+                    </div>
+                    <div class="ms-slide">
+                        <img src="{{ asset('css/loading-2.gif') }}" data-src="http://placehold.it/450x450" alt="lorem ipsum dolor sit"/>
+                        <img class="ms-thumb" src="http://placehold.it/100x100" alt="thumb" />
+                    </div>
+                    <div class="ms-slide">
+                        <img src="{{ asset('css/loading-2.gif') }}" data-src="http://placehold.it/450x450" alt="lorem ipsum dolor sit"/>
+                        <img class="ms-thumb" src="http://placehold.it/100x100" alt="thumb" />
+                    </div>
+                    <div class="ms-slide">
+                        <img src="{{ asset('css/loading-2.gif') }}" data-src="http://placehold.it/450x450" alt="lorem ipsum dolor sit"/>
+                        <img class="ms-thumb" src="http://placehold.it/100x100" alt="thumb" />
+                    </div>
+                    <div class="ms-slide">
+                        <img src="{{ asset('css/loading-2.gif') }}" data-src="http://placehold.it/450x450" alt="lorem ipsum dolor sit"/>
+                        <img class="ms-thumb" src="http://placehold.it/100x100" alt="thumb" />
+                    </div>
+                    <div class="ms-slide">
+                        <img src="{{ asset('css/loading-2.gif') }}" data-src="http://placehold.it/450x450" alt="lorem ipsum dolor sit"/>
+                        <img class="ms-thumb" src="http://placehold.it/100x100" alt="thumb" />
+                    </div>
+                    <div class="ms-slide">
+                        <img src="{{ asset('css/loading-2.gif') }}" data-src="http://placehold.it/450x450" alt="lorem ipsum dolor sit"/>
+                        <img class="ms-thumb" src="http://placehold.it/100x100" alt="thumb" />
+                    </div>
+
+
+                </div>
+                <!-- end of masterslider -->
+            </div>
+
+
+        </div>
+
+        <div class="col-md-6" style="padding: 20px">
+
+
+            <h1>{{ producto.nombre }}</h1>
+            <span>
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star" aria-hidden="true"></i>
+                <i class="fa fa-star-o" aria-hidden="true"></i>
+            </span>
+            <a href="{{ path('show_negocio',
+            {"slug_seccion":"proveedores","slug_negocio":producto.negocio.slug}) }}"><h2>{{ producto.negocio.nombre }}</h2></a>
+            <p>{{ producto.description }}</p>
+
+        </div>
+    </div>
+
+    <div class="container product-section" style="margin-top: 30px; text-align: center" >
+        <h4>También te puede interesar</h4>
+        <div class="row">
+            <div class="col-md-3 producto-box">
+                <img src="http://placehold.it/200x200" alt="">
+                <a href=""><h1>Marmol 5x5</h1></a>
+                <a href=""><h2>Trebol Celima</h2></a>
+                <p>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                </p>
+            </div>
+            <div class="col-md-3 producto-box">
+                <img src="http://placehold.it/200x200" alt="">
+                <a href=""><h1>Marmol 5x5</h1></a>
+                <a href=""><h2>Trebol Celima</h2></a>
+                <p>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                </p>
+            </div>
+            <div class="col-md-3 producto-box">
+                <img src="http://placehold.it/200x200" alt="">
+                <a href=""><h1>Marmol 5x5</h1></a>
+                <a href=""><h2>Trebol Celima</h2></a>
+                <p>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                </p>
+            </div>
+            <div class="col-md-3 producto-box">
+                <img src="http://placehold.it/200x200" alt="">
+                <a href=""><h1>Marmol 5x5</h1></a>
+                <a href=""><h2>Trebol Celima</h2></a>
+                <p>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                </p>
+            </div>
+        </div>
+    </div>
+
+{% endblock fos_user_content %}
+
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/masterslider.min.js') }}" type="text/javascript"></script>
+    <script type="text/javascript">
+
+        var slider = new MasterSlider();
+
+        slider.control('arrows');
+        slider.control('scrollbar' , {dir:'h'});
+        slider.control('thumblist' , {autohide:false, dir:'v', arrows:true, align:'left', width:100, height:100, margin:5, space:5, hideUnder:300});
+
+        slider.setup('masterslider' , {
+            width:450,
+            height:450,
+            grabCursor:false,
+            space:5
+        });
+
+
+
+    </script>
+
+{% endblock javascripts %}
