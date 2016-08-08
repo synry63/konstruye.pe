@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Form\Type\ContactType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -25,5 +26,71 @@ class DefaultController extends Controller
             'especialistas'=>$especialistas,
             'inmuebles'=>$inmuebles
         ));
+    }
+
+    public function contactoAction($slug_site,Request $request)
+    {
+        $form = $this->createForm(new ContactType());
+        $form->handleRequest($request);
+
+        if ($form->isValid()) {
+            // data is an array with "name", "email", and "message" keys
+            $data = $form->getData();
+
+            // send email to admin
+            $message = \Swift_Message::newInstance();
+            $imgUrl = $message->embed(\Swift_Image::fromPath('http://theeventplanner.pe/images/register_logo.png'));
+            $message->setSubject('The Event Planner - Formulario Contacto')
+                ->setFrom(array('sistema@theeventplanner.pe'=>'The Event Planner'))
+                ->setTo('jsarabia@theeventplanner.pe')
+                ->setBody(
+                    $this->renderView(
+                        'emails/contacto_admin.html.twig',
+                        array(
+                            'nombre' => $data['name'],
+                            'email' => $data['email'],
+                            'asunto' => $data['subject'],
+                            'telefono' => $data['tel'],
+                            'mensaje' => $data['message'],
+                            'logo'=>$imgUrl
+                        )
+                    )
+                );
+            // send email to user as auto responder
+            $message_user = \Swift_Message::newInstance();
+            $imgUrl_user = $message_user->embed(\Swift_Image::fromPath('http://theeventplanner.pe/images/register_logo.png'));
+            $message_user->setSubject('Formulario de Contacto')
+                ->setFrom(array('sistema@theeventplanner.pe'=>'The Event Planner'))
+                ->setTo($data['email'])
+                ->setBody(
+                    $this->renderView(
+                        'emails/contacto_user.html.twig',
+                        array(
+                            'nombre' => $data['name'],
+                            'email' => $data['email'],
+                            'asunto' => $data['subject'],
+                            'telefono' => $data['tel'],
+                            'mensaje' => $data['message'],
+                            'logo'=>$imgUrl_user
+                        )
+                    )
+                );
+            $message_user->setContentType("text/html");
+            $this->get('mailer')->send($message_user);
+
+            $message->setContentType("text/html");
+            $this->get('mailer')->send($message);
+
+            $request->getSession()->getFlashBag()->add('success', '¡Tu correo ha sido enviado! ¡Gracias!');
+
+            $routeName = $request->get('_route');
+
+            return $this->redirect($this->generateUrl($routeName,array('slug_site' => $slug_site)));
+        }
+
+        return $this->render(
+            'contactenos.html.twig',
+            array('form' => $form->createView())
+        );
     }
 }
