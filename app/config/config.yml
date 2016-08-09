@@ -66,8 +66,8 @@ swiftmailer:
     spool:     { type: memory }
 fos_user:
     from_email:
-        address:        pmary@ryma-soluciones.com
-        sender_name:    TEST
+        address:        sistema@konstruye.pe
+        sender_name:    Konstruye
     db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
     firewall_name: main
     user_class: AppBundle\Entity\User

@@ -43,3 +43,12 @@ show_fotos_proyecto:
 ver_mas_productos_proveedor:
     path:      /ver-mas/{slug_negocio}/{page}
     defaults:  { _controller: AppBundle:Producto:showProductosProveedor,page:1}
+show_contacto:
+    path:      /contacto
+    defaults:  { _controller: AppBundle:Default:contacto}
+lisdato_seccion_categoria:
+    path:      /{slug_seccion}/categoria/{slug_categoria}/{page}
+    defaults:  { _controller: AppBundle:Negocio:listadoSeccionCategoria,page:1}
+    requirements:
+          slug_seccion: constructoras-e-inmobiliarias|compra-venta-y-alquiler-inmuebles|especialistas-servicios-personales|proveedores
+          page:  \d+

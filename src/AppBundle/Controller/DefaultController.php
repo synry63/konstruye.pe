@@ -28,7 +28,7 @@ class DefaultController extends Controller
         ));
     }
 
-    public function contactoAction($slug_site,Request $request)
+    public function contactoAction(Request $request)
     {
         $form = $this->createForm(new ContactType());
         $form->handleRequest($request);
@@ -41,7 +41,7 @@ class DefaultController extends Controller
             $message = \Swift_Message::newInstance();
             $imgUrl = $message->embed(\Swift_Image::fromPath('http://theeventplanner.pe/images/register_logo.png'));
             $message->setSubject('The Event Planner - Formulario Contacto')
-                ->setFrom(array('sistema@theeventplanner.pe'=>'The Event Planner'))
+                ->setFrom(array('sistema@konstruye.pe'=>'Konstruye'))
                 ->setTo('jsarabia@theeventplanner.pe')
                 ->setBody(
                     $this->renderView(

@@ -36,12 +36,17 @@ class NegocioRepository extends EntityRepository
     }
     public function getNegociosBy($search){
 
-        $qb = $this->createQueryBuilder('n');
-        $qb->where($qb->expr()->like('n.nombre', ':search'))
-           ->setParameter('search', '%' . $search . '%');
+        $em = $this->getEntityManager();
+        $qb = $em->createQueryBuilder();
+        $qb->select('n as negocio,avg(cp.nota) as mymoy')
+            ->from('AppBundle\Entity\Negocio', 'n')
+            ->join('n.comentarios','cp')
+            ->where($qb->expr()->like('n.nombre', ':search'))
+            ->setParameter('search', '%' . $search . '%');
         /*$qb->orWhere($qb->expr()->like('n.tags', ':search'))
             ->setParameter('search', '%' . $search . '%');
         */
+        $qb->addGroupBy('n');
         $query = $qb->getQuery();
         //$negocios = $query->getResult();
         return $query;

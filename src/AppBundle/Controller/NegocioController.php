@@ -61,6 +61,42 @@ class NegocioController extends Controller
         return $text;
     }
 
+    public function listadoSeccionCategoriaAction(Request $request,$slug_seccion,$slug_categoria,$page)
+    {
+
+        $twig = 'layout_categorias.html.twig';
+        $categoria = $this->getDoctrine()->getRepository('AppBundle:CategoriaListado')->findOneBy(array('slug'=>$slug_categoria));
+
+        if($slug_seccion=="constructoras-e-inmobiliarias"){
+            $negocios = $this->getDoctrine()->getRepository('AppBundle:ConstructoraInmobiliaria')->getNegociosByCategoria($categoria);
+            $categorias = $this->getDoctrine()->getRepository('AppBundle:CategoriaListado')->getCategoriasChildren('constructura-inmobiliaria');
+        }
+        else if($slug_seccion=="compra-venta-y-alquiler-inmuebles"){
+            $negocios = $this->getDoctrine()->getRepository('AppBundle:Inmueble')->getNegociosByCategoria($categoria);
+            $categorias = $this->getDoctrine()->getRepository('AppBundle:CategoriaListado')->getCategoriasChildren('inmueble');
+            $twig = 'layout_compra_y_venta.html.twig';
+
+        }
+        else if($slug_seccion=="especialistas-servicios-personales"){
+            $negocios = $this->getDoctrine()->getRepository('AppBundle:Especialista')->getNegociosByCategoria($categoria);
+            $categorias = $this->getDoctrine()->getRepository('AppBundle:CategoriaListado')->getCategoriasChildren('especialista');
+        }
+        else{
+            $negocios = $this->getDoctrine()->getRepository('AppBundle:Proveedor')->getNegociosByCategoria($categoria);
+            $categorias = $this->getDoctrine()->getRepository('AppBundle:CategoriaListado')->getCategoriasChildren('proveedor');
+        }
+        $paginator  = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $negocios,
+            $page,
+            1
+        );
+        return $this->render($twig,array(
+            'negocios'=>$pagination,
+            'categorias_hijas'=>$categorias
+        ));
+
+    }
     public function listadoSeccionAction(Request $request,$slug_seccion,$page)
     {
         $twig = 'layout_categorias.html.twig';
@@ -87,7 +123,7 @@ class NegocioController extends Controller
         $pagination = $paginator->paginate(
             $negocios,
             $page,
-            6
+            1
         );
         return $this->render($twig,array(
             'negocios'=>$pagination,

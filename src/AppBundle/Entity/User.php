@@ -29,7 +29,7 @@ class User extends BaseUser
     /**
      * @ORM\Column(type="string", length=255)
      *
-     * @Assert\NotBlank(message="Please enter your name.", groups={"Registration", "Profile"})
+     * @Assert\NotBlank(message="Ingrese sus Nombres", groups={"Registration", "Profile"})
      * @Assert\Length(
      *     min=3,
      *     max=64,
@@ -43,7 +43,7 @@ class User extends BaseUser
     /**
      * @ORM\Column(type="string", length=255)
      *
-     * @Assert\NotBlank(message="Please enter your lastnames.", groups={"Registration", "Profile"})
+     * @Assert\NotBlank(message="Ingrese sus Apellidos", groups={"Registration", "Profile"})
      * @Assert\Length(
      *     min=3,
      *     max=64,
@@ -57,7 +57,7 @@ class User extends BaseUser
     /**
      * @ORM\Column(type="string", length=8)
      *
-     * @Assert\NotBlank(message="Please enter your DNI.", groups={"Registration", "Profile"})
+     * @Assert\NotBlank(message="Ingrese su DNI.", groups={"Registration", "Profile"})
      * @Assert\Length(
      *     min=8,
      *     max=8,

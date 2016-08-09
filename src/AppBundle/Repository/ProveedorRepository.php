@@ -48,6 +48,26 @@ class ProveedorRepository extends EntityRepository
 
         return $query->getResult();
     }
+    public function getNegociosByCategoria($cate){
+        $em = $this->getEntityManager();
+        $qb = $em->createQueryBuilder();
+        $qb->select('n as negocio,avg(cp.nota) as mymoy')
+            ->from('AppBundle\Entity\ConstructoraInmobiliaria', 'n')
+            ->join('n.categoriasListado','cl')
+            ->leftJoin('n.comentarios','cp')
+            ->where('cl = :cate')
+            ->andWhere('n.isAccepted = :state')
+            ->setParameters(array(
+                'cate' => $cate,
+                'state'=>true
+            ));
+        $qb->addGroupBy('n');
+        //$qb->addGroupBy('cp');
+        $query = $qb->getQuery();
+
+
+        return $query;
+    }
     public function searchNegociosNames($search){
         $em = $this->getEntityManager();
         $qb = $em->createQueryBuilder();
