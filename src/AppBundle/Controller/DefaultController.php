@@ -39,7 +39,7 @@ class DefaultController extends Controller
 
             // send email to admin
             $message = \Swift_Message::newInstance();
-            $imgUrl = $message->embed(\Swift_Image::fromPath('http://theeventplanner.pe/images/register_logo.png'));
+            $imgUrl = $message->embed(\Swift_Image::fromPath('http://konstruye.pe/images/register_logo.png'));
             $message->setSubject('The Event Planner - Formulario Contacto')
                 ->setFrom(array('sistema@konstruye.pe'=>'Konstruye'))
                 ->setTo('sebastianhw@konstruye.pe')
@@ -58,7 +58,7 @@ class DefaultController extends Controller
                 );
             // send email to user as auto responder
             $message_user = \Swift_Message::newInstance();
-            $imgUrl_user = $message_user->embed(\Swift_Image::fromPath('http://theeventplanner.pe/images/register_logo.png'));
+            $imgUrl_user = $message_user->embed(\Swift_Image::fromPath('http://konstruye.pe/images/register_logo.png'));
             $message_user->setSubject('Formulario de Contacto')
                 ->setFrom(array('sistema@konstruye.pe'=>'Konstruye'))
                 ->setTo($data['email'])
@@ -85,7 +85,7 @@ class DefaultController extends Controller
 
             $routeName = $request->get('_route');
 
-            return $this->redirect($this->generateUrl($routeName,array('slug_site' => $slug_site)));
+            return $this->redirect($this->generateUrl($routeName));
         }
 
         return $this->render(
