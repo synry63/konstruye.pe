@@ -42,7 +42,7 @@ class DefaultController extends Controller
             $imgUrl = $message->embed(\Swift_Image::fromPath('http://theeventplanner.pe/images/register_logo.png'));
             $message->setSubject('The Event Planner - Formulario Contacto')
                 ->setFrom(array('sistema@konstruye.pe'=>'Konstruye'))
-                ->setTo('jsarabia@theeventplanner.pe')
+                ->setTo('sebastianhw@konstruye.pe')
                 ->setBody(
                     $this->renderView(
                         'emails/contacto_admin.html.twig',
@@ -60,7 +60,7 @@ class DefaultController extends Controller
             $message_user = \Swift_Message::newInstance();
             $imgUrl_user = $message_user->embed(\Swift_Image::fromPath('http://theeventplanner.pe/images/register_logo.png'));
             $message_user->setSubject('Formulario de Contacto')
-                ->setFrom(array('sistema@theeventplanner.pe'=>'The Event Planner'))
+                ->setFrom(array('sistema@konstruye.pe'=>'Konstruye'))
                 ->setTo($data['email'])
                 ->setBody(
                     $this->renderView(
