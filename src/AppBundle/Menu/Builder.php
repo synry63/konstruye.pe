@@ -32,10 +32,10 @@ class Builder implements ContainerAwareInterface
 
             )
         );
-        $menu->addChild('constructoras-e-inmobiliarias',array(
+        $menu->addChild('proveedores',array(
                 'route' => 'lisdato_seccion',
-                'label' => 'constructoras e inmobiliarias',
-                'routeParameters' => array('slug_seccion' => 'constructoras-e-inmobiliarias')
+                'label' => 'proveedores',
+                'routeParameters' => array('slug_seccion' => 'proveedores')
 
             )
         );
@@ -53,13 +53,14 @@ class Builder implements ContainerAwareInterface
 
             )
         );
-        $menu->addChild('proveedores',array(
+        $menu->addChild('constructoras-e-inmobiliarias',array(
                 'route' => 'lisdato_seccion',
-                'label' => 'proveedores',
-                'routeParameters' => array('slug_seccion' => 'proveedores')
+                'label' => 'constructoras e inmobiliarias',
+                'routeParameters' => array('slug_seccion' => 'constructoras-e-inmobiliarias')
 
             )
         );
+
 
         return $menu;
     }
@@ -73,12 +74,13 @@ class Builder implements ContainerAwareInterface
 
             )
         );
-        $menu->addChild('constructoras-e-inmobiliarias',array(
+        $menu->addChild('proveedores',array(
                 'route' => 'lisdato_seccion',
-                'label' => 'constructoras e inmobiliarias',
-                'routeParameters' => array('slug_seccion' => 'constructoras-e-inmobiliarias')
+                'label' => 'proveedores',
+                'routeParameters' => array('slug_seccion' => 'proveedores')
 
             )
+
         );
         $menu->addChild('compra-venta-y-alquiler-inmuebles',array(
                 'route' => 'lisdato_seccion',
@@ -94,14 +96,14 @@ class Builder implements ContainerAwareInterface
 
             )
         );
-        $menu->addChild('proveedores',array(
+        $menu->addChild('constructoras-e-inmobiliarias',array(
                 'route' => 'lisdato_seccion',
-                'label' => 'proveedores',
-                'routeParameters' => array('slug_seccion' => 'proveedores')
+                'label' => 'constructoras e inmobiliarias',
+                'routeParameters' => array('slug_seccion' => 'constructoras-e-inmobiliarias')
 
             )
-
         );
+
 
         $menu->addChild('contactenos',array(
             'route' => 'show_contacto',
