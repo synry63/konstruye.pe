@@ -43,11 +43,13 @@
                 {{ include('includes/listado_negocios.html.twig', { 'n': n }) }}
             {% endfor %}
         </div>
+
+        <div class="navigation">
+            {{ knp_pagination_render(negocios,'foundation_v5_pagination.html.twig') }}
+        </div>
     </div>
 
-    <div class="navigation">
-        {{ knp_pagination_render(negocios,'foundation_v5_pagination.html.twig') }}
-    </div>
+
 {% endblock fos_user_content %}
 
 

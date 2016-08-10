@@ -1,1 +1,98 @@
-{{ form(form, {'attr': {'novalidate': 'novalidate'}}) }}
+{% extends 'FOSUserBundle::layout.html.twig' %}
+{% block title %}
+    <title>Konstruye.pe | Contáctenos</title>
+{% endblock title %}
+
+{% block stylesheets %}
+    {{ parent() }}
+
+{% endblock %}
+
+{% block fos_user_content %}
+
+    <div class="container">
+        <div class="col-md-4 col-md-offset-4 form-login">
+            <h1>Contáctenos</h1>
+            {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+
+            {% for type, messages in app.session.flashbag.all() %}
+                {% for message in messages %}
+                    <div class="flash-{{ type }}">
+                        <i class="fa fa-check-circle" aria-hidden="true"></i> {{ message }}
+                    </div>
+                {% endfor %}
+            {% endfor %}
+
+            <div class="form-group">
+                {{ form_label(form.name,'Nombre') }}
+                {% if form.name.vars.errors|length>0 %}
+                    <div class="alert alert-danger" role="alert">
+                        <div> <i class="fa fa-exclamation-circle" aria-hidden="true"></i>{{ form_errors(form.name) }}</div>
+                    </div>
+                {% endif %}
+
+                {{ form_widget(form.name,{ 'attr': {'class': 'form-control','placeholder':'Carlos Vargas'}}) }}
+            </div>
+            <div class="form-group">
+                {{ form_label(form.email,'Email') }}
+                {% if form.email.vars.errors|length>0 %}
+                    <div class="alert alert-danger" role="alert">
+                        <div> <i class="fa fa-exclamation-circle" aria-hidden="true"></i>{{ form_errors(form.email) }}</div>
+                    </div>
+                {% endif %}
+
+                {{ form_widget(form.email,{ 'attr': {'class': 'form-control','placeholder':'cvargas@gmail.com'}}) }}
+            </div>
+            <div class="form-group">
+                {{ form_label(form.subject,'Asunto') }}
+                {% if form.subject.vars.errors|length>0 %}
+                    <div class="alert alert-danger" role="alert">
+                        <div> <i class="fa fa-exclamation-circle" aria-hidden="true"></i>{{ form_errors(form.subject) }}</div>
+                    </div>
+                {% endif %}
+
+                {{ form_widget(form.subject,{ 'attr': {'class': 'form-control','placeholder':'Tu asunto'}}) }}
+            </div>
+            <div class="form-group">
+                {{ form_label(form.tel,'Teléfono') }}
+                {% if form.tel.vars.errors|length>0 %}
+                    <div class="alert alert-danger" role="alert">
+                        <div> <i class="fa fa-exclamation-circle" aria-hidden="true"></i>{{ form_errors(form.tel) }}</div>
+                    </div>
+                {% endif %}
+
+                {{ form_widget(form.tel,{ 'attr': {'class': 'form-control','placeholder':'Teléfono'}}) }}
+            </div>
+            <div class="form-group">
+                {{ form_label(form.message,'Mensaje') }}
+                {% if form.message.vars.errors|length>0 %}
+                    <div class="alert alert-danger" role="alert">
+                        <div> <i class="fa fa-exclamation-circle" aria-hidden="true"></i>{{ form_errors(form.message) }}</div>
+                    </div>
+                {% endif %}
+
+                {{ form_widget(form.message,{ 'attr': {'class': 'form-control','placeholder':'Tu Mensaje'}}) }}
+            </div>
+
+            <div class="form-group">
+                {{ form_widget(form.send,{ 'attr': {'class': 'btn btn-konstruye'},'label': 'Enviar'}) }}
+            </div>
+
+            {{ form_end(form) }}
+        </div>
+    </div>
+
+{% endblock fos_user_content %}
+
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $("body").addClass("fondo-contactenos");
+    </script>
+{% endblock javascripts %}
+
+
+
+
+

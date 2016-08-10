@@ -55,7 +55,7 @@ layout:
     logout: Salir
     login: Iniciar Sesión
     register: Registrarse
-    logged_in_as: 'Identificado como %username%'
+    logged_in_as: '%username%'
 form:
     group_name: 'Nombre de grupo'
     username: 'Nombre de usuario'

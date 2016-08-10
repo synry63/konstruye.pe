@@ -131,13 +131,59 @@
 
 
 
-    {% if form is defined %}
-        {{ form(form,{attr: {novalidate: 'novalidate'}}) }}
-    {% endif %}
+
 
 
     <div class="container comments_details">
         <div class="col-md-8 col-md-offset-2">
+            {% for type, messages in app.session.flashbag.all() %}
+                {% for message in messages %}
+                    <div class="flash-{{ type }}">
+                        <i class="fa fa-check-circle" aria-hidden="true"></i> {{ message }}
+                    </div>
+                {% endfor %}
+            {% endfor %}
+            <div class="star-form">
+                {% if form is defined %}
+                    {{ form_start(form,{attr: {novalidate: 'novalidate'}}) }}
+
+
+
+                    <div class="rating-container">
+                        <div style="margin: 0 auto" id="rateYo2"></div>
+                        <div class="counter"></div>
+                    </div>
+
+
+                    <div class="form-group">
+                        {{ form_label(form.titulo,'Título') }}
+                        {% if form.titulo.vars.errors|length>0 %}
+                            <div class="alert alert-danger" role="alert">
+                                <div> <i class="fa fa-exclamation-circle" aria-hidden="true"></i>{{ form_errors(form.titulo) }}</div>
+                            </div>
+                        {% endif %}
+
+                        {{ form_widget(form.titulo,{ 'attr': {'class': 'form-control','placeholder':'¡Excelente!'}}) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.comentario,'Comentario') }}
+                        {% if form.comentario.vars.errors|length>0 %}
+                            <div class="alert alert-danger" role="alert">
+                                <div> <i class="fa fa-exclamation-circle" aria-hidden="true"></i>{{ form_errors(form.comentario) }}</div>
+                            </div>
+                        {% endif %}
+
+                        {{ form_widget(form.comentario,{ 'attr': {'class': 'form-control','placeholder':'Tu comentario','rows':'6'}}) }}
+                    </div>
+
+                    <div class="form-group">
+                        {{ form_widget(form.submit,{ 'attr': {'class': 'btn btn-konstruye'},'label': 'Enviar'}) }}
+                    </div>
+
+
+                    {{ form_end(form) }}
+                {% endif %}
+            </div>
             {% for c in comentarios %}
                 <div class="media comment">
                     <div class="media-left">
@@ -235,8 +281,9 @@
             });
 
 
-            var color="#30BDEF";
+            var color ="#30BDEF";
             var test = $("#rateYo").attr("data-rating");
+
 
             $("#rateYo").rateYo({
                 rating: test,
@@ -244,6 +291,35 @@
                 normalFill: "#A0A0A0",
                 readOnly: true
             });
+
+
+            var recuperar = $("#comentario_negocio_nota").attr("value");
+
+            $("#rateYo2").rateYo({
+                        rating: recuperar,
+                        ratedFill: "#0097C9",
+                        normalFill: "#A0A0A0",
+                        starWidth: "60px",
+                        onChange: function (rating, rateYoInstance) {
+                            $(this).next().text(rating);
+                        }
+
+                    })
+                    .on("rateyo.set", function (e, data) {
+                        $("#comentario_negocio_nota").val(data.rating);
+                        $("#rateYo2").rateYo("option", "readOnly", true);
+                        $("#rateYo2").rateYo("option", "ratedFill", "#30BDEF");
+                    });
+
+
+            $("#rateYo2").mouseleave(function(){
+                $("#rateYo2").rateYo("option", "readOnly", false);
+            });
+            $("#rateYo2").mouseenter(function(){
+                $("#rateYo2").rateYo("option", "ratedFill", color);
+            });
+
+
 
             $( ".rateYo_comments" ).each(function( index ) {
                 $(this).rateYo({

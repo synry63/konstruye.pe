@@ -59,10 +59,10 @@ html, body {
 }
 .content-inside {
     padding-top: 0;
-    padding-bottom: 170px;
+    padding-bottom: 190px;
 }
 .footer-menu{
-    height: 150px;
+    height: 190px;
     margin-top: -150px;
     background: #1c9cd9;
     /*
@@ -320,7 +320,7 @@ a.ui-button:active,
 .search-change2{
     margin-left: 5px;
     margin-top: 13px;
-    text-align: center;
+
     font-size:13px;
     display: inline-block;
 }
@@ -332,6 +332,22 @@ a.ui-button:active,
 .search-change2 div:hover{
     color:#1C9CD9;
 }
+.search-change2 div.active{
+    color:#1C9CD9;
+}
+.search-change2 div:after{
+    transition: all .5s;
+}
+
+.search-change2 div:first-child:hover:after{
+    content: ' Negocios';
+    font-size: 14px;
+}
+.search-change2 div:last-child:hover:after{
+    content: ' Productos';
+    font-size: 14px;
+ }
+
 
 .search-change{
     text-align: center;
@@ -351,6 +367,9 @@ a.ui-button:active,
 .search-change span:hover{
     color:#fff;
 }
+.search-change span.active{
+    color:#fff;
+}
 #search-cop{
     position: absolute;
     top: 50%;
@@ -368,10 +387,46 @@ a.ui-button:active,
     margin: 20px auto;
 }
 /*=============
+Navigation
+=============*/
+.navigation{
+    text-align: right;
+}
+.navigation li a{
+    background: #1C9CD9;
+    color: #fff;
+    border: solid 1px #fff;
+}
+.navigation li.current a{
+    background: #fff;
+    color: #1C9CD9;
+}
+.navigation li a:hover{
+    border:solid 1px #1C9CD9;
+    background: #fff;
+    color: #1C9CD9;
+}
+
+/*=============
+Flash Alert
+=============*/
+
+.flash-success{
+    text-align: center;
+    padding: 10px;
+    margin: 10px 0;
+    background: rgba(0,255,0,.3);
+    color: rgba(0,0,0,.6);
+    border-radius: 5px;
+}
+
+
+/*=============
 Menu Principal
 =============*/
-.nav-principal{
 
+.nav-principal{
+    min-height: 112px;
     background: #fff;
     margin-bottom: 0;
     z-index: 2;
@@ -387,10 +442,11 @@ Menu Principal
     /*margin-left: 4%;*/
     /*margin-right: 4%;*/
 }
-.menu-principal ul:first-child li:first-child, .menu-principal ul:first-child li:last-child{
+.menu-principal ul:first-child li:first-child,.menu-principal ul:first-child li:nth-child(2){
     padding-top:10px;
     width: auto;
 }
+
 .nav-principal .menu-principal ul li a{
     text-transform: uppercase;
     font-weight: 400;
@@ -402,7 +458,7 @@ Menu Principal
     text-align: center;
 }
 .nav-principal .navbar-right{
-    margin-top: 30px;
+    margin-top: 22px;
 }
 .nav-principal .navbar-right #registro{
     background: #30BDEF;
@@ -410,7 +466,9 @@ Menu Principal
     border-radius: 5px;
     color: #fff;
 }
-
+.dropdown-menu>li>a:first-letter{
+    text-transform: uppercase;
+}
 .menu-stiky ul li{
     display: block;
 }
@@ -446,6 +504,8 @@ Menu Principal
 
 
 }
+
+
 .nav-principal2 .logi-reg #registro{
     background: #30BDEF;
     padding: 5px;
@@ -454,6 +514,64 @@ Menu Principal
 }
 .logi-reg a{
     text-decoration: none;
+}
+.navbar-right li .logout{
+    display: inline-block;
+    width: auto;
+}
+/*=============
+Formulario de Comentarios
+=============*/
+
+.star-form{
+    margin-bottom: 30px;
+}
+.star-form label{
+    color: #30BDEF;
+    font-weight: 500;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+.star-form .btn-konstruye{
+    width: auto;
+}
+
+/*=============
+Counter Rating
+===============*/
+div.rating-container {
+    position: relative;
+}
+div.rating-container div.counter {
+    display: none;
+    position: absolute;
+    min-width: 20px;
+    padding: 5px;
+    font-size: 15px;
+    line-height: 0px;
+    height: 20px;
+    background-color: rgba(0, 0, 0, 0.8);
+    top: 50%;
+    right: 123px;
+    margin-top: -10px;
+    color: white;
+}
+div.rating-container div.counter:before,
+div.rating-container div.counter ::before {
+    content: "";
+    width: 0;
+    height: 0;
+    top: 50%;
+    margin-top: -5px;
+    display: block;
+    border-color: transparent rgba(0, 0, 0, 0.8) transparent transparent;
+    border-width: 5px 5px 5px 0px;
+    left: -10px;
+    border-style: solid;
+    position: relative;
+}
+div.rating-container:hover div.counter {
+    display: block;
 }
 
 /*=============
@@ -518,10 +636,16 @@ Mejores Proveedores
 /*=============
 Footer Menu
 =============*/
-
+.gecko-firm{
+    text-align: center;
+    padding-top: 5px;
+    opacity: .7;
+    color: #fff;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
 .menu-footer{
     margin: 0 auto;
-    width: 915px;
+    width: 800px;
 }
 .footer-menu ul{
     margin-top: 20px;
@@ -531,6 +655,19 @@ Footer Menu
     text-transform: uppercase;
     font-size: 12px;
     font-weight: 100;
+}
+.footer-menu li{
+    width: 170px;
+    text-align: center;
+}
+.footer-menu li:first-child{
+    width: auto;
+}
+.footer-menu li:nth-child(2){
+    width: auto;
+}
+.footer-menu li:last-child{
+    width: auto;
 }
 .footer-menu li:hover{
     background: none;
@@ -754,6 +891,14 @@ Producto Detail Page
     color: #009FE3;
     font-weight: bold;
 }
+/*=============
+Contáctenos
+=============*/
+.fondo-contactenos{
+    background: url(../images/assets/contactenos_fondo.jpg) center/cover fixed;
+}
+
+
 /*=============
 Responsive
 =============*/
