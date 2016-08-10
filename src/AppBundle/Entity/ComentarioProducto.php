@@ -25,8 +25,11 @@ class ComentarioProducto
      * @ORM\Id @ORM\ManyToOne(targetEntity="Producto",inversedBy="comentarios")
      **/
     private $producto;
-
-
+    /**
+     * @ORM\Column(type="string", length=100)
+     * @Assert\NotBlank()
+     */
+    private $titulo;
 
     /** @ORM\Column(type="integer")
      *  @Assert\NotBlank()
@@ -52,6 +55,22 @@ class ComentarioProducto
     public function getProducto()
     {
         return $this->producto;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTitulo()
+    {
+        return $this->titulo;
+    }
+
+    /**
+     * @param mixed $titulo
+     */
+    public function setTitulo($titulo)
+    {
+        $this->titulo = $titulo;
     }
 
 

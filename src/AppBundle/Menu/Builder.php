@@ -18,6 +18,38 @@ class Builder implements ContainerAwareInterface
 {
     use ContainerAwareTrait;
 
+    public function menuProfile(FactoryInterface $factory, array $options){
+        $menu = $factory->createItem('root');
+        $menu->addChild('about-me',array(
+                'route' => 'fos_user_profile_show',
+                'label' => 'Mis datos',
+                'extras' => array(
+                    'icon' => 'fa fa-user'
+                )
+            )
+        );
+        $menu->addChild('change-data',array(
+                'route' => 'fos_user_profile_edit',
+                'label' => 'Cambiar mis datos',
+                'extras' => array(
+                    'icon' => 'fa fa-edit'
+                )
+
+            )
+        );
+        $menu->addChild('show-comments',array(
+                'route' => 'show_profile_comments',
+                'label' => 'Mis Comentarios',
+                'extras' => array(
+                    'icon' => 'fa fa-edit'
+                )
+
+            )
+        );
+
+        return $menu;
+    }
+
     public function mainMenu(FactoryInterface $factory, array $options){
 
         $menu = $factory->createItem('root');
