@@ -1,49 +1,13 @@
-hello world
 {% if app.user.profile is not null %}
-    <img class="img-circle" width="40px" alt="user icon" src="{{ vich_uploader_asset(app.user.profile, 'profileFile','AppBundle\\Entity\\FotoProfile') }}">
+    <img alt="user icon" src="{{ vich_uploader_asset(app.user.profile, 'profileFile','AppBundle\\Entity\\FotoProfile') }}">
 {% endif %}
 
+<a class="popup-modal" href="#test-modal">Open modal</a>
 
-
-<script type="text/javascript" src="{{ asset('js/croppic.min.js') }}"></script>
-<script type="text/javascript" src="{{ asset('js/jquery.noty.packaged.min.js') }}"></script>
-<script type="text/javascript" src="{{ asset('js/default_noty.js') }}"></script>
-
-<script>
-    $(document).ready(function() {
-        var dev = "/app_dev.php";
-        var cropperOptions = {
-            //uploadUrl:dev+'/profile/image-processing',
-            //cropUrl:dev+'/profile/image-crop',
-            uploadUrl:'/profile/image-processing',
-            cropUrl:'/profile/image-crop',
-            modal:false,
-            doubleZoomControls:false,
-            rotateControls: false,
-            loaderHtml:'<div class="loader bubblingG"><span id="bubblingG_1"></span><span id="bubblingG_2"></span><span id="bubblingG_3"></span></div> ',
-            onBeforeImgUpload: function(){  },
-            onAfterImgUpload: function(){  },
-            onImgDrag: function(){  },
-            onImgZoom: function(){  },
-            onBeforeImgCrop: function(){  },
-            onAfterImgCrop:function(data){
-                noty({
-                    text: data.message,
-                    'layout':'bottom',
-                    type:'theevent',
-                    timeout:2000});
-                setTimeout(function(){
-                    window.location.href = data.targetUrl;
-                }, 3000);
-                var n = noty({
-                    theme: 'default_noty',
-                });
-            },
-            onReset:function(){  },
-            onError:function(errormessage){ }
-        }
-
-        var cropperHeader = new Croppic('cropContainerMinimal', cropperOptions);
-    });
-
-</script>
+<div id="test-modal" class="white-popup-block mfp-hide">
+    <h1>Modal dialog</h1>
+    <div id="cropContainerMinimal"></div>
+    <p>You won't be able to dismiss this by usual means (escape or
+        click button), but you can close it programatically based on
+        user choices or actions.</p>
+</div>

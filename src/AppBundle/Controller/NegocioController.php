@@ -268,6 +268,7 @@ class NegocioController extends Controller
         }
         else{
             $negocios = $this->getDoctrine()->getRepository('AppBundle:Negocio')->getNegociosBy($search);
+
         }
 
         $paginator  = $this->get('knp_paginator');

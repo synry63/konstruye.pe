@@ -246,6 +246,7 @@ class UserController extends Controller
         $filename_out = "userprofilepic_".rand();
         $output_filename = $path.$filename_out;
 
+
 // uncomment line below to save the cropped image in the same location as the original image.
 //$output_filename = dirname($imgUrl). "/croppedImg_".rand();
 
@@ -308,7 +309,7 @@ class UserController extends Controller
                 "status" => 'success',
                 "message" => 'cambio realizado, en unos segundo la pagina se va actualizar para visualizar el cambio',
                 "url" => $my_path.$filename_out.$type,
-                "targetUrl" => $this->get('router')->generate('change_user_foto')
+                "targetUrl" => $this->get('router')->generate('fos_user_profile_show')
             );
 
             // PERSISTANCE

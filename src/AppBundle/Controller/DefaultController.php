@@ -38,7 +38,7 @@ class DefaultController extends Controller
             $data = $form->getData();
 
             // send email to admin
-            $message = \Swift_Message::newInstance();
+            /*$message = \Swift_Message::newInstance();
             $imgUrl = $message->embed(\Swift_Image::fromPath('http://konstruye.pe/images/register_logo.png'));
             $message->setSubject('The Event Planner - Formulario Contacto')
                 ->setFrom(array('sistema@konstruye.pe'=>'Konstruye'))
@@ -56,6 +56,7 @@ class DefaultController extends Controller
                         )
                     )
                 );
+            */
             // send email to user as auto responder
             $message_user = \Swift_Message::newInstance();
             $imgUrl_user = $message_user->embed(\Swift_Image::fromPath('http://konstruye.pe/images/register_logo.png'));
@@ -78,8 +79,8 @@ class DefaultController extends Controller
             $message_user->setContentType("text/html");
             $this->get('mailer')->send($message_user);
 
-            $message->setContentType("text/html");
-            $this->get('mailer')->send($message);
+            //$message->setContentType("text/html");
+            //$this->get('mailer')->send($message);
 
             $request->getSession()->getFlashBag()->add('success', '¡Tu correo ha sido enviado! ¡Gracias!');
 
