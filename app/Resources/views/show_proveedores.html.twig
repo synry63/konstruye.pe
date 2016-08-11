@@ -91,16 +91,20 @@
     <div class="container product-section">
         <h1 class="tittle">Productos Destacados</h1>
         <div class="row">
-
-            {% for nepro  in negocio.productos %}
+            {% for nepro  in productos %}
                 <div class="col-md-3 producto-box">
-                    <a href="{{ path('show_producto',{'slug_producto':nepro.slug}) }}">
+                    <a href="{{ path('show_producto',{'slug_producto':nepro.producto.slug}) }}">
                         <img width="220px" src="http://placehold.it/220x220" alt="">
                     </a>
-                    <a href="{{ path('show_producto',{'slug_producto':nepro.slug}) }}"><h1>{{ nepro.nombre }}</h1></a>
+                    <a href="{{ path('show_producto',{'slug_producto':nepro.producto.slug}) }}"><h1>{{ nepro.producto.nombre }}</h1></a>
                     <a href="{{ path('show_negocio',
-                    {"slug_seccion":app.request.get('slug_seccion'),"slug_negocio":nepro.negocio.slug}) }}"><h2>{{ nepro.negocio.nombre }}</h2></a>
-                    <div id="rateYo3" data-rating=""></div>
+                    {"slug_seccion":app.request.get('slug_seccion'),"slug_negocio":nepro.producto.negocio.slug}) }}"><h2>{{ nepro.producto.negocio.nombre }}</h2></a>
+                    {% if nepro.mymoy is not null %}
+                        <div class="rateYo_productos" data-rating="{{ nepro.mymoy }}" style="margin: 0 auto"></div>
+                    {% else %}
+                        <div class="rateYo_productos" data-rating="0" style="margin: 0 auto"></div>
+                    {% endif %}
+
                 </div>
             {% endfor %}
 
@@ -169,6 +173,7 @@
                     {{ form_end(form) }}
                 {% endif %}
             </div>
+            <h1>Comentarios ({{ comentarios|length }})</h1>
             {% for c in comentarios %}
                 <div class="media comment">
                     <div class="media-left">
@@ -239,15 +244,7 @@
 
             var color="#30BDEF";
             var test = $("#rateYo").attr("data-rating");
-            var test2 = $("#rateYo3").attr("data-rating");
 
-            $("#rateYo3").rateYo({
-                rating: test2,
-                ratedFill: color,
-                starWidth: "25px",
-                normalFill: "#A0A0A0",
-                readOnly: true
-            });
 
 
             $("#rateYo").rateYo({
@@ -256,6 +253,20 @@
                 normalFill: "#A0A0A0",
                 readOnly: true
             });
+
+
+
+
+            $( ".rateYo_productos" ).each(function( index ) {
+                $(this).rateYo({
+                    rating: $(this).attr("data-rating"),
+                    starWidth: "20px",
+                    readOnly: true,
+                    ratedFill: color,
+                    normalFill: "#A0A0A0"
+                });
+            });
+
 
             var recuperar = $("#comentario_negocio_nota").attr("value");
 

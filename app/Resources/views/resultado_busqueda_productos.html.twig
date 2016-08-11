@@ -1,7 +1,9 @@
 
 
 {% extends 'FOSUserBundle::layout.html.twig' %}
-
+{% block title %}
+    <title>Konstruye.pe | Resultado de Búsqueda</title>
+{% endblock title %}
 {% block stylesheets %}
     {{ parent() }}
 
@@ -60,94 +62,12 @@
                     </div>
                 {% endfor %}
 
-                <!--
-                <div class="col-md-4 producto-box">
-                    <a href="">
-                        <img src="http://placehold.it/220x220" alt="">
-                    </a>
-                    <a href=""><h1>Caño 2P</h1></a>
-                    <a href=""><h2>Trebol</h2></a>
-                    <p>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star-o" aria-hidden="true"></i>
-                    </p>
-                </div>
-                <div class="col-md-4 producto-box">
-                    <a href="">
-                        <img src="http://placehold.it/220x220" alt="">
-                    </a>
-                    <a href=""><h1>Caño 2P</h1></a>
-                    <a href=""><h2>Trebol</h2></a>
-                    <p>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star-o" aria-hidden="true"></i>
-                    </p>
-                </div>
-                <div class="col-md-4 producto-box">
-                    <a href="">
-                        <img src="http://placehold.it/220x220" alt="">
-                    </a>
-                    <a href=""><h1>Caño 2P</h1></a>
-                    <a href=""><h2>Trebol</h2></a>
-                    <p>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star-o" aria-hidden="true"></i>
-                    </p>
-                </div>
-                <div class="col-md-4 producto-box">
-                    <a href="">
-                        <img src="http://placehold.it/220x220" alt="">
-                    </a>
-                    <a href=""><h1>Caño 2P</h1></a>
-                    <a href=""><h2>Trebol</h2></a>
-                    <p>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star-o" aria-hidden="true"></i>
-                    </p>
-                </div>
-                <div class="col-md-4 producto-box">
-                    <a href="">
-                        <img src="http://placehold.it/220x220" alt="">
-                    </a>
-                    <a href=""><h1>Caño 2P</h1></a>
-                    <a href=""><h2>Trebol</h2></a>
-                    <p>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star-o" aria-hidden="true"></i>
-                    </p>
-                </div>
-                <div class="col-md-4 producto-box">
-                    <a href="">
-                        <img src="http://placehold.it/220x220" alt="">
-                    </a>
-                    <a href=""><h1>Caño 2P</h1></a>
-                    <a href=""><h2>Trebol</h2></a>
-                    <p>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star-o" aria-hidden="true"></i>
-                    </p>
-                </div>
-
-                -->
             </div>
+
+            <div class="navigation">
+                {{ knp_pagination_render(negocios,'foundation_v5_pagination.html.twig') }}
+            </div>
+
         </div>
     </div>
 

@@ -84,13 +84,85 @@
         </p>
     </div>
 
-
     <div class="container">
-        <h1 class="mejores_tittle">Constructoras e Inmobiliarias</h1>
+        <h1 class="mejores_tittle">Los Mejores Proveedores</h1>
+    </div>
+    <div class="ms-staff-carousel ms-round">
+        <!-- masterslider -->
+        <div class="master-slider3 " id="masterslider3">
+            {% for pro in proveedores %}
+                <div class="ms-slide">
+                    <a href="{{ path('show_negocio',
+                    {"slug_negocio":pro.negocio.slug}) }}">
+                        <img src="{{ asset('images/assets/blank.gif') }}" data-src="{{ vich_uploader_asset(pro.negocio.logo, 'logoFile','AppBundle\\Entity\\Logo') }}" alt="lorem ipsum dolor sit"/>
+                    </a>
+                    <img src="{{ asset('images/assets/blank.gif') }}" data-src="{{ vich_uploader_asset(pro.negocio.logo, 'logoFile','AppBundle\\Entity\\Logo') }}" alt="lorem ipsum dolor sit"/>
+                    <div class="ms-info">
+                        <a href="{{ path('show_negocio',
+                        {"slug_negocio":pro.negocio.slug}) }}"><h3>{{ pro.negocio.nombre }}</h3></a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <!-- end of masterslider -->
+        <div class="ms-staff-info" id="staff-info3"></div>
+    </div>
+    <div class="container">
+        <h1 class="mejores_tittle">Mejores Inmuebles</h1>
+    </div>
+    <div class="container">
+        <div class="ms-staff-carousel ms-round">
+            <!-- masterslider -->
+            <div class="master-slider5" id="masterslider5">
+                {% for inm in inmuebles %}
+                    <div class="ms-slide">
+                        <a href="{{ path('show_negocio',
+                        {"slug_negocio":inm.negocio.slug}) }}">
+                            <img src="{{ asset('images/assets/blank.gif') }}" data-src="{{ vich_uploader_asset(inm.negocio.logo, 'logoFile','AppBundle\\Entity\\Logo') }}" alt="lorem ipsum dolor sit"/>
+                        </a>
+                        <img src="{{ asset('images/assets/blank.gif') }}" data-src="{{ vich_uploader_asset(inm.negocio.logo, 'logoFile','AppBundle\\Entity\\Logo') }}" alt="lorem ipsum dolor sit"/>
+                        <div class="ms-info">
+                            <a href="{{ path('show_negocio',
+                            {"slug_negocio":inm.negocio.slug}) }}"><h3>{{ inm.negocio.nombre }}</h3></a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <!-- end of masterslider -->
+            <div class="ms-staff-info" id="staff-info5"></div>
+        </div>
     </div>
 
 
+    <div class="container">
+        <h1 class="mejores_tittle">Mejores Especialistas</h1>
+    </div>
+    <div class="container">
+        <div class="ms-staff-carousel ms-round">
+            <!-- masterslider -->
+            <div class="master-slider4 " id="masterslider4">
+                {% for es in especialistas %}
+                    <div class="ms-slide">
+                        <a href="{{ path('show_negocio',
+                        {"slug_negocio":es.negocio.slug}) }}">
+                            <img src="{{ asset('images/assets/blank.gif') }}" data-src="{{ vich_uploader_asset(es.negocio.logo, 'logoFile','AppBundle\\Entity\\Logo') }}" alt="lorem ipsum dolor sit"/>
+                        </a>
+                        <img src="{{ asset('images/assets/blank.gif') }}" data-src="{{ vich_uploader_asset(es.negocio.logo, 'logoFile','AppBundle\\Entity\\Logo') }}" alt="lorem ipsum dolor sit"/>
+                        <div class="ms-info">
+                            <a href="{{ path('show_negocio',
+                            {"slug_negocio":es.negocio.slug}) }}"><h3>{{ es.negocio.nombre }}</h3></a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <!-- end of masterslider -->
+            <div class="ms-staff-info" id="staff-info4"></div>
+        </div>
+    </div>
 
+    <div class="container">
+        <h1 class="mejores_tittle">Mejores Constructoras e Inmobiliarias</h1>
+    </div>
     <div class="container">
         <div class="ms-staff-carousel ms-round">
             <!-- masterslider -->
@@ -98,102 +170,21 @@
                 {% for im in imobiliarias %}
                     <div class="ms-slide">
                         <a href="{{ path('show_negocio',
-                        {"slug_seccion":'constructoras-e-inmobiliarias',"slug_negocio":im.negocio.slug}) }}">
+                        {"slug_negocio":im.negocio.slug}) }}">
                             <img src="{{ asset('images/assets/blank.gif') }}" data-src="{{ vich_uploader_asset(im.negocio.logo, 'logoFile','AppBundle\\Entity\\Logo') }}" alt="lorem ipsum dolor sit"/>
                         </a>
                         <img src="{{ asset('images/assets/blank.gif') }}" data-src="{{ vich_uploader_asset(im.negocio.logo, 'logoFile','AppBundle\\Entity\\Logo') }}" alt="lorem ipsum dolor sit"/>
                         <div class="ms-info">
-                            <a href=""><h3>{{ im.negocio.nombre }}</h3></a>
+                            <a href="{{ path('show_negocio',
+                            {"slug_negocio":im.negocio.slug}) }}"><h3>{{ im.negocio.nombre }}</h3></a>
                         </div>
                     </div>
                 {% endfor %}
-                <!--  <div class="ms-slide">
-                    <img src="{{ asset('images/assets/blank.gif') }}" data-src="{{ asset('images/assets/pro1.png') }}" alt="lorem ipsum dolor sit"/>
-                    <div class="ms-info">
-                        <h3>JULIA B. MCRAFLANE</h3>
-                    </div>
-                </div>
-                <div class="ms-slide">
-                    <img src="{{ asset('images/assets/blank.gif') }}" data-src="{{ asset('images/assets/pro2.png') }}" alt="lorem ipsum dolor sit"/>
-                    <div class="ms-info">
-                        <h3>AMY CLAYTON</h3>
-                    </div>
-                </div>
-                <div class="ms-slide">
-                    <img src="{{ asset('images/assets/blank.gif') }}" data-src="{{ asset('images/assets/pro3.png') }}" alt="lorem ipsum dolor sit"/>
-                    <div class="ms-info">
-                        <h3>FRED PENNER</h3>
-                    </div>
-                </div>
-                <div class="ms-slide">
-                    <img src="{{ asset('images/assets/blank.gif') }}" data-src="{{ asset('images/assets/pro4.png') }}" alt="lorem ipsum dolor sit"/>
-                    <div class="ms-info">
-                        <h3>MARTINA SAIZ</h3>
-                    </div>
-                </div>
-                <div class="ms-slide">
-                    <img src="{{ asset('images/assets/blank.gif') }}" data-src="{{ asset('images/assets/pro3.png') }}" alt="lorem ipsum dolor sit"/>
-                    <div class="ms-info">
-                        <h3>JOSEPH B. SEWARD</h3>
-                    </div>
-                </div>
--->
             </div>
             <!-- end of masterslider -->
             <div class="ms-staff-info" id="staff-info"></div>
         </div>
-
-
-
-        <div class="container">
-            <h1 class="mejores_tittle">Los Mejores Proveedores</h1>
-        </div>
-        <div class="ms-staff-carousel ms-round">
-            <!-- masterslider -->
-            <div class="master-slider3" id="masterslider3">
-                <div class="ms-slide">
-                    <img src="{{ asset('images/assets/blank.gif') }}" data-src="{{ asset('images/assets/pro1.png') }}" alt="lorem ipsum dolor sit"/>
-                    <div class="ms-info">
-                        <h3>JULIA B. MCRAFLANE</h3>
-                    </div>
-                </div>
-                <div class="ms-slide">
-                    <img src="{{ asset('images/assets/blank.gif') }}" data-src="{{ asset('images/assets/pro2.png') }}" alt="lorem ipsum dolor sit"/>
-                    <div class="ms-info">
-                        <h3>AMY CLAYTON</h3>
-                    </div>
-                </div>
-                <div class="ms-slide">
-                    <img src="{{ asset('images/assets/blank.gif') }}" data-src="{{ asset('images/assets/pro3.png') }}" alt="lorem ipsum dolor sit"/>
-                    <div class="ms-info">
-                        <h3>FRED PENNER</h3>
-                    </div>
-                </div>
-                <div class="ms-slide">
-                    <img src="{{ asset('images/assets/blank.gif') }}" data-src="{{ asset('images/assets/pro4.png') }}" alt="lorem ipsum dolor sit"/>
-                    <div class="ms-info">
-                        <h3>MARTINA SAIZ</h3>
-                    </div>
-                </div>
-                <div class="ms-slide">
-                    <img src="{{ asset('images/assets/blank.gif') }}" data-src="{{ asset('images/assets/pro3.png') }}" alt="lorem ipsum dolor sit"/>
-                    <div class="ms-info">
-                        <h3>JOSEPH B. SEWARD</h3>
-                    </div>
-                </div>
-
-
-            </div>
-            <!-- end of masterslider -->
-            <div class="ms-staff-info" id="staff-info2"></div>
-
-        </div>
     </div>
-
-    {{ dump(imobiliarias) }}
-    {{ dump(inmuebles) }}
-    {{ dump(especialistas) }}
-    {{ dump(proveedores) }}
 
 
 
@@ -355,7 +346,40 @@
                     viewOptions:{centerSpace:1.6}
                 });
                 slider3.control('arrows');
-                slider3.control('slideinfo',{insertTo:'#staff-info2'});
+                slider3.control('slideinfo',{insertTo:'#staff-info3'});
+
+
+                var slider4 = new MasterSlider();
+                slider4.setup('masterslider4' , {
+                    loop:true,
+                    width:150,
+                    height:150,
+                    speed:20,
+                    view:'focus',
+                    preload:0,
+                    grabCursor:false,
+                    space:0,
+                    space:35,
+                    viewOptions:{centerSpace:1.6}
+                });
+                slider4.control('arrows');
+                slider4.control('slideinfo',{insertTo:'#staff-info4'});
+
+                var slider5 = new MasterSlider();
+                slider5.setup('masterslider5' , {
+                    loop:true,
+                    width:150,
+                    height:150,
+                    speed:20,
+                    view:'focus',
+                    preload:0,
+                    grabCursor:false,
+                    space:0,
+                    space:35,
+                    viewOptions:{centerSpace:1.6}
+                });
+                slider5.control('arrows');
+                slider5.control('slideinfo',{insertTo:'#staff-info5'});
 
             });
 

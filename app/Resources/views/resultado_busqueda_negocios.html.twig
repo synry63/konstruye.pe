@@ -1,16 +1,15 @@
 
 
 {% extends 'FOSUserBundle::layout.html.twig' %}
-
+{% block title %}
+    <title>Konstruye.pe | Resultado de Búsqueda</title>
+{% endblock title %}
 {% block stylesheets %}
     {{ parent() }}
-
+    <link rel="stylesheet" href="{{ asset('css/jquery.rateyo.min.css') }}">
 {% endblock %}
 
 {% block fos_user_content %}
-    {#
-    {{ dump(negocios) }}
-    #}
 
     <div class="container resultado">
         <h1>Resultados de búsqueda: <strong>({{ negocios|length }})</strong> Elementos encontrado(s)</h1>
@@ -42,9 +41,48 @@
                 <span>Rating |</span>
                 <span style="font-weight: bold">Alfabetico</span>
             </div>
+            {{ dump(negocios) }}
+    {% for ne in negocios.items %}
+            <div class="row">
+                <div class="negocio">
+                    <div class="col-md-2 logotipo">
+                    <a href="{{ path('show_negocio',{'slug_negocio':ne.negocio.slug}) }}">
+                        <img src="{{ vich_uploader_asset(ne.negocio.logo, 'logoFile','AppBundle\\Entity\\Logo') }}" alt="{{ ne.negocio.nombre }}" />
+                    </a>
+                    </div>
+                    <div class="col-md-5 description">
+                        <h1><a href="{{ path('show_negocio',{'slug_negocio':ne.negocio.slug}) }}">{{ ne.negocio.nombre }}</a></h1>
+                        <p><i class="fa fa-map-marker" aria-hidden="true"></i> {{ ne.negocio.direccion }} - {{ ne.negocio.distrito }} - {{ ne.negocio.departamento }}</p>
+                        <p><i class="fa fa-phone" aria-hidden="true"></i> {{ ne.negocio.telefono }}</p>
+                        <p><i class="fa fa-globe" aria-hidden="true"></i> {{ ne.negocio.web }}</p>
+                        <p><i class="fa fa-envelope" aria-hidden="true"></i> {{ ne.negocio.email }}</p>
+                        <p>
+                            {% if ne.mymoy is null %}
+                                <div class="rateYo_negocios" data-rating="0"></div>
+                            {% else %}
+                                <div class="rateYo_negocios" data-rating="{{ ne.mymoy }}"></div>
+                            {% endif %}
+                        </p>
+                    </div>
+                    <div class="col-md-5 banner_pub">
+                        <a href="{{ path('show_negocio',{'slug_negocio':ne.negocio.slug}) }}">
+                            <img src="{{ vich_uploader_asset(ne.negocio.banner, 'bannerFile','AppBundle\\Entity\\Banner') }}" alt="{{ ne.negocio.nombre }}" />
+                        </a>
+                    </div>
+                </div>
+
+
+                <div class="navigation">
+                    {{ knp_pagination_render(negocios,'foundation_v5_pagination.html.twig') }}
+                </div>
+            </div>
+            <hr class="style-two">
+
+    {% endfor %}
 
             <div class="row">
-                {% for ne in negocios.items %}
+                {#
+                 {% for ne in negocios.items %}
                     <div class="col-md-4 producto-box">
                         <a href="">
                             <img width="220px" src="http://placehold.it/220x220" alt="">
@@ -60,94 +98,8 @@
                         </p>
                     </div>
                 {% endfor %}
+                #}
 
-                <!--
-                <div class="col-md-4 producto-box">
-                    <a href="">
-                        <img src="http://placehold.it/220x220" alt="">
-                    </a>
-                    <a href=""><h1>Caño 2P</h1></a>
-                    <a href=""><h2>Trebol</h2></a>
-                    <p>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star-o" aria-hidden="true"></i>
-                    </p>
-                </div>
-                <div class="col-md-4 producto-box">
-                    <a href="">
-                        <img src="http://placehold.it/220x220" alt="">
-                    </a>
-                    <a href=""><h1>Caño 2P</h1></a>
-                    <a href=""><h2>Trebol</h2></a>
-                    <p>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star-o" aria-hidden="true"></i>
-                    </p>
-                </div>
-                <div class="col-md-4 producto-box">
-                    <a href="">
-                        <img src="http://placehold.it/220x220" alt="">
-                    </a>
-                    <a href=""><h1>Caño 2P</h1></a>
-                    <a href=""><h2>Trebol</h2></a>
-                    <p>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star-o" aria-hidden="true"></i>
-                    </p>
-                </div>
-                <div class="col-md-4 producto-box">
-                    <a href="">
-                        <img src="http://placehold.it/220x220" alt="">
-                    </a>
-                    <a href=""><h1>Caño 2P</h1></a>
-                    <a href=""><h2>Trebol</h2></a>
-                    <p>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star-o" aria-hidden="true"></i>
-                    </p>
-                </div>
-                <div class="col-md-4 producto-box">
-                    <a href="">
-                        <img src="http://placehold.it/220x220" alt="">
-                    </a>
-                    <a href=""><h1>Caño 2P</h1></a>
-                    <a href=""><h2>Trebol</h2></a>
-                    <p>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star-o" aria-hidden="true"></i>
-                    </p>
-                </div>
-                <div class="col-md-4 producto-box">
-                    <a href="">
-                        <img src="http://placehold.it/220x220" alt="">
-                    </a>
-                    <a href=""><h1>Caño 2P</h1></a>
-                    <a href=""><h2>Trebol</h2></a>
-                    <p>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star-o" aria-hidden="true"></i>
-                    </p>
-                </div>
-
-                -->
             </div>
         </div>
     </div>
@@ -157,5 +109,18 @@
 
 {% block javascripts %}
     {{ parent() }}
+    <script src="{{ asset('js/jquery.rateyo.min.js') }}"></script>
+    <script>
+        var color="#30BDEF";
 
+        $( ".rateYo_negocios" ).each(function( index ) {
+            $(this).rateYo({
+                rating: $(this).attr("data-rating"),
+                starWidth: "20px",
+                readOnly: true,
+                ratedFill: color,
+                normalFill: "#A0A0A0"
+            });
+        });
+    </script>
 {% endblock javascripts %}

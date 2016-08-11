@@ -98,7 +98,6 @@
 
 
 
-
     {% if negocio.proyectos|length>0  %}
         <div class="container proyect-slider">
             <div class="col-md-9 col-xs-12 ajax-proyecto">
@@ -185,6 +184,7 @@
                     {{ form_end(form) }}
                 {% endif %}
             </div>
+            <h1>Comentarios ({{ comentarios|length }})</h1>
             {% for c in comentarios %}
                 <div class="media comment">
                     <div class="media-left">
