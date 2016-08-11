@@ -410,7 +410,7 @@ Navigation
 /*=============
 Flash Alert
 =============*/
-
+/*
 .flash-success{
     text-align: center;
     padding: 10px;
@@ -419,7 +419,7 @@ Flash Alert
     color: rgba(0,0,0,.6);
     border-radius: 5px;
 }
-
+*/
 
 /*=============
 Menu Principal
@@ -535,7 +535,17 @@ Formulario de Comentarios
 .star-form .btn-konstruye{
     width: auto;
 }
-
+.star-form ul{
+    display: inline;
+    padding-left: 10px;
+    font-size: 14px;
+}
+.star-form li{
+    display: inline-block;
+}
+.star-form .alert{
+    padding: 8px;
+}
 /*=============
 Counter Rating
 ===============*/

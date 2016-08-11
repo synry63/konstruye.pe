@@ -46,6 +46,7 @@
                         <a href="{{ path('show_producto',{'slug_producto':pro.producto.slug}) }}">
                             <img width="220px" src="http://placehold.it/220x220" alt="">
                         </a>
+
                         <a href=""><h1>{{ pro.producto.nombre }}</h1></a>
                         <a href="{{ path('show_negocio',
                         {"slug_seccion":'proveedores',"slug_negocio":pro.producto.negocio.slug}) }}"><h2>{{ pro.producto.negocio.nombre }}</h2></a>

@@ -100,13 +100,7 @@
                     <a href="{{ path('show_producto',{'slug_producto':nepro.slug}) }}"><h1>{{ nepro.nombre }}</h1></a>
                     <a href="{{ path('show_negocio',
                     {"slug_seccion":app.request.get('slug_seccion'),"slug_negocio":nepro.negocio.slug}) }}"><h2>{{ nepro.negocio.nombre }}</h2></a>
-                    <p>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star-o" aria-hidden="true"></i>
-                    </p>
+                    <div id="rateYo3" data-rating=""></div>
                 </div>
             {% endfor %}
 
@@ -134,16 +128,14 @@
         <div class="col-md-8 col-md-offset-2">
             {% for type, messages in app.session.flashbag.all() %}
                 {% for message in messages %}
-                    <div class="flash-{{ type }}">
-                        <i class="fa fa-check-circle" aria-hidden="true"></i> {{ message }}
-                    </div>
+                    <div id="error" data-error="{{ message }}"></div>
                 {% endfor %}
             {% endfor %}
             <div class="star-form">
                 {% if form is defined %}
                     {{ form_start(form,{attr: {novalidate: 'novalidate'}}) }}
                     <div class="rating-container">
-                        <div style="margin: 0 auto" id="rateYo2"></div>
+                        <div style="margin: 10px auto" id="rateYo2"></div>
                         <div class="counter"></div>
                     </div>
 
@@ -205,6 +197,27 @@
     <script src="{{ asset('js/masterslider.min.js') }}" type="text/javascript"></script>
     <script>
         $(document).ready(function() {
+
+
+            var errormsn = $("#error").attr("data-error");
+
+            if(errormsn!=undefined)
+                noty({
+                    text: errormsn,
+                    animation: {
+                        open: 'animated bounceInLeft', // Animate.css class names
+                        close: 'animated bounceOutRight', // Animate.css class names
+                        easing: 'swing', // easing
+                        speed: 800 // opening & closing animation speed
+                    },
+                    'layout':'bottomCenter',
+                    type: 'success',
+                    timeout:3000
+                });
+
+
+
+
             var slider = new MasterSlider();
             slider.control('arrows' ,{insertTo:'#masterslider'});
             slider.control('bullets');
@@ -226,6 +239,16 @@
 
             var color="#30BDEF";
             var test = $("#rateYo").attr("data-rating");
+            var test2 = $("#rateYo3").attr("data-rating");
+
+            $("#rateYo3").rateYo({
+                rating: test2,
+                ratedFill: color,
+                starWidth: "25px",
+                normalFill: "#A0A0A0",
+                readOnly: true
+            });
+
 
             $("#rateYo").rateYo({
                 rating: test,
