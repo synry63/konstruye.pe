@@ -22,7 +22,6 @@ class UserController extends Controller
 
     public function userCommentsShowAction()
     {
-
         $user = $this->container->get('security.context')->getToken()->getUser();
         $ccoments = $this->getDoctrine()->getRepository('AppBundle:ComentarioNegocio')->findBy(array('user'=>$user));
         return $this->render(
@@ -33,7 +32,13 @@ class UserController extends Controller
         );
 
     }
+    public function showProfileAction(){
+        $user = $this->container->get('security.context')->getToken()->getUser();
 
+        return $this->render(
+            'FOSUserBundle:includes:profile_image_left.html.twig'
+        );
+    }
     public function userFavoritosFotosShowAction(){
 
         $user = $this->container->get('security.context')->getToken()->getUser();

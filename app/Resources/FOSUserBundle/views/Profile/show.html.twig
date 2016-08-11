@@ -1,6 +1,11 @@
 {% extends "FOSUserBundle::layout.html.twig" %}
 
 {% block fos_user_content %}
+
+    {{ render(controller(
+    'AppBundle:User:showProfile'
+    )) }}
+
     {{ knp_menu_render('AppBundle:Builder:menuProfile') }}
 {% include "FOSUserBundle:Profile:show_content.html.twig" %}
 {% endblock fos_user_content %}
