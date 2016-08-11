@@ -23,10 +23,11 @@ buscar_productos:
      path:      /buscar-productos/
      defaults:  { _controller: AppBundle:Producto:buscarListaProductos}
 show_negocio:
-    path:      /{slug_seccion}/{slug_negocio}
+    #path:      /{slug_seccion}/{slug_negocio}
+    path:      /negocio/{slug_negocio}
     defaults:  { _controller: AppBundle:Negocio:showDetail}
-    requirements:
-          slug_seccion: constructoras-e-inmobiliarias|compra-venta-y-alquiler-inmuebles|especialistas-servicios-personales|proveedores
+    #requirements:
+          #slug_seccion: constructoras-e-inmobiliarias|compra-venta-y-alquiler-inmuebles|especialistas-servicios-personales|proveedores
 search_global_negocios:
     path:      /resultado-busqueda/negocios/{search}/{page}
     defaults:  { _controller: AppBundle:Negocio:searchNegocio,search:null,page:1}

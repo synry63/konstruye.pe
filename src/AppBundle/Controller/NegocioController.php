@@ -131,7 +131,7 @@ class NegocioController extends Controller
         ));
     }
 
-    private function initGoogleMap($negocio,$slug_site){
+    private function initGoogleMap($negocio,$slug_site = NULL){
         $map = $this->get('ivory_google_map.map');
         //$map->setApiKey('AIzaSyDSEEQgKuvd-sphCZGDm2nhmAFi9DUXlEk');
         //$map->setLanguage($this->get('request')->getLocale());
@@ -204,7 +204,7 @@ class NegocioController extends Controller
 
         return $response;
     }
-    public function showDetailAction(Request $request,$slug_seccion,$slug_negocio)
+    public function showDetailAction(Request $request,$slug_negocio)
     {
         $user = $this->container->get('security.context')->getToken()->getUser();
         $negocio = $this->getDoctrine()->getRepository('AppBundle:Negocio')->findOneBySlug($slug_negocio);
@@ -220,7 +220,7 @@ class NegocioController extends Controller
 
 
         if($negocio->getGoogleMapLat()!=NULL && $negocio->getGoogleMapLng()!=NULL){
-            $map = $this->initGoogleMap($negocio,$slug_seccion);
+            $map = $this->initGoogleMap($negocio);
             $renderOut['map'] = $map;
         }
 
@@ -241,7 +241,7 @@ class NegocioController extends Controller
                     $em->persist($comentarioNegocio);
                     $em->flush();
                     $request->getSession()->getFlashBag()->add('success', 'Gracias por tu comentario !');
-                    return $this->redirectToRoute('show_negocio',array('slug_seccion'=>$slug_seccion,'slug_negocio'=>$slug_negocio));
+                    return $this->redirectToRoute('show_negocio',array('slug_negocio'=>$slug_negocio));
                 }
                 $renderOut['form'] = $form->createView();
             }
