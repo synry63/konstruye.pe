@@ -48,6 +48,7 @@ class ProductoController extends Controller
 
     public function showDetailAction(Request $request,$slug_producto)
     {
+
         $user = $this->container->get('security.context')->getToken()->getUser();
         $producto = $this->getDoctrine()->getRepository('AppBundle:Producto')->findOneBySlug($slug_producto);
         $moy = $this->getDoctrine()->getRepository('AppBundle:Producto')->getProductoRating($producto);
@@ -80,23 +81,22 @@ class ProductoController extends Controller
                     //return $this->redirectToRoute('task_success');
                     //$this->redirect($request->getReferer());
                 }
+
                 $renderOut['form'] = $form->createView();
 
-                return $this->render(
-                    'show_producto.html.twig',$renderOut
-                );
             }
         }
-        else{
+        //else{
             return $this->render(
                 'show_producto.html.twig',$renderOut
             );
-        }
+        //}
 
 
 
     }
     public function showProductosProveedorAction(Request $request,$slug_negocio,$page){
+
 
 
         $negocio = $this->getDoctrine()->getRepository('AppBundle:Proveedor')->findOneBy(

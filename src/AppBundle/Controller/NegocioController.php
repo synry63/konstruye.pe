@@ -210,9 +210,10 @@ class NegocioController extends Controller
         $negocio = $this->getDoctrine()->getRepository('AppBundle:Negocio')->findOneBySlug($slug_negocio);
         $comments = $this->getDoctrine()->getRepository('AppBundle:ComentarioNegocio')->getAllComments($negocio);
         $moy = $this->getDoctrine()->getRepository('AppBundle:Negocio')->getNegocioRating($negocio);
-
+        $productos = $this->getDoctrine()->getRepository('AppBundle:Producto')->getProductosByNegocio($negocio)->getResult();
         $renderOut = array(
             'negocio'=>$negocio,
+            'productos'=>$productos,
             'moy'=>$moy,
             'comentarios'=>$comments,
         );

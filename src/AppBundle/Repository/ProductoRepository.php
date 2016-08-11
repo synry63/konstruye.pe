@@ -45,9 +45,9 @@ class ProductoRepository extends EntityRepository
         $em = $this->getEntityManager();
 
         $qb = $em->createQueryBuilder();
-        $qb->select('p as producto,avg(pc.nota) as mymoy')
+        $qb->select('p as producto,avg(cp.nota) as mymoy')
             ->from('AppBundle\Entity\Producto', 'p')
-            ->leftJoin('p.comentarios','pc')
+            ->leftJoin('p.comentarios','cp')
             ->where('p.negocio = :negocio')
             ->setParameters(array(
                 'negocio' => $n,
