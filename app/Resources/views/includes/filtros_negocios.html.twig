@@ -1,5 +1,6 @@
 <div class="list-group">
-    <a href="javascript:void(0)" class="list-group-item disabled tittle-disable">{{ cmain.nombre }}</a>
+
+    <a href="{{ path('lisdato_seccion_categoria', {"slug_categoria":cmain.slug, "slug_seccion":app.request.get('slug_seccion')}) }}" class="list-group-item tittle-disable">{{ cmain.nombre }}</a>
     {% for csub in cmain.children %}
         <a href="#" class="list-group-item">{{ csub.nombre }}</a>
     {% endfor %}

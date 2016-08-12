@@ -3,14 +3,12 @@
         <li class="link_proyecto">
             <a href="javascript:void(0)" data-url="{{ path('show_fotos_proyecto',{'id':p.id}) }}">
                 <div class="col-md-8">
-                    <img src="http://placehold.it/160x105x?text=Proyecto+1" alt="" />
+                    <img src="{{ vich_uploader_asset(p, 'imgFile') }}" alt="" />
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-3" style="padding-top:15%">
                     <span>{{ p.nombre }}</span>
                 </div>
-
             </a>
         </li>
     {% endfor %}
-
 </ul>

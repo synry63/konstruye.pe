@@ -1,5 +1,3 @@
-
-
 {% extends 'FOSUserBundle::layout.html.twig' %}
 {% block title %}
     <title>Konstruye.pe | Resultado de Búsqueda</title>
@@ -50,8 +48,7 @@
                         </a>
 
                         <a href=""><h1>{{ pro.producto.nombre }}</h1></a>
-                        <a href="{{ path('show_negocio',
-                        {"slug_seccion":'proveedores',"slug_negocio":pro.producto.negocio.slug}) }}"><h2>{{ pro.producto.negocio.nombre }}</h2></a>
+                        <a href="{{ path('show_negocio', {"slug_seccion":'proveedores',"slug_negocio":pro.producto.negocio.slug}) }}"><h2>{{ pro.producto.negocio.nombre }}</h2></a>
                         <p>
                             <i class="fa fa-star" aria-hidden="true"></i>
                             <i class="fa fa-star" aria-hidden="true"></i>
@@ -65,7 +62,7 @@
             </div>
 
             <div class="navigation">
-                {{ knp_pagination_render(negocios,'foundation_v5_pagination.html.twig') }}
+                {{ knp_pagination_render(productos,'foundation_v5_pagination.html.twig') }}
             </div>
 
         </div>
