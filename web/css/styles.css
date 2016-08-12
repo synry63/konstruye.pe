@@ -481,6 +481,64 @@ Dropdown Menu principal
     border: none;
     box-shadow: none;
 }
+/* menu 2 */
+.logi-reg .drop-menu{
+    width: 200px;
+    height: 150px;
+    left:-83px;
+    padding: 0px;
+    padding-top: 10px;
+    padding-right: 0;
+    padding-left: 0;
+    padding-bottom: 15px;
+}
+.logi-reg .drop-menu a{
+    margin: 5px auto;
+    width: 100%;
+    display: inline-block;
+    height: 35px;
+    color: rgba(0,0,0,.5) !important;
+    position: relative;
+    padding-left: 40px;
+    padding-top: 12px;
+    text-align: left;
+    transition: all .5s;
+}
+.logi-reg .drop-menu a:hover{
+    background: #30BDEF;
+    color: #fff !important;
+}
+.logi-reg .drop-menu a:hover i{
+    color: #fff;
+}
+.logi-reg .drop-menu a i{
+    position: absolute;
+    left: 15px;
+    margin-right: 8px;
+    color: #30BDEF;
+    font-size: 21px;
+    top: 8px;
+    width: 30px;
+    display: inline-block;
+    transition: all .5s;
+}
+.logi-reg .drop-menu a:before{
+    content: "| ";
+    display: inline;
+}
+
+.logi-reg .dropdown .btn-default{
+    border: none;
+    margin-top: -22px;
+}
+.logi-reg .dropdown .btn-default:hover, .logi-reg .dropdown .btn-default:focus, .logi-reg .dropdown .btn-default:active{
+    background: none;
+    outline: none;
+    border: none;
+    box-shadow: none;
+}
+
+
 #caret{
     vertical-align: top;
     display: inline-block;
@@ -488,8 +546,80 @@ Dropdown Menu principal
     margin-left: 6px;
     transform: scale(1.3);
 }
-
-
+/*=============
+Perfil
+=============*/
+.perfil{
+    background: #fff;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0,0,0,.2);
+    padding-bottom: 20px;
+    border-bottom: solid 3px #30BDEF;
+}
+.perfil .modal-image img{
+    border-radius: 50%;
+    margin-top: 10px;
+}
+.modal-image .popup-modal{
+    background: rgba(0,0,0,0.2);
+    width: 150px;
+    height: 150px;
+    line-height: 150px;
+    font-size: 50px;
+    position: absolute;
+    border-radius: 50%;
+    display: inline-block;
+    left: 20px;
+    top: 45px;
+    color:rgba(0,0,0,.5);
+    transition: all .5s;
+}
+.modal-image .popup-modal:focus{
+    outline: none;
+}
+.modal-image .popup-modal:hover{
+    color: #fff;
+}
+.menu-perfil{
+    background: rgb(200,200,200);
+    box-shadow: 0 0 1px;
+}
+.menu-perfil ul{
+    margin-top: 20px;
+    color: #fff;
+}
+.menu-perfil ul li{
+    display: inline-block;
+    height:40px;
+    text-align: left;
+    line-height: 40px;
+}
+.menu-perfil ul li a{
+    color: rgba(0,0,0,.5);
+}
+.menu-perfil ul li.current a{
+    color: rgba(0,0,0,.7);
+    font-weight: 500;
+}
+.menu-perfil ul li:first-child:before{
+    content: "| ";
+    opacity: 0;
+}
+.menu-perfil ul li:before{
+    content: "| ";
+    color: #000;
+}
+.perfil .modal-image h1{
+    margin-top: 10px;
+    font-size: 22px;
+    font-weight: bold;
+    color: #30BDEF;
+}
+.perfil .modal-image p{
+    font-style: italic;
+    margin: 10px 0;
+    color: rgba(0,0,0,.4);
+}
 /*=============
 Menu Principal
 =============*/
@@ -570,8 +700,6 @@ Menu Principal
     margin-top: 22px;
     display: inline-block;
     float: right;
-
-
 }
 
 

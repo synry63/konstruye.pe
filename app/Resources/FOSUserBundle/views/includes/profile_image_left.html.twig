@@ -2,12 +2,13 @@
     <img alt="user icon" src="{{ vich_uploader_asset(app.user.profile, 'profileFile','AppBundle\\Entity\\FotoProfile') }}">
 {% endif %}
 
-<a class="popup-modal" href="#test-modal">Open modal</a>
+<a class="popup-modal" href="#test-modal"><i class="fa fa-upload" aria-hidden="true"></i></a>
 
-<div id="test-modal" class="white-popup-block mfp-hide">
-    <h1>Modal dialog</h1>
-    <div id="cropContainerMinimal"></div>
+<div id="test-modal" class="white-popup-block mfp-hide" style="text-align: center">
+    <h1 style="font-size: 18px; font-weight: bold;color: #30BDEF;">¡Sube una Foto!</h1>
+    <div id="cropContainerMinimal" style="margin: 20px auto;border:solid 1px gray"></div>
+    <!--
     <p>You won't be able to dismiss this by usual means (escape or
         click button), but you can close it programatically based on
-        user choices or actions.</p>
+        user choices or actions.</p>-->
 </div>

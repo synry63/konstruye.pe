@@ -80,7 +80,7 @@
                                         </button>
                                         <ul class="dropdown-menu drop-menu" aria-labelledby="dropdownMenu1">
                                             <a href=""><i class="fa fa-briefcase" aria-hidden="true"></i> Panel de Negocios</a>
-                                            <a href=""><i class="fa fa-user" aria-hidden="true"></i> Perfil</a>
+                                            <a href="{{ path('fos_user_profile_show') }}"><i class="fa fa-user" aria-hidden="true"></i> Mi Perfil</a>
                                             <a href="{{ path('fos_user_security_logout') }}">
                                                 <i class="fa fa-sign-out" aria-hidden="true"></i> {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
                                             </a>
@@ -148,10 +148,24 @@
                     <ul class="logi-reg" >
                         <li>
                             {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                                <span>{{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |</span>
-                                <a style="color:#30BDEF" href="{{ path('fos_user_security_logout') }}">
-                                    {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
-                                </a>
+                                <div class="dropdown">
+                                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                        {% if app.user.profile is not null %}
+                                            <img class="img-circle" width="50px" src="{{ vich_uploader_asset(app.user.profile, 'profileFile') }}" alt="">
+                                        {% else %}
+                                            <img class="img-circle" width="50px" src="{{ asset('images/assets/perfil_icon.png') }}" alt="">
+                                        {% endif %}
+                                        <span class="caret" id="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu drop-menu" aria-labelledby="dropdownMenu2">
+                                        <a href=""><i class="fa fa-briefcase" aria-hidden="true"></i> Panel de Negocios</a>
+                                        <a href="{{ path('fos_user_profile_show')}}"><i class="fa fa-user" aria-hidden="true"></i> Mi Perfil</a>
+                                        <a href="{{ path('fos_user_security_logout') }}">
+                                            <i class="fa fa-sign-out" aria-hidden="true"></i> {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+                                        </a>
+
+                                    </ul>
+                                </div>
                             {% else %}
                                 <a id="registro" href="">Registrarse</a>
                                 <span>|</span>
