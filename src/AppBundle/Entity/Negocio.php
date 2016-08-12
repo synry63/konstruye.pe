@@ -132,79 +132,79 @@ class Negocio
     /**
      * @ORM\Column(type="text",nullable=true)
      */
-    private $description;
+    protected $description;
 
     /**
      * @ORM\Column(type="text",nullable=true)
      */
-    private $tags;
+    protected $tags;
 
 
     /**
      * @ORM\Column(type="string",nullable=true, length=100)
      */
-    private $slug;
+    protected $slug;
 
 
 
     /**
      * @ORM\OneToMany(targetEntity="Foto", mappedBy="negocio")
      **/
-    private $fotos;
+    protected $fotos;
     /**
      * @ORM\ManyToMany(targetEntity="CategoriaListado", inversedBy="negocios")
      * @ORM\JoinTable(name="negocios_categorias_listado")
      */
-    private $categoriasListado;
+    protected $categoriasListado;
 
     /**
      * @ORM\OneToMany(targetEntity="ComentarioNegocio", mappedBy="negocio")
      */
-    private $comentarios;
+    protected $comentarios;
 
     /**
      * @ORM\ManyToOne(targetEntity="User",inversedBy="negocios")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      **/
-    private $user;
+    protected $user;
 
 
     /**
      * @ORM\OneToOne(targetEntity="Logo",mappedBy="negocio",cascade={"persist"})
      */
-    private $logo;
+    protected $logo;
 
     /**
      * @ORM\OneToOne(targetEntity="Banner",mappedBy="negocio",cascade={"persist"})
      */
-    private $banner;
+    protected $banner;
 
     /**
      * @ORM\Column(type="string",nullable=true, length=64)
      */
-    private $facebookLink;
+    protected $facebookLink;
     /**
      * @ORM\Column(type="string",nullable=true, length=64)
      */
-    private $twitterLink;
+    protected $twitterLink;
     /**
      * @ORM\Column(type="string",nullable=true, length=64)
      */
-    private $pinteresLink;
+    protected $pinteresLink;
     /**
      * @ORM\Column(type="string",nullable=true, length=64)
      */
-    private $instagramLink;
-
-    /**
-     * @ORM\Column(type="float",nullable=true)
-     */
-    private $googleMapLat;
+    protected $instagramLink;
 
     /**
      * @ORM\Column(type="float",nullable=true)
      */
-    private $googleMapLng;
+    protected $googleMapLat;
+
+    /**
+     * @ORM\Column(type="float",nullable=true)
+     */
+    protected $googleMapLng;
 
     /**
      * @ORM\OneToMany(targetEntity="Proyecto", mappedBy="negocio")

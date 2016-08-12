@@ -12,6 +12,7 @@ use AppBundle\Entity\ConstructoraInmobiliaria;
 use AppBundle\Entity\Especialista;
 use AppBundle\Entity\Inmueble;
 use AppBundle\Entity\Logo;
+use AppBundle\Entity\Negocio;
 use AppBundle\Entity\Proveedor;
 use AppBundle\Form\Type\ComentarioNegocioType;
 use AppBundle\Form\Type\ProveedorType;
@@ -287,17 +288,26 @@ class NegocioController extends Controller
     public function registerProveedorAction(Request $request){
 
         $proveedor = new Proveedor();
-        $form = $this->createForm(new ProveedorType(), $proveedor);
+        $negocio = new Negocio();
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($proveedor);
+        $em->flush();
+        exit;
+
+        $form = $this->createForm(new ProveedorType());
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $temp_file = $proveedor->getTempFile();
+            /*$temp_file = $proveedor->getTempFile();
             $logo = new Logo();
             $logo->setLogoFile($temp_file);
             $logo->setNegocio($proveedor);
             $proveedor->setLogo($logo);
-            $proveedor->setSlug($this->slugify($proveedor->getNombre()));
+            $proveedor->setSlug($this->slugify($proveedor->getNombre()));*/
             // 4) save the Proveedor !
+            //$p = new Negocio();
+            //$p->setNombre('tototaa');
             $em = $this->getDoctrine()->getManager();
             $em->persist($proveedor);
             $em->flush();

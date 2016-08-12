@@ -74,23 +74,6 @@ class ProveedorType extends AbstractType
 
             )
         ));
-        $builder->add('tempFile', 'file',array(
-            'constraints' => array(
-                new NotBlank(),
-                new Image(array(
-                    'maxSize'       => '1M',
-                    /*'maxWidth'=>250,
-                    'maxHeight'=>250,*/
-                    'minWidth'=>250,
-                    'minHeight'=>250,
-                    'allowLandscape'=>true,
-                    'allowSquare'=>true,
-                    'allowPortrait'=>true
-                    //'mimeTypes'=>array('image/jpeg')
-                ))
-
-            ),
-        ));
         $builder->add('submit', 'Symfony\Component\Form\Extension\Core\Type\SubmitType');
     }
     /*public function getParent()
@@ -98,10 +81,10 @@ class ProveedorType extends AbstractType
         return 'FOS\UserBundle\Form\Type\RegistrationFormType';
     }*/
 
-    public function configureOptions(OptionsResolver $resolver)
+    /*public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Proveedor',
+            'data_class' => 'AppBundle\Entity\Negocio',
         ));
-    }
+    }*/
 }
