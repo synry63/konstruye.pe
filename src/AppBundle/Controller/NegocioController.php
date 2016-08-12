@@ -11,8 +11,10 @@ use AppBundle\Entity\ComentarioNegocio;
 use AppBundle\Entity\ConstructoraInmobiliaria;
 use AppBundle\Entity\Especialista;
 use AppBundle\Entity\Inmueble;
+use AppBundle\Entity\Logo;
 use AppBundle\Entity\Proveedor;
 use AppBundle\Form\Type\ComentarioNegocioType;
+use AppBundle\Form\Type\ProveedorType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -89,7 +91,7 @@ class NegocioController extends Controller
         $pagination = $paginator->paginate(
             $negocios,
             $page,
-            1
+            4
         );
         return $this->render($twig,array(
             'negocios'=>$pagination,
@@ -123,7 +125,7 @@ class NegocioController extends Controller
         $pagination = $paginator->paginate(
             $negocios,
             $page,
-            1
+            4
         );
         return $this->render($twig,array(
             'negocios'=>$pagination,
@@ -281,5 +283,31 @@ class NegocioController extends Controller
         return $this->render('resultado_busqueda_negocios.html.twig',array(
             'negocios'=>$pagination,
         ));
+    }
+    public function registerProveedorAction(Request $request){
+
+        $proveedor = new Proveedor();
+        $form = $this->createForm(new ProveedorType(), $proveedor);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $temp_file = $proveedor->getTempFile();
+            $logo = new Logo();
+            $logo->setLogoFile($temp_file);
+            $logo->setNegocio($proveedor);
+            $proveedor->setLogo($logo);
+            $proveedor->setSlug($this->slugify($proveedor->getNombre()));
+            // 4) save the Proveedor !
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($proveedor);
+            $em->flush();
+        }
+
+        return $this->render(
+            'negocio_register.html.twig',array(
+                'form' => $form->createView(),
+            )
+        );
+
     }
 }

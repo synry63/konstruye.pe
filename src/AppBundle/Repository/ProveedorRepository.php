@@ -52,7 +52,7 @@ class ProveedorRepository extends EntityRepository
         $em = $this->getEntityManager();
         $qb = $em->createQueryBuilder();
         $qb->select('n as negocio,avg(cp.nota) as mymoy')
-            ->from('AppBundle\Entity\ConstructoraInmobiliaria', 'n')
+            ->from('AppBundle\Entity\Proveedor', 'n')
             ->join('n.categoriasListado','cl')
             ->leftJoin('n.comentarios','cp')
             ->where('cl = :cate')

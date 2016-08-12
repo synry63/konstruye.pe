@@ -38,63 +38,63 @@ class Negocio
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected  $id;
 
     /**
      * @ORM\Column(type="string", length=100)
      */
-    private $nombre;
+    protected $nombre;
 
     /**
      * @ORM\Column(type="string", length=60, unique=true)
      */
-    private $email;
+    protected $email;
 
     /**
      * @ORM\Column(type="string", length=64)
      */
-    private $telefono;
+    protected $telefono;
 
     /**
      * @ORM\Column(type="string",nullable=true, length=64)
      */
-    private $web;
+    protected $web;
 
     /**
      * @ORM\Column(type="boolean",nullable=true,options={"default": false})
      */
-    private $isAccepted;
+    protected $isAccepted;
 
     /**
      * @ORM\Column(type="string", length=255)
      *
      */
-    private $direccion;
+    protected $direccion;
 
     /**
      * @ORM\Column(type="string", length=64)
      *
      */
-    private $departamento;
+    protected $departamento;
 
     /**
      * @ORM\Column(type="string", length=64)
      *
      */
-    private $distrito;
+    protected $distrito;
 
     /**
      * @ORM\Column(type="datetime")
      *
      * @var \DateTime
      */
-    private $registeredAt;
+    protected $registeredAt;
 
     /**
      * NOTE: This is not a mapped field of entity metadata, just a simple property.
      * @var File
      */
-    private $tempFile;
+    protected $tempFile;
 
     /**
      * @return mixed
@@ -337,7 +337,7 @@ class Negocio
     public function __construct() {
         $this->registeredAt = new \DateTime('now');
         $this->comentarios = new ArrayCollection();
-        $this->productos = new ArrayCollection();
+
         $this->categoriasListado = new ArrayCollection();
     }
 
@@ -603,20 +603,6 @@ class Negocio
         return $this->tags;
     }
 
-
-    /**
-     * @Assert\Callback
-     */
-    public function validate(ExecutionContextInterface $context)
-    {
-        //var_dump($this->categoriasListado);
-        if(count($this->categoriasListado)==0){
-            $context->buildViolation('Selecione un listado como minimo')
-                ->atPath('categoriasListado')
-                ->addViolation();
-        }
-
-    }
     /**
      * @param \DateTime $registeredAt
      */

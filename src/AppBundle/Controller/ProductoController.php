@@ -98,7 +98,6 @@ class ProductoController extends Controller
     public function showProductosProveedorAction(Request $request,$slug_negocio,$page){
 
 
-
         $negocio = $this->getDoctrine()->getRepository('AppBundle:Proveedor')->findOneBy(
             array('slug'=>$slug_negocio)
         );

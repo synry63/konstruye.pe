@@ -42,4 +42,8 @@ class Proveedor extends Negocio
     {
         return $this->productos;
     }
+    public function __construct() {
+        parent::__construct();
+        $this->productos = new ArrayCollection();
+    }
 }

@@ -56,3 +56,6 @@ lisdato_seccion_categoria:
 show_profile_comments:
     path:      /profile/comments
     defaults:  { _controller: AppBundle:User:userCommentsShow}
+negocio_proveedor_register:
+    path:      /profile/proveedor/register
+    defaults:  { _controller: AppBundle:Negocio:registerProveedor}
