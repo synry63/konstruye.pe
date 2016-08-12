@@ -211,35 +211,15 @@
     <script src="{{ asset('js/jquery.rateyo.min.js') }}"></script>
     <script src="{{ asset('js/masterslider.min.js') }}" type="text/javascript"></script>
     <script>
-        $(document).ready(function() {
+        $('.link_proyecto a').click(function(){
+            var url = $(this).attr('data-url');
+            sendAjax(url);
+        });
 
-
-            var errormsn = $("#error").attr("data-error");
-
-            if(errormsn!=undefined)
-                noty({
-                    text: errormsn,
-                    animation: {
-                        open: 'animated bounceInLeft', // Animate.css class names
-                        close: 'animated bounceOutRight', // Animate.css class names
-                        easing: 'swing', // easing
-                        speed: 800 // opening & closing animation speed
-                    },
-                    'layout':'bottomCenter',
-                    type: 'success',
-                    timeout:3000
-                });
-
-
-
-
-
-            var rutaproyecto = $('.link_proyecto a').attr('data-url');
-
-
+        function sendAjax(url){
             $.ajax({
                 // la URL para la petición
-                url : rutaproyecto,
+                url : url,
 
                 // la información a enviar
                 // (también es posible utilizar una cadena de datos)
@@ -269,9 +249,26 @@
                 //    alert('Petición realizada');
                 //}
             });
+        }
+        $(document).ready(function() {
+            var errormsn = $("#error").attr("data-error");
 
+            if(errormsn!=undefined)
+                noty({
+                    text: errormsn,
+                    animation: {
+                        open: 'animated bounceInLeft', // Animate.css class names
+                        close: 'animated bounceOutRight', // Animate.css class names
+                        easing: 'swing', // easing
+                        speed: 800 // opening & closing animation speed
+                    },
+                    'layout':'bottomCenter',
+                    type: 'success',
+                    timeout:3000
+                });
 
-
+            var rutaproyecto = $('.link_proyecto a').first().attr('data-url');
+            sendAjax(rutaproyecto);
 
             var slider = new MasterSlider();
             slider.control('arrows' ,{insertTo:'#masterslider'});
