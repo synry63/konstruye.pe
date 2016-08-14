@@ -7,6 +7,7 @@
  */
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Banner;
 use AppBundle\Entity\ComentarioNegocio;
 use AppBundle\Entity\ConstructoraInmobiliaria;
 use AppBundle\Entity\Especialista;
@@ -285,13 +286,19 @@ class NegocioController extends Controller
             'negocios'=>$pagination,
         ));
     }
-    public function registerProveedorAction(Request $request){
+    public function registerProveedorAction(Request $request){ // FIX ERROR ON /home/pmary/www/html/konstruye.pe/vendor/vich/uploader-bundle/Metadata/MetadataReader.php
 
         $proveedor = new Proveedor();
-        $negocio = new Negocio();
-
+        $test = new Proveedor();
+       // $proveedor = new Negocio();
+        $test->setNombre('ffdsf');
+        $test->setEmail('gfgfd');
+        $test->setTelefono('DSADSA');
+        $test->setDireccion('dsad');
+        $test->setDepartamento('dasda');
+        $test->setDistrito('dsa');
         $em = $this->getDoctrine()->getManager();
-        $em->persist($proveedor);
+        $em->persist($test);
         $em->flush();
         exit;
 

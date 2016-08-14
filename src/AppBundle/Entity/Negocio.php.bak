@@ -1,0 +1,622 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: pmary-game
+ * Date: 4/1/16
+ * Time: 1:43 PM
+ */
+// src/AppBundle/Entity/Product.php
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\User\AdvancedUserInterface;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
+
+/**
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\NegocioRepository")
+ * @Vich\Uploadable
+ * @ORM\Table(name="negocios")
+ * @ORM\InheritanceType("SINGLE_TABLE")
+ * @ORM\DiscriminatorColumn(name="type", type="string")
+ * @ORM\DiscriminatorMap({"negocio" = "Negocio",
+ *                        "inmueble" = "Inmueble",
+ *                        "constructura-inmobiliaria" = "ConstructoraInmobiliaria",
+ *                        "especialista" = "Especialista",
+ *                        "proveedor" = "Proveedor"
+ * })
+ */
+class Negocio
+{
+    /**
+     * @ORM\Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected  $id;
+
+    /**
+     * @ORM\Column(type="string", length=100)
+     */
+    protected $nombre;
+
+    /**
+     * @ORM\Column(type="string", length=60, unique=true)
+     */
+    protected $email;
+
+    /**
+     * @ORM\Column(type="string", length=64)
+     */
+    protected $telefono;
+
+    /**
+     * @ORM\Column(type="string",nullable=true, length=64)
+     */
+    protected $web;
+
+    /**
+     * @ORM\Column(type="boolean",nullable=true,options={"default": false})
+     */
+    protected $isAccepted;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     *
+     */
+    protected $direccion;
+
+    /**
+     * @ORM\Column(type="string", length=64)
+     *
+     */
+    protected $departamento;
+
+    /**
+     * @ORM\Column(type="string", length=64)
+     *
+     */
+    protected $distrito;
+
+    /**
+     * @ORM\Column(type="datetime")
+     *
+     * @var \DateTime
+     */
+    protected $registeredAt;
+
+    /**
+     * NOTE: This is not a mapped field of entity metadata, just a simple property.
+     * @var File
+     */
+    protected $tempFile;
+
+    /**
+     * @return mixed
+     */
+    public function getIsAccepted()
+    {
+        return $this->isAccepted;
+    }
+    /**
+     * @param mixed $isAccepted
+     */
+    public function setIsAccepted($isAccepted)
+    {
+        $this->isAccepted = $isAccepted;
+    }
+
+
+
+    /**
+     * @return \Symfony\Component\HttpFoundation\File\File
+     */
+    public function getTempFile()
+    {
+        return $this->tempFile;
+    }
+
+    /**
+     * @param \Symfony\Component\HttpFoundation\File\File $tempFile
+     */
+    public function setTempFile($tempFile)
+    {
+        $this->tempFile = $tempFile;
+    }
+
+    /**
+     * @ORM\Column(type="text",nullable=true)
+     */
+    protected $description;
+
+    /**
+     * @ORM\Column(type="text",nullable=true)
+     */
+    protected $tags;
+
+
+    /**
+     * @ORM\Column(type="string",nullable=true, length=100)
+     */
+    protected $slug;
+
+
+
+    /**
+     * @ORM\OneToMany(targetEntity="Foto", mappedBy="negocio")
+     **/
+    protected $fotos;
+    /**
+     * @ORM\ManyToMany(targetEntity="CategoriaListado", inversedBy="negocios")
+     * @ORM\JoinTable(name="negocios_categorias_listado")
+     */
+    protected $categoriasListado;
+
+    /**
+     * @ORM\OneToMany(targetEntity="ComentarioNegocio", mappedBy="negocio")
+     */
+    protected $comentarios;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="User",inversedBy="negocios")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     **/
+    protected $user;
+
+
+    /**
+     * @ORM\OneToOne(targetEntity="Logo",mappedBy="negocio",cascade={"persist"})
+     */
+    protected $logo;
+
+    /**
+     * @ORM\OneToOne(targetEntity="Banner",mappedBy="negocio",cascade={"persist"})
+     */
+    protected $banner;
+
+    /**
+     * @ORM\Column(type="string",nullable=true, length=64)
+     */
+    protected $facebookLink;
+    /**
+     * @ORM\Column(type="string",nullable=true, length=64)
+     */
+    protected $twitterLink;
+    /**
+     * @ORM\Column(type="string",nullable=true, length=64)
+     */
+    protected $pinteresLink;
+    /**
+     * @ORM\Column(type="string",nullable=true, length=64)
+     */
+    protected $instagramLink;
+
+    /**
+     * @ORM\Column(type="float",nullable=true)
+     */
+    protected $googleMapLat;
+
+    /**
+     * @ORM\Column(type="float",nullable=true)
+     */
+    protected $googleMapLng;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Proyecto", mappedBy="negocio")
+     **/
+    protected $proyectos;
+
+    /**
+     * @param mixed $proyectos
+     */
+    public function setProyectos($proyectos)
+    {
+        $this->proyectos = $proyectos;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getProyectos()
+    {
+        return $this->proyectos;
+    }
+
+    /**
+     * @param mixed $facebookLink
+     */
+    public function setFacebookLink($facebookLink)
+    {
+        $this->facebookLink = $facebookLink;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFacebookLink()
+    {
+        return $this->facebookLink;
+    }
+
+    /**
+     * @param mixed $instagramLink
+     */
+    public function setInstagramLink($instagramLink)
+    {
+        $this->instagramLink = $instagramLink;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getInstagramLink()
+    {
+        return $this->instagramLink;
+    }
+
+    /**
+     * @param mixed $pinteresLink
+     */
+    public function setPinteresLink($pinteresLink)
+    {
+        $this->pinteresLink = $pinteresLink;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPinteresLink()
+    {
+        return $this->pinteresLink;
+    }
+
+    /**
+     * @param mixed $twitterLink
+     */
+    public function setTwitterLink($twitterLink)
+    {
+        $this->twitterLink = $twitterLink;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTwitterLink()
+    {
+        return $this->twitterLink;
+    }
+
+
+    /**
+     * @return mixed
+     */
+    public function getBanner()
+    {
+        return $this->banner;
+    }
+
+    /**
+     * @param mixed $departamento
+     */
+    public function setDepartamento($departamento)
+    {
+        $this->departamento = $departamento;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDepartamento()
+    {
+        return $this->departamento;
+    }
+
+    /**
+     * @param mixed $distrito
+     */
+    public function setDistrito($distrito)
+    {
+        $this->distrito = $distrito;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDistrito()
+    {
+        return $this->distrito;
+    }
+
+
+
+    public function __construct() {
+        $this->registeredAt = new \DateTime('now');
+        $this->comentarios = new ArrayCollection();
+
+        $this->categoriasListado = new ArrayCollection();
+    }
+
+
+    /**
+     * @param mixed $logo
+     */
+    public function setLogo($logo)
+    {
+        $this->logo = $logo;
+    }
+
+    /**
+     * @param mixed $user
+     */
+    public function setUser($user)
+    {
+        $this->user = $user;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLogo()
+    {
+        return $this->logo;
+    }
+
+
+    /**
+     * @param mixed $comentarios_proveedor
+     */
+    public function setComentarios($comentarios_proveedor)
+    {
+        $this->comentarios = $comentarios_proveedor;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getComentarios()
+    {
+        return $this->comentarios;
+    }
+
+    /**
+     * @param mixed $categoriasListado
+     */
+    public function setCategoriasListado($categoriasListado)
+    {
+        $this->categoriasListado = $categoriasListado;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCategoriasListado()
+    {
+        return $this->categoriasListado;
+    }
+
+    /**
+     * @param mixed $description
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * @param mixed $direccion
+     */
+    public function setDireccion($direccion)
+    {
+        $this->direccion = $direccion;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDireccion()
+    {
+        return $this->direccion;
+    }
+
+    /**
+     * @param mixed $email
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getGoogleMapLat()
+    {
+        return $this->googleMapLat;
+    }
+
+    /**
+     * @param mixed $googleMapLat
+     */
+    public function setGoogleMapLat($googleMapLat)
+    {
+        $this->googleMapLat = $googleMapLat;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getGoogleMapLng()
+    {
+        return $this->googleMapLng;
+    }
+
+    /**
+     * @param mixed $googleMapLng
+     */
+    public function setGoogleMapLng($googleMapLng)
+    {
+        $this->googleMapLng = $googleMapLng;
+    }
+
+
+    /**
+     * @param mixed $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+
+    /**
+     * @param mixed $nombre
+     */
+    public function setNombre($nombre)
+    {
+        $this->nombre = $nombre;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getNombre()
+    {
+        return $this->nombre;
+    }
+
+
+
+    /**
+     * @param mixed $slug
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * @param mixed $telefono
+     */
+    public function setTelefono($telefono)
+    {
+        $this->telefono = $telefono;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTelefono()
+    {
+        return $this->telefono;
+    }
+
+    /**
+     * @param mixed $web
+     */
+    public function setWeb($web)
+    {
+        $this->web = $web;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getWeb()
+    {
+        return $this->web;
+    }
+
+    /**
+     * @param mixed $fotos
+     */
+    public function setFotos($fotos)
+    {
+        $this->fotos = $fotos;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFotos()
+    {
+        return $this->fotos;
+    }
+
+    /**
+     * @param mixed $tags
+     */
+    public function setTags($tags)
+    {
+        $this->tags = $tags;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTags()
+    {
+        return $this->tags;
+    }
+
+    /**
+     * @param \DateTime $registeredAt
+     */
+    public function setRegisteredAt($registeredAt)
+    {
+        $this->registeredAt = $registeredAt;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getRegisteredAt()
+    {
+        return $this->registeredAt;
+    }
+
+}
