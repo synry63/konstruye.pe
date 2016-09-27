@@ -286,45 +286,5 @@ class NegocioController extends Controller
             'negocios'=>$pagination,
         ));
     }
-    public function registerProveedorAction(Request $request){ // FIX ERROR ON /home/pmary/www/html/konstruye.pe/vendor/vich/uploader-bundle/Metadata/MetadataReader.php
 
-        $proveedor = new Proveedor();
-        $test = new Proveedor();
-       // $proveedor = new Negocio();
-        $test->setNombre('ffdsf');
-        $test->setEmail('gfgfd');
-        $test->setTelefono('DSADSA');
-        $test->setDireccion('dsad');
-        $test->setDepartamento('dasda');
-        $test->setDistrito('dsa');
-        $em = $this->getDoctrine()->getManager();
-        $em->persist($test);
-        $em->flush();
-        exit;
-
-        $form = $this->createForm(new ProveedorType());
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            /*$temp_file = $proveedor->getTempFile();
-            $logo = new Logo();
-            $logo->setLogoFile($temp_file);
-            $logo->setNegocio($proveedor);
-            $proveedor->setLogo($logo);
-            $proveedor->setSlug($this->slugify($proveedor->getNombre()));*/
-            // 4) save the Proveedor !
-            //$p = new Negocio();
-            //$p->setNombre('tototaa');
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($proveedor);
-            $em->flush();
-        }
-
-        return $this->render(
-            'negocio_register.html.twig',array(
-                'form' => $form->createView(),
-            )
-        );
-
-    }
 }

@@ -2,13 +2,13 @@
     <div class="negocio">
         <div class="col-md-2 logotipo">
             <a href="{{ path('show_negocio',
-            {"slug_seccion":app.request.get('slug_seccion'),"slug_negocio":n.negocio.slug}) }}">
+            {"slug_negocio":n.negocio.slug}) }}">
                 <img src="{{ vich_uploader_asset(n.negocio.logo, 'logoFile','AppBundle\\Entity\\Logo') }}" alt="{{ n.negocio.nombre }}" />
             </a>
         </div>
         <div class="col-md-5 description">
             <h1><a href="{{ path('show_negocio',
-                {"slug_seccion":app.request.get('slug_seccion'),"slug_negocio":n.negocio.slug}) }}">{{ n.negocio.nombre }}</a></h1>
+                {"slug_negocio":n.negocio.slug}) }}">{{ n.negocio.nombre }}</a></h1>
             <p><i class="fa fa-map-marker" aria-hidden="true"></i> {{ n.negocio.direccion }} - {{ n.negocio.distrito }} - {{ n.negocio.departamento }}</p>
             <p><i class="fa fa-phone" aria-hidden="true"></i> {{ n.negocio.telefono }}</p>
             <p><i class="fa fa-globe" aria-hidden="true"></i> {{ n.negocio.web }}</p>
@@ -23,7 +23,7 @@
         </div>
         <div class="col-md-5 banner_pub">
             <a href="{{ path('show_negocio',
-            {"slug_seccion":app.request.get('slug_seccion'),"slug_negocio":n.negocio.slug}) }}">
+            {"slug_negocio":n.negocio.slug}) }}">
                 <img src="{{ vich_uploader_asset(n.negocio.banner, 'bannerFile','AppBundle\\Entity\\Banner') }}" alt="{{ n.negocio.nombre }}" />
             </a>
         </div>

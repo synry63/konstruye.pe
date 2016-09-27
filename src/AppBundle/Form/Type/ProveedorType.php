@@ -68,6 +68,7 @@ class ProveedorType extends AbstractType
         $builder->add('twitterLink');
         $builder->add('pinteresLink');
         $builder->add('instagramLink');
+        $builder->add('googleLink');
         $builder->add('email', 'Symfony\Component\Form\Extension\Core\Type\EmailType',array(
             'constraints' => array(
                 new NotBlank(),
@@ -75,6 +76,12 @@ class ProveedorType extends AbstractType
             )
         ));
         $builder->add('submit', 'Symfony\Component\Form\Extension\Core\Type\SubmitType');
+    }
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        $resolver->setDefaults(array(
+            'data_class' => 'AppBundle\Entity\Proveedor',
+        ));
     }
     /*public function getParent()
     {

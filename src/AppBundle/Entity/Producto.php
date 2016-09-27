@@ -45,6 +45,13 @@ class Producto
     private $description;
 
     /**
+     * @ORM\Column(type="datetime")
+     *
+     * @var \DateTime
+     */
+    protected $registeredAt;
+
+    /**
      @ORM\ManyToOne(targetEntity="Proveedor",inversedBy="productos")
      @ORM\JoinColumn(name="negocio_id", referencedColumnName="id")
      **/
@@ -59,6 +66,24 @@ class Producto
      * @ORM\OneToMany(targetEntity="FotoProducto", mappedBy="producto")
      **/
     private $fotos;
+
+    /**
+     * @return \DateTime
+     */
+    public function getRegisteredAt()
+    {
+        return $this->registeredAt;
+    }
+
+    /**
+     * @param \DateTime $registeredAt
+     */
+    public function setRegisteredAt($registeredAt)
+    {
+        $this->registeredAt = $registeredAt;
+    }
+
+
 
     /**
      * @param mixed $fotos

@@ -19,3 +19,6 @@ services:
   authentication_handler:
       class:        MyUserBundle\Handler\AuthenticationHandler
       arguments:    [@router, @security.context, @fos_user.user_manager, @service_container]
+
+  form_serializer:
+    class:        AppBundle\Form\FormErrorsSerializer

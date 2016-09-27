@@ -18,9 +18,11 @@ use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
+
 /**
  * @ORM\Entity(repositoryClass="AppBundle\Repository\NegocioRepository")
  * @Vich\Uploadable
+ * @UniqueEntity(fields="email", message="El correo electrónico fue tomada")
  * @ORM\Table(name="negocios")
  * @ORM\InheritanceType("SINGLE_TABLE")
  * @ORM\DiscriminatorColumn(name="type", type="string")
@@ -91,10 +93,34 @@ class Negocio
     protected $registeredAt;
 
     /**
+     * @ORM\Column(type="string",nullable=true, length=64)
+     */
+    protected $facebookLink;
+    /**
+     * @ORM\Column(type="string",nullable=true, length=64)
+     */
+    protected $twitterLink;
+    /**
+     * @ORM\Column(type="string",nullable=true, length=64)
+     */
+    protected $pinteresLink;
+    /**
+     * @ORM\Column(type="string",nullable=true, length=64)
+     */
+    protected $instagramLink;
+
+    /**
+     * @ORM\Column(type="string",nullable=true, length=64)
+     */
+    protected $googleLink;
+    /**
+
+    /**
      * NOTE: This is not a mapped field of entity metadata, just a simple property.
      * @var File
      */
     protected $tempFile;
+
 
     /**
      * @return mixed
@@ -179,22 +205,6 @@ class Negocio
      */
     protected $banner;
 
-    /**
-     * @ORM\Column(type="string",nullable=true, length=64)
-     */
-    protected $facebookLink;
-    /**
-     * @ORM\Column(type="string",nullable=true, length=64)
-     */
-    protected $twitterLink;
-    /**
-     * @ORM\Column(type="string",nullable=true, length=64)
-     */
-    protected $pinteresLink;
-    /**
-     * @ORM\Column(type="string",nullable=true, length=64)
-     */
-    protected $instagramLink;
 
     /**
      * @ORM\Column(type="float",nullable=true)
@@ -210,6 +220,22 @@ class Negocio
      * @ORM\OneToMany(targetEntity="Proyecto", mappedBy="negocio")
      **/
     protected $proyectos;
+
+    /**
+     * @return mixed
+     */
+    public function getGoogleLink()
+    {
+        return $this->googleLink;
+    }
+
+    /**
+     * @param mixed $googleLink
+     */
+    public function setGoogleLink($googleLink)
+    {
+        $this->googleLink = $googleLink;
+    }
 
     /**
      * @param mixed $proyectos
