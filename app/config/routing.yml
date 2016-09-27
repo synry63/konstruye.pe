@@ -71,9 +71,11 @@ negocio_constructura_register:
 negocio_register_confirmation:
     path:      /profile/negocio/register/confirmation
     defaults:  { _controller: AppBundle:Proveedor:registerConfirmation}
+
 negocio_me_comentar_new:
     path:      /user-action/negocio/{slug_negocio}/comentar/new
     defaults:  { _controller: AppBundle:ComentarioNegocio:comentarNegocioUserNew}
+
 negocio_me_comentar_edit:
     path:      /user-action/negocio/{slug_negocio}/comentar/edit
     defaults:  { _controller: AppBundle:ComentarioNegocio:comentarNegocioUserEdit}
