@@ -6,30 +6,37 @@
     <div class="contenedor-popup-comentario" >
             <div class="contenedor-popup">
                 <div class="popup-comentario-titulo">
-                    <h1 style="text-align: center; font-weight: 600">Escribe tu comentario</h1>
+                    <h1>Escribe tu comentario</h1>
                 </div>
-                {#<div class="popup-comentario-form">#}
-                    {#{{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}#}
+                <div class="rating-container" style="margin-bottom: 20px">
+                    <div id="rateYo-negocio-negocio" style="margin:0 auto"></div>
+                </div>
+                <div class="popup-comentario-form">
+                    {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
 
-                    {#<div class="form-group" id="text">#}
-                        {#{{ form_label(form.titulo) }}#}
-                        {#{{ form_errors(form.titulo) }}#}
-                        {#{{ form_widget(form.titulo, {'attr': {'class': 'form-control'}}) }}#}
-                    {#</div>#}
-                    {#<div class="form-group" id="textarea">#}
-                        {#{{ form_label(form.comentario) }}#}
-                        {#{{ form_errors(form.comentario) }}#}
-                        {#{{ form_widget(form.comentario, {'attr': {'class': 'form-control'}}) }}#}
-                    {#</div>#}
-                    {#<div class="form-group">#}
-                        {#{{ form_widget(form.submit,{ 'attr': {'class': 'submit'},'label': 'Guardar'}) }}#}
-                    {#</div>#}
+                    <div class="form-group" id="input">
+                        {{ form_label(form.titulo) }}
+                        {{ form_errors(form.titulo) }}
+                        {{ form_widget(form.titulo, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                    <div class="form-group" id="textarea">
+                        {{ form_label(form.comentario) }}
+                        {{ form_errors(form.comentario) }}
+                        {{ form_widget(form.comentario, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_widget(form.submit,{ 'attr': {'class': 'btn btn-konstruye'},'label': 'Guardar'}) }}
+                    </div>
 
-                    {#{{ form_end(form) }}#}
-                {#</div>#}
+                    <div class="form-group">
+                        {{ form_widget(form.nota) }}
+                    </div>
+
+                    {{ form_end(form) }}
+                </div>
             </div>
     </div>
-{#</div>#}
+</div>
 
 
         <script>
@@ -52,10 +59,10 @@
                                 $('div#container-alert').remove();
 //                                $('#comentario_proveedor_submit').prop('disabled', false);
                                 if(data.errors.fields.comentario_negocio_titulo != undefined){
-                                    $('#text').prepend("<div id='container-alert'><i class='fa fa-exclamation-circle' aria-hidden='true'></i>"+data.errors.fields.comentario_negocio_titulo+"</div>");
+                                    $('#input').prepend("<div id='container-alert'><i class='fa fa-exclamation-circle' aria-hidden='true'></i> "+ data.errors.fields.comentario_negocio_titulo+"</div>");
                                 }
                                 if(data.errors.fields.comentario_negocio_comentario != undefined){
-                                    $('#textarea').prepend("<div id='container-alert'><i class='fa fa-exclamation-circle' aria-hidden='true'></i>"+data.errors.fields.comentario_negocio_comentario+"</div>");
+                                    $('#textarea').prepend("<div id='container-alert'><i class='fa fa-exclamation-circle' aria-hidden='true'></i> "+ data.errors.fields.comentario_negocio_comentario+"</div>");
                                 }
                             };
                         });
@@ -63,6 +70,33 @@
                 });
 
             }
+
+            if($('#comentario_negocio_nota').val()== ""){
+                rating = 0;
+            }else {
+                rating = $('#comentario_negocio_nota').val();
+                alert(rating);
+            }
+            $("#rateYo-negocio").rateYo({
+                        rating: rating,
+                        ratedFill: color,
+                        normalFill: "#A0A0A0",
+                        starWidth: "45px",
+                        onChange: function (rating, rateYoInstance) {
+                            $(this).next().text(rating);
+                        }
+                    }).on("rateyo.set", function (e, data) {
+                        $('#comentario_negocio_nota').val(data.rating);
+                        $("#rateYo-negocio").rateYo("option", "readOnly", true);
+                        $("#rateYo-negocio").rateYo("option", "ratedFill", "#dea600");
+                    });
+
+            $("#rateYo-negocio").mouseleave(function(){
+                $("#rateYo-negocio").rateYo("option", "readOnly", false);
+            });
+            $("#rateYo-negocio").mouseenter(function(){
+                $("#rateYo-negocio").rateYo("option", "ratedFill", color);
+            });
         </script>
 
 
