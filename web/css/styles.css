@@ -840,6 +840,45 @@ Mejores Proveedores
     font-family: 'Open Sans', sans-serif;
 }
 
+/*=======================
+Popup - Comentario_Negocio
+========================*/
+.contenedor-popup-comentario {
+    width: 460px;
+    background-color:#fff;
+    padding: 20px 40px;
+    margin: 0 auto;
+    display: table;
+}
+.contenedor-popup {
+    display: table-cell;
+    vertical-align: middle;
+}
+.popup-comentario-titulo h1{
+    text-align: center;
+    font-weight: 600;
+    font-size: 25px;
+    padding-bottom: 30px;
+}
+.contenedor-popup-comentario label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    font-size: 12px;
+}
+.contenedor-popup-comentario .submit {
+    background-color: #1C9CD9;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    outline: none;
+    padding: 6px;
+}
+div#container-alert {
+    color: blue;
+}
+
 /*=============
 Footer Menu
 =============*/

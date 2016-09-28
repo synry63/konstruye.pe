@@ -2,31 +2,35 @@
 {#{{ form(form, {'attr': {'novalidate': 'novalidate'}}) }}#}
 
 {#{{ dump(form) }}#}
-{#<div class="col-md-4 col-md-offset-4">#}
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h1 style="text-align: center">Escribe tu comentario</h1>
-        </div>
-        <div class="panel-body">
-            {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+{#<div class="container">#}
+    <div class="contenedor-popup-comentario" >
+            <div class="contenedor-popup">
+                <div class="popup-comentario-titulo">
+                    <h1 style="text-align: center; font-weight: 600">Escribe tu comentario</h1>
+                </div>
+                {#<div class="popup-comentario-form">#}
+                    {#{{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}#}
 
-            <div class="form-group">
-                {{ form_label(form.titulo) }}
-                {{ form_errors(form.titulo) }}
-                {{ form_widget(form.titulo, {'attr': {'class': 'form-control'}}) }}
-            </div>
-            <div class="form-group">
-                {{ form_label(form.comentario) }}
-                {{ form_errors(form.comentario) }}
-                {{ form_widget(form.comentario, {'attr': {'class': 'form-control'}}) }}
-            </div>
-            <div class="form-group">
-                {{ form_widget(form.submit,{ 'attr': {'class': 'btn btn-success'},'label': 'Guardar'}) }}
-            </div>
+                    {#<div class="form-group" id="text">#}
+                        {#{{ form_label(form.titulo) }}#}
+                        {#{{ form_errors(form.titulo) }}#}
+                        {#{{ form_widget(form.titulo, {'attr': {'class': 'form-control'}}) }}#}
+                    {#</div>#}
+                    {#<div class="form-group" id="textarea">#}
+                        {#{{ form_label(form.comentario) }}#}
+                        {#{{ form_errors(form.comentario) }}#}
+                        {#{{ form_widget(form.comentario, {'attr': {'class': 'form-control'}}) }}#}
+                    {#</div>#}
+                    {#<div class="form-group">#}
+                        {#{{ form_widget(form.submit,{ 'attr': {'class': 'submit'},'label': 'Guardar'}) }}#}
+                    {#</div>#}
 
-            {{ form_end(form) }}
-        </div>
+                    {#{{ form_end(form) }}#}
+                {#</div>#}
+            </div>
+    </div>
 {#</div>#}
+
 
         <script>
             if (typeof jQuery != 'undefined'){
@@ -42,7 +46,18 @@
 
                         }).done(function(data) {
                             console.log(data);
-                            $('#comentario_proveedor_submit').prop('disabled', false);
+                            if(data.success!=undefined){
+                                window.location.href = data.success;
+                            }else {
+                                $('div#container-alert').remove();
+//                                $('#comentario_proveedor_submit').prop('disabled', false);
+                                if(data.errors.fields.comentario_negocio_titulo != undefined){
+                                    $('#text').prepend("<div id='container-alert'><i class='fa fa-exclamation-circle' aria-hidden='true'></i>"+data.errors.fields.comentario_negocio_titulo+"</div>");
+                                }
+                                if(data.errors.fields.comentario_negocio_comentario != undefined){
+                                    $('#textarea').prepend("<div id='container-alert'><i class='fa fa-exclamation-circle' aria-hidden='true'></i>"+data.errors.fields.comentario_negocio_comentario+"</div>");
+                                }
+                            };
                         });
                     });
                 });

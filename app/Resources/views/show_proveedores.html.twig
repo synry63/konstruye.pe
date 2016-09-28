@@ -194,7 +194,7 @@
                 </div>
                 <div>
                     {#<a href="{{ path('ver_mas_productos_proveedor',{ 'slug_negocio':negocio.slug}) }}" class="btn btn-konstruye">Ver más</a>#}
-                    <a class="simple-ajax-popup-align-top btn btn-success" href="{{ path('negocio_me_comentar_new',{'slug_negocio':negocio.slug}) }}">Comentar</a>
+                    <a class="simple-ajax-popup btn btn-success" href="{{ path('negocio_me_comentar_new',{'slug_negocio':negocio.slug}) }}">Comentar</a>
                 </div>
             {% endfor %}
         </div>
@@ -315,10 +315,8 @@
             });
 
             //Magnific popup
-            $('.simple-ajax-popup-align-top').magnificPopup({
-                type: 'ajax',
-                alignTop: true,
-                overflowY: 'scroll'
+            $('.simple-ajax-popup').magnificPopup({
+                type: 'ajax'
             });
 
         });
