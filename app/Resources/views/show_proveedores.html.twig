@@ -17,7 +17,9 @@
 
 {% block fos_user_content %}
     {# {{ dump(negocios) }} #}
-    {#{{ dump(app.user) }}#}
+    {{ dump(app.user) }}
+    {{ dump(myc) }}
+
     {#{{ dump(negocio) }}#}
     <div class="container">
         <div class="col-md-4 logo_detail_section">
@@ -196,11 +198,43 @@
 
                     </div>
                 </div>
-                <div>
-                    {#<a href="{{ path('ver_mas_productos_proveedor',{ 'slug_negocio':negocio.slug}) }}" class="btn btn-konstruye">Ver más</a>#}
-                    <a class="simple-ajax-popup btn btn-konstruye btn-comentar" href="{{ path('negocio_me_comentar_new',{'slug_negocio':negocio.slug}) }}">Comentar</a>
-                </div>
             {% endfor %}
+            <div>
+                {#<a href="{{ path('ver_mas_productos_proveedor',{ 'slug_negocio':negocio.slug}) }}" class="btn btn-konstruye">Ver más</a>#}
+                <a class="simple-ajax-popup btn btn-konstruye btn-comentar" href="{{ path('negocio_me_comentar_new',{'slug_negocio':negocio.slug}) }}">Comentar</a>
+            </div>
+
+            {#FlashBack#}
+            {% for label, flash in app.session.flashbag.get('success') %}
+                <div id="success" data-success="{{ flash }}"> </div>
+            {% endfor %}
+
+            {#User is login#}
+            {% if app.user is not null %}
+                <h4>Deja tú comentario</h4>
+                <span>
+                    <p>
+                        {% if myc is not null %}
+                            <a class="simple-ajax-popup btn btn-konstruye btn-comentar" href="{{ path('negocio_me_comentar_edit',{'slug_negocio':negocio.slug}) }}">Editar</a>
+                        {% else %}
+                            <a class="simple-ajax-popup btn btn-konstruye btn-comentar" href="{{ path('negocio_me_comentar_new',{'slug_negocio':negocio.slug}) }}">Comentar</a>
+                        {% endif %}
+                    </p>
+                </span>
+            {% else %}
+                <span>
+                    <a href="{{ {{ path('fos_user_registration_register') }} }}">Régistrate</a>
+                    ó
+                    <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+                    Para poder comentar.
+                </span>
+            {% endif %}
+
+
+
+
+
+
         </div>
 
     </div>
@@ -325,6 +359,21 @@
             $('.simple-ajax-popup').magnificPopup({
                 type: 'ajax'
             });
+
+            //Noty
+            var flashMessage= $('#success').attr('data-success');
+            if(flashMessage!=undefined){
+                noty({
+                    text: flashMessage,
+                    layout: 'bottom',
+                    timeout: 2000,
+                    type:'wedding'
+                });
+
+                var n = noty({
+                    theme: 'default_noty'
+                });
+            }
 
         });
     </script>

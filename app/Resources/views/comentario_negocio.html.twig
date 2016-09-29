@@ -9,7 +9,7 @@
                     <h1>Escribe tu comentario</h1>
                 </div>
                 <div class="rating-container" style="margin-bottom: 20px">
-                    <div id="rateYo-negocio-negocio" style="margin:0 auto"></div>
+                    <div id="rateYo-negocio" style="margin:0 auto"></div>
                 </div>
                 <div class="popup-comentario-form">
                     {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
@@ -43,7 +43,7 @@
             if (typeof jQuery != 'undefined'){
                 $( document ).ready(function() {
                     $('#comentario_negocio_submit').click(function(e){
-//                        $('#comentario_proveedor_submit').prop('disabled', true);
+                        $('#comentario_proveedor_submit').prop('disabled', true);
                         e.preventDefault();
                         $.ajax({
                             type        : $('form').attr( 'method' ),
@@ -57,13 +57,14 @@
                                 window.location.href = data.success;
                             }else {
                                 $('div#container-alert').remove();
-//                                $('#comentario_proveedor_submit').prop('disabled', false);
+                                $('#comentario_proveedor_submit').prop('disabled', false);
                                 if(data.errors.fields.comentario_negocio_titulo != undefined){
                                     $('#input').prepend("<div id='container-alert'><i class='fa fa-exclamation-circle' aria-hidden='true'></i> "+ data.errors.fields.comentario_negocio_titulo+"</div>");
                                 }
                                 if(data.errors.fields.comentario_negocio_comentario != undefined){
                                     $('#textarea').prepend("<div id='container-alert'><i class='fa fa-exclamation-circle' aria-hidden='true'></i> "+ data.errors.fields.comentario_negocio_comentario+"</div>");
                                 }
+
                             };
                         });
                     });
@@ -71,31 +72,42 @@
 
             }
 
+            //Inicializacion del color rateYo
+            if(color == undefined){
+                var color = "#b28500";
+            }
+            //Captura del valor de RateYo
+            var rating;
             if($('#comentario_negocio_nota').val()== ""){
                 rating = 0;
             }else {
                 rating = $('#comentario_negocio_nota').val();
                 alert(rating);
             }
-            $("#rateYo-negocio").rateYo({
+            //RateYo
+            $('#rateYo-negocio').rateYo({
                         rating: rating,
                         ratedFill: color,
                         normalFill: "#A0A0A0",
                         starWidth: "45px",
                         onChange: function (rating, rateYoInstance) {
+                            console.log(rating);
+                            console.log(rateYoInstance);
                             $(this).next().text(rating);
                         }
-                    }).on("rateyo.set", function (e, data) {
+                    }).on('rateyo.set', function (e, data) {
                         $('#comentario_negocio_nota').val(data.rating);
-                        $("#rateYo-negocio").rateYo("option", "readOnly", true);
-                        $("#rateYo-negocio").rateYo("option", "ratedFill", "#dea600");
+                        $('#rateYo-negocio').rateYo('option', 'readOnly', true);
+                        $('#rateYo-negocio').rateYo('option', 'ratedFill', '#dea600');
                     });
 
-            $("#rateYo-negocio").mouseleave(function(){
-                $("#rateYo-negocio").rateYo("option", "readOnly", false);
+            $('#rateYo-negocio').mouseleave(function(){
+                //console.log('salio');
+                $('#rateYo-negocio').rateYo('option', 'readOnly', false);
             });
-            $("#rateYo-negocio").mouseenter(function(){
-                $("#rateYo-negocio").rateYo("option", "ratedFill", color);
+            $('#rateYo-negocio').mouseenter(function(){
+                //console.log('entro');
+                $('#rateYo-negocio').rateYo('option', 'ratedFill', color);
             });
         </script>
 
