@@ -79,6 +79,7 @@ negocio_me_comentar_new:
 negocio_me_comentar_edit:
     path:      /user-action/negocio/{slug_negocio}/comentar/edit
     defaults:  { _controller: AppBundle:ComentarioNegocio:comentarNegocioUserEdit}
+
 profile_negocio_comentar_edit:
     path:      /profile/negocio/{slug_negocio}/comentar/edit
     defaults:  { _controller: AppBundle:User:userCommentEdit}

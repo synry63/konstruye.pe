@@ -18,7 +18,9 @@
 {% block fos_user_content %}
     {# {{ dump(negocios) }} #}
     {{ dump(app.user) }}
-    {{ dump(myc) }}
+    {#No es null nunca, existe solamente cuando inicio sesion #}
+    {#{{ dump(myc) }}#}
+
 
     {#{{ dump(negocio) }}#}
     <div class="container">
@@ -188,10 +190,20 @@
                     <div class="media-left">
                         <img class="img-circle" alt="user icon" src="http://placehold.it/100x100x?text=Foto+Perfil">
                     </div>
-                    <div class="media-body">
+                    <div class="media-body comentarios-personales">
+                        {#<h3>{{ c.titulo }}</h3>#}
+                        {#<div class="rateYo_comments" data-rating="{{ c.nota }}"></div><span>{{ c.user.nombres }} - </span>#}
+                        {#<small class="date">{{ c.adedAt|date("d F, Y") }}</small>#}
+                        {#<p>#}
+                            {#{{ c.comentario }}#}
+                        {#</p>#}
+
                         <h3>{{ c.titulo }}</h3>
-                        <div class="rateYo_comments" data-rating="{{ c.nota }}"></div><span>{{ c.user.nombres }} - </span>
-                        <small class="date">{{ c.adedAt|date("d F, Y") }}</small>
+                        <div>
+                            <span>{{ c.user.nombres }} -</span>
+                            <div class="rateYo_comments" data-rating="{{ c.nota }}"></div>
+                        </div>
+                        <div class="date">{{ c.adedAt|date("d F, Y") }}</div>
                         <p>
                             {{ c.comentario }}
                         </p>
@@ -199,10 +211,11 @@
                     </div>
                 </div>
             {% endfor %}
-            <div>
+
+            {#<div>#}
                 {#<a href="{{ path('ver_mas_productos_proveedor',{ 'slug_negocio':negocio.slug}) }}" class="btn btn-konstruye">Ver más</a>#}
-                <a class="simple-ajax-popup btn btn-konstruye btn-comentar" href="{{ path('negocio_me_comentar_new',{'slug_negocio':negocio.slug}) }}">Comentar</a>
-            </div>
+                {#<a class="simple-ajax-popup btn btn-konstruye btn-comentar" href="{{ path('negocio_me_comentar_new',{'slug_negocio':negocio.slug}) }}">Comentar</a>#}
+            {#</div>#}
 
             {#FlashBack#}
             {% for label, flash in app.session.flashbag.get('success') %}
@@ -211,30 +224,26 @@
 
             {#User is login#}
             {% if app.user is not null %}
-                <h4>Deja tú comentario</h4>
-                <span>
+                {#<h4>Deja tú comentario</h4>#}
+
                     <p>
                         {% if myc is not null %}
                             <a class="simple-ajax-popup btn btn-konstruye btn-comentar" href="{{ path('negocio_me_comentar_edit',{'slug_negocio':negocio.slug}) }}">Editar</a>
                         {% else %}
+                            {#No entra por que nunca es Null#}
                             <a class="simple-ajax-popup btn btn-konstruye btn-comentar" href="{{ path('negocio_me_comentar_new',{'slug_negocio':negocio.slug}) }}">Comentar</a>
                         {% endif %}
                     </p>
-                </span>
+
             {% else %}
-                <span>
-                    <a href="{{ {{ path('fos_user_registration_register') }} }}">Régistrate</a>
+                <span class="media contenedor-registrate">
+                    <a id="registro" href="{{ path('fos_user_registration_register') }}">Registrarse</a>
                     ó
                     <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
-                    Para poder comentar.
+                    para poder comentar.
                 </span>
+
             {% endif %}
-
-
-
-
-
-
         </div>
 
     </div>

@@ -6,10 +6,15 @@
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset('css/jquery.rateyo.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/masterslider.css') }}">
+    {#Magnivi Popup#}
+    <link rel="stylesheet" href="{{ asset('css/magnific-popup.css') }}">
+    {#Rate Yo#}
+    <link rel="stylesheet" href="{{ asset('css/jquery.rateyo.min.css') }}">
 {% endblock %}
 
 {% block fos_user_content %}
-
+    {{ dump(app.user) }}
+    {#{{ dump(myc) }}#}
     <div class="container product-detail-section">
         <div class="col-md-6">
             <div class="ms-showcase2-template ms-showcase2-vertical">
@@ -64,57 +69,57 @@
         </div>
     </div>
 
-    <div class="container">
+    {#<div class="container">#}
 
-        {% for type, messages in app.session.flashbag.all() %}
-            {% for message in messages %}
-                <div id="sucess" data-sucess="{{ message }}"></div>
-            {% endfor %}
-        {% endfor %}
+        {#{% for type, messages in app.session.flashbag.all() %}#}
+            {#{% for message in messages %}#}
+                {#<div id="sucess" data-sucess="{{ message }}"></div>#}
+            {#{% endfor %}#}
+        {#{% endfor %}#}
 
-        <div class="col-md-8 col-md-offset-2 star-form">
-            {% if form is defined %}
-                {{ form_start(form,{attr: {novalidate: 'novalidate'}}) }}
-                <div class="rating-container">
-                    <div style="margin: 10px auto " id="rateYo2"></div>
-                    <div class="counter"></div>
-                </div>
-                {% if form.vars.errors|length>0 %}
-                    <div class="alert alert-danger" role="alert">
-                        <div> <i class="fa fa-exclamation-circle" aria-hidden="true"></i>{{ form_errors(form) }}</div>
-                    </div>
-                {% endif %}
+        {#<div class="col-md-8 col-md-offset-2 star-form">#}
+            {#{% if form is defined %}#}
+                {#{{ form_start(form,{attr: {novalidate: 'novalidate'}}) }}#}
+                {#<div class="rating-container">#}
+                    {#<div style="margin: 10px auto " id="rateYo2"></div>#}
+                    {#<div class="counter"></div>#}
+                {#</div>#}
+                {#{% if form.vars.errors|length>0 %}#}
+                    {#<div class="alert alert-danger" role="alert">#}
+                        {#<div> <i class="fa fa-exclamation-circle" aria-hidden="true"></i>{{ form_errors(form) }}</div>#}
+                    {#</div>#}
+                {#{% endif %}#}
 
-                <div class="form-group">
-                    {{ form_label(form.titulo,'Título') }}
-                    {% if form.titulo.vars.errors|length>0 %}
-                        <div class="alert alert-danger" role="alert">
-                            <div> <i class="fa fa-exclamation-circle" aria-hidden="true"></i>{{ form_errors(form.titulo) }}</div>
-                        </div>
-                    {% endif %}
+                {#<div class="form-group">#}
+                    {#{{ form_label(form.titulo,'Título') }}#}
+                    {#{% if form.titulo.vars.errors|length>0 %}#}
+                        {#<div class="alert alert-danger" role="alert">#}
+                            {#<div> <i class="fa fa-exclamation-circle" aria-hidden="true"></i>{{ form_errors(form.titulo) }}</div>#}
+                        {#</div>#}
+                    {#{% endif %}#}
 
-                    {{ form_widget(form.titulo,{ 'attr': {'class': 'form-control','placeholder':'¡Excelente!'}}) }}
-                </div>
-                <div class="form-group">
-                    {{ form_label(form.comentario,'Comentario') }}
-                    {% if form.comentario.vars.errors|length>0 %}
-                        <div class="alert alert-danger" role="alert">
-                            <div> <i class="fa fa-exclamation-circle" aria-hidden="true"></i>{{ form_errors(form.comentario) }}</div>
-                        </div>
-                    {% endif %}
+                    {#{{ form_widget(form.titulo,{ 'attr': {'class': 'form-control','placeholder':'¡Excelente!'}}) }}#}
+                {#</div>#}
+                {#<div class="form-group">#}
+                    {#{{ form_label(form.comentario,'Comentario') }}#}
+                    {#{% if form.comentario.vars.errors|length>0 %}#}
+                        {#<div class="alert alert-danger" role="alert">#}
+                            {#<div> <i class="fa fa-exclamation-circle" aria-hidden="true"></i>{{ form_errors(form.comentario) }}</div>#}
+                        {#</div>#}
+                    {#{% endif %}#}
 
-                    {{ form_widget(form.comentario,{ 'attr': {'class': 'form-control','placeholder':'Tu comentario'}}) }}
-                </div>
+                    {#{{ form_widget(form.comentario,{ 'attr': {'class': 'form-control','placeholder':'Tu comentario'}}) }}#}
+                {#</div>#}
 
-                <div class="form-group">
-                    {{ form_widget(form.submit,{ 'attr': {'class': 'btn btn-konstruye'},'label': 'Enviar'}) }}
-                </div>
+                {#<div class="form-group">#}
+                    {#{{ form_widget(form.submit,{ 'attr': {'class': 'btn btn-konstruye'},'label': 'Enviar'}) }}#}
+                {#</div>#}
 
 
-                {{ form_end(form) }}
-            {% endif %}
-        </div>
-    </div>
+                {#{{ form_end(form) }}#}
+            {#{% endif %}#}
+        {#</div>#}
+    {#</div>#}
 
 
     <div class="container product-section" style="margin-top: 30px; text-align: center" >
@@ -172,25 +177,54 @@
     </div>
 
     <div class="container comments_details">
-        <div class="col-md-6 col-md-offset-3 ">
+        <div class="col-md-8 col-md-offset-2 ">
             <h1>Comentarios ({{ comentarios|length }})</h1>
             {% for c in comentarios %}
                 <div class="media comment">
                     <div class="media-left">
                         <img class="img-circle" alt="user icon" src="http://placehold.it/100x100x?text=Foto+Perfil">
                     </div>
-                    <div class="media-body">
+                    <div class="media-body comentarios-personales">
                         <h3>{{ c.titulo }}</h3>
-                        <div class="rateYo_comments" style="padding-left: 0" data-rating="{{ c.nota }}"></div><span>{{ c.user.nombres }} </span>
-
+                        <div>
+                            <span>{{ c.user.nombres }} -</span>
+                            <div class="rateYo_comments" data-rating="{{ c.nota }}"></div>
+                        </div>
+                        <div class="date">{{ c.adedAt|date("d F, Y") }}</div>
                         <p>
                             {{ c.comentario }}
                         </p>
                     </div>
                 </div>
             {% endfor %}
+
+            {#<div>#}
+                {#<a class="simple-ajax-popup btn btn-konstruye btn-comentar" href="{{ path('producto_me_comentar_new',{'slug_producto':producto.slug}) }}">Comentar</a>#}
+            {#</div>#}
+
+            {% for label, flash in app.session.flashbag.get('success') %}
+                <div id="success" data-success="{{ flash }}"> </div>
+            {% endfor %}
+
+            {% if app.user is not null %}
+                <p>
+                    {% if myc is not null %}
+                        <a class="simple-ajax-popup btn btn-konstruye btn-comentar" href="{{ path('producto_me_comentar_edit',{'slug_producto':producto.slug}) }}">Editar</a>
+                    {% else %}
+                        <a class="simple-ajax-popup btn btn-konstruye btn-comentar" href="{{ path('producto_me_comentar_new',{'slug_producto':producto.slug}) }}">Comentar</a>
+                    {% endif %}
+                </p>
+            {% else %}
+                <span class="media contenedor-registrate">
+                    <a id="registro" href="{{ path('fos_user_registration_register') }}">Registrarse</a>
+                    ó
+                    <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+                    para poder comentar.
+                </span>
+            {% endif %}
         </div>
     </div>
+
 
 
 
@@ -201,74 +235,78 @@
     {{ parent() }}
     <script src="{{ asset('js/jquery.rateyo.min.js') }}"></script>
     <script src="{{ asset('js/masterslider.min.js') }}" type="text/javascript"></script>
+    {#Magnific Popup#}
+    <script type="text/javascript" src="{{ asset('js/jquery.magnific-popup.min.js') }}"></script>
+    {#Rate Yo#}
+    <script type="text/javascript" src="{{ asset('js/jquery.rateyo.min.js') }}"></script>
     <script type="text/javascript">
 
 
-        var errormsn = $("#sucess").attr("data-sucess");
-
-        if(errormsn!=undefined)
-            noty({
-                text: errormsn,
-                animation: {
-                    open: 'animated bounceInLeft', // Animate.css class names
-                    close: 'animated bounceOutRight', // Animate.css class names
-                    easing: 'swing', // easing
-                    speed: 800 // opening & closing animation speed
-                },
-                'layout':'bottomCenter',
-                type: 'success',
-                timeout:3000
-            });
-
-
-
-        var color="#30BDEF";
-        var test = $("#rateYo").attr("data-rating");
-
-        $("#rateYo").rateYo({
-            rating: test,
-            ratedFill: color,
-            starWidth: "25px",
-            normalFill: "#A0A0A0",
-            readOnly: true
-        });
+//        var errormsn = $("#sucess").attr("data-sucess");
+//
+//        if(errormsn!=undefined)
+//            noty({
+//                text: errormsn,
+//                animation: {
+//                    open: 'animated bounceInLeft', // Animate.css class names
+//                    close: 'animated bounceOutRight', // Animate.css class names
+//                    easing: 'swing', // easing
+//                    speed: 800 // opening & closing animation speed
+//                },
+//                'layout':'bottomCenter',
+//                type: 'success',
+//                timeout:3000
+//            });
 
 
-        var recuperar = $("#comentario_producto_nota").attr("value");
 
-        $("#rateYo2").rateYo({
-                    rating: recuperar,
-                    ratedFill: "#0097C9",
-                    normalFill: "#A0A0A0",
-                    starWidth: "60px",
-                    onChange: function (rating, rateYoInstance) {
-                        $(this).next().text(rating);
-                    }
+//        var color="#30BDEF";
+//        var test = $("#rateYo").attr("data-rating");
+//
+//        $("#rateYo").rateYo({
+//            rating: test,
+//            ratedFill: color,
+//            starWidth: "25px",
+//            normalFill: "#A0A0A0",
+//            readOnly: true
+//        });
+//
+//
+//        var recuperar = $("#comentario_producto_nota").attr("value");
 
-                })
-                .on("rateyo.set", function (e, data) {
-                    $("#comentario_producto_nota").val(data.rating);
-                    $("#rateYo2").rateYo("option", "readOnly", true);
-                    $("#rateYo2").rateYo("option", "ratedFill", "#30BDEF");
-                });
+//        $("#rateYo2").rateYo({
+//                    rating: recuperar,
+//                    ratedFill: "#0097C9",
+//                    normalFill: "#A0A0A0",
+//                    starWidth: "60px",
+//                    onChange: function (rating, rateYoInstance) {
+//                        $(this).next().text(rating);
+//                    }
+//
+//                })
+//                .on("rateyo.set", function (e, data) {
+//                    $("#comentario_producto_nota").val(data.rating);
+//                    $("#rateYo2").rateYo("option", "readOnly", true);
+//                    $("#rateYo2").rateYo("option", "ratedFill", "#30BDEF");
+//                });
 
 
-        $("#rateYo2").mouseleave(function(){
-            $("#rateYo2").rateYo("option", "readOnly", false);
-        });
-        $("#rateYo2").mouseenter(function(){
-            $("#rateYo2").rateYo("option", "ratedFill", color);
-        });
+//        $("#rateYo2").mouseleave(function(){
+//            $("#rateYo2").rateYo("option", "readOnly", false);
+//        });
+//        $("#rateYo2").mouseenter(function(){
+//            $("#rateYo2").rateYo("option", "ratedFill", color);
+//        });
 
-        $( ".rateYo_comments" ).each(function( index ) {
-            $(this).rateYo({
-                rating: $(this).attr("data-rating"),
-                starWidth: "20px",
-                readOnly: true,
-                ratedFill: color,
-                normalFill: "#A0A0A0"
-            });
-        });
+//        $( ".rateYo_comments" ).each(function( index ) {
+//            $(this).rateYo({
+//                rating: $(this).attr("data-rating"),
+//                starWidth: "20px",
+//                readOnly: true,
+//                ratedFill: color,
+//                normalFill: "#A0A0A0"
+//            });
+//        });
         var slider = new MasterSlider();
 
         slider.control('arrows');
@@ -282,6 +320,25 @@
             space:5
         });
 
+        //Magnific popup
+        $('.simple-ajax-popup').magnificPopup({
+            type: 'ajax'
+        });
+
+        //Noty
+        var flashMessage= $('#success').attr('data-success');
+        if(flashMessage!=undefined){
+            noty({
+                text: flashMessage,
+                layout: 'bottom',
+                timeout: 2000,
+                type:'wedding'
+            });
+
+            var n = noty({
+                theme: 'default_noty'
+            });
+        }
 
 
     </script>

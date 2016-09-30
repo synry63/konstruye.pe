@@ -8,7 +8,7 @@
                 <div class="popup-comentario-titulo">
                     <h1>Escribe tu comentario</h1>
                 </div>
-                <div class="rating-container" style="margin-bottom: 20px">
+                <div class="rating-container" id="contenedor-rateyo" style="margin-bottom: 20px">
                     <div id="rateYo-negocio" style="margin:0 auto"></div>
                 </div>
                 <div class="popup-comentario-form">
@@ -64,8 +64,10 @@
                                 if(data.errors.fields.comentario_negocio_comentario != undefined){
                                     $('#textarea').prepend("<div id='container-alert'><i class='fa fa-exclamation-circle' aria-hidden='true'></i> "+ data.errors.fields.comentario_negocio_comentario+"</div>");
                                 }
-
-                            };
+                                if(data.errors.global.length > 0){
+                                    $( "#contenedor-rateyo").prepend("<div id='container-alert'><i class='fa fa-exclamation-circle' aria-hidden='true'></i> " + data.errors.global[0] + "</div>"  );
+                                }
+                            }
                         });
                     });
                 });
@@ -82,7 +84,6 @@
                 rating = 0;
             }else {
                 rating = $('#comentario_negocio_nota').val();
-                alert(rating);
             }
             //RateYo
             $('#rateYo-negocio').rateYo({
@@ -102,11 +103,9 @@
                     });
 
             $('#rateYo-negocio').mouseleave(function(){
-                //console.log('salio');
                 $('#rateYo-negocio').rateYo('option', 'readOnly', false);
             });
             $('#rateYo-negocio').mouseenter(function(){
-                //console.log('entro');
                 $('#rateYo-negocio').rateYo('option', 'ratedFill', color);
             });
         </script>

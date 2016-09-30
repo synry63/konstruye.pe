@@ -846,6 +846,11 @@ Show_Proveedores
 .btn-comentar {
     width: 98px;
 }
+
+.contenedor-registrate {
+    display: inline-block;
+}
+
 /*=======================
 Popup - Comentario_Negocio
 ========================*/
@@ -1048,25 +1053,39 @@ Details Page
 .comments_details{
     margin: 15px auto;
 }
+.comentarios-personales {
+    position: relative;
+}
 .comments_details h3{
     font-size: 18px;
     text-transform: uppercase;
     font-weight: 400;
-    margin-bottom: 10px;
+    /*margin-bottom: 10px;*/
 }
 .comments_details .rateYo_comments{
-    margin: 10px 0;
+    margin: 0 0;
+    display: inline-block;
+    padding: 0;
+    position: relative;
+    top: 2px;
 }
 .comments_details .date{
     font-style: italic;
     margin-bottom: 10px;
     font-size:14px;
+    position: absolute;
+    top: 5px;
+    right: 0;
+}
+.comments_details .media-body span {
+    font-size: 16px;
 }
 .comments_details .media-body p{
     margin-top: 10px;
     background: rgba(255,255,255,0.5);
     padding: 9px;
-    border-radius: 10px;
+    border-radius: 3px;
+    font-size: 14px;
 }
 .googlemaps img{
     margin: 30px auto;
