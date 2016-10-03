@@ -86,7 +86,7 @@ class ComentarioProductoController extends Controller
             if ($form->isSubmitted()){
                 if($form->isValid()){
                     $comentarioProductos->setUser($user);
-                    $comentarioProductos->setProduco($producto);
+                    $comentarioProductos->setProducto($producto);
                     $em = $this->getDoctrine()->getManager();
                     $em->persist($comentarioProductos);
                     $em->flush();

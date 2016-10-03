@@ -49,6 +49,29 @@ class ComentarioProducto
     private $comentario;
 
     /**
+     * @ORM\Column(type="datetime")
+     *
+     * @var \DateTime
+     */
+    private $adedAt;
+
+    /**
+     * @return \DateTime
+     */
+    public function getAdedAt()
+    {
+        return $this->adedAt;
+    }
+
+    /**
+     * @param \DateTime $adedAt
+     */
+    public function setAdedAt($adedAt)
+    {
+        $this->adedAt = $adedAt;
+    }
+
+    /**
      * @param mixed $producto
      */
     public function setProducto($producto)
@@ -147,6 +170,6 @@ class ComentarioProducto
 
 
     public function __construct() {
-
+        $this->adedAt = new \DateTime('now');
     }
 }

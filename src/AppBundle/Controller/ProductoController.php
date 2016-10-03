@@ -9,6 +9,8 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\ComentarioProducto;
 use AppBundle\Form\Type\ComentarioProductoType;
+use AppBundle\Form\Type\CotizacionProductoType;
+use AppBundle\Form\Type\CotizacionType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -62,6 +64,7 @@ class ProductoController extends Controller
         if(is_object($user)){
             $comentarioProducto = $this->getDoctrine()->getRepository('AppBundle:ComentarioProducto')
                 ->findOneBy(array('producto'=>$producto,'user'=>$user));
+            $renderOut['myc'] = $comentarioProducto;
             if($comentarioProducto==null){
                 $comentarioProducto = new ComentarioProducto();
                 $form = $this->createForm(new ComentarioProductoType(), $comentarioProducto);
@@ -92,7 +95,96 @@ class ProductoController extends Controller
             );
         //}
 
+    }
+    public function contizacionAction($slug_producto,Request $request)
+    {
+        //if ($request->isXmlHttpRequest()) {
+        $producto = $this->getDoctrine()->getRepository('AppBundle:Producto')->findOneBy(array('slug'=>$slug_producto));
+        $negocio =$producto->getNegocio();
+        $form = $this->createForm(new CotizacionType(),NULL,array(
+            'action' => $this->generateUrl('producto_solicitar_cotizacion',array('slug_producto'=>$slug_producto)),
+            'method' => 'POST',
+        ));
+        $form->handleRequest($request);
 
+
+        if ($form->isSubmitted()) {
+
+            if($form->isValid()){
+
+                $data = $form->getData();
+                // send email to negocio
+                $message = \Swift_Message::newInstance();
+                $imgUrl = $message->embed(\Swift_Image::fromPath('http://i.imgur.com/DE6vZW0.png'));
+                $message->setSubject('Konstruye - Formulario Cotizacion - Producto')
+                    ->setFrom(array('sistema@konstruye.pe'=>'Konstruye'))
+                    ->setTo($negocio->getEmail())
+                    ->setBody(
+                        $this->renderView(
+                            'emails/cotizacion_negocio.html.twig',
+                            array(
+                                'nombre' => $data['name'],
+                                'email' => $data['email'],
+                                'asunto' => $data['subject'],
+                                'negocio'=>$negocio,
+                                'producto'=>$producto,
+                                'telefono' => $data['tel'],
+                                'mensaje' => $data['message'],
+                                'logo'=>$imgUrl
+                            )
+                        )
+                    );
+
+                // send email to user as auto responder
+                $message_user = \Swift_Message::newInstance();
+                $imgUrl_user = $message_user->embed(\Swift_Image::fromPath('http://i.imgur.com/DE6vZW0.png'));
+                $message_user->setSubject('Konstruye - Formulario Cotizacion - Producto')
+                    ->setFrom(array('sistema@konstruye.pe'=>'Konstruye'))
+                    ->setTo($data['email'])
+                    ->setBody(
+                        $this->renderView(
+                            'emails/cotizacion_autoresponder_user.html.twig',
+                            array(
+                                'nombre' => $data['name'],
+                                'email' => $data['email'],
+                                'asunto' => $data['subject'],
+                                'negocio'=>$negocio,
+                                'producto'=>$producto,
+                                'telefono' => $data['tel'],
+                                'mensaje' => $data['message'],
+                                'logo'=>$imgUrl_user
+                            )
+                        )
+                    );
+                $message_user->setContentType("text/html");
+                $this->get('mailer')->send($message_user);
+                $message->setContentType("text/html");
+                $this->get('mailer')->send($message);
+
+                $this->get('swiftmailer.command.spool_send')->run(new ArgvInput(array()), new ConsoleOutput());
+                $request->getSession()->getFlashBag()->add('success', 'Gracias por tu solicitud !');
+                $url = $this->generateUrl('show_producto',array('slug_producto'=>$slug_producto));
+                $response = new JsonResponse();
+                $response->setData(array(
+                    'success' => $url
+                ));
+            }
+            else{
+                $errors = $this->get('form_serializer')->serializeFormErrors($form, true, true);
+                $response = new JsonResponse();
+                $response->setData(array(
+                    'errors' => $errors
+                ));
+                return $response;
+
+            }
+
+        }
+        return $this->render(
+            'cotizacion_producto.html.twig',
+            array('form' => $form->createView(),'producto'=>$producto)
+        );
+        // }
     }
     public function showProductosProveedorAction(Request $request,$slug_negocio,$page){
 

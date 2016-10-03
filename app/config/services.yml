@@ -22,3 +22,8 @@ services:
 
   form_serializer:
     class:        AppBundle\Form\FormErrorsSerializer
+
+  swiftmailer.command.spool_send:
+      class: Symfony\Bundle\SwiftmailerBundle\Command\SendEmailCommand
+      calls:
+          - [ setContainer, ["@service_container"] ]

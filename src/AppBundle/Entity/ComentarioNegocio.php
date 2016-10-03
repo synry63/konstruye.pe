@@ -33,12 +33,13 @@ class ComentarioNegocio
     private $negocio;
 
 
-    /** @ORM\Column(type="decimal",precision=10,scale=2)
-     *  @Assert\NotBlank()
-     *  @Assert\GreaterThan(
+    /**
+     * @ORM\Column(type="decimal",precision=10,scale=2)
+     * @Assert\NotBlank()
+     * @Assert\GreaterThan(
      *     value = 0
      *  )
-     *  @Assert\LessThanOrEqual(
+     * @Assert\LessThanOrEqual(
      *     value = 5
      * )
      **/

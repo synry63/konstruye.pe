@@ -89,3 +89,9 @@ producto_me_comentar_new:
 producto_me_comentar_edit:
     path:      /user-action/producto/{slug_producto}/comentar/edit
     defaults:  { _controller: AppBundle:ComentarioProducto:comentarProductoUserEdit}
+negocio_solicitar_cotizacion:
+    path:      /user-action/negocio/{slug_negocio}/cotizacion
+    defaults:  { _controller: AppBundle:Negocio:contizacion}
+producto_solicitar_cotizacion:
+    path:      /user-action/producto/{slug_producto}/cotizacion
+    defaults:  { _controller: AppBundle:Producto:contizacion}
