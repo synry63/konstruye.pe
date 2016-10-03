@@ -1,1 +1,45 @@
-{{ form(form, {'attr': {'novalidate': 'novalidate'}}) }}
+{#{{ form(form, {'attr': {'novalidate': 'novalidate'}}) }}#}
+{#{{ dump(app.user) }}#}
+
+
+<div class="contenedor-popup-comentario">
+    <div class="contenedor-popup">
+        <div class="popup-comentario-titulo">
+            <h1>Contáctanos</h1>
+        </div>
+        <div class="popup-comentario-form">
+            {{ form_start(form, {'attr':{'novalidate':'novalidate'}}) }}
+
+                <div class="form-group">
+                    {{ form_label(form.name,{}) }}
+                    {{ form_errors(form.name) }}
+                    {{ form_widget(form.name,{'attr':{'class':'form-control'}}) }}
+                </div>
+                <div class="form-group">
+                    {{ form_label(form.tel) }}
+                    {{ form_errors(form.tel) }}
+                    {{ form_widget(form.tel,{'attr':{'class':'form-control'}}) }}
+                </div>
+                <div class="form-group">
+                    {{ form_label(form.email) }}
+                    {{ form_errors(form.email) }}
+                    {{ form_widget(form.email,{'attr':{'class':'form-control'}}) }}
+                </div>
+                <div class="form-group">
+                    {{ form_label(form.subject) }}
+                    {{ form_errors(form.subject) }}
+                    {{ form_widget(form.subject,{'attr':{'class':'form-control'}}) }}
+                </div>
+                <div class="form-group">
+                    {{ form_label(form.message) }}
+                    {{ form_errors(form.message) }}
+                    {{ form_widget(form.message,{'attr':{'class':'form-control'}}) }}
+                </div>
+                <div class="form-group">
+                    {{ form_widget(form.send,{'attr':{'class':'form-control'},'label':'Guardar'}) }}
+                </div>
+
+            {{ form_end(form) }}
+        </div>
+    </div>
+</div>

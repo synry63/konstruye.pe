@@ -13,7 +13,7 @@
 {% endblock %}
 
 {% block fos_user_content %}
-    {{ dump(app.user) }}
+    {#{{ dump(app.user) }}#}
     {#{{ dump(myc) }}#}
     <div class="container product-detail-section">
         <div class="col-md-6">
@@ -62,9 +62,15 @@
 
             <h1>{{ producto.nombre }}</h1>
             <div id="rateYo" data-rating="{{ moy }}" style="margin: 5px 0; padding-left:0 "></div>
-            <a href="{{ path('show_negocio',
-            {"slug_negocio":producto.negocio.slug}) }}"><h2>{{ producto.negocio.nombre }}</h2></a>
+            <a href="{{ path('show_negocio',{"slug_negocio":producto.negocio.slug}) }}">
+                <h2>{{ producto.negocio.nombre }}</h2>
+            </a>
             <p>{{ producto.description }}</p>
+
+            {#Solicitar Cotizacion#}
+            <a class="simple-ajax-popup" href="{{ path('producto_solicitar_cotizacion',{'slug_producto':producto.slug}) }}">
+                <button class="btn btn-default"> Solicitar Cotización</button>
+            </a>
 
         </div>
     </div>
@@ -182,7 +188,8 @@
             {% for c in comentarios %}
                 <div class="media comment">
                     <div class="media-left">
-                        <img class="img-circle" alt="user icon" src="http://placehold.it/100x100x?text=Foto+Perfil">
+                        <img class="img-circle" alt="user icon" width="70px"src="http://placehold.it/100x100x?text=Foto+Perfil">
+                        <div class="" style="width: 0;height: 0;border-style: solid;border-width: 6px 7.6px 5px 0;border-color: transparent #fff transparent transparent;position: absolute;right: 0;top: 29px;"></div>
                     </div>
                     <div class="media-body comentarios-personales">
                         <h3>{{ c.titulo }}</h3>
@@ -239,6 +246,7 @@
     <script type="text/javascript" src="{{ asset('js/jquery.magnific-popup.min.js') }}"></script>
     {#Rate Yo#}
     <script type="text/javascript" src="{{ asset('js/jquery.rateyo.min.js') }}"></script>
+
     <script type="text/javascript">
 
 
@@ -298,15 +306,16 @@
 //            $("#rateYo2").rateYo("option", "ratedFill", color);
 //        });
 
-//        $( ".rateYo_comments" ).each(function( index ) {
-//            $(this).rateYo({
-//                rating: $(this).attr("data-rating"),
-//                starWidth: "20px",
-//                readOnly: true,
-//                ratedFill: color,
-//                normalFill: "#A0A0A0"
-//            });
-//        });
+        $( ".rateYo_comments" ).each(function( index ) {
+            $(this).rateYo({
+                rating: $(this).attr("data-rating"),
+                starWidth: "20px",
+                readOnly: true,
+                ratedFill: color,
+                normalFill: "#A0A0A0"
+            });
+        });
+
         var slider = new MasterSlider();
 
         slider.control('arrows');

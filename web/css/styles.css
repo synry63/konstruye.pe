@@ -845,10 +845,15 @@ Show_Proveedores
 =======================*/
 .btn-comentar {
     width: 98px;
+    margin-top: 15px;
 }
 
 .contenedor-registrate {
     display: inline-block;
+}
+
+.comments_details .media.comment .media-left {
+    position: relative;
 }
 
 /*=======================
@@ -1054,12 +1059,16 @@ Details Page
     margin: 15px auto;
 }
 .comentarios-personales {
+    background-color: #fff;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    padding: 10px;
     position: relative;
 }
 .comments_details h3{
     font-size: 18px;
+    font-weight: 600;
     text-transform: uppercase;
-    font-weight: 400;
     /*margin-bottom: 10px;*/
 }
 .comments_details .rateYo_comments{
@@ -1070,20 +1079,23 @@ Details Page
     top: 2px;
 }
 .comments_details .date{
+    color: #A0A0A0;
     font-style: italic;
     margin-bottom: 10px;
     font-size:14px;
     position: absolute;
-    top: 5px;
-    right: 0;
+    top: 14px;
+    right: 11px;
 }
 .comments_details .media-body span {
+    color: #A0A0A0;
     font-size: 16px;
 }
 .comments_details .media-body p{
-    margin-top: 10px;
+    /*margin-top: 10px;*/
+    color: #A0A0A0;
     background: rgba(255,255,255,0.5);
-    padding: 9px;
+    padding: 9px 0 0;
     border-radius: 3px;
     font-size: 14px;
 }

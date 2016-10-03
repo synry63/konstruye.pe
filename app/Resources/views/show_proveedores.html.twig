@@ -58,9 +58,12 @@
                     </span>
                 </a>
             </div>
-            <a class="contactenos_button" href="#">
-                <button class="btn btn-default"> contáctanos </button>
+
+            {#boton contactanos#}
+            <a class="simple-ajax-popup contactenos_button" href="{{ path('negocio_solicitar_cotizacion',{'slug_negocio':negocio.slug}) }}">
+                <button class="btn btn-default" > contáctanos </button>
             </a>
+
         </div>
 
         <div class="col-md-8">
@@ -188,8 +191,10 @@
             {% for c in comentarios %}
                 <div class="media comment">
                     <div class="media-left">
-                        <img class="img-circle" alt="user icon" src="http://placehold.it/100x100x?text=Foto+Perfil">
+                        <img class="img-circle" alt="user icon" width="70px" src="http://placehold.it/100x100x?text=Foto+Perfil">
+                        <div class="" style="width: 0;height: 0;border-style: solid;border-width: 6px 7.6px 5px 0;border-color: transparent #fff transparent transparent;position: absolute;right: 0;top: 29px;"></div>
                     </div>
+
                     <div class="media-body comentarios-personales">
                         {#<h3>{{ c.titulo }}</h3>#}
                         {#<div class="rateYo_comments" data-rating="{{ c.nota }}"></div><span>{{ c.user.nombres }} - </span>#}
@@ -199,6 +204,7 @@
                         {#</p>#}
 
                         <h3>{{ c.titulo }}</h3>
+
                         <div>
                             <span>{{ c.user.nombres }} -</span>
                             <div class="rateYo_comments" data-rating="{{ c.nota }}"></div>
@@ -259,6 +265,7 @@
     <script type="text/javascript" src="{{ asset('js/jquery.magnific-popup.min.js') }}"></script>
     {#Rate Yo#}
     <script type="text/javascript" src="{{ asset('js/jquery.rateyo.min.js') }}"></script>
+    {#<script src="text/javascript" src="{{ asset('js/default_noty.js') }}"></script>#}
     <script>
         $(document).ready(function() {
 

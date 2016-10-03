@@ -78,7 +78,7 @@
                                             {% else %}
                                                 <img class="img-circle" width="50px" src="{{ asset('images/assets/perfil_icon.png') }}" alt="">
                                             {% endif %}
-                                            <span class="caret" id="caret"></span>
+                                            <span class="caret" id="caret">{{app.user.nombres}}</span>
                                         </button>
                                         <ul class="dropdown-menu drop-menu" aria-labelledby="dropdownMenu1">
                                             <a href=""><i class="fa fa-briefcase" aria-hidden="true"></i> Panel de Negocios</a>
@@ -227,8 +227,8 @@
             <script type="text/javascript" src="{{ asset('js/main.js') }}"></script>
             {#Noty#}
             <script src="{{ asset('js/jquery.noty.packaged.min.js') }}" type="text/javascript"></script>
-            {#Defaut Noty#}
-            <script src="{{ asset('js/default_noty.js') }}" type="text/javascript"></script>
+            {#Defaut Noty - ESTO ESTUVO OCASIONANDO ERROR#}
+            {#<script src="{{ asset('js/default_noty.js') }}" type="text/javascript"></script>#}
             <script src="{{ asset('js/default.js') }}" type="text/javascript"></script>
             <script>
 
