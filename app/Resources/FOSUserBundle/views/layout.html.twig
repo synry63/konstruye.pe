@@ -78,7 +78,8 @@
                                             {% else %}
                                                 <img class="img-circle" width="50px" src="{{ asset('images/assets/perfil_icon.png') }}" alt="">
                                             {% endif %}
-                                            <span class="caret" id="caret">{{app.user.nombres}}</span>
+                                            <span class="caret" id="caret"></span>
+                                            <p class="nombre-usuario">{{app.user.nombres}}</p>
                                         </button>
                                         <ul class="dropdown-menu drop-menu" aria-labelledby="dropdownMenu1">
                                             <a href=""><i class="fa fa-briefcase" aria-hidden="true"></i> Panel de Negocios</a>
@@ -157,7 +158,8 @@
                                         {% else %}
                                             <img class="img-circle" width="50px" src="{{ asset('images/assets/perfil_icon.png') }}" alt="">
                                         {% endif %}
-                                        <span class="caret" id="caret"></span>
+                                        <span class="caret menu-static" id="caret"></span>
+                                        <p class="nombre-usuario">{{ app.user.nombres }}</p>
                                     </button>
                                     <ul class="dropdown-menu drop-menu" aria-labelledby="dropdownMenu2">
                                         <a href=""><i class="fa fa-briefcase" aria-hidden="true"></i> Panel de Negocios</a>
@@ -165,7 +167,6 @@
                                         <a href="{{ path('fos_user_security_logout') }}">
                                             <i class="fa fa-sign-out" aria-hidden="true"></i> {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
                                         </a>
-
                                     </ul>
                                 </div>
                             {% else %}

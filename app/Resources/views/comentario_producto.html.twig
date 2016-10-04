@@ -46,7 +46,7 @@
                         data     : $('form').serialize(),
                         dataType : 'json'
                     }).done(function(data){
-                        console.log(data);
+                        console.log(data.success);
                         if(data.success!=undefined){
                             window.location.href = data.success;
                         }else {

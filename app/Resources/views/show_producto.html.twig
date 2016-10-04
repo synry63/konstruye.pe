@@ -68,9 +68,9 @@
 
             {#Solicitar Cotizacion#}
             <a class="simple-ajax-popup" href="{{ path('producto_solicitar_cotizacion',{'slug_producto':producto.slug}) }}">
-                <button class="btn btn-konstruye"> Solicitar Cotización</button>
+                <button class="btn btn-konstruye btn-cotizacion"> Solicitar Cotización</button>
             </a>
-
+            {#<a class="simple-ajax-popup" href="{{ path('producto_solicitar_cotizacion',{'slug_producto':producto.slug}) }}">Solicitar Cotizacion</a>#}
         </div>
     </div>
 
@@ -242,7 +242,7 @@
     <script src="{{ asset('js/jquery.rateyo.min.js') }}"></script>
     <script src="{{ asset('js/masterslider.min.js') }}" type="text/javascript"></script>
     {#Magnific Popup#}
-    <script type="text/javascript" src="{{ asset('js/jquery.magnific-popup.min.js') }}"></script>
+    {#<script type="text/javascript" src="{{ asset('js/jquery.magnific-popup.min.js') }}"></script>#}
     {#Rate Yo#}
     <script type="text/javascript" src="{{ asset('js/jquery.rateyo.min.js') }}"></script>
 
@@ -267,7 +267,7 @@
 
 
 
-//        var color="#30BDEF";
+
 //        var test = $("#rateYo").attr("data-rating");
 //
 //        $("#rateYo").rateYo({
@@ -304,7 +304,7 @@
 //        $("#rateYo2").mouseenter(function(){
 //            $("#rateYo2").rateYo("option", "ratedFill", color);
 //        });
-
+        var color="#30BDEF";
         $( ".rateYo_comments" ).each(function( index ) {
             $(this).rateYo({
                 rating: $(this).attr("data-rating"),
