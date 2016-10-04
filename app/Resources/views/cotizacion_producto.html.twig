@@ -1,5 +1,5 @@
 {#{{ form(form, {'attr': {'novalidate': 'novalidate'}}) }}#}
-{{ dump(producto) }}
+{#{{ dump(producto) }}#}
 
 <div class="contenedor-popup-comentario">
     <div class="contenedor-popup">
@@ -8,37 +8,72 @@
         </div>
         <div class=formform.,{'attr':{'class':'form-control'.widget()"popup-comentario-form">
             {{ form_start(form, {'attr':{'novalidate':'novalidate'}}) }}
-            <div class=_form-group">
-                {{ form_label(form.name) }}
+            <div class="form-group" id="nombreInput">
+                {{ form_label(form.name,'Nombre') }}
                 {{ form_errors(form.name) }}
                 {{ form_widget(form.name,{'attr':{'class':'form-control'}}) }}
             </div>
-            <div class="form-group">
-                {{ form_label(form.tel) }}
+            <div class="form-group" id="telefonoInput">
+                {{ form_label(form.tel,'Telefono') }}
                 {{ form_errors(form.tel) }}
                 {{ form_widget(form.tel,{'attr':{'class':'form-control'}}) }}
             </div>
-            <div class="form-group">
-                {{ form_label(form.email) }}
+            <div class="form-group" id="emailInput">
+                {{ form_label(form.email,'Email') }}
                 {{ form_errors(form.email) }}
                 {{ form_widget(form.email,{'attr':{'class':'form-control'}}) }}
             </div>
-            <div class="form-group">
-                {{ form_label(form.subject) }}
+            <div class="form-group" id="asuntoInput">
+                {{ form_label(form.subject,'Asunto') }}
                 {{ form_errors(form.subject) }}
                 {{ form_widget(form.subject,{'attr':{'class':'form-control'}}) }}
             </div>
-            <div class="form-group">
-                {{ form_label(form.message) }}
+            <div class="form-group" id="mensajeTextArea">
+                {{ form_label(form.message,'Mensaje') }}
                 {{ form_errors(form.message) }}
                 {{ form_widget(form.message,{'attr':{'class':'form-control'}}) }}
             </div>
-            <div class=_form-group">
-                {{ form_widget(form.send,{'label':'Guardar'}) }}
+            <div class="form-group" id="">
+                {{ form_widget(form.send,{'label':'Enviar','attr':{'class':'btn btn-konstruye'}}) }}
             </div>
             {{ form_end(form) }}
         </div>
     </div>
 </div>
 
-
+<script>
+    if(typeof jQuery != undefined){
+        $(document).ready(function(){
+            $('#cotizacion_send').click(function (e) {
+                e.preventDefault();
+                $.ajax({
+                    type: $('form').attr('method'),
+                    url: $('form').attr('action'),
+                    data: $('form').serialize(),
+                    dataType: 'json'
+                }).done(function(data){
+                    if(data.success != undefined){
+                        window.location.href = data.success;
+                    }else {
+                        $('div#container-alert').remove();
+                        if(data.errors.fields.cotizacion_name != undefined){
+                            $('#nombreInput').prepend("<div id='container-alert'><i class='fa fa-exclamation-circle' aria-hidden='true'></i> " + data.errors.fields.cotizacion_name + "</div>");
+                        }
+                        if(data.errors.fields.cotizacion_tel != undefined){
+                            $('#telefonoInput').prepend("<div id='container-alert'><i class='fa fa-exclamation-circle' aria-hidden='true'></i> " + data.errors.fields.cotizacion_tel + "</div>");
+                        }
+                        if(data.errors.fields.cotizacion_email != undefined){
+                            $('#emailInput').prepend("<div id='container-alert'><i class='fa fa-exclamation-circle' aria-hidden='true'></i> " + data.errors.fields.cotizacion_email + "</div>");
+                        }
+                        if(data.errors.fields.cotizacion_subject != undefined){
+                            $('#asuntoInput').prepend("<div id='container-alert'><i class='fa fa-exclamation-circle' aria-hidden='true'></i> " + data.errors.fields.cotizacion_subject + "</div>");
+                        }
+                        if(data.errors.fields.cotizacion_message != undefined){
+                            $('#mensajeTextArea').prepend("<div id='container-alert'><i class='fa fa-exclamation-circle' aria-hidden='true'></i> " + data.errors.fields.cotizacion_message + "</div>");
+                        }
+                    }
+                })
+            })
+        });
+    }
+</script>

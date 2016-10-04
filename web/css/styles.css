@@ -866,6 +866,8 @@ Popup - Comentario_Negocio
     margin: 0 auto;
     display: table;
     position: relative;
+    max-width: 390px;
+    width: 85%;
 }
 .contenedor-popup {
     display: table-cell;

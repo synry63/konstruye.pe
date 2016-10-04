@@ -59,7 +59,6 @@
 
         <div class="col-md-6" style="padding: 20px">
 
-
             <h1>{{ producto.nombre }}</h1>
             <div id="rateYo" data-rating="{{ moy }}" style="margin: 5px 0; padding-left:0 "></div>
             <a href="{{ path('show_negocio',{"slug_negocio":producto.negocio.slug}) }}">
@@ -69,7 +68,7 @@
 
             {#Solicitar Cotizacion#}
             <a class="simple-ajax-popup" href="{{ path('producto_solicitar_cotizacion',{'slug_producto':producto.slug}) }}">
-                <button class="btn btn-default"> Solicitar Cotización</button>
+                <button class="btn btn-konstruye"> Solicitar Cotización</button>
             </a>
 
         </div>
