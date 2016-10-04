@@ -15,6 +15,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Console\Input\ArgvInput;
+use Symfony\Component\Console\Output\ConsoleOutput;
 
 class ProductoController extends Controller
 {
@@ -111,7 +113,6 @@ class ProductoController extends Controller
         if ($form->isSubmitted()) {
 
             if($form->isValid()){
-
                 $data = $form->getData();
                 // send email to negocio
                 $message = \Swift_Message::newInstance();
@@ -121,7 +122,7 @@ class ProductoController extends Controller
                     ->setTo($negocio->getEmail())
                     ->setBody(
                         $this->renderView(
-                            'emails/cotizacion_negocio.html.twig',
+                            'emails/cotizacion_negocio_producto.html.twig',
                             array(
                                 'nombre' => $data['name'],
                                 'email' => $data['email'],

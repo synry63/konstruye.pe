@@ -5,6 +5,14 @@
 {% block stylesheets %}
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset('css/jquery.rateyo.min.css') }}">
+    <style>
+        .pac-container:after {
+            /* Disclaimer: not needed to show 'powered by Google' if also a Google Map is shown */
+
+            background-image: none !important;
+            height: 0px;
+        }
+    </style>
 {% endblock %}
 
 {% block fos_user_content %}
@@ -62,36 +70,38 @@
 {% block javascripts %}
     {{ parent() }}
     <script src="{{ asset('js/jquery.rateyo.min.js') }}"></script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDcllALlFAfHCaSCv1Oqmq0_wwF5qmGc_A&libraries=places&language=es&callback=initialize"
-            type="text/javascript"></script>
     <script>
-        {{ include('includes/js/rateyo.js') }}
-
         function initialize() {
 
-            var displaySuggestions = function(predictions, status) {
-                if (status != google.maps.places.PlacesServiceStatus.OK) {
-                    alert(status);
-                    return;
-                }
+            /*var displaySuggestions = function(predictions, status) {
+             if (status != google.maps.places.PlacesServiceStatus.OK) {
+             alert(status);
+             return;
+             }
 
-                predictions.forEach(function(prediction) {
-                    var li = document.createElement('li');
-                    li.appendChild(document.createTextNode(prediction.description));
-                    document.getElementById('results').appendChild(li);
-                });
-            };
+             predictions.forEach(function(prediction) {
+             var li = document.createElement('li');
+             li.appendChild(document.createTextNode(prediction.description));
+             document.getElementById('results').appendChild(li);
+             });
+             };*/
 
             var options = {
                 types: ['(cities)'],
                 componentRestrictions: {country: "pe"}
             };
 
-            //var input = document.getElementById('searchTextField');
-            //var autocomplete = new google.maps.places.Autocomplete(input,options);
-            var service = new google.maps.places.AutocompleteService();
-            service.getQueryPredictions({ input: 'lima' }, displaySuggestions);
+            var input = document.getElementById('searchTextField');
+            var autocomplete = new google.maps.places.Autocomplete(input,options);
+            //var service = new google.maps.places.AutocompleteService();
+            //service.getQueryPredictions({ input: 'lima' }, displaySuggestions);
         }
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDcllALlFAfHCaSCv1Oqmq0_wwF5qmGc_A&libraries=places&language=es&callback=initialize"
+            type="text/javascript"></script>
+    <script>
+        {{ include('includes/js/rateyo.js') }}
+
         //google.maps.event.addDomListener(window, 'load', initialize);
     </script>
 {% endblock javascripts %}
