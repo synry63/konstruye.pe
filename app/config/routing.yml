@@ -60,14 +60,14 @@ negocio_proveedor_register:
     path:      /profile/proveedor/register
     defaults:  { _controller: AppBundle:Proveedor:register}
 negocio_especialista_register:
-    path:      /profile/proveedor/register
-    defaults:  { _controller: AppBundle:Proveedor:register}
+    path:      /profile/especialista/register
+    defaults:  { _controller: AppBundle:Especialista:register}
 negocio_inmueble_register:
     path:      /profile/proveedor/register
-    defaults:  { _controller: AppBundle:Proveedor:register}
+    defaults:  { _controller: AppBundle:Inmueble:register}
 negocio_constructura_register:
     path:      /profile/proveedor/register
-    defaults:  { _controller: AppBundle:Proveedor:register}
+    defaults:  { _controller: AppBundle:ConstructoraInmobiliaria:register}
 negocio_register_confirmation:
     path:      /profile/negocio/register/confirmation
     defaults:  { _controller: AppBundle:Proveedor:registerConfirmation}
@@ -95,3 +95,11 @@ negocio_solicitar_cotizacion:
 producto_solicitar_cotizacion:
     path:      /user-action/producto/{slug_producto}/cotizacion
     defaults:  { _controller: AppBundle:Producto:contizacion}
+show_ubicaciones_buscador:
+    path:      /recuperar-ubicaciones
+    defaults:  { _controller: AppBundle:Default:ubicaciones}
+profile_negocios_seletion:
+    path: /profile/negocios/selection
+    defaults:
+        _controller: FrameworkBundle:Template:template
+        template:    FOSUserBundle:Profile:negocios_selection.html.twig
