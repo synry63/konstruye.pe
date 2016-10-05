@@ -195,6 +195,10 @@ hr.style-eight:after {
     padding-top: 5px;
     font-style: italic;
 }
+.btn-cotizacion {
+    max-width: 145px;
+    margin-top: 15px;
+}
 .btn-konstruye{
 
     background:#009FE3 ;
@@ -471,6 +475,7 @@ Dropdown Menu principal
 
 .navbar-right .dropdown .btn-default{
     border: none;
+    position: relative;
 }
 .btn-default.active, .btn-default:active, .open>.dropdown-toggle.btn-default{
     background: none;
@@ -537,14 +542,26 @@ Dropdown Menu principal
     border: none;
     box-shadow: none;
 }
+.nombre-usuario {
+    font-size: 12px;
+    /* text-transform: uppercase; */
+    color: #a0a0a0;
+}
 
-
-#caret{
+.caret .menu-static{
     vertical-align: top;
     display: inline-block;
     margin-top: 25px;
     margin-left: 6px;
     transform: scale(1.3);
+    position: absolute;
+    top: 0;
+    left: 7px;
+    color: #a0a0a0;
+}
+
+span#caret {
+    color: #a0a0a0;
 }
 /*=============
 Perfil
@@ -882,7 +899,7 @@ Popup - Comentario_Negocio
 }
 .contenedor-popup-comentario label {
     color: rgba(0,0,0,.5);
-    margin-bottom: 5px;
+    /*margin-bottom: 5px;*/
     font-weight: bold;
     font-size: 15px;
 }
@@ -893,7 +910,7 @@ Popup - Comentario_Negocio
 div#container-alert {
     color: #1c9cd9;
     font-size: 12px;
-    margin-bottom: 2px;
+    margin: 8px 0;
 }
 
 /*=============
