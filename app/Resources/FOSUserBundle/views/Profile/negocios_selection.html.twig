@@ -1,8 +1,38 @@
-hello here
+{#{{ dump(negocios) }}#}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+<link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+<link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300italic,300,400italic,800italic,800,700italic,700,600italic,600' rel='stylesheet' type='text/css'>
 
-<ul>
-    <li>proveedor -- claro oscuro</li>
-    <li>inmueble -- claro oscuro</li>
-</ul>
+<section class="container">
+    <div class="seccion-image-logo">
+        <img src="{{ asset('images/logo2.png') }}" alt="Logo Konstruye">
+    </div>
+    <div class="seccion-perfile-negocios">
+        <div class="perfil-negocio">
+            <a class="negocios" href="#">
+                <i class="fa fa-truck" aria-hidden="true"></i>
+                <p>Proveedor</p>
+            </a>
+        </div>
+        <div class="perfil-negocio">
+            <a class="negocios" href="#">
+                <i class="fa fa-home" aria-hidden="true"></i>
+                <p>Compra Venta y Alquiler de Inmuebles</p>
+            </a>
+        </div>
+        <div class="perfil-negocio">
+            <a class="negocios" href="#">
+                <i class="fa fa-users" aria-hidden="true"></i>
+                <p>Especialistas Servicios Personales</p>
+            </a>
+        </div>
+        <div class="perfil-negocio">
+            <a class="negocios" href="#">
+                <i class="fa fa-building-o" aria-hidden="true"></i>
+                <p>Constructoras e Inmobiliarias</p>
+            </a>
+        </div>
+    </div>
+</section>
 
-{{ dump(negocios) }}

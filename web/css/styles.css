@@ -872,6 +872,38 @@ Show_Proveedores
 .comments_details .media.comment .media-left {
     position: relative;
 }
+/*=======================
+Perfil - Negocios
+========================*/
+.seccion-image-logo {
+    text-align: center;
+    padding:15px;
+}
+.seccion-perfile-negocios {
+    display: flex;
+    justify-content: space-between;
+}
+.perfil-negocio {
+    background-color: #fff;
+    box-shadow: 0 0 5px rgba(0,0,0,.2);
+    width: 23%;
+    text-align: center;
+    position: relative;
+}
+.perfil-negocio a {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+.perfil-negocio:before {
+    content: '';
+    display: block;
+    padding-top: 100%;
+}
+.negocios i {
+    font-size: 60px;
+}
 
 /*=======================
 Popup - Comentario_Negocio
