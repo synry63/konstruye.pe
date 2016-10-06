@@ -212,9 +212,13 @@ hr.style-eight:after {
 /*=============
 General
 =============*/
+
 body{
     font-family: 'Open Sans', sans-serif;
     font-weight: 100;
+
+}
+.background-image {
     background: url("../images/assets/brickwall.png");
 }
 .logo_resp{
@@ -1156,6 +1160,32 @@ Details Page
 .googlemaps{
     margin-top: 30px;
     margin-bottom: 30px;
+}
+/* REGISTRO CONSTRUCTORA*/
+.contenedor-registrate-image {
+    padding:0;
+}
+.contenedor-registrate-image img {
+    max-width: 100%;
+    height:100%;
+}
+.contenedor-logo-registrate,.contenedor-logo-titulo {
+    text-align: center;
+}
+.contenedor-logo-titulo h1 {
+    color: #1c9cd9;
+    text-align: center;
+    font-weight: 600;
+    font-size: 25px;
+    padding: 25px 0;
+}
+.contenedor-form label {
+    color: rgba(0,0,0,.5);
+    font-size: 15px;
+    font-weight: bold;
+}
+.btn-registrate {
+    max-width: 105px;
 }
 /*=============
 Producto Page
