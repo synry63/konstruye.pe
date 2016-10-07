@@ -879,34 +879,68 @@ Show_Proveedores
 /*=======================
 Perfil - Negocios
 ========================*/
+.background-negocios {
+    background-image: url('../images/background-negocios.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    height:100%;
+}
+.negocios-flex {
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
 .seccion-image-logo {
     text-align: center;
     padding:15px;
 }
 .seccion-perfile-negocios {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
+    margin-top: 80px;
 }
 .perfil-negocio {
-    background-color: #fff;
-    box-shadow: 0 0 5px rgba(0,0,0,.2);
+    /*background-color: rgba(0,0,0,.2);*/
+    /*box-shadow: 0 0 5px rgba(0,0,0,.2);*/
     width: 23%;
     text-align: center;
     position: relative;
+    border: 2px solid #fff;
 }
 .perfil-negocio a {
+    color: #fff;
     position: absolute;
-    top: 50%;
+    top: 40%;
     left: 50%;
     transform: translate(-50%,-50%);
+    width: 85%;
+    height: 100%;
 }
 .perfil-negocio:before {
     content: '';
     display: block;
     padding-top: 100%;
 }
+
 .negocios i {
-    font-size: 60px;
+    font-size: 80px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+.negocios img {
+    width: 74.3px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+.negocios p {
+    position: absolute;
+    top: 80%;
+    font-weight: 500;
+    width: 100%;
 }
 
 /*=======================
@@ -1161,12 +1195,38 @@ Details Page
     margin-top: 30px;
     margin-bottom: 30px;
 }
-/* REGISTRO CONSTRUCTORA*/
+/* ================================
+ REGISTRAR PROV. INM. ESPEC. CONST.
+ =================================*/
 .contenedor-registrate-image {
     padding:0;
 }
-.contenedor-registrate-image img {
-    max-width: 100%;
+.contenedor-registrate-image .background-imagen-registrate-proveedor {
+    background-image: url('../images/register_proveedor.jpg');
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height:100%;
+}
+.contenedor-registrate-image .background-imagen-registrate-compraventa {
+    background-image: url('../images/register_comprayventa.jpg');
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height:100%;
+}
+.contenedor-registrate-image .background-imagen-registrate-especialista {
+    background-image: url('../images/register_especialista.jpg');
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height:100%;
+}
+.contenedor-registrate-image .background-imagen-registrate-constructora {
+    background-image: url('../images/register_inmobiliarias.jpg');
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
     height:100%;
 }
 .contenedor-logo-registrate,.contenedor-logo-titulo {
