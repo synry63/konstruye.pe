@@ -1,108 +1,95 @@
 {#{{ form(form, {'attr': {'novalidate': 'novalidate'}}) }}#}
 <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
 <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+<link rel="stylesheet" href="{{ asset('css/styles_javier.css') }}">
 <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300italic,300,400italic,800italic,800,700italic,700,600italic,600' rel='stylesheet' type='text/css'>
-<div class="">
-    <div class="col-md-6 contenedor-registrate-image">
-        <div class="background-imagen-registrate-compraventa"></div>
-        {#<img src="{{ asset('images/register_comprayventa.jpg') }}" alt="Imagen Compra y Venta">#}
-    </div>
-    <div class="col-md-6">
-        <div class="contenedor-logo-registrate">
-            <img src="{{ asset('images/logo2.png') }}" alt="Imagen Logo" width="200px">
-        </div>
-        <div class="contenedor-logo-titulo">
-            <h1>Registro Compra Venta y Alquiler de Inmuebles</h1>.
-        </div>
-        <div class="validacion">
-            <p>* Campos Obligatorios</p>
-        </div>
-        <div class="col-md-6 contenedor-form">
+<title>Registro Compra y Venta</title>
+<body class="comprayventa">
+
+
+
+    <div class="container">
+        <div class="form-negocios">
+            <div class="required">
+                <p>* Campos Obligatorios</p>
+            </div>
+
             {{ form_start(form,{ 'attr':{'novalidate':'novalidate'}}) }}
-            <div class="form-group">
-                {{ form_label(form.nombre,'* Nombre') }}
-                {{ form_errors(form.nombre) }}
-                {{ form_widget(form.nombre,{'attr':{'class':'form-control'}}) }}
+            <div class="col-md-6">
+                <div class="form-group">
+                    {{ form_label(form.nombre,'* Nombre del Inmueble') }}
+                    {{ form_errors(form.nombre) }}
+                    {{ form_widget(form.nombre,{'attr':{'class':'form-control'}}) }}
+                </div>
+                <div class="form-group">
+                    {{ form_label(form.direccion,'* Dirección') }}
+                    {{ form_errors(form.direccion) }}
+                    {{ form_widget(form.direccion,{'attr':{'class':'form-control'}}) }}
+                </div>
+                <div class="form-group">
+                    {{ form_label(form.departamento,'* Departamento') }}
+                    {{ form_errors(form.departamento) }}
+                    {{ form_widget(form.departamento,{'attr':{'class':'form-control'}}) }}
+                </div>
+                <div class="form-group">
+                    {{ form_label(form.provincia,'* Provincia') }}
+                    {{ form_errors(form.provincia) }}
+                    {{ form_widget(form.provincia,{'attr':{'class':'form-control'}}) }}
+                </div>
+                <div class="form-group">
+                    {{ form_label(form.distrito,'* Distrito') }}
+                    {{ form_errors(form.distrito) }}
+                    {{ form_widget(form.distrito,{'attr':{'class':'form-control'}}) }}
+                </div>
             </div>
-            <div class="form-group">
-                {{ form_label(form.direccion,'* Dirección') }}
-                {{ form_errors(form.direccion) }}
-                {{ form_widget(form.direccion,{'attr':{'class':'form-control'}}) }}
+
+            <div class="col-md-6">
+                <div class="form-group">
+                    {{ form_label(form.structure,'Estructura') }}
+                    {{ form_errors(form.structure) }}
+                    {{ form_widget(form.structure,{'attr':{'class':'form-control'}}) }}
+                </div>
+                <div class="form-group">
+                    {{ form_label(form.telefono,'* Teléfono') }}
+                    {{ form_errors(form.telefono) }}
+                    {{ form_widget(form.telefono,{'attr':{'class':'form-control'}}) }}
+                </div>
+
+                <div class="form-group">
+                    {{ form_label(form.email,'* Email') }}
+                    {{ form_errors(form.email) }}
+                    {{ form_widget(form.email,{'attr':{'class':'form-control'}}) }}
+                </div>
+                <div class="form-group">
+                    {{ form_label(form.description,'* Descripción') }}
+                    {{ form_errors(form.description) }}
+                    {{ form_widget(form.description,{'attr':{'class':'form-control', 'rows':'5'}}) }}
+                </div>
+                <div class="form-group">
+                    {{ form_widget(form.submit,{'attr':{'class':'btn btn-konstruye btn-registrate'},'label':'Registrar'}) }}
+                </div>
             </div>
-            <div class="form-group">
-                {{ form_label(form.departamento,'* Departamento') }}
-                {{ form_errors(form.departamento) }}
-                {{ form_widget(form.departamento,{'attr':{'class':'form-control'}}) }}
-            </div>
-            <div class="form-group">
-                {{ form_label(form.provincia,'* Provincia') }}
-                {{ form_errors(form.provincia) }}
-                {{ form_widget(form.provincia,{'attr':{'class':'form-control'}}) }}
-            </div>
-            <div class="form-group">
-                {{ form_label(form.distrito,'* Distrito') }}
-                {{ form_errors(form.distrito) }}
-                {{ form_widget(form.distrito,{'attr':{'class':'form-control'}}) }}
-            </div>
-            <div class="form-group">
-                {{ form_label(form.structure,'Estructura') }}
-                {{ form_errors(form.structure) }}
-                {{ form_widget(form.structure,{'attr':{'class':'form-control'}}) }}
-            </div>
-            <div class="form-group">
-                {{ form_label(form.telefono,'*Teléfono') }}
-                {{ form_errors(form.telefono) }}
-                {{ form_widget(form.telefono,{'attr':{'class':'form-control'}}) }}
-            </div>
-            <div class="form-group">
-                {{ form_label(form.web,'Sitio Web') }}
-                {{ form_errors(form.web) }}
-                {{ form_widget(form.web,{'attr':{'class':'form-control'}}) }}
-            </div>
-            <div class="form-group">
-                {{ form_label(form.facebookLink,'Facebook Link') }}
-                {{ form_errors(form.facebookLink) }}
-                {{ form_widget(form.facebookLink,{'attr':{'class':'form-control'}}) }}
-            </div>
-        </div>
-        <div class="col-md-6 contenedor-form">
-            <div class="form-group">
-                {{ form_label(form.twitterLink,'Twitter Link') }}
-                {{ form_errors(form.twitterLink) }}
-                {{ form_widget(form.twitterLink,{'attr':{'class':'form-control'}}) }}
-            </div>
-            <div class="form-group">
-                {{ form_label(form.pinteresLink,'Pinterest Link') }}
-                {{ form_errors(form.pinteresLink) }}
-                {{ form_widget(form.pinteresLink,{'attr':{'class':'form-control'}}) }}
-            </div>
-            <div class="form-group">
-                {{ form_label(form.instagramLink,'Instagram Link') }}
-                {{ form_errors(form.instagramLink) }}
-                {{ form_widget(form.instagramLink,{'attr':{'class':'form-control'}}) }}
-            </div>
-            <div class="form-group">
-                {{ form_label(form.googleLink,'Google Link') }}
-                {{ form_errors(form.googleLink) }}
-                {{ form_widget(form.googleLink,{'attr':{'class':'form-control'}}) }}
-            </div>
-            <div class="form-group">
-                {{ form_label(form.email,'* Email') }}
-                {{ form_errors(form.email) }}
-                {{ form_widget(form.email,{'attr':{'class':'form-control'}}) }}
-            </div>
-            <div class="form-group">
-                {{ form_label(form.description,'* Descripción') }}
-                {{ form_errors(form.description) }}
-                {{ form_widget(form.description,{'attr':{'class':'form-control'}}) }}
-            </div>
-            <div class="form-group">
-                {{ form_widget(form.submit,{'attr':{'class':'btn btn-konstruye btn-registrate'},'label':'Registrar'}) }}
-            </div>
+
+
+
             {{ form_end(form) }}
         </div>
     </div>
-</div>
+
+
+
+
+
+
+</body>
+
+
+
+
+
+
+
+
 <script type="text/javascript" src="{{ asset('js/jquery-1.11.0.min.js') }}"></script>
 <script>
     $("#inmueble_departamento").change(function(){
