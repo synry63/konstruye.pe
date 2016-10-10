@@ -1,0 +1,73 @@
+
+
+/*=============
+SHOW INMUEBLE
+=============*/
+.contenedor-inmueble {
+    max-width: 1180px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    /*background-color: tomato;*/
+    outline: 1px solid tomato;
+    display: flex;
+    -webkit-flex-flow: row wrap;
+    flex-flow: row wrap;
+    min-width: 100vh;
+}
+.col-inmueble-1 {
+    /*background-color: red;*/
+    width: 66.101694915254237%;
+    max-width: 780px;
+    min-height: 100%;
+}
+.col-inmueble-2 {
+    /*background-color: yellow;*/
+    outline: 1px solid red;
+    width: 32.203389830508475%;
+    max-width: 380px;
+    min-height: 100%;
+}
+.contenedor-inmueble .zona-precio {
+    padding:20px;
+}
+.contenedor-inmueble .zona-precio-contenido {
+    border: 1px solid #d1d1d1;
+    padding: 20px;
+    box-shadow: 0 1px 2px rgba(0,0,0,.4);
+    background-color: #fff;
+}
+.contenedor-inmueble span.titulo-zona-inmueble {
+    float: left;
+}
+.contenedor-inmueble span.precio-zona-inmueble {
+    float: right;
+}
+.contenedor-inmueble .precio {
+    overflow: hidden;
+    clear: both;
+}
+.contenedor-inmueble .calcula-hipoteca {
+    display: block;
+    text-align: right;
+    /*box-shadow: 0 1px 2px rgba(0,0,0,.4);*/
+}
+.contenedor-inmueble .zona-contactanos {
+    padding: 20px;
+}
+.contenedor-inmueble .zona-contactanos-contenido {
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 1px 2px rgba(0,0,0,.4);
+}
+.contenedor-inmueble  a.link-inmobiliaria {
+    display: block;
+    overflow: hidden;
+    padding: 20px 0;
+}
+.contenedor-inmueble a.link-inmobiliaria span {
+    float: left;
+}
+.contenedor-inmueble a.link-inmobiliaria img {
+    float: right;
+}

@@ -1,4 +1,43 @@
-{{ dump(negocio) }}
+{% extends 'FOSUserBundle::layout.html.twig' %}
 {#
  check website // http://www.adondevivir.com/propiedades/ocasion-casa-310-m2-entre-el-parque-el-olivar-y-av-51973011.html
 #}
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock stylesheets%}
+{#<link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">#}
+{#<link rel="stylesheet" href="{{ asset('css/styles.css') }}">#}
+{#<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300italic,300,400italic,800italic,800,700italic,700,600italic,600' rel='stylesheet' type='text/css'>#}
+
+
+{% block fos_user_content %}
+{{ dump(negocio) }}
+{#<div class="container">#}
+    <div class="contenedor-inmueble">
+        <section class="col-inmueble-1">Seccion 1</section>
+        <section class="col-inmueble-2">
+            <div class="zona-precio">
+                <div class="zona-precio-contenido">
+                    <div class="precio">
+                        <span class="titulo-zona-inmueble">Precio Desde</span>
+                        <span class="precio-zona-inmueble"> S/. 9335,283</span>
+                    </div>
+                    <div class="zona-calcula-hipoteca">
+                        <a class="calcula-hipoteca" href="#">CALCULA TU HIPOTECA</a>
+                    </div>
+                </div>
+            </div>
+            <div class="zona-contactanos">
+                <div class="zona-contactanos-contenido">
+                    <div class="zona-contactanos-header">
+                        <a class="link-inmobiliaria" href="">
+                            <span> NOMBRE EMPRESA </span>
+                            <img src="" alt="" width="40px" style="outline: 1px solid red">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+{#</div>#}
+{% endblock fos_user_content %}
