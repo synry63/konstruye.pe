@@ -8,28 +8,57 @@ SHOW INMUEBLE
     width: 100%;
     margin-left: auto;
     margin-right: auto;
-    /*background-color: tomato;*/
-    outline: 1px solid tomato;
+    /*outline: 1px solid tomato;*/
     display: flex;
     -webkit-flex-flow: row wrap;
     flex-flow: row wrap;
     min-width: 100vh;
 }
 .col-inmueble-1 {
-    /*background-color: red;*/
     width: 66.101694915254237%;
     max-width: 780px;
     min-height: 100%;
 }
 .col-inmueble-2 {
-    /*background-color: yellow;*/
-    outline: 1px solid red;
+    /*outline: 1px solid red;*/
     width: 32.203389830508475%;
     max-width: 380px;
     min-height: 100%;
 }
+.col-inmueble-1 .datos-header {
+    padding: 20px;
+    background-color: #fff;
+    margin-bottom: 20px;
+    box-shadow: 0 1px 2px rgba(0,0,0,.4);
+    position: relative;
+    margin-top: 20px;
+}
+.col-inmueble-1 .datos-anterior {
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.col-inmueble-1 .datos-anterior a {
+    display: inline-block;
+}
+.col-inmueble-1 .datos-anterior a i {
+    font-size: 25px;
+}
+.col-inmueble-1 .datos-direccion {
+    display: inline-block;
+    margin-left: 35px;
+}
+.col-inmueble-1 .datos-icon-header {
+    display: inline-block;
+    position: absolute;
+    right: 20px;
+}
+.col-inmueble-1 .lista-header-icon {
+    display: inline-block;
+}
 .contenedor-inmueble .zona-precio {
-    padding:20px;
+    padding: 20px 20px 0;
 }
 .contenedor-inmueble .zona-precio-contenido {
     border: 1px solid #d1d1d1;
@@ -70,4 +99,43 @@ SHOW INMUEBLE
 }
 .contenedor-inmueble a.link-inmobiliaria img {
     float: right;
+}
+
+.col-inmueble-1 {
+
+}
+.col-inmueble-1 .datos-izquierda {
+    max-width: 380px;
+    background-color: #fff;
+    width: 100%;
+    float: left;
+    box-shadow: 0 1px 2px rgba(0,0,0,.4);
+}
+.datos-izquierda .datos-principales {
+    padding:20px;
+}
+.datos-izquierda .datos-principales-titulo {
+    /*border: 1px solid #d1d1d1;*/
+    padding-bottom: 20px;
+}
+.col-inmueble-1 .datos-derecha {
+    max-width: 380px;
+    background-color: #fff;
+    width: 100%;
+    float: right;
+    box-shadow: 0 1px 2px rgba(0,0,0,.4);
+}
+.datos-derecha .datos-descripcion {
+    padding: 20px;
+}
+.datos-derecha .datos-descripcion-titulo {
+    padding-bottom: 20px;
+}
+.datos-descripcion-titulo ,.datos-principales-titulo {
+    color: #1C9CD9;
+    font-size: 20px;
+    font-weight: 600;
+}
+.datos-izquierda .lista-datos-principales {
+    line-height: 28px;
 }
