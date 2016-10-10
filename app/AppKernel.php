@@ -21,6 +21,7 @@ class AppKernel extends Kernel
             new Vich\UploaderBundle\VichUploaderBundle(),
             new Liip\ImagineBundle\LiipImagineBundle(),
             new Ivory\GoogleMapBundle\IvoryGoogleMapBundle(),
+            new HWI\Bundle\OAuthBundle\HWIOAuthBundle(),
             new MyUserBundle\MyUserBundle(),
             new AppBundle\AppBundle(),
         );

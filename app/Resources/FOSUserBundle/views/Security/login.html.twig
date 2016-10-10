@@ -19,7 +19,7 @@
 
         <div class="other-session">
             <h1>Iniciar Sesión con:</h1>
-            <img width="100%" src="http://placehold.it/348x40/435F9B/fff?text=Facebook">
+            <img width="100%" src="http://placehold.it/348x40/435F9B/fff?text=Facebook" onclick="fb_login();">
             <span>No te preocupes, no publicaremos nada en tu red social sin tu permiso.</span>
         </div>
 
@@ -67,6 +67,28 @@
 {% block javascripts %}
     {{ parent() }}
     <script>
+        function fb_login() {
+            FB.login(function(response){
+                FB.getLoginStatus(function(response) {
+                    if (response.status === 'connected') {
+                        // connected
+                        //alert('Already connected, redirect to login page to create token.');
+                        document.location = "{{ url("hwi_oauth_service_redirect", {service: "facebook"}) }}";
+                    } else {
+                        // not_authorized
+                        FB.login(function(response) {
+                            if (response.authResponse) {
+                                document.location = "{{ url("hwi_oauth_service_redirect", {service: "facebook"}) }}";
+                            } else {
+                                //alert('Cancelled.');
+                            }
+                        }, {scope: 'email'});
+                    }
+                });
+
+            });
+
+        }
         $("body").addClass("fondo-login");
     </script>
 {% endblock javascripts %}

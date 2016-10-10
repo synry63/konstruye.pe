@@ -104,7 +104,7 @@ vich_uploader:
                 namer:              vich_uploader.namer_uniqid
             producto_foto:
                 uri_prefix:         /images/productos/fotos
-                upload_destination: %kernel.root_dir%/../web/images/productosfotos
+                upload_destination: %kernel.root_dir%/../web/images/productos/fotos
                 namer:              vich_uploader.namer_uniqid
             user_foto:
                 uri_prefix:         /images/users
@@ -114,3 +114,25 @@ knp_paginator:
     template:
         pagination: KnpPaginatorBundle:Pagination:foundation_v5_pagination.html.twig     # sliding pagination controls template
         sortable: KnpPaginatorBundle:Pagination:sortable_link.html.twig # sort link template
+
+hwi_oauth:
+    # list of names of the firewalls in which this bundle is active, this setting MUST be set
+    connect:
+        account_connector: my_user_provider
+    firewall_names: [main]
+    fosub:
+        username_iterations: 30
+        properties:
+            # these properties will be used/redefined later in the custom FOSUBUserProvider service.
+            facebook: facebook_id
+    resource_owners:
+            facebook:
+                type:          facebook
+                client_id:     1586864594952225
+                client_secret: e44573ce1ce0cb853e6e5021ec9cd436
+                scope:         "email"
+                infos_url:     "https://graph.facebook.com/me?fields=id,name,first_name,last_name,email,picture.type(normal)"
+                paths:
+                  profilepicture: picture.data.url
+                #options:
+                #    display: popup #dialog is optimized for popup window

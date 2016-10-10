@@ -2,7 +2,7 @@
 # http://symfony.com/doc/current/book/service_container.html
 parameters:
 #    parameter_name: value
-
+  my_user_provider.class: AppBundle\Entity\FOSUBUserProvider
 services:
 #    service_name:
 #        class: AppBundle\Directory\ClassName
@@ -27,3 +27,6 @@ services:
       class: Symfony\Bundle\SwiftmailerBundle\Command\SendEmailCommand
       calls:
           - [ setContainer, ["@service_container"] ]
+  my_user_provider:
+    class: "%my_user_provider.class%"
+    arguments: [@fos_user.user_manager,{facebook: facebook_id}]
