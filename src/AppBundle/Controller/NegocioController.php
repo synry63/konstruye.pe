@@ -277,6 +277,7 @@ class NegocioController extends Controller
                     $response->setData(array(
                         'success' => $url
                     ));
+                    return $response;
                 }
                 else{
                     $errors = $this->get('form_serializer')->serializeFormErrors($form, true, true);
@@ -350,7 +351,7 @@ class NegocioController extends Controller
                 return $this->render('show_categorias.html.twig',$renderOut);
             }
             else{
-                return $this->render('show_categorias.html.twig',$renderOut);
+                return $this->render('show_inmueble.html.twig',$renderOut);
             }
         }
     }
@@ -373,6 +374,9 @@ class NegocioController extends Controller
         return $this->render('resultado_busqueda_negocios.html.twig',array(
             'negocios'=>$pagination,
         ));
+    }
+    public function registerConfirmationAction(Request $request){
+        return $this->render('FOSUserBundle:Profile:negocio_register_confirmation.html.twig');
     }
 
 }

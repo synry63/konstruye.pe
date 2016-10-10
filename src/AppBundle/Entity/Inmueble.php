@@ -24,20 +24,109 @@ class Inmueble extends Negocio
     /**
      * @var decimal
      */
-    /** @ORM\Column(type="decimal",precision=10,scale=2) **/
-    private $precio;
+    /** @ORM\Column(type="decimal",precision=10,scale=2,nullable=true) **/
+    private $precioSoles;
+
     /**
-     * @ORM\Column(type="string", length=64)
+     * @var decimal
      */
-    private $area;
+    /** @ORM\Column(type="decimal",precision=10,scale=2,nullable=true) **/
+    private $precioDolares;
     /**
-     * @ORM\Column(type="string", length=1)
+     * @ORM\Column(type="string",nullable=true, length=64)
      */
-    private $estado;
+    private $areaTotal;
+    /**
+     * @ORM\Column(type="string",nullable=true, length=64)
+     */
+    private $areaTechada;
+    /**
+     * @ORM\Column(type="integer",nullable=true)
+     */
+    private $dormitorios;
+
+    /**
+     * @ORM\Column(type="integer",nullable=true)
+     */
+    private $banos;
+    /**
+     * @ORM\Column(type="integer",nullable=true)
+     */
+    private $medioBanos;
+    /**
+     * @ORM\Column(type="integer",nullable=true)
+     */
+    private $stacionamientos;
+    /**
+     * @ORM\Column(type="integer",nullable=true)
+     */
+    private $unidades;
     /**
      * @ORM\Column(type="string", length=64)
      */
     private $parametrosMunicipales;
+
+    /**
+     * @ORM\Column(type="string", length=64)
+     */
+    private $structure;
+
+    /**
+     * @ORM\OneToMany(targetEntity="ServicioInmueble", mappedBy="inmueble")
+     */
+    private $sevicios;
+
+    /**
+     * @return mixed
+     */
+    public function getStructure()
+    {
+        return $this->structure;
+    }
+
+    /**
+     * @param mixed $structure
+     */
+    public function setStructure($structure)
+    {
+        $this->structure = $structure;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSevicios()
+    {
+        return $this->sevicios;
+    }
+
+    /**
+     * @param mixed $sevicios
+     */
+    public function setSevicios($sevicios)
+    {
+        $this->sevicios = $sevicios;
+    }
+
+
+
+    /**
+     * @return mixed
+     */
+    public function getBanos()
+    {
+        return $this->banos;
+    }
+
+    /**
+     * @param mixed $banos
+     */
+    public function setBanos($banos)
+    {
+        $this->banos = $banos;
+    }
+
+
     /**
      * @param mixed $precio
      */

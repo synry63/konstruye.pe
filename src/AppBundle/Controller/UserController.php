@@ -381,4 +381,27 @@ class UserController extends Controller
         print json_encode($response);
         exit;
     }
+    public function createNegociosUserAction(Request $request){
+        $user = $this->container->get('security.context')->getToken()->getUser();
+        $negocios = $user->getNegocios();
+
+        return $this->render(
+            'FOSUserBundle:Profile:negocios_selection.html.twig',
+            array(
+                'negocios' => $negocios
+        ));
+    }
+    public function showNegociosUserAction(Request $request){
+        $user = $this->container->get('security.context')->getToken()->getUser();
+        $negocios = $this->getDoctrine()->getRepository('AppBundle:Negocio')
+            ->findBy(
+                array('user'=>$user),
+                array('registeredAt'=>'DESC')
+            );
+        return $this->render(
+            'FOSUserBundle:Profile:show_negocios.html.twig',
+            array(
+                'negocios' => $negocios
+            ));
+    }
 }

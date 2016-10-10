@@ -6,6 +6,7 @@ use AppBundle\Form\Type\ContactType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class DefaultController extends Controller
 {
@@ -27,7 +28,20 @@ class DefaultController extends Controller
             'inmuebles'=>$inmuebles
         ));
     }
+    public function ubicacionesAction(Request $request)
+    {
+        $search = $request->query->get('q');
+        $out =array();
+        $distritos = $this->getDoctrine()->getRepository('AppBundle:Distrito')->getUbicationBy($search);
+        foreach ($distritos as $d){
+            $item = $d->getNombre().', '.$d->getProvincia()->getNombre().', '.$d->getProvincia()->getDepartamento()->getNombre();
+            $out[] = $item;
+        }
 
+        $response = new JsonResponse();
+        $response->setData($out);
+        return $response;
+    }
     public function contactoAction(Request $request)
     {
         $form = $this->createForm(new ContactType());
@@ -93,5 +107,42 @@ class DefaultController extends Controller
             'contactenos.html.twig',
             array('form' => $form->createView())
         );
+    }
+    /**
+     * @Route("/provinces", name="select_provinces")
+     */
+    public function provincesAction(Request $request)
+    {
+        $departamento_id = $request->request->get('departamento_id');
+
+        $em = $this->getDoctrine()->getManager();
+        $provinces = $em->getRepository('AppBundle:Provincia')->findBy(array('departamento'=>$departamento_id));
+        $out = array();
+        foreach ($provinces as $p){
+            $obj = new \stdClass();
+            $obj->id = $p->getId();
+            $obj->nombre = $p->getNombre();
+            $out[] =$obj;
+        }
+        return new JsonResponse($out);
+    }
+
+    /**
+     * @Route("/cities", name="select_cities")
+     */
+    public function citiesAction(Request $request)
+    {
+        $provincia_id = $request->request->get('provincia_id');
+
+        $em = $this->getDoctrine()->getManager();
+        $distritos = $em->getRepository('AppBundle:Distrito')->findBy(array('provincia'=>$provincia_id));
+        $out = array();
+        foreach ($distritos as $d){
+            $obj = new \stdClass();
+            $obj->id = $d->getId();
+            $obj->nombre = $d->getNombre();
+            $out[] =$obj;
+        }
+        return new JsonResponse($out);
     }
 }

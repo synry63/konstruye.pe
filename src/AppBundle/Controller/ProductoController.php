@@ -55,12 +55,17 @@ class ProductoController extends Controller
 
         $user = $this->container->get('security.context')->getToken()->getUser();
         $producto = $this->getDoctrine()->getRepository('AppBundle:Producto')->findOneBySlug($slug_producto);
+        $fotos = $this->getDoctrine()->getRepository('AppBundle:FotoProducto')->findBy(
+            array('producto'=>$producto),
+            array('updatedAt'=>'DESC')
+        );
         $moy = $this->getDoctrine()->getRepository('AppBundle:Producto')->getProductoRating($producto);
         $comments = $this->getDoctrine()->getRepository('AppBundle:ComentarioProducto')->getAllComments($producto);
 
         $renderOut = array(
             'producto'=>$producto,
             'moy'=>$moy,
+            'fotos'=>$fotos,
             'comentarios'=>$comments,
         );
         if(is_object($user)){
@@ -169,6 +174,7 @@ class ProductoController extends Controller
                 $response->setData(array(
                     'success' => $url
                 ));
+                return $response;
             }
             else{
                 $errors = $this->get('form_serializer')->serializeFormErrors($form, true, true);

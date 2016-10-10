@@ -105,45 +105,53 @@
 </div>
 <script type="text/javascript" src="{{ asset('js/jquery-1.11.0.min.js') }}"></script>
 <script>
-    $("#inmueble_departamento").change(function(){
-        var data = {
-            departamento_id: $(this).val()
-        };
 
+    var $departamento = $('#inmueble_departamento');
+
+    $departamento.change(function() {
+        // ... retrieve the corresponding form.
+        var $form = $(this).closest('form');
+        // Simulate form data, but only include the selected sport value.
+        var data = {};
+        data[$departamento.attr('name')] = $departamento.val();
+        // Submit data via AJAX to the form's action path.
         $.ajax({
-            type: 'post',
-            url: '{{ path("select_provinces") }}',
-            data: data,
-            success: function(data) {
-                var $provincia_selector = $('#inmueble_provincia');
+            url : $form.attr('action'),
+            type: $form.attr('method'),
+            data : data,
+            success: function(html) {
+                // Replace current position field ...
+                $('#inmueble_provincia').replaceWith(
+                        // ... with the returned one from the AJAX response.
+                        $(html).find('#inmueble_provincia')
 
-                $provincia_selector.html('<option>Provincia</option>');
+                );
+                // init provincia after departamento
+                var $provincia = $('#inmueble_provincia');
+                $provincia.change(function() {
+                    // ... retrieve the corresponding form.
+                    var $form = $(this).closest('form');
+                    // Simulate form data, but only include the selected sport value.
+                    var data = {};
+                    data[$provincia.attr('name')] = $provincia.val();
+                    // Submit data via AJAX to the form's action path.
+                    $.ajax({
+                        url : $form.attr('action'),
+                        type: $form.attr('method'),
+                        data : data,
+                        success: function(html) {
+                            // Replace current position field ...
+                            $('#inmueble_distrito').replaceWith(
+                                    // ... with the returned one from the AJAX response.
+                                    $(html).find('#inmueble_distrito')
+                            );
+                            // Position field now displays the appropriate positions.
+                        }
+                    });
+                });
 
-                for (var i=0, total = data.length; i < total; i++) {
-                    $provincia_selector.append('<option value="' + data[i].id + '">' + data[i].nombre + '</option>');
-                }
+                // Position field now displays the appropriate positions.
             }
         });
     });
-    $("#inmueble_provincia").change(function(){
-        var data = {
-            provincia_id: $(this).val()
-        };
-
-        $.ajax({
-            type: 'post',
-            url: '{{ path("select_cities") }}',
-            data: data,
-            success: function(data) {
-                var $distrito_selector = $('#inmueble_distrito');
-
-                $distrito_selector.html('<option>Distrito</option>');
-
-                for (var i=0, total = data.length; i < total; i++) {
-                    $distrito_selector.append('<option value="' + data[i].id + '">' + data[i].nombre + '</option>');
-                }
-            }
-        });
-    });
-
 </script>

@@ -74,14 +74,20 @@ class Negocio
     protected $direccion;
 
     /**
-     * @ORM\Column(type="string", length=64)
-     *
+     * @ORM\OneToOne(targetEntity="Departamento",cascade={"persist","remove"})
+     * @ORM\JoinColumn(name="departamento_id", referencedColumnName="id")
      */
     protected $departamento;
 
     /**
-     * @ORM\Column(type="string", length=64)
-     *
+     * @ORM\OneToOne(targetEntity="Provincia",cascade={"persist","remove"})
+     * @ORM\JoinColumn(name="provincia_id", referencedColumnName="id")
+     */
+    protected $provincia;
+
+    /**
+     * @ORM\OneToOne(targetEntity="Distrito",cascade={"persist","remove"})
+     * @ORM\JoinColumn(name="distrito_id", referencedColumnName="id")
      */
     protected $distrito;
 
@@ -121,7 +127,21 @@ class Negocio
      */
     protected $tempFile;
 
+    /**
+     * @return mixed
+     */
+    public function getProvincia()
+    {
+        return $this->provincia;
+    }
 
+    /**
+     * @param mixed $provincia
+     */
+    public function setProvincia($provincia)
+    {
+        $this->provincia = $provincia;
+    }
     /**
      * @return mixed
      */

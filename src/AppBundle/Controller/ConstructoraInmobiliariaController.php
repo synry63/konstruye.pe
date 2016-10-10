@@ -7,15 +7,9 @@
  */
 namespace AppBundle\Controller;
 
-use AppBundle\Entity\Banner;
-use AppBundle\Entity\ComentarioNegocio;
 use AppBundle\Entity\ConstructoraInmobiliaria;
-use AppBundle\Entity\Especialista;
-use AppBundle\Entity\Inmueble;
-use AppBundle\Entity\Logo;
-use AppBundle\Entity\Negocio;
 use AppBundle\Entity\Proveedor;
-use AppBundle\Form\Type\ComentarioNegocioType;
+use AppBundle\Form\Type\ConstructoraType;
 use AppBundle\Form\Type\ProveedorType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -30,28 +24,31 @@ use Ivory\GoogleMap\Overlays\InfoWindow;
 use Ivory\GoogleMap\Events\MouseEvent;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-class ProveedorController extends Controller
+class ConstructoraInmobiliariaController extends Controller
 {
+    public function registerConfirmationAction(Request $request){
 
+        return $this->render('FOSUserBundle:Profile:negocio_register_confirmation.html.twig');
+    }
     public function registerAction(Request $request){ // FIX ERROR ON /home/pmary/www/html/konstruye.pe/vendor/vich/uploader-bundle/Metadata/MetadataReader.php
 
         $user = $this->container->get('security.context')->getToken()->getUser();
-        $proveedor = new Proveedor();
+        $cons = new ConstructoraInmobiliaria();
 
-        $form = $this->createForm(new ProveedorType(), $proveedor);
+        $form = $this->createForm(new ConstructoraType(), $cons);
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $proveedor->setUser($user);
+            $cons->setUser($user);
             $em = $this->getDoctrine()->getManager();
-            $em->persist($proveedor);
+            $em->persist($cons);
             $em->flush();
             //$request->getSession()->getFlashBag()->add('success', 'Gracias por registrarte !');
             return $this->redirectToRoute('negocio_register_confirmation');
         }
 
         return $this->render(
-            'FOSUserBundle:Profile:register_proveedor.html.twig',array(
+            'FOSUserBundle:Profile:register_constructura.html.twig',array(
                 'form'=>$form->createView()
             )
         );

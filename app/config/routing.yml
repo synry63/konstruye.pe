@@ -56,6 +56,10 @@ lisdato_seccion_categoria:
 show_profile_comments:
     path:      /profile/comments
     defaults:  { _controller: AppBundle:User:userCommentsShow}
+
+show_profile_negocios:
+    path:      /profile/mis-negocios
+    defaults:  { _controller: AppBundle:User:showNegociosUser}
 negocio_proveedor_register:
     path:      /profile/proveedor/register
     defaults:  { _controller: AppBundle:Proveedor:register}
@@ -63,14 +67,14 @@ negocio_especialista_register:
     path:      /profile/especialista/register
     defaults:  { _controller: AppBundle:Especialista:register}
 negocio_inmueble_register:
-    path:      /profile/proveedor/register
+    path:      /profile/inmueble/register
     defaults:  { _controller: AppBundle:Inmueble:register}
 negocio_constructura_register:
-    path:      /profile/proveedor/register
+    path:      /profile/constructura/register
     defaults:  { _controller: AppBundle:ConstructoraInmobiliaria:register}
 negocio_register_confirmation:
     path:      /profile/negocio/register/confirmation
-    defaults:  { _controller: AppBundle:Proveedor:registerConfirmation}
+    defaults:  { _controller: AppBundle:Negocio:registerConfirmation}
 
 negocio_me_comentar_new:
     path:      /user-action/negocio/{slug_negocio}/comentar/new
@@ -100,6 +104,13 @@ show_ubicaciones_buscador:
     defaults:  { _controller: AppBundle:Default:ubicaciones}
 profile_negocios_seletion:
     path: /profile/negocios/selection
-    defaults:
-        _controller: FrameworkBundle:Template:template
-        template:    FOSUserBundle:Profile:negocios_selection.html.twig
+    defaults:  { _controller: AppBundle:User:createNegociosUser}
+profile_negocios_panel:
+    path: /profile/panel/{slug_negocio}
+    defaults:  { _controller: AppBundle:Panel:setPanelNegocio,slug_negocio:null}
+profile_negocios_panel_dashboard:
+    path: /profile/panel/auth/dashboard
+    defaults:  { _controller: AppBundle:Panel:showPanelNegocioUserDashbord}
+profile_negocios_panel_gestion_negocio_cambiar_datos:
+    path: /profile/panel/auth/datos
+    defaults:  { _controller: AppBundle:Panel:showPanelNegocioUserDashbord}

@@ -39,7 +39,7 @@
                     <option value="3">Oficina</option>
                 </select>
                 <div class="form-group buscador">
-                    <input type="text" class="form-control" placeholder="Ingresa Departamento,Provincia,Distrito o Proyecto">
+                    <input id="buscardor-form-inmuebles" type="text" class="form-control" placeholder="Ingresa Departamento,Provincia,Distrito">
                 </div>
             </form>
         </div>
@@ -97,11 +97,30 @@
             //service.getQueryPredictions({ input: 'lima' }, displaySuggestions);
         }
     </script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDcllALlFAfHCaSCv1Oqmq0_wwF5qmGc_A&libraries=places&language=es&callback=initialize"
-            type="text/javascript"></script>
+    <!--<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDcllALlFAfHCaSCv1Oqmq0_wwF5qmGc_A&libraries=places&language=es&callback=initialize"
+            type="text/javascript"></script>-->
     <script>
         {{ include('includes/js/rateyo.js') }}
 
+
+        $( "#buscardor-form-inmuebles").autocomplete({
+            source: function( request, response ) {
+                var url = '{{ path('show_ubicaciones_buscador') }}';
+                $.ajax( {
+                    url: url,
+                    //dataType: "jsonp",
+                    data: {
+                        q: request.term
+                    },
+                    success: function( data ) {
+                        // Handle 'no match' indicated by [ "" ] response
+                        response( data.length === 0 ? ['Ningun resultado encontrado'] : data );
+                        //response( data.length === 1 && data[ 0 ].length === 0 ? ['Ningun resultado encontrado'] : data );
+                    }
+                } );
+            },
+            minLength: 1,
+        } );
         //google.maps.event.addDomListener(window, 'load', initialize);
     </script>
 {% endblock javascripts %}

@@ -1,0 +1,6 @@
+<h1>Negocios</h1>
+<ul>
+    {% for n in app.user.negocios %}
+        <li>{{ n.id~' '~n.nombre }}</li>
+    {% endfor %}
+</ul>

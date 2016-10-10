@@ -16,6 +16,7 @@ use AppBundle\Entity\Logo;
 use AppBundle\Entity\Negocio;
 use AppBundle\Entity\Proveedor;
 use AppBundle\Form\Type\ComentarioNegocioType;
+use AppBundle\Form\Type\EspecialistaType;
 use AppBundle\Form\Type\ProveedorType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -30,28 +31,31 @@ use Ivory\GoogleMap\Overlays\InfoWindow;
 use Ivory\GoogleMap\Events\MouseEvent;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-class ProveedorController extends Controller
+class EspecialistaController extends Controller
 {
+    public function registerConfirmationAction(Request $request){
 
+        return $this->render('FOSUserBundle:Profile:negocio_register_confirmation.html.twig');
+    }
     public function registerAction(Request $request){ // FIX ERROR ON /home/pmary/www/html/konstruye.pe/vendor/vich/uploader-bundle/Metadata/MetadataReader.php
 
         $user = $this->container->get('security.context')->getToken()->getUser();
-        $proveedor = new Proveedor();
+        $esp = new Especialista();
 
-        $form = $this->createForm(new ProveedorType(), $proveedor);
+        $form = $this->createForm(new EspecialistaType(), $esp);
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $proveedor->setUser($user);
+            $esp->setUser($user);
             $em = $this->getDoctrine()->getManager();
-            $em->persist($proveedor);
+            $em->persist($esp);
             $em->flush();
             //$request->getSession()->getFlashBag()->add('success', 'Gracias por registrarte !');
             return $this->redirectToRoute('negocio_register_confirmation');
         }
 
         return $this->render(
-            'FOSUserBundle:Profile:register_proveedor.html.twig',array(
+            'FOSUserBundle:Profile:register_especialista.html.twig',array(
                 'form'=>$form->createView()
             )
         );

@@ -74,6 +74,12 @@ class User extends BaseUser
     private $profile;
 
     /**
+     * @ORM\Column(type="string",nullable=true, length=10)
+     *
+     */
+    protected $telefono;
+
+    /**
      * @ORM\OneToMany(targetEntity="Negocio", mappedBy="user")
      */
     private $negocios;

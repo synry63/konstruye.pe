@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
- * @ORM\Entity(repositoryClass="AppBundle\Repository\FotoProductoRepository")
+ * @ORM\Entity
  * @Vich\Uploadable
  * @ORM\Table(name="fotos_productos")
  */

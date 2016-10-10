@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="format-detection" content="telephone=no">
+        <title>{% block title %}Bienvenido al Panel{% endblock %}</title>
+        {% block stylesheets %}
+
+        {% endblock %}
+    </head>
+    <body>
+        {% block top_section %}
+            {{ include('FOSUserBundle::Profile/Panel/Menu/select_negocio.html.twig')}}
+        {% endblock %}
+
+        {% block left_section %}
+            {#{{  render(controller('AppBundle:Panel:menuAllowed')) }}#}
+            {% set menuItem = knp_menu_get('AppBundle:Builder:menuPanelNegocio', [], {'negocio_id':negocio.id}) %}
+            {{ knp_menu_render(menuItem) }}
+        {% endblock %}
+        {% block content_section %}
+        {% endblock %}
+        {% block javascripts %}
+
+        {% endblock %}
+    </body>
+
+</html>
