@@ -104,7 +104,7 @@
             success: function(data) {
                 var $provincia_selector = $('#inmueble_provincia');
 
-                $provincia_selector.html('<option>Provincia</option>');
+                $provincia_selector.html('<option></option>');
 
                 for (var i=0, total = data.length; i < total; i++) {
                     $provincia_selector.append('<option value="' + data[i].id + '">' + data[i].nombre + '</option>');
@@ -124,7 +124,7 @@
             success: function(data) {
                 var $distrito_selector = $('#inmueble_distrito');
 
-                $distrito_selector.html('<option>Distrito</option>');
+                $distrito_selector.html('<option></option>');
 
                 for (var i=0, total = data.length; i < total; i++) {
                     $distrito_selector.append('<option value="' + data[i].id + '">' + data[i].nombre + '</option>');
