@@ -142,7 +142,11 @@
                 success: function(data) {
                     var $provincia_selector = $('#inmueble_provincia');
 
+<<<<<<< HEAD
                     $provincia_selector.html('<option>Provincia</option>');
+=======
+                $provincia_selector.html('<option></option>');
+>>>>>>> origin/master
 
                     for (var i=0, total = data.length; i < total; i++) {
                         $provincia_selector.append('<option value="' + data[i].id + '">' + data[i].nombre + '</option>');
@@ -150,6 +154,7 @@
                 }
             });
         });
+<<<<<<< HEAD
         $("#inmueble_provincia").change(function(){
             var data = {
                 provincia_id: $(this).val()
@@ -167,6 +172,25 @@
                     for (var i=0, total = data.length; i < total; i++) {
                         $distrito_selector.append('<option value="' + data[i].id + '">' + data[i].nombre + '</option>');
                     }
+=======
+    });
+    $("#inmueble_provincia").change(function(){
+        var data = {
+            provincia_id: $(this).val()
+        };
+
+        $.ajax({
+            type: 'post',
+            url: '{{ path("select_cities") }}',
+            data: data,
+            success: function(data) {
+                var $distrito_selector = $('#inmueble_distrito');
+
+                $distrito_selector.html('<option></option>');
+
+                for (var i=0, total = data.length; i < total; i++) {
+                    $distrito_selector.append('<option value="' + data[i].id + '">' + data[i].nombre + '</option>');
+>>>>>>> origin/master
                 }
             });
         });

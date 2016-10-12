@@ -4,10 +4,9 @@
 #}
 {% block stylesheets %}
     {{ parent() }}
+    {#Magnific Popup#}
+    <link rel="stylesheet" href="{{ asset('css/magnific-popup.css') }}">
 {% endblock stylesheets%}
-{#<link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">#}
-{#<link rel="stylesheet" href="{{ asset('css/styles.css') }}">#}
-{#<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300italic,300,400italic,800italic,800,700italic,700,600italic,600' rel='stylesheet' type='text/css'>#}
 
 
 {% block fos_user_content %}
@@ -20,8 +19,10 @@
                     <a href="#"><i class="fa fa-arrow-left" aria-hidden="true"></i></a>
                 </div>
                 <div class="datos-direccion">
-                    <h1>Proyecto Barcelona 400 - San Isidro</h1>
-                    <p>Calle Tomas Edison 131 esquina con Calle Barcelona, San Isidro, Lima</p>
+                    <h1> {{ negocio.nombre }}</h1>
+                    <div>
+                        <a href="#mapa"><i class="fa fa-map-marker" aria-hidden="true"></i> <p>{{ negocio.direccion~", "~negocio.distrito.nombre~", "~negocio.provincia.nombre}}</p></a>
+                    </div>
                 </div>
                 <div class="datos-icon-header">
                     <ul>
@@ -32,70 +33,111 @@
                     </ul>
                 </div>
             </div>
-            <div class="datos-izquierda">
-               <div class="datos-principales">
-                   {#<div class="datos-principales-titulo">Datos Principales</div>#}
-                   <h3 class="datos-principales-titulo">Datos Principales</h3>
-                   <ul>
-                       <li class="lista-datos-principales">
-                           <span class="">
-                               <i class=""></i> Proyecto Inmobiliario
-                           </span>
-                           <span></span>
-                       </li>
-                       <li class="lista-datos-principales">
-                           <span class="">
-                               <i class=""></i> Precio Desde
-                           </span>
-                           <span></span>
-                       </li>
-                       <li class="lista-datos-principales">
-                           <span class="">
-                               <i class=""></i> Precio en Dólares desde
-                           </span>
-                           <span></span>
-                       </li>
-                       <li class="lista-datos-principales">
-                           <span class="">
-                               <i class=""></i> 91m2 - 313m2 Área Total
-                           </span>
-                           <span></span>
-                       </li>
-                       <li class="lista-datos-principales">
-                           <span class="">
-                               <i class=""></i> 90m2 - 181m2 Área Techada
-                           </span>
-                           <span></span>
-                       </li>
-                       <li class="lista-datos-principales">
-                           <span class="">
-                               <i class=""></i> 1-3 Dormitorios
-                           </span>
-                           <span></span>
-                       </li>
-                       <li class="lista-datos-principales">
-                           <span class="">
-                               <i class=""></i> Hasta 3 Baños
-                           </span>
-                           <span></span>
-                       </li>
-                   </ul>
-               </div>
-            </div>
-            <div class="datos-derecha">
-                <div class="datos-descripcion">
-                    <h3 class="datos-descripcion-titulo">Descripcion</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium aliquam aperiam asperiores, cumque deserunt, dignissimos dolorem exercitationem perspiciatis quo similique temporibus vel veritatis? Deleniti eum facilis harum nostrum nulla vel! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem distinctio est nulla perspiciatis unde? Atque blanditiis, delectus explicabo fugit harum, itaque labore molestias nobis, quas quibusdam sapiente vitae voluptas! Nesciunt.</p>
+            <div class="data-izquierda">
+                <div class="datos-izquierda">
+                   <div class="datos-principales">
+                       <h3 class="datos-principales-titulo">Datos Principales</h3>
+                       <ul>
+                           <li class="lista-datos-principales">
+                               <span class="">
+                                   <i class="fa fa-heart-o" aria-hidden="true"></i> Proyecto Inmobiliario
+                               </span>
+                               <span></span>
+                           </li>
+                           <li class="lista-datos-principales">
+                               <span class="">
+                                   <i class="fa fa-heart-o" aria-hidden="true"></i> Precio Desde {{ negocio.precioSoles }}
+                               </span>
+                               <span></span>
+                           </li>
+                           <li class="lista-datos-principales">
+                               <span class="">
+                                   <i class="fa fa-heart-o" aria-hidden="true"></i> Precio en Dólares desde US$ {{ negocio.precioDolares }}
+                               </span>
+                               <span></span>
+                           </li>
+                           <li class="lista-datos-principales">
+                               <span class="">
+                                   <i class="fa fa-heart-o" aria-hidden="true"></i> {{ negocio.areaTotal }} Área Total
+                               </span>
+                               <span></span>
+                           </li>
+                           <li class="lista-datos-principales">
+                               <span class="">
+                                   <i class="fa fa-heart-o" aria-hidden="true"></i> {{ negocio.areaTechada }} Área Techada
+                               </span>
+                               <span></span>
+                           </li>
+                           <li class="lista-datos-principales">
+                               <span class="">
+                                   <i class="fa fa-heart-o" aria-hidden="true"></i> {{ negocio.dormitorios }} Dormitorios
+                               </span>
+                               <span></span>
+                           </li>
+                           <li class="lista-datos-principales">
+                               <span class="">
+                                   <i class="fa fa-heart-o" aria-hidden="true"></i> {{ negocio.banos }} Baños
+                               </span>
+                               <span></span>
+                           </li>
+                       </ul>
+                   </div>
+                </div>
+                <div id="mapa" class="datos-ubicacion">
+                    <div class="contenedor-ubicacion">
+                        <h3 class="datos-titulo-ubicacion">Ubicación</h3>
+                        <div class="datos-direc">
+                            <p><i class="fa fa-map-marker" aria-hidden="true"></i> {{ negocio.direccion }}</p><br>
+                            <div>
+                                {% if map is defined %}
+                                    {{ google_map(map) }}
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
+
+            <div class="data-derecha">
+                <div class="datos-derecha">
+                    <div class="datos-descripcion">
+                        <h3 class="datos-descripcion-titulo">Descripción</h3>
+                        <p class="descripcion-negocio">{{ negocio.description|nl2br  }}</p>
+                    </div>
+                </div>
+
+                <div class="datos-servicios">
+                    <div class="contenedor-servicios">
+                        <h3 class="datos-titulo-servicios">Servicios</h3>
+                        <div class="">
+                            {#{{ dump(negocio.sevicios[0]) }}#}
+                            {% for servicio in negocio.sevicios%}
+                                <p><i class="fa fa-check" aria-hidden="true"></i> {{ servicio.nombre }}</p>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="datos-generales">
+                    <div class="contenedor-generales">
+                        <h3 class="datos-titulo-generales">Generales</h3>
+                        <div class="">
+                            {% for general in negocio.generales %}
+                                <p><i class="fa fa-check" aria-hidden="true"></i> {{ general.nombre }}</p>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
 
         </section>
         <section class="col-inmueble-2">
             <div class="zona-precio">
                 <div class="zona-precio-contenido">
                     <div class="precio">
-                        <span class="titulo-zona-inmueble">Precio Desde</span>
-                        <span class="precio-zona-inmueble"> S/. 9335,283</span>
+                        <span class="titulo-zona-inmueble">Desde:</span>
+                        <span class="precio-zona-inmueble"> S/ {{ negocio.precioSoles }}</span>
                     </div>
                     <div class="zona-calcula-hipoteca">
                         <a class="calcula-hipoteca" href="#">CALCULA TU HIPOTECA</a>
@@ -106,9 +148,15 @@
                 <div class="zona-contactanos-contenido">
                     <div class="zona-contactanos-header">
                         <a class="link-inmobiliaria" href="">
-                            <span> NOMBRE EMPRESA </span>
-                            <img src="" alt="" width="40px" style="outline: 1px solid red">
+                            <span> {{ negocio.nombre }} </span>
+                            <img src="{{ asset('images/negocios/logo/' ~ negocio.logo.logoName ) }}" alt="" width="70px">
                         </a>
+                    </div>
+                    <div class="zona-telefono">
+                        <i class="fa fa-phone" aria-hidden="true"></i> VER TELÉFONO
+                    </div>
+                    <div class="zona-formulario">
+                        <a class="btn btn-konstruye simple-ajax-popup" href="{{ path('negocio_solicitar_cotizacion',{'slug_negocio':negocio.slug}) }}">Contactar Anuncio</a>
                     </div>
                 </div>
             </div>
@@ -116,3 +164,14 @@
     </div>
 {#</div>#}
 {% endblock fos_user_content %}
+{% block javascripts %}
+    {{ parent() }}
+<script>
+    $(document).ready(function(){
+        {#Magnific Popup#}
+        $('.simple-ajax-popup').magnificPopup({
+            type: 'ajax'
+        });
+    });
+</script>
+{% endblock javascripts %}
