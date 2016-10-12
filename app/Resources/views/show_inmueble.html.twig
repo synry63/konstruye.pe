@@ -4,11 +4,13 @@
 #}
 {% block stylesheets %}
     {{ parent() }}
+    {#Magnific Popup#}
+    <link rel="stylesheet" href="{{ asset('css/magnific-popup.css') }}">
 {% endblock stylesheets%}
 
 
 {% block fos_user_content %}
-{#{{ dump(negocio) }}#}
+{{ dump(negocio) }}
 {#<div class="container">#}
     <div class="contenedor-inmueble">
         <section class="col-inmueble-1">
@@ -17,9 +19,9 @@
                     <a href="#"><i class="fa fa-arrow-left" aria-hidden="true"></i></a>
                 </div>
                 <div class="datos-direccion">
-                    <h1>{{ negocio.nombre ~ "," }}</h1>
+                    <h1> {{ negocio.nombre }}</h1>
                     <div>
-                        <a href="#mapa"><i class="fa fa-map-marker" aria-hidden="true"></i> <p>{{ negocio.direccion~","~negocio.direccion}}</p></a>
+                        <a href="#mapa"><i class="fa fa-map-marker" aria-hidden="true"></i> <p>{{ negocio.direccion~", "~negocio.distrito.nombre~", "~negocio.provincia.nombre}}</p></a>
                     </div>
                 </div>
                 <div class="datos-icon-header">
@@ -34,7 +36,6 @@
             <div class="data-izquierda">
                 <div class="datos-izquierda">
                    <div class="datos-principales">
-                       {#<div class="datos-principales-titulo">Datos Principales</div>#}
                        <h3 class="datos-principales-titulo">Datos Principales</h3>
                        <ul>
                            <li class="lista-datos-principales">
@@ -87,11 +88,11 @@
                         <h3 class="datos-titulo-ubicacion">Ubicación</h3>
                         <div class="datos-direc">
                             <p><i class="fa fa-map-marker" aria-hidden="true"></i> {{ negocio.direccion }}</p><br>
-                            <p id="latitud">{{ negocio.googleMapLat }}</p>
-                            <p id="longuitud">{{ negocio.googleMapLng }}</p>
-                        </div>
-                        <div class="localizacion">
-                            {#<img src="https://dummyimage.com/380" alt="" style="position: relative; right: 20px; max-width: 100%">#}
+                            <div>
+                                {% if map is defined %}
+                                    {{ google_map(map) }}
+                                {% endif %}
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -101,7 +102,7 @@
                 <div class="datos-derecha">
                     <div class="datos-descripcion">
                         <h3 class="datos-descripcion-titulo">Descripción</h3>
-                        <p class="descripcion-negocio">{{ negocio.description }}</p>
+                        <p class="descripcion-negocio">{{ negocio.description|nl2br  }}</p>
                     </div>
                 </div>
 
@@ -148,14 +149,14 @@
                     <div class="zona-contactanos-header">
                         <a class="link-inmobiliaria" href="">
                             <span> {{ negocio.nombre }} </span>
-                                <img src="{{ asset('images/negocios/logo/' ~ negocio.logo.logoName ) }}" alt="" width="70px">
+                            <img src="{{ asset('images/negocios/logo/' ~ negocio.logo.logoName ) }}" alt="" width="70px">
                         </a>
                     </div>
                     <div class="zona-telefono">
                         <i class="fa fa-phone" aria-hidden="true"></i> VER TELÉFONO
                     </div>
                     <div class="zona-formulario">
-                        <a class="btn btn-konstruye">Contactar Anuncio</a>
+                        <a class="btn btn-konstruye simple-ajax-popup" href="{{ path('negocio_solicitar_cotizacion',{'slug_negocio':negocio.slug}) }}">Contactar Anuncio</a>
                     </div>
                 </div>
             </div>
@@ -163,3 +164,14 @@
     </div>
 {#</div>#}
 {% endblock fos_user_content %}
+{% block javascripts %}
+    {{ parent() }}
+<script>
+    $(document).ready(function(){
+        {#Magnific Popup#}
+        $('.simple-ajax-popup').magnificPopup({
+            type: 'ajax'
+        });
+    });
+</script>
+{% endblock javascripts %}

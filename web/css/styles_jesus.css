@@ -13,7 +13,7 @@ SHOW INMUEBLE
     flex-flow: row wrap;
     min-width: 100vh;
 }
-.col-inmueble-1 {
+.col-inmueble-1, .col-inmueble-1-1 {
     width: 66.101694915254237%;
     max-width: 780px;
     min-height: 100%;
@@ -232,6 +232,7 @@ SHOW INMUEBLE
 }
 .datos-izquierda .lista-datos-principales i {
     color: #A0A0A0;
+    font-weight: bold;
 }
 .col-inmueble-2 .zona-telefono {
     color: #27bdf1;
