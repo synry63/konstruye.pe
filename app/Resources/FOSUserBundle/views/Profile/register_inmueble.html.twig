@@ -1,7 +1,8 @@
-{#{{ form(form, {'attr': {'novalidate': 'novalidate'}}) }}#}
 <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
 <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
 <link rel="stylesheet" href="{{ asset('css/styles_javier.css') }}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+
 <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300italic,300,400italic,800italic,800,700italic,700,600italic,600' rel='stylesheet' type='text/css'>
 <title>Registro Compra y Venta</title>
 <body class="comprayventa">
@@ -9,128 +10,170 @@
 
 
     <div class="container">
-        <div class="form-negocios">
-            <div class="required">
-                <p>* Campos Obligatorios</p>
+
+            <div class="form-negocios">
+                <a class="return" href="{{ path('profile_negocios_seletion') }}">
+                    <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                </a>
+                <div class="logotipo">
+                    <img width="200px" src="{{ asset('images/logo-rc-color.svg') }}" alt="Logo Konstruye"/>
+                </div>
+                <div class="required">
+                    <p>* Campos Obligatorios</p>
+                </div>
+
+                {{ form_start(form,{ 'attr':{'novalidate':'novalidate'}}) }}
+                <div class="col-md-6">
+                    <div class="form-group">
+                        {{ form_label(form.nombre,'* Nombre del Inmueble') }}
+                        {% if form.nombre.vars.errors|length>0 %}
+                            <div class="alert alert-danger" role="alert">
+                                <div> <i class="fa fa-exclamation-circle" aria-hidden="true"></i>{{ form_errors(form.nombre) }}</div>
+                            </div>
+                        {% endif %}
+                        {{ form_widget(form.nombre,{'attr':{'class':'form-control'}}) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.direccion,'* Dirección') }}
+                        {% if form.direccion.vars.errors|length>0 %}
+                            <div class="alert alert-danger" role="alert">
+                                <div> <i class="fa fa-exclamation-circle" aria-hidden="true"></i>{{ form_errors(form.direccion) }}</div>
+                            </div>
+                        {% endif %}
+                        {{ form_widget(form.direccion,{'attr':{'class':'form-control'}}) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.departamento,'* Departamento') }}
+                        {% if form.departamento.vars.errors|length>0 %}
+                            <div class="alert alert-danger" role="alert">
+                                <div> <i class="fa fa-exclamation-circle" aria-hidden="true"></i>{{ form_errors(form.departamento) }}</div>
+                            </div>
+                        {% endif %}
+                        {{ form_widget(form.departamento,{'attr':{'class':'form-control'}}) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.provincia,'* Provincia') }}
+                        {% if form.provincia.vars.errors|length>0 %}
+                            <div class="alert alert-danger" role="alert">
+                                <div> <i class="fa fa-exclamation-circle" aria-hidden="true"></i>{{ form_errors(form.provincia) }}</div>
+                            </div>
+                        {% endif %}
+                        {{ form_widget(form.provincia,{'attr':{'class':'form-control'}}) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.distrito,'* Distrito') }}
+                        {% if form.distrito.vars.errors|length>0 %}
+                            <div class="alert alert-danger" role="alert">
+                                <div> <i class="fa fa-exclamation-circle" aria-hidden="true"></i>{{ form_errors(form.distrito) }}</div>
+                            </div>
+                        {% endif %}
+                        {{ form_widget(form.distrito,{'attr':{'class':'form-control'}}) }}
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        {{ form_label(form.structure,'Estructura') }}
+                        {% if form.structure.vars.errors|length>0 %}
+                            <div class="alert alert-danger" role="alert">
+                                <div> <i class="fa fa-exclamation-circle" aria-hidden="true"></i>{{ form_errors(form.structure) }}</div>
+                            </div>
+                        {% endif %}
+                        {{ form_widget(form.structure,{'attr':{'class':'form-control'}}) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.telefono,'* Teléfono') }}
+                        {% if form.telefono.vars.errors|length>0 %}
+                            <div class="alert alert-danger" role="alert">
+                                <div> <i class="fa fa-exclamation-circle" aria-hidden="true"></i>{{ form_errors(form.telefono) }}</div>
+                            </div>
+                        {% endif %}
+                        {{ form_widget(form.telefono,{'attr':{'class':'form-control'}}) }}
+                    </div>
+
+                    <div class="form-group">
+                        {{ form_label(form.email,'* Email') }}
+                        {% if form.email.vars.errors|length>0 %}
+                            <div class="alert alert-danger" role="alert">
+                                <div> <i class="fa fa-exclamation-circle" aria-hidden="true"></i>{{ form_errors(form.email) }}</div>
+                            </div>
+                        {% endif %}
+                        {{ form_widget(form.email,{'attr':{'class':'form-control'}}) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.description,'* Descripción') }}
+                        {% if form.description.vars.errors|length>0 %}
+                            <div class="alert alert-danger" role="alert">
+                                <div> <i class="fa fa-exclamation-circle" aria-hidden="true"></i>{{ form_errors(form.description) }}</div>
+                            </div>
+                        {% endif %}
+                        {{ form_widget(form.description,{'attr':{'class':'form-control', 'rows':'5'}}) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_widget(form.submit,{'attr':{'class':'btn btn-konstruye btn-registrate'},'label':'Registrar'}) }}
+                    </div>
+                </div>
+
+
+
+                {{ form_end(form) }}
+            </div>
+            <div class="titulo-registro">
+                <h1>Compra, Venta y Alquier</h1>
+                <h2>De Inmuebles</h2>
             </div>
 
-            {{ form_start(form,{ 'attr':{'novalidate':'novalidate'}}) }}
-            <div class="col-md-6">
-                <div class="form-group">
-                    {{ form_label(form.nombre,'* Nombre del Inmueble') }}
-                    {{ form_errors(form.nombre) }}
-                    {{ form_widget(form.nombre,{'attr':{'class':'form-control'}}) }}
-                </div>
-                <div class="form-group">
-                    {{ form_label(form.direccion,'* Dirección') }}
-                    {{ form_errors(form.direccion) }}
-                    {{ form_widget(form.direccion,{'attr':{'class':'form-control'}}) }}
-                </div>
-                <div class="form-group">
-                    {{ form_label(form.departamento,'* Departamento') }}
-                    {{ form_errors(form.departamento) }}
-                    {{ form_widget(form.departamento,{'attr':{'class':'form-control'}}) }}
-                </div>
-                <div class="form-group">
-                    {{ form_label(form.provincia,'* Provincia') }}
-                    {{ form_errors(form.provincia) }}
-                    {{ form_widget(form.provincia,{'attr':{'class':'form-control'}}) }}
-                </div>
-                <div class="form-group">
-                    {{ form_label(form.distrito,'* Distrito') }}
-                    {{ form_errors(form.distrito) }}
-                    {{ form_widget(form.distrito,{'attr':{'class':'form-control'}}) }}
-                </div>
-            </div>
 
-            <div class="col-md-6">
-                <div class="form-group">
-                    {{ form_label(form.structure,'Estructura') }}
-                    {{ form_errors(form.structure) }}
-                    {{ form_widget(form.structure,{'attr':{'class':'form-control'}}) }}
-                </div>
-                <div class="form-group">
-                    {{ form_label(form.telefono,'* Teléfono') }}
-                    {{ form_errors(form.telefono) }}
-                    {{ form_widget(form.telefono,{'attr':{'class':'form-control'}}) }}
-                </div>
-
-                <div class="form-group">
-                    {{ form_label(form.email,'* Email') }}
-                    {{ form_errors(form.email) }}
-                    {{ form_widget(form.email,{'attr':{'class':'form-control'}}) }}
-                </div>
-                <div class="form-group">
-                    {{ form_label(form.description,'* Descripción') }}
-                    {{ form_errors(form.description) }}
-                    {{ form_widget(form.description,{'attr':{'class':'form-control', 'rows':'5'}}) }}
-                </div>
-                <div class="form-group">
-                    {{ form_widget(form.submit,{'attr':{'class':'btn btn-konstruye btn-registrate'},'label':'Registrar'}) }}
-                </div>
-            </div>
-
-
-
-            {{ form_end(form) }}
-        </div>
     </div>
 
 
 
+    <script type="text/javascript" src="{{ asset('js/jquery-1.11.0.min.js') }}"></script>
+    <script>
+        $("#inmueble_departamento").change(function(){
+            var data = {
+                departamento_id: $(this).val()
+            };
 
+            $.ajax({
+                type: 'post',
+                url: '{{ path("select_provinces") }}',
+                data: data,
+                success: function(data) {
+                    var $provincia_selector = $('#inmueble_provincia');
+
+                    $provincia_selector.html('<option>Provincia</option>');
+
+                    for (var i=0, total = data.length; i < total; i++) {
+                        $provincia_selector.append('<option value="' + data[i].id + '">' + data[i].nombre + '</option>');
+                    }
+                }
+            });
+        });
+        $("#inmueble_provincia").change(function(){
+            var data = {
+                provincia_id: $(this).val()
+            };
+
+            $.ajax({
+                type: 'post',
+                url: '{{ path("select_cities") }}',
+                data: data,
+                success: function(data) {
+                    var $distrito_selector = $('#inmueble_distrito');
+
+                    $distrito_selector.html('<option>Distrito</option>');
+
+                    for (var i=0, total = data.length; i < total; i++) {
+                        $distrito_selector.append('<option value="' + data[i].id + '">' + data[i].nombre + '</option>');
+                    }
+                }
+            });
+        });
+
+    </script>
 
 
 </body>
 
 
-
-
-
-
-
-
-<script type="text/javascript" src="{{ asset('js/jquery-1.11.0.min.js') }}"></script>
-<script>
-    $("#inmueble_departamento").change(function(){
-        var data = {
-            departamento_id: $(this).val()
-        };
-
-        $.ajax({
-            type: 'post',
-            url: '{{ path("select_provinces") }}',
-            data: data,
-            success: function(data) {
-                var $provincia_selector = $('#inmueble_provincia');
-
-                $provincia_selector.html('<option>Provincia</option>');
-
-                for (var i=0, total = data.length; i < total; i++) {
-                    $provincia_selector.append('<option value="' + data[i].id + '">' + data[i].nombre + '</option>');
-                }
-            }
-        });
-    });
-    $("#inmueble_provincia").change(function(){
-        var data = {
-            provincia_id: $(this).val()
-        };
-
-        $.ajax({
-            type: 'post',
-            url: '{{ path("select_cities") }}',
-            data: data,
-            success: function(data) {
-                var $distrito_selector = $('#inmueble_distrito');
-
-                $distrito_selector.html('<option>Distrito</option>');
-
-                for (var i=0, total = data.length; i < total; i++) {
-                    $distrito_selector.append('<option value="' + data[i].id + '">' + data[i].nombre + '</option>');
-                }
-            }
-        });
-    });
-
-</script>
