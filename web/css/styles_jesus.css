@@ -1,98 +1,86 @@
 
 
-/*=============
-SHOW INMUEBLE
-=============*/
-.contenedor-inmueble {
-    max-width: 1180px;
-    width: 81.944444%;
-    margin-left: auto;
-    margin-right: auto;
-    display: flex;
-    -webkit-flex-flow: row wrap;
-    flex-flow: row wrap;
-    min-width: 100vh;
-}
-.col-inmueble-1, .col-inmueble-1-1 {
-    width: 66.101694915254237%;
-    max-width: 780px;
-    min-height: 100%;
-}
-.col-inmueble-2 {
-    width: 33.898305084745763%;
-    max-width: 400px;
-    min-height: 100%;
-}
-.col-inmueble-1 .datos-header {
+/*!*=============*/
+/*SHOW INMUEBLE*/
+/*=============*!*/
+/*.contenedor-inmueble {*/
+    /*max-width: 1180px;*/
+    /*width: 81.944444%;*/
+    /*margin-left: auto;*/
+    /*margin-right: auto;*/
+    /*display: flex;*/
+    /*-webkit-flex-flow: row wrap;*/
+    /*flex-flow: row wrap;*/
+    /*min-width: 100vh;*/
+/*}*/
+/*.col-inmueble-1, .col-inmueble-1-1 {*/
+    /*width: 66.101694915254237%;*/
+    /*max-width: 780px;*/
+    /*min-height: 100%;*/
+/*}*/
+/*.col-inmueble-2 {*/
+    /*width: 33.898305084745763%;*/
+    /*max-width: 400px;*/
+    /*min-height: 100%;*/
+/*}*/
+.datos-header {
     padding: 20px;
     background-color: #fff;
     margin-bottom: 20px;
     box-shadow: 0 1px 2px rgba(0,0,0,.4);
     position: relative;
     margin-top: 20px;
-    max-width: 780px;
-    width: 100%;
 }
-.col-inmueble-1 .datos-anterior {
+.datos-anterior {
     display: inline-block;
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
 }
-.col-inmueble-1 .datos-anterior a {
+.datos-anterior a {
     display: inline-block;
 }
-.col-inmueble-1 .datos-anterior a i {
+.datos-anterior a i {
     font-size: 25px;
 }
-.col-inmueble-1 .datos-direccion {
+.datos-direccion {
     display: inline-block;
     margin-left: 35px;
 }
-.col-inmueble-1 .datos-direccion div p {
-    display: inline-block;
-}
-.col-inmueble-1 .datos-icon-header {
-    display: inline-block;
-    position: absolute;
-    right: 20px;
-}
-.col-inmueble-1 .lista-header-icon {
-    display: inline-block;
-}
-.col-inmueble-1 .datos-direccion h1 {
+.datos-direccion h1 {
     font-size: 20px;
     line-height: 24px;
     margin-bottom: 7px;
     font-weight: 400;
 }
-.contenedor-inmueble .zona-precio {
-    padding: 20px 0 0 20px;
-    max-width: 400px;
-    width: 100%;
+.datos-direccion div p {
+    display: inline-block;
 }
-.contenedor-inmueble .zona-precio-contenido {
+.datos-icon-header {
+    display: inline-block;
+    position: absolute;
+    right: 20px;
+}
+.lista-header-icon {
+    display: inline-block;
+}
+.zona-precio {
+    margin: 20px 0;
+}
+.zona-precio-contenido {
     padding: 20px;
     box-shadow: 0 1px 2px rgba(0,0,0,.4);
     background-color: #fff;
 }
-.contenedor-inmueble span.titulo-zona-inmueble {
-    float: left;
-    text-transform: uppercase;
-    color: rgba(0,0,0,.5);
-    font-weight: 500;
-    line-height: 28px;
-}
-.contenedor-inmueble span.precio-zona-inmueble {
+.zona-precio-contenido span.precio-zona-inmueble {
     float: right;
     font-size: 28px;
     font-weight: 600;
 }
-.contenedor-inmueble .precio {
+.precio {
     overflow: hidden;
-    clear: both;
 }
-.contenedor-inmueble .calcula-hipoteca {
+.calcula-hipoteca {
     display: block;
     text-align: right;
     color: #27bdf1;
@@ -100,24 +88,48 @@ SHOW INMUEBLE
     font-size: 14px;
     margin-top: 4px;
 }
-.contenedor-inmueble .zona-contactanos {
-    /*padding: 20px;*/
-    padding: 20px 0 0 20px;
-    max-width: 400px;
-    width: 100%;
+.zona-precio-contenido span.titulo-zona-inmueble {
+    float: left;
+    text-transform: uppercase;
+    color: rgba(0,0,0,.5);
+    font-weight: 500;
+    line-height: 28px;
 }
-.contenedor-inmueble .zona-contactanos-contenido {
+/*.contenedor-inmueble span.precio-zona-inmueble {*/
+    /*float: right;*/
+    /*font-size: 28px;*/
+    /*font-weight: 600;*/
+/*}*/
+/*.contenedor-inmueble .precio {*/
+    /*overflow: hidden;*/
+    /*clear: both;*/
+/*}*/
+/*.contenedor-inmueble .calcula-hipoteca {*/
+    /*display: block;*/
+    /*text-align: right;*/
+    /*color: #27bdf1;*/
+    /*font-weight: normal;*/
+    /*font-size: 14px;*/
+    /*margin-top: 4px;*/
+/*}*/
+/*.contenedor-inmueble .zona-contactanos {*/
+    /*!*padding: 20px;*!*/
+    /*padding: 20px 0 0 20px;*/
+    /*max-width: 400px;*/
+    /*width: 100%;*/
+/*}*/
+.zona-contactanos-contenido {
     background-color: #fff;
     padding: 20px;
     box-shadow: 0 1px 2px rgba(0,0,0,.4);
 }
-.contenedor-inmueble  a.link-inmobiliaria {
+.zona-contactanos-contenido a.link-inmobiliaria {
     display: block;
     overflow: hidden;
     /*padding: 0 0 20px;*/
     position: relative;
 }
-.contenedor-inmueble a.link-inmobiliaria span {
+.zona-contactanos-contenido a.link-inmobiliaria span {
     float: left;
     font-size: 20px;
     margin-bottom: 7px;
@@ -128,103 +140,24 @@ SHOW INMUEBLE
     top: 50%;
     transform: translateY(-50%);
 }
-.contenedor-inmueble a.link-inmobiliaria img {
+.zona-contactanos-contenido a.link-inmobiliaria img {
     float: right;
 }
-
-.col-inmueble-1 {
-
+.zona-contactanos-contenido .zona-formulario {
+    margin-top: 20px;
 }
-.col-inmueble-1 .data-izquierda {
-    float: left;
-    max-width: 380px;
-    width: 48.717948717948718%;
-}
-.col-inmueble-1 .datos-izquierda {
-    max-width: 380px;
-    background-color: #fff;
-    width: 100%;
-    box-shadow: 0 1px 2px rgba(0,0,0,.4);
-}
-.datos-izquierda .datos-principales {
+.datos-izquierda, .data-izquierda_b {
     padding:20px;
+    background-color: #fff;
+    box-shadow: 0 1px 2px rgba(0,0,0,.4);
 }
-.datos-izquierda .datos-principales-titulo {
-    /*border: 1px solid #d1d1d1;*/
+.data-izquierda_b .datos-descripcion-titulo {
     padding-bottom: 20px;
 }
-.data-izquierda .datos-ubicacion {
-    margin-top: 20px;
-    max-width: 380px;
-}
-.datos-ubicacion .contenedor-ubicacion {
-    background-color: #fff;
-    padding: 20px;
-    box-shadow: 0 1px 2px rgba(0,0,0,.4);
-}
-.datos-ubicacion h3.datos-titulo-ubicacion {
-    color: #1C9CD9;
-    font-size: 20px;
-    font-weight: 600;
-    padding-bottom: 20px;
-}
-.datos-ubicacion .datos-direc i {
-    color: #A0A0A0;
-}
-.data-derecha {
-    max-width: 380px;
-    width: 48.717948717948718%;
-    float: right;
-}
-.data-derecha .datos-servicios {
-    margin-top: 20px;
-    max-width: 380px;
-}
-.data-derecha .datos-servicios .contenedor-servicios {
-    background-color: #fff;
-    padding: 20px;
-    box-shadow: 0 1px 2px rgba(0,0,0,.4);
-}
-.data-derecha .datos-servicios .fa-check, .data-derecha .datos-generales .fa-check {
-    color: #a0a0a0;
-}
-.data-derecha .datos-generales {
-    /*margin-top: 20px;*/
-    max-width: 380px;
-}
-.data-derecha .datos-generales .contenedor-generales {
-    background-color: #fff;
-    padding: 20px;
-    box-shadow: 0 1px 2px rgba(0,0,0,.4);
-}
-.data-derecha .datos-generales .datos-titulo-generales {
-    color: #1C9CD9;
-    font-size: 20px;
-    font-weight: 600;
-}
-.col-inmueble-1 .datos-derecha {
-    max-width: 380px;
-    width: 100%;
-    background-color: #fff;
-    /*float: right;*/
-    box-shadow: 0 1px 2px rgba(0,0,0,.4);
-}
-.datos-derecha .datos-descripcion {
-    padding: 20px;
-}
-.datos-derecha .datos-descripcion-titulo {
-    padding-bottom: 20px;
-}
-.datos-derecha .descripcion-negocio {
+.data-izquierda_b .descripcion-negocio {
     font-size: 16px;
     line-height: 20px;
-    text-align: justify;
-}
-.datos-descripcion-titulo ,.datos-principales-titulo, .datos-titulo-generales, .datos-titulo-servicios {
-    color: #1C9CD9;
-    font-size: 20px;
-    font-weight: 600;
-    padding-bottom: 20px;
+    /*text-align: justify;*/
 }
 .datos-izquierda .lista-datos-principales {
     line-height: 28px;
@@ -234,106 +167,52 @@ SHOW INMUEBLE
     color: #A0A0A0;
     font-weight: bold;
 }
-.col-inmueble-2 .zona-telefono {
-    color: #27bdf1;
-    font-weight: normal;
-    font-size: 14px;
+.datos-izquierda .datos-principales-titulo {
+    /*border: 1px solid #d1d1d1;*/
+    padding-bottom: 20px;
 }
-.col-inmueble-2 .zona-formulario {
+.datos-ubicacion {
+    padding:20px;
+    background-color: #fff;
+    box-shadow: 0 1px 2px rgba(0,0,0,.4);
     margin-top: 20px;
 }
-
-@media all and (max-width: 992px) {
-    .datos-izquierda, .datos-derecha {
-        max-width: 293px;
-    }
+.zona-telefono {
+color: #27bdf1;
+font-weight: normal;
+font-size: 14px;
 }
-
-@media all and (max-width : 768px){
-    .col-inmueble-1, .col-inmueble-2 {
-        width: 100%;
-        max-width: 768px;
-        margin-top: 20px;
-    }
-    .contenedor-inmueble .datos-izquierda {
-        float: none;
-        width: 100%;
-        max-width: 768px;
-        margin-bottom: 20px;
-    }
-    .contenedor-inmueble .datos-ubicacion {
-        width: 100%;
-        max-width: 768px;
-    }
-    .contenedor-inmueble .datos-derecha {
-        float: none;
-        width: 100%;
-        max-width: 768px;
-        margin-bottom: 20px;
-    }
-    .contenedor-inmueble .datos-servicios {
-        width: 100%;
-        max-width: 768px;
-    }
-    .contenedor-inmueble .datos-generales {
-        width: 100%;
-        max-width: 768px;
-    }
-    .col-inmueble-2 .zona-precio {
-        width: 100%;
-        max-width: 768px;
-        padding: 0;
-    }
-    .contenedor-inmueble .zona-contactanos {
-        width: 100%;
-        max-width: 768px;
-        padding: 0;
-    }
-
-    .datos-descripcion {
-        width: 100%;
-        max-width: 768px;
-    }
+.top-margin {
+    margin-top: 20px;
 }
-
-@media all and (max-width: 730px){
-    .col-inmueble-1 .data-izquierda {
-        float: none;
-        max-width: 780px;
-        width: 100%;
-    }
-    .col-inmueble-1 .data-derecha {
-        float: none;
-        max-width: 780px;
-        width: 100%;
-        margin-top: 20px;
-    }
+.padding-left-right {
+    padding-right: 0;
+    padding-left: 0;
 }
-
-
-@media all and (max-width: 480px) {
-    .contenedor-inmueble {
-        width: 80%;
-    }
-    .col-inmueble-1, .col-inmueble-2 {
-        width: 100%;
-    }
-    .col-inmueble-1 .datos-header {
-        max-width: 450px;
-    }
-    .col-inmueble-1, .datos-izquierda {
-        float: none;
-        max-width: 450px;
-    }
-    .col-inmueble-1 .datos-derecha {
-        float: none;
-        max-width: 450px;
-    }
-    .col-inmueble-2 .zona-precio {
-        max-width: 450px;
-    }
-    .col-inmueble-2 .zona-contactanos {
-        max-width: 450px;
-    }
+.padding-right {
+    padding-right: 0;
 }
-
+.datos-servicios .contenedor-servicios {
+    margin-top: 20px;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 1px 2px rgba(0,0,0,.4);
+}
+.datos-descripcion-titulo ,.datos-principales-titulo, .datos-titulo-generales, .datos-titulo-servicios, .datos-titulo-ubicacion {
+    color: #1C9CD9;
+    font-size: 20px;
+    font-weight: 600;
+    padding-bottom: 20px;
+}
+/*.data-derecha .datos-servicios .fa-check, .data-derecha .datos-generales .fa-check {*/
+    /*color: #a0a0a0;*/
+/*}*/
+/*.data-derecha .datos-generales {*/
+    /*!*margin-top: 20px;*!*/
+    /*max-width: 380px;*/
+/*}*/
+.datos-generales .contenedor-generales {
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 1px 2px rgba(0,0,0,.4);
+}
