@@ -4,9 +4,9 @@
 #}
 {% block stylesheets %}
     {{ parent() }}
-    {#Magnivi Popup#}
+    {#Magnific Popup#}
     <link rel="stylesheet" href="{{ asset('css/magnific-popup.css') }}">
-    {#MasterSlider#}
+    {#Slider#}
     <link rel="stylesheet" href="{{ asset('css/masterslider.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('css/ms-gallery-style.css') }}">
@@ -63,54 +63,26 @@
                         <!-- masterslider -->
                         <div class="master-slider ms-skin-black-2 round-skin" id="masterslider" >
                             <div class="ms-slide">
-                                <img src="../masterslider/style/blank.gif" data-src="{{ asset('images/comprayventa.jpg') }}" alt="lorem ipsum dolor sit"/>
-                                {#<img src="img/thumbs/1.jpg" alt="thumb-1" class="ms-thumb"/>#}
+                                <img src="{{ asset('css/blank.gif') }}" data-src="{{ asset('images/comprayventa.jpg') }}" alt="lorem ipsum dolor sit"/>
+                                <img src="{{ asset('images/comprayventa.jpg') }}" alt="thumb-1" class="ms-thumb"/>
                                 <div class="ms-info">
                                     INMUEBLE
                                 </div>
                             </div>
-                            {#<div class="ms-slide">#}
-                                {#<img src="../masterslider/style/blank.gif" data-src="img/2.jpg" alt="lorem ipsum dolor sit"/>#}
-                                {#<img src="img/thumbs/2.jpg" alt="thumb-2" class="ms-thumb"/>#}
-                                {#<div class="ms-info">#}
-                                    {#CONSECTETUR ADIPISCING ELIT#}
-                                {#</div>#}
-                            {#</div>#}
-                            {#<div class="ms-slide">#}
-                                {#<img src="../masterslider/style/blank.gif" data-src="img/3.jpg" alt="lorem ipsum dolor sit"/>#}
-                                {#<img src="img/thumbs/3.jpg" alt="thumb-3" class="ms-thumb"/>#}
-                                {#<div class="ms-info">#}
-                                    {#SUSPENDISSE UT PULVINAR MAURIS#}
-                                {#</div>#}
-                            {#</div>#}
-                            {#<div class="ms-slide">#}
-                                {#<img src="../masterslider/style/blank.gif" data-src="img/4.jpg" alt="lorem ipsum dolor sit"/>#}
-                                {#<img src="img/thumbs/4.jpg" alt="thumb-4" class="ms-thumb"/>#}
-                                {#<div class="ms-info">#}
-                                    {#SED DAPIBUS SIT AMET FELIS#}
-                                {#</div>#}
-                            {#</div>#}
-                            {#<div class="ms-slide">#}
-                                {#<img src="../masterslider/style/blank.gif" data-src="img/5.jpg" alt="lorem ipsum dolor sit"/>#}
-                                {#<img src="img/thumbs/5.jpg" alt="thumb-5" class="ms-thumb"/>#}
-                                {#<div class="ms-info">#}
-                                    {#CONSECTETUR ADIPISCING ELIT#}
-                                {#</div>#}
-                            {#</div>#}
-                            {#<div class="ms-slide">#}
-                                {#<img src="../masterslider/style/blank.gif" data-src="img/6.jpg" alt="lorem ipsum dolor sit"/>#}
-                                {#<img src="img/thumbs/6.jpg" alt="thumb-6" class="ms-thumb"/>#}
-                                {#<div class="ms-info">#}
-                                    {#SED A SEM AT LIBERO SODALES#}
-                                {#</div>#}
-                            {#</div>#}
-                            {#<div class="ms-slide">#}
-                                {#<img src="../masterslider/style/blank.gif" data-src="img/7.jpg" alt="lorem ipsum dolor sit"/>#}
-                                {#<img src="img/thumbs/7.jpg" alt="thumb-7" class="ms-thumb"/>#}
-                                {#<div class="ms-info">#}
-                                    {#AT LACUS SED RUTRUM#}
-                                {#</div>#}
-                            {#</div>#}
+                            <div class="ms-slide">
+                                <img src="{{ asset('css/blank.gif') }}" data-src="{{ asset('images/comprayventa.jpg') }}" alt="lorem ipsum dolor sit"/>
+                                <img src="{{ asset('images/comprayventa.jpg') }}" alt="thumb-1" class="ms-thumb"/>
+                                <div class="ms-info">
+                                    INMUEBLE
+                                </div>
+                            </div>
+                            <div class="ms-slide">
+                                <img src="{{ asset('css/blank.gif') }}" data-src="{{ asset('images/comprayventa.jpg') }}" alt="lorem ipsum dolor sit"/>
+                                <img src="{{ asset('images/comprayventa.jpg') }}" alt="thumb-1" class="ms-thumb"/>
+                                <div class="ms-info">
+                                    INMUEBLE
+                                </div>
+                            </div>
                         </div>
                         <!-- end of masterslider -->
                     </div>
@@ -227,6 +199,8 @@
                                     <a class="link-inmobiliaria" href="">
                                         <span> {{ negocio.nombre }} </span>
                                         <img src="{{ asset('images/negocios/logo/' ~ negocio.logo.logoName ) }}" alt="" width="70px">
+                                        {#<img class="" width="70px" src="{{ vich_uploader_asset(negocio.logo.logoName, 'profileFile') }}" alt="">#}
+                                        {#<img class="img-circle" width="50px" src="{{ vich_uploader_asset(app.user.profile, 'profileFile') }}" alt="">#}
                                     </a>
                                 </div>
                                 <div class="zona-telefono">
@@ -240,160 +214,12 @@
                 </div>
             </div>
         </section>
-        <section class="col-inmueble-1">
-            {#<div class="datos-header">#}
-                {#<div class="datos-anterior">#}
-                    {#<a href="#"><i class="fa fa-arrow-left" aria-hidden="true"></i></a>#}
-                {#</div>#}
-                {#<div class="datos-direccion">#}
-                    {#<h1> {{ negocio.nombre }}</h1>#}
-                    {#<div>#}
-                        {#<a href="#mapa"><i class="fa fa-map-marker" aria-hidden="true"></i> <p>{{ negocio.direccion~", "~negocio.distrito.nombre~", "~negocio.provincia.nombre}}</p></a>#}
-                    {#</div>#}
-                {#</div>#}
-                {#<div class="datos-icon-header">#}
-                    {#<ul>#}
-                        {#<li class="lista-header-icon"><i class="fa fa-flag" aria-hidden="true"></i></li>#}
-                        {#<li class="lista-header-icon"><i class="fa fa-heart-o" aria-hidden="true"></i></li>#}
-                        {#<li class="lista-header-icon"><i class="fa fa-flag" aria-hidden="true"></i></li>#}
-                        {#<li class="lista-header-icon"><i class="fa fa-heart-o" aria-hidden="true"></i></li>#}
-                    {#</ul>#}
-                {#</div>#}
-            {#</div>#}
-            {#<div class="data-izquierda">#}
-                {#<div class="datos-izquierda">#}
-                   {#<div class="datos-principales">#}
-                       {#<h3 class="datos-principales-titulo">Datos Principales</h3>#}
-                       {#<ul>#}
-                           {#<li class="lista-datos-principales">#}
-                               {#<span class="">#}
-                                   {#<i class="fa fa-heart-o" aria-hidden="true"></i> Proyecto Inmobiliario#}
-                               {#</span>#}
-                               {#<span></span>#}
-                           {#</li>#}
-                           {#<li class="lista-datos-principales">#}
-                               {#<span class="">#}
-                                   {#<i class="fa fa-heart-o" aria-hidden="true"></i> Precio Desde {{ negocio.precioSoles }}#}
-                               {#</span>#}
-                               {#<span></span>#}
-                           {#</li>#}
-                           {#<li class="lista-datos-principales">#}
-                               {#<span class="">#}
-                                   {#<i class="fa fa-heart-o" aria-hidden="true"></i> Precio en Dólares desde US$ {{ negocio.precioDolares }}#}
-                               {#</span>#}
-                               {#<span></span>#}
-                           {#</li>#}
-                           {#<li class="lista-datos-principales">#}
-                               {#<span class="">#}
-                                   {#<i class="fa fa-heart-o" aria-hidden="true"></i> {{ negocio.areaTotal }} Área Total#}
-                               {#</span>#}
-                               {#<span></span>#}
-                           {#</li>#}
-                           {#<li class="lista-datos-principales">#}
-                               {#<span class="">#}
-                                   {#<i class="fa fa-heart-o" aria-hidden="true"></i> {{ negocio.areaTechada }} Área Techada#}
-                               {#</span>#}
-                               {#<span></span>#}
-                           {#</li>#}
-                           {#<li class="lista-datos-principales">#}
-                               {#<span class="">#}
-                                   {#<i class="fa fa-heart-o" aria-hidden="true"></i> {{ negocio.dormitorios }} Dormitorios#}
-                               {#</span>#}
-                               {#<span></span>#}
-                           {#</li>#}
-                           {#<li class="lista-datos-principales">#}
-                               {#<span class="">#}
-                                   {#<i class="fa fa-heart-o" aria-hidden="true"></i> {{ negocio.banos }} Baños#}
-                               {#</span>#}
-                               {#<span></span>#}
-                           {#</li>#}
-                       {#</ul>#}
-                   {#</div>#}
-                {#</div>#}
-                {#<div id="mapa" class="datos-ubicacion">#}
-                    {#<div class="contenedor-ubicacion">#}
-                        {#<h3 class="datos-titulo-ubicacion">Ubicación</h3>#}
-                        {#<div class="datos-direc">#}
-                            {#<p><i class="fa fa-map-marker" aria-hidden="true"></i> {{ negocio.direccion }}</p><br>#}
-                            {#<div>#}
-                                {#{% if map is defined %}#}
-                                    {#{{ google_map(map) }}#}
-                                {#{% endif %}#}
-                            {#</div>#}
-                        {#</div>#}
-                    {#</div>#}
-                {#</div>#}
-            {#</div>#}
-
-            {#<div class="data-derecha">#}
-                {#<div class="datos-derecha">#}
-                    {#<div class="datos-descripcion">#}
-                        {#<h3 class="datos-descripcion-titulo">Descripción</h3>#}
-                        {#<p class="descripcion-negocio">{{ negocio.description|nl2br  }}</p>#}
-                    {#</div>#}
-                {#</div>#}
-
-                {#<div class="datos-servicios">#}
-                    {#<div class="contenedor-servicios">#}
-                        {#<h3 class="datos-titulo-servicios">Servicios</h3>#}
-                        {#<div class="">#}
-                            {#{{ dump(negocio.sevicios[0]) }}#}
-                            {#{% for servicio in negocio.sevicios%}#}
-                                {#<p><i class="fa fa-check" aria-hidden="true"></i> {{ servicio.nombre }}</p>#}
-                            {#{% endfor %}#}
-                        {#</div>#}
-                    {#</div>#}
-                {#</div>#}
-
-                {#<div class="datos-generales">#}
-                    {#<div class="contenedor-generales">#}
-                        {#<h3 class="datos-titulo-generales">Generales</h3>#}
-                        {#<div class="">#}
-                            {#{% for general in negocio.generales %}#}
-                                {#<p><i class="fa fa-check" aria-hidden="true"></i> {{ general.nombre }}</p>#}
-                            {#{% endfor %}#}
-                        {#</div>#}
-                    {#</div>#}
-                {#</div>#}
-            {#</div>#}
-
-
-        </section>
-        {#<section class="col-inmueble-2">#}
-            {#<div class="zona-precio">#}
-                {#<div class="zona-precio-contenido">#}
-                    {#<div class="precio">#}
-                        {#<span class="titulo-zona-inmueble">Desde:</span>#}
-                        {#<span class="precio-zona-inmueble"> S/ {{ negocio.precioSoles }}</span>#}
-                    {#</div>#}
-                    {#<div class="zona-calcula-hipoteca">#}
-                        {#<a class="calcula-hipoteca" href="#">CALCULA TU HIPOTECA</a>#}
-                    {#</div>#}
-                {#</div>#}
-            {#</div>#}
-            {#<div class="zona-contactanos">#}
-                {#<div class="zona-contactanos-contenido">#}
-                    {#<div class="zona-contactanos-header">#}
-                        {#<a class="link-inmobiliaria" href="">#}
-                            {#<span> {{ negocio.nombre }} </span>#}
-                            {#<img src="{{ asset('images/negocios/logo/' ~ negocio.logo.logoName ) }}" alt="" width="70px">#}
-                        {#</a>#}
-                    {#</div>#}
-                    {#<div class="zona-telefono">#}
-                        {#<i class="fa fa-phone" aria-hidden="true"></i> VER TELÉFONO#}
-                    {#</div>#}
-                    {#<div class="zona-formulario">#}
-                        {#<a class="btn btn-konstruye simple-ajax-popup" href="{{ path('negocio_solicitar_cotizacion',{'slug_negocio':negocio.slug}) }}">Contactar Anuncio</a>#}
-                    {#</div>#}
-                {#</div>#}
-            {#</div>#}
-        {#</section>#}
     </div>
 {#</div>#}
 {% endblock fos_user_content %}
 {% block javascripts %}
     {{ parent() }}
-    {#MasterSlider#}
+    {#Slider#}
     <script  type="text/javascript" src="{{ asset('js/jquery.easing.min.js') }}"></script>
     <script  type="text/javascript" src="{{ asset('js/masterslider.min.js') }}"></script>
 <script>
@@ -408,9 +234,12 @@
         slider.setup('masterslider' , {
             width:1125,
             height:500,
-            space:10,
+            space:0,
             preload:3,
-            view:'basic'
+            view:'basic',
+            grabCursor:false,
+            autoplay: true
+
         });
         slider.control('arrows');
 

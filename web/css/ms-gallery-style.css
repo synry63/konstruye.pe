@@ -108,7 +108,7 @@
 	width: 100%;
 	height: 115px;
 	position: absolute;
-	top: -115px;
+	top: -100px;
 	left: 0;
 	-webkit-transition: all 300ms ease-out;
 	-moz-transition: all 300ms ease-out;
