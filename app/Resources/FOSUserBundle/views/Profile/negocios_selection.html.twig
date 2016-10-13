@@ -5,35 +5,51 @@
 <link rel="stylesheet" href="{{ asset('css/styles_javier.css') }}">
 <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300italic,300,400italic,800italic,800,700italic,700,600italic,600' rel='stylesheet' type='text/css'>
 
-<body>
+<body class="background-negocios">
 
-    <div class="container">
+    <div class="container negocios">
         <div class="seccion-image-logo">
-            <img src="{{ asset('images/logo-sq-white.svg') }}" alt="Logo Konstruye" width="280px">
+            <img width="200px" src="{{ asset('images/logo-sq-color.svg') }}" alt="Logo Konstruye" width="280px">
         </div>
         <div class="row">
             <div class="col-md-3 negocio">
-                <a class="negocios" href="{{ path('negocio_proveedor_register') }}">
-                    <i class="fa fa-truck" aria-hidden="true"></i>
-                    <p>Proveedor</p>
+                <a  href="{{ path('negocio_proveedor_register') }}">
+                    <div class="top">
+                        <i class="fa fa-truck" aria-hidden="true"></i>
+                    </div>
+                    <div class="bottom">
+                        <p>Proveedor</p>
+                    </div>
                 </a>
             </div>
             <div class="col-md-3 negocio">
-                <a class="negocios" href="{{ path('negocio_inmueble_register') }}">
-                    <i class="fa fa-home" aria-hidden="true"></i>
-                    <p>Compra Venta y Alquiler de Inmuebles</p>
+                <a  href="{{ path('negocio_inmueble_register') }}">
+                    <div class="top">
+                        <i class="fa fa-home" aria-hidden="true"></i>
+                    </div>
+                    <div class="bottom">
+                        <p>Compra Venta y Alquiler de Inmuebles</p>
+                    </div>
                 </a>
             </div>
             <div class="col-md-3 negocio">
-                <a class="negocios" href="{{ path('negocio_especialista_register') }}">
-                    <img src="{{ asset('images/esp_icon.svg') }}" alt="">
-                    <p>Especialistas Servicios Personales</p>
+                <a  href="{{ path('negocio_especialista_register') }}">
+                    <div class="top">
+                        <img src="{{ asset('images/esp_icon.svg') }}" alt="">
+                    </div>
+                    <div class="bottom">
+                        <p>Especialistas Servicios Personales</p>
+                    </div>
                 </a>
             </div>
             <div class="col-md-3 negocio">
-                <a class="negocios" href="{{ path('negocio_constructura_register') }}">
-                    <i class="fa fa-building-o" aria-hidden="true"></i>
-                    <p>Constructoras e Inmobiliarias</p>
+                <a  href="{{ path('negocio_constructura_register') }}">
+                    <div class="top">
+                        <i class="fa fa-building-o" aria-hidden="true"></i>
+                    </div>
+                    <div class="bottom">
+                        <p>Constructoras e Inmobiliarias</p>
+                    </div>
                 </a>
             </div>
         </div>

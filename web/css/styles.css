@@ -600,6 +600,14 @@ Menu Principal
     font-size: 12px;
     color: #30BDEF;
 }
+.nav-principal .menu-principal ul li a:after{
+    content: " ";
+    height: 30px;
+    width: 1px;
+    display: inline-block;
+
+    background: rgba(0,0,0,.5);
+}
 .nav-principal .menu-principal .navbar-right li{
     width: 130px;
     text-align: center;
