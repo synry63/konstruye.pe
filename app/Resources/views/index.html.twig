@@ -78,113 +78,159 @@
 
 
 
-    <div class="container">
-        <p class="about-text">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        </p>
-    </div>
-
-    <div class="container">
-        <h1 class="mejores_tittle">Los Mejores Proveedores</h1>
-    </div>
-    <div class="ms-staff-carousel ms-round">
-        <!-- masterslider -->
-        <div class="master-slider3 " id="masterslider3">
-            {% for pro in proveedores %}
-                <div class="ms-slide">
-                    <a href="{{ path('show_negocio',
-                    {"slug_negocio":pro.negocio.slug}) }}">
-                        <img src="{{ asset('images/assets/blank.gif') }}" data-src="{{ vich_uploader_asset(pro.negocio.logo, 'logoFile','AppBundle\\Entity\\Logo') }}" alt="lorem ipsum dolor sit"/>
-                    </a>
-                    <img src="{{ asset('images/assets/blank.gif') }}" data-src="{{ vich_uploader_asset(pro.negocio.logo, 'logoFile','AppBundle\\Entity\\Logo') }}" alt="lorem ipsum dolor sit"/>
-                    <div class="ms-info">
-                        <a href="{{ path('show_negocio',
-                        {"slug_negocio":pro.negocio.slug}) }}"><h3>{{ pro.negocio.nombre }}</h3></a>
-                    </div>
+    <div class="container-fluid about-us-container">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 about-us-text">
+                    <h1>Lorem <span>ipsum</span></h1>
+                    <h2>dolor <span>sit</span> amet</h2>
                 </div>
-            {% endfor %}
-        </div>
-        <!-- end of masterslider -->
-        <div class="ms-staff-info" id="staff-info3"></div>
-    </div>
-    <div class="container">
-        <h1 class="mejores_tittle">Mejores Inmuebles</h1>
-    </div>
-    <div class="container">
-        <div class="ms-staff-carousel ms-round">
-            <!-- masterslider -->
-            <div class="master-slider5" id="masterslider5">
-                {% for inm in inmuebles %}
-                    <div class="ms-slide">
-                        <a href="{{ path('show_negocio',
-                        {"slug_negocio":inm.negocio.slug}) }}">
-                            <img src="{{ asset('images/assets/blank.gif') }}" data-src="{{ vich_uploader_asset(inm.negocio.logo, 'logoFile','AppBundle\\Entity\\Logo') }}" alt="lorem ipsum dolor sit"/>
-                        </a>
-                        <img src="{{ asset('images/assets/blank.gif') }}" data-src="{{ vich_uploader_asset(inm.negocio.logo, 'logoFile','AppBundle\\Entity\\Logo') }}" alt="lorem ipsum dolor sit"/>
-                        <div class="ms-info">
-                            <a href="{{ path('show_negocio',
-                            {"slug_negocio":inm.negocio.slug}) }}"><h3>{{ inm.negocio.nombre }}</h3></a>
-                        </div>
-                    </div>
-                {% endfor %}
+                <div class="col-md-8">
+                    <p class="about-text">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    </p>
+                </div>
             </div>
-            <!-- end of masterslider -->
-            <div class="ms-staff-info" id="staff-info5"></div>
+
         </div>
     </div>
 
 
-    <div class="container">
-        <h1 class="mejores_tittle">Mejores Especialistas</h1>
-    </div>
-    <div class="container">
-        <div class="ms-staff-carousel ms-round">
-            <!-- masterslider -->
-            <div class="master-slider4 " id="masterslider4">
-                {% for es in especialistas %}
-                    <div class="ms-slide">
-                        <a href="{{ path('show_negocio',
-                        {"slug_negocio":es.negocio.slug}) }}">
-                            <img src="{{ asset('images/assets/blank.gif') }}" data-src="{{ vich_uploader_asset(es.negocio.logo, 'logoFile','AppBundle\\Entity\\Logo') }}" alt="lorem ipsum dolor sit"/>
-                        </a>
-                        <img src="{{ asset('images/assets/blank.gif') }}" data-src="{{ vich_uploader_asset(es.negocio.logo, 'logoFile','AppBundle\\Entity\\Logo') }}" alt="lorem ipsum dolor sit"/>
-                        <div class="ms-info">
-                            <a href="{{ path('show_negocio',
-                            {"slug_negocio":es.negocio.slug}) }}"><h3>{{ es.negocio.nombre }}</h3></a>
-                        </div>
+
+
+    <div class="container-fluid contenedor-blanco">
+        <div class="container">
+            <h1 class="mejores_tittle">Los Mejores Proveedores</h1>
+        </div>
+        <div class="container" style="position: relative">
+            <img width="280px" style="position: absolute;bottom: -15px;" src="{{ asset('images/proveedor_home.jpg') }}" alt=""/>
+            <div class="col-md-8 col-md-offset-4">
+                <div class="ms-staff-carousel ms-round">
+                    <!-- masterslider -->
+                    <div class="master-slider3 " id="masterslider3">
+                        {% for pro in proveedores %}
+                            <div class="ms-slide">
+                                <a href="{{ path('show_negocio',
+                                {"slug_negocio":pro.negocio.slug}) }}">
+                                    <img src="{{ asset('images/assets/blank.gif') }}" data-src="{{ vich_uploader_asset(pro.negocio.logo, 'logoFile','AppBundle\\Entity\\Logo') }}" alt="lorem ipsum dolor sit"/>
+                                </a>
+                                <img src="{{ asset('images/assets/blank.gif') }}" data-src="{{ vich_uploader_asset(pro.negocio.logo, 'logoFile','AppBundle\\Entity\\Logo') }}" alt="lorem ipsum dolor sit"/>
+                                <div class="ms-info">
+                                    <a href="{{ path('show_negocio',
+                                    {"slug_negocio":pro.negocio.slug}) }}"><h3>{{ pro.negocio.nombre }}</h3></a>
+                                </div>
+                            </div>
+                        {% endfor %}
                     </div>
-                {% endfor %}
+                    <!-- end of masterslider -->
+                    <div class="ms-staff-info" id="staff-info3"></div>
+                </div>
+
             </div>
-            <!-- end of masterslider -->
-            <div class="ms-staff-info" id="staff-info4"></div>
+        </div>
+
+    </div>
+
+
+
+   <div class="container-fluid contenedor-transparente">
+       <div class="container">
+           <h1 class="mejores_tittle"><span>Mejores Inmuebles</span></h1>
+       </div>
+       <div class="container" style="position: relative">
+           <img width="280px" style="position: absolute;bottom: -15px;right: 0" src="{{ asset('images/comprayventa_home.png') }}" alt=""/>
+           <div class="col-md-8">
+               <div class="ms-staff-carousel ms-round">
+                   <!-- masterslider -->
+                   <div class="master-slider5" id="masterslider5">
+                       {% for inm in inmuebles %}
+                           <div class="ms-slide">
+                               <a href="{{ path('show_negocio',
+                               {"slug_negocio":inm.negocio.slug}) }}">
+                                   <img src="{{ asset('images/assets/blank.gif') }}" data-src="{{ vich_uploader_asset(inm.negocio.logo, 'logoFile','AppBundle\\Entity\\Logo') }}" alt="lorem ipsum dolor sit"/>
+                               </a>
+                               <img src="{{ asset('images/assets/blank.gif') }}" data-src="{{ vich_uploader_asset(inm.negocio.logo, 'logoFile','AppBundle\\Entity\\Logo') }}" alt="lorem ipsum dolor sit"/>
+                               <div class="ms-info">
+                                   <a href="{{ path('show_negocio',
+                                   {"slug_negocio":inm.negocio.slug}) }}"><h3>{{ inm.negocio.nombre }}</h3></a>
+                               </div>
+                           </div>
+                       {% endfor %}
+                   </div>
+                   <!-- end of masterslider -->
+                   <div class="ms-staff-info" id="staff-info5"></div>
+               </div>
+           </div>
+
+       </div>
+   </div>
+
+
+    <div class="container-fluid contenedor-blanco">
+        <div class="container">
+            <h1 class="mejores_tittle">Mejores Especialistas</h1>
+        </div>
+        <div class="container" style="position: relative">
+            <img width="280px" style="position: absolute;bottom: -15px;" src="{{ asset('images/especialista_home.jpg') }}" alt=""/>
+            <div class="col-md-8 col-md-offset-4">
+                <div class="ms-staff-carousel ms-round">
+                    <!-- masterslider -->
+                    <div class="master-slider4 " id="masterslider4">
+                        {% for es in especialistas %}
+                            <div class="ms-slide">
+                                <a href="{{ path('show_negocio',
+                                {"slug_negocio":es.negocio.slug}) }}">
+                                    <img src="{{ asset('images/assets/blank.gif') }}" data-src="{{ vich_uploader_asset(es.negocio.logo, 'logoFile','AppBundle\\Entity\\Logo') }}" alt="lorem ipsum dolor sit"/>
+                                </a>
+                                <img src="{{ asset('images/assets/blank.gif') }}" data-src="{{ vich_uploader_asset(es.negocio.logo, 'logoFile','AppBundle\\Entity\\Logo') }}" alt="lorem ipsum dolor sit"/>
+                                <div class="ms-info">
+                                    <a href="{{ path('show_negocio',
+                                    {"slug_negocio":es.negocio.slug}) }}"><h3>{{ es.negocio.nombre }}</h3></a>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <!-- end of masterslider -->
+                    <div class="ms-staff-info" id="staff-info4"></div>
+                </div>
+
+            </div>
         </div>
     </div>
 
-    <div class="container">
-        <h1 class="mejores_tittle">Mejores Constructoras e Inmobiliarias</h1>
-    </div>
-    <div class="container">
-        <div class="ms-staff-carousel ms-round">
-            <!-- masterslider -->
-            <div class="master-slider2 " id="masterslider2">
-                {% for im in imobiliarias %}
-                    <div class="ms-slide">
-                        <a href="{{ path('show_negocio',
-                        {"slug_negocio":im.negocio.slug}) }}">
-                            <img src="{{ asset('images/assets/blank.gif') }}" data-src="{{ vich_uploader_asset(im.negocio.logo, 'logoFile','AppBundle\\Entity\\Logo') }}" alt="lorem ipsum dolor sit"/>
-                        </a>
-                        <img src="{{ asset('images/assets/blank.gif') }}" data-src="{{ vich_uploader_asset(im.negocio.logo, 'logoFile','AppBundle\\Entity\\Logo') }}" alt="lorem ipsum dolor sit"/>
-                        <div class="ms-info">
-                            <a href="{{ path('show_negocio',
-                            {"slug_negocio":im.negocio.slug}) }}"><h3>{{ im.negocio.nombre }}</h3></a>
-                        </div>
+
+    <div class="container-fluid contenedor-transparente">
+        <div class="container">
+            <h1 class="mejores_tittle"><span>Mejores Constructoras e Inmobiliarias</span></h1>
+        </div>
+        <div class="container" style="position: relative">
+            <img width="280px" style="position: absolute;bottom: -15px;right: 0" src="{{ asset('images/comprayventa_home.png') }}" alt=""/>
+            <div class="col-md-8">
+                <div class="ms-staff-carousel ms-round">
+                    <!-- masterslider -->
+                    <div class="master-slider2 " id="masterslider2">
+                        {% for im in imobiliarias %}
+                            <div class="ms-slide">
+                                <a href="{{ path('show_negocio',
+                                {"slug_negocio":im.negocio.slug}) }}">
+                                    <img src="{{ asset('images/assets/blank.gif') }}" data-src="{{ vich_uploader_asset(im.negocio.logo, 'logoFile','AppBundle\\Entity\\Logo') }}" alt="lorem ipsum dolor sit"/>
+                                </a>
+                                <img src="{{ asset('images/assets/blank.gif') }}" data-src="{{ vich_uploader_asset(im.negocio.logo, 'logoFile','AppBundle\\Entity\\Logo') }}" alt="lorem ipsum dolor sit"/>
+                                <div class="ms-info">
+                                    <a href="{{ path('show_negocio',
+                                    {"slug_negocio":im.negocio.slug}) }}"><h3>{{ im.negocio.nombre }}</h3></a>
+                                </div>
+                            </div>
+                        {% endfor %}
                     </div>
-                {% endfor %}
+                    <!-- end of masterslider -->
+                    <div class="ms-staff-info" id="staff-info"></div>
+                </div>
             </div>
-            <!-- end of masterslider -->
-            <div class="ms-staff-info" id="staff-info"></div>
+
         </div>
     </div>
+
 
 
 

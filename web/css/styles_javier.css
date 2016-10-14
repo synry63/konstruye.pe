@@ -237,8 +237,77 @@ Seleccion Negocios
     left: 50%;
     transform: translate(-50%,-50%);
 }
+/*=============
+Mejores Proveedores
+=============*/
+.mejores_tittle{
+    padding: 15px 0;
+    color: #1C9CD9;
+    text-align: center;
+    font-size: 22px;
+    letter-spacing: -.9px;
+    text-transform: capitalize;
+    font-weight: bold;
+}
+.mejores_tittle span{
+    color: rgba(0,0,0,.6);
+}
+.list-mejores{
+    padding: 10px;
+    background: rgba(48,189,239,.2);
+    margin-bottom: 20px;
+}
 
+.list-mejores .content_slider_wrapper{
+    max-height: 200px;
+}
+.list-mejores .content_slider_text_block_wrap span{
+    font-size: 15px;
+    text-transform: uppercase;
+    font-weight: 100;
+    font-family: 'Open Sans', sans-serif;
+}
 
+/*=============
+Index
+=============*/
+
+.about-text{
+    padding: 10px;
+    text-align: justify;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 100;
+}
+.about-us-container{
+    padding: 65px 15px;
+}
+.about-us-container .about-us-text{
+    text-align: left;
+    padding: 10px;
+    font-weight: bold;
+}
+.about-us-container .about-us-text h1{
+    font-size: 40px;
+    color: rgba(0,0,0,.6);
+}
+.about-us-container .about-us-text h2{
+    color: rgba(0,0,0,.6);
+    font-size: 30px;
+    padding-top: 10px;
+}
+.about-us-container .about-us-text span{
+    color: #009fe3;
+}
+.contenedor-blanco{
+    background: white;
+    box-shadow: 0 0 10px rgba(0,0,0,.1);
+    padding: 15px;
+
+}
+
+.contenedor-transparente{
+    padding: 15px;
+}
 /*=============
 Footer Menu
 =============*/
@@ -308,3 +377,4 @@ Footer Menu
 .footer-menu .nav>li>a:focus,.footer-menu .nav>li>a:hover{
     background: none;
 }
+

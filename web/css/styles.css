@@ -582,6 +582,7 @@ Menu Principal
 }
 .menu-principal .navbar-left li{
     width: 190px;
+    height: 70px;
     text-align: center;
 }
 .menu-principal ul:first-child{
@@ -590,7 +591,6 @@ Menu Principal
     /*margin-right: 4%;*/
 }
 .menu-principal ul:first-child li:first-child,.menu-principal ul:first-child li:nth-child(2){
-    padding-top:10px;
     width: auto;
 }
 
@@ -600,14 +600,24 @@ Menu Principal
     font-size: 12px;
     color: #30BDEF;
 }
-.nav-principal .menu-principal ul li a:after{
+.nav-principal .menu-principal ul.navbar-left li a:after{
     content: " ";
     height: 30px;
+    position: absolute;
     width: 1px;
-    display: inline-block;
-
-    background: rgba(0,0,0,.5);
+    top: 20px;
+    right: 0;
+    background: rgba(0,0,0,.1);
 }
+.nav-principal .menu-principal ul.navbar-left li:last-child a:after{
+    content: " ";
+    display: none;
+}
+.nav-principal .menu-principal ul.navbar-left li:nth-child(1) a,.nav-principal .menu-principal ul.navbar-left li:nth-child(2) a{
+    line-height: 70px;
+    padding: 0 15px;
+}
+
 .nav-principal .menu-principal .navbar-right li{
     width: 130px;
     text-align: center;
@@ -759,42 +769,7 @@ Slider
 #search-brand{
     color: #9E9E9E;
 }
-/*=============
-About
-=============*/
-.about-text{
-    padding: 20px;
-    text-align: center;
 
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 100;
-}
-/*=============
-Mejores Proveedores
-=============*/
-.mejores_tittle{
-    padding: 10px;
-    color: #1C9CD9;
-    text-align: center;
-    font-size: 18px;
-    text-transform: uppercase;
-    font-weight: 400;
-}
-.list-mejores{
-    padding: 10px;
-    background: rgba(48,189,239,.2);
-    margin-bottom: 20px;
-}
-
-.list-mejores .content_slider_wrapper{
-    max-height: 200px;
-}
-.list-mejores .content_slider_text_block_wrap span{
-    font-size: 15px;
-    text-transform: uppercase;
-    font-weight: 100;
-    font-family: 'Open Sans', sans-serif;
-}
 
 /*=======================
 Show_Proveedores
