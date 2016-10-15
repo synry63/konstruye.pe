@@ -2,35 +2,92 @@
 {% block title %}
     <title>Konstruye.pe | Mi Perfil</title>
 {% endblock title %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {#Magnific Popup#}
+    {#<link rel="stylesheet" href="{{ asset('css/magnific-popup.css') }}">#}
+{% endblock stylesheets %}
+
 {% block fos_user_content %}
 
-    <div class="container">
-        <div class="col-md-2 perfil">
-            <div class="modal-image">
-                <p style="margin-top: 10px">¡Bienvenido(a)!</p>
-                {{ render(controller(
-                'AppBundle:User:showProfile'
-                )) }}
-                <h1>{{ user.nombres }} {{ user.apellidos }}</h1>
-                <p>{{ user.email }}</p>
-                <p>{{ user.username }}</p>
+    {#<div class="container">#}
+        {#<div class="col-md-2 perfil">#}
+            {#<div class="modal-image">#}
+                {#<p style="margin-top: 10px">¡Bienvenido(a)!</p>#}
+                {#{{ render(controller(#}
+                {#'AppBundle:User:showProfile'#}
+                {#)) }}#}
+                {#<h1>{{ user.nombres }} {{ user.apellidos }}</h1>#}
+                {#<p>{{ user.email }}</p>#}
+                {#<p>{{ user.username }}</p>#}
+            {#</div>#}
+        {#</div>#}
+        {#<div class="col-md-10">#}
+
+            {#<div class="menu-perfil">#}
+                {#{{ knp_menu_render('AppBundle:Builder:menuProfile') }}#}
+
+            {#</div>#
+        {#</div>#}
+    {#</div>#}
+    <section class="perfil">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="imagen-fondo-perfil">
+                    <div class="container">
+                        <div class="flex-container-perfil">
+                            <figure class="perfil-fondo-izquierda">
+                                <img class="img-circle" src="https://dummyimage.com/70" alt="Imagen Perfil"/>
+                            </figure>
+                            <div class="perfil-fondo-derecha">
+                                <p class="perfil-bienvenida">¡Bienvenido(a)!</p>
+                                <p class="perfil-nombre">Javier <strong>Diaz</strong> <i class="fa fa-cog" aria-hidden="true"></i>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="col-md-10">
-
-            <div class="menu-perfil">
-                {{ knp_menu_render('AppBundle:Builder:menuProfile') }}
-
+    </section>
+    <section class="menu">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <div class="menu-seccion-izquierda">
+                        <ul>
+                            <li class="lista-seccion">
+                                <a href="#">
+                                    <div><i class="fa fa-commenting-o" aria-hidden="true"></i></div>
+                                    <span>MIS COMENTARIOS</span>
+                                </a>
+                            </li>
+                            <li class="lista-seccion">
+                                <a href="#">
+                                    <div><i class="fa fa-archive" aria-hidden="true"></i></div>
+                                    <span>MI COLECCIÓN</span>
+                                </a>
+                            </li>
+                            <li class="lista-seccion">
+                                <a href="#">
+                                    <div><i class="fa fa-users" aria-hidden="true"></i></div>
+                                    <span>MI PERFIL PUBLICO</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="menu-seccion-derecha">
+                        <div>
+                            <a href="">
+                                <div><i class="fa fa-commenting-o" aria-hidden="true"></i></div>
+                                <span>REGISTRAR NEGOCIO</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
-
-
-
-
         </div>
-    </div>
-
-
-
-
+    </section>
 {% include "FOSUserBundle:Profile:show_content.html.twig" %}
 {% endblock fos_user_content %}
