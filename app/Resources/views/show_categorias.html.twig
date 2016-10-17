@@ -10,12 +10,98 @@
 {% endblock %}
 
 {% block fos_user_content %}
+
+    <div class="container">
+        <div class="master-slider ms-skin-default" id="masterslider">
+
+            {% if negocio.fotos|length > 0 %}
+                {% for nfo in negocio.fotos  %}
+                    <div class="ms-slide">
+                        {% if nfo.videoUrl is not null %}
+                            <a href="{{ nfo.videoUrl }}" data-type="video"> vimeo video </a>
+                        {% endif %}
+                        <img src="{{ vich_uploader_asset(nfo, 'imgFile') }}" alt="" />
+
+                    </div>
+                {% endfor %}
+            {% else %}
+
+                <div class="ms-slide">
+                    <img src="http://placehold.it/1170x350" alt="">
+                </div>
+                <div class="ms-slide">
+                    <img src="http://placehold.it/1170x350" alt="">
+                </div>
+                <div class="ms-slide">
+                    <img src="http://placehold.it/1170x350" alt="">
+                </div>
+
+            {% endif %}
+
+        </div>
+        <div class="datos-detail">
+            <div class="col-md-10 col-md-offset-1">
+                <div class="col-md-2 logo">
+                    <img width="80" src="{{ vich_uploader_asset(negocio.logo, 'logoFile','AppBundle\\Entity\\Logo') }}" alt="" />
+                </div>
+                <div class="col-md-7 info-negocio">
+                    <div class="row titulo-negocio">
+                        <h1> {{ negocio.nombre }} </h1>
+                        <span>
+                            <div style="display: inline-block" id="rateYo" data-rating="{{ moy }}"></div>
+                        </span>
+                    </div>
+                    <div class="row contacto">
+                        <span><i class="fa fa-phone" aria-hidden="true"></i> {{ negocio.telefono }}</span>
+                        <span><i class="fa fa-globe" aria-hidden="true"></i> {{ negocio.web }}</span>
+                        <span><i class="fa fa-envelope" aria-hidden="true"></i> {{ negocio.email }}</span>
+                    </div>
+                </div>
+                <div class="col-md-3 botones-sociales">
+                    <div class="row">
+                        <div class="social-icons">
+                            <a href="">
+                    <span class="fa-stack fa-lg">
+                      <i class="fa fa-square fa-stack-2x"></i>
+                      <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                    </span>
+                            </a>
+                            <a href="">
+                    <span class="fa-stack fa-lg">
+                      <i class="fa fa-square fa-stack-2x"></i>
+                      <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                    </span>
+                            </a>
+                            <a href="">
+                    <span class="fa-stack fa-lg">
+                      <i class="fa fa-square fa-stack-2x"></i>
+                      <i class="fa fa-instagram fa-stack-1x fa-inverse"></i>
+                    </span>
+                            </a>
+                            <a href="">
+                    <span class="fa-stack fa-lg">
+                      <i class="fa fa-square fa-stack-2x"></i>
+                      <i class="fa fa-google-plus fa-stack-1x fa-inverse"></i>
+                    </span>
+                            </a>
+                        </div>
+                        <a class="contactenos_button" href="#">
+                            <button class="btn btn-default"> contáctanos </button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    {#
     <div class="container">
             <div class="col-md-4 logo_detail_section">
                 <img width="200" src="{{ vich_uploader_asset(negocio.logo, 'logoFile','AppBundle\\Entity\\Logo') }}" alt="" />
                 <div id="rateYo" data-rating="{{ moy }}"></div>
                 <p><i class="fa fa-map-marker" aria-hidden="true"></i> {{ negocio.direccion }}</p>
-                <p>{{ negocio.distrito }} - {{ negocio.departamento }}</p>
+                <p>{{ negocio.distrito.nombre }} - {{ negocio.departamento.nombre }}</p>
                 <p><i class="fa fa-phone" aria-hidden="true"></i> {{ negocio.telefono }}</p>
                 <p><i class="fa fa-globe" aria-hidden="true"></i> {{ negocio.web }}</p>
                 <p><i class="fa fa-envelope" aria-hidden="true"></i> {{ negocio.email }}</p>
@@ -84,6 +170,7 @@
 
             </div>
     </div>
+    #}
 
     <div class="container detail_description">
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium asperiores, aspernatur cupiditate ea eos eum incidunt ipsum iste maiores neque nobis odio quae quia repellat repudiandae soluta temporibus velit voluptatum. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa dignissimos distinctio dolore excepturi explicabo harum, id illum ipsum nisi provident quia quod, veritatis. Ad ea error maiores odit officiis pariatur!</p>
@@ -275,8 +362,8 @@
             slider.control('bullets');
 
             slider.setup('masterslider' , {
-                width:750,
-                height:470,
+                width:1170,
+                height:350,
                 space:0,
                 grabCursor:false,
                 view:'basic',
@@ -307,6 +394,7 @@
             $("#rateYo").rateYo({
                 rating: test,
                 ratedFill: color,
+                starWidth: "18px",
                 normalFill: "#A0A0A0",
                 readOnly: true
             });
