@@ -221,90 +221,66 @@ font-size: 14px;
 /*=============
 Perfil
 =============*/
-/*.perfil{*/
-    /*background: #fff;*/
-    /*text-align: center;*/
-    /*box-shadow: 0 0 10px rgba(0,0,0,.2);*/
-    /*padding-bottom: 20px;*/
-    /*border-bottom: solid 3px #30BDEF;*/
-    /*!*padding-right: 0;*!*/
-    /*!*padding-left: 0;*!*/
-    /*!*margin-left: 6px;*!*/
-/*}*/
-/*.perfil .modal-image img{*/
-    /*border-radius: 50%;*/
-    /*margin-top: 10px;*/
-/*}*/
-/*.modal-image .popup-modal{*/
-    /*background: rgba(0,0,0,0.2);*/
-    /*width: 150px;*/
-    /*height: 150px;*/
-    /*line-height: 150px;*/
-    /*font-size: 50px;*/
-    /*position: absolute;*/
-    /*border-radius: 50%;*/
-    /*display: inline-block;*/
-    /*left: 20px;*/
-    /*top: 45px;*/
-    /*color:rgba(0,0,0,.5);*/
-    /*transition: all .5s;*/
-/*}*/
-/*.modal-image .popup-modal:focus{*/
-    /*outline: none;*/
-/*}*/
-/*.modal-image .popup-modal:hover{*/
-    /*color: #fff;*/
-/*}*/
-/*.menu-perfil{*/
-    /*background: rgb(200,200,200);*/
-    /*box-shadow: 0 0 1px;*/
-/*}*/
-/*.menu-perfil ul{*/
-    /*margin-top: 20px;*/
-    /*color: #fff;*/
-/*}*/
-/*.menu-perfil ul li{*/
-    /*display: inline-block;*/
-    /*height:40px;*/
-    /*text-align: left;*/
-    /*line-height: 40px;*/
-/*}*/
-/*.menu-perfil ul li a{*/
-    /*color: rgba(0,0,0,.5);*/
-/*}*/
-/*.menu-perfil ul li.current a{*/
-    /*color: rgba(0,0,0,.7);*/
-    /*font-weight: 500;*/
-/*}*/
-/*.menu-perfil ul li:first-child:before{*/
-    /*content: "| ";*/
-    /*opacity: 0;*/
-/*}*/
-/*.menu-perfil ul li:before{*/
-    /*content: "| ";*/
-    /*color: #000;*/
-/*}*/
-/*.perfil .modal-image h1{*/
-    /*margin-top: 10px;*/
-    /*font-size: 22px;*/
-    /*font-weight: bold;*/
-    /*color: #30BDEF;*/
-/*}*/
-/*.perfil .modal-image p{*/
-    /*font-style: italic;*/
-    /*margin: 10px 0;*/
-    /*color: rgba(0,0,0,.4);*/
-/*}*/
 .perfil {
     color: white;
 }
-.perfil .imagen-fondo-perfil {
+.perfil .position {
+    position: relative;
+}
+.perfil .imagen-fondo-perfil.fondo-defaults {
     background-image: url("../images/dark_brick_wall.png");
-    /*background-size: cover;*/
-    /*background-repeat: no-repeat;*/
-    /*background-position: 50% 50%;*/
     min-height: 130px;
-    /*filter:blur(5px);*/
+    position: absolute;
+    width: 100%;
+    z-index: -1;
+}
+.perfil .flex-container-perfil {
+    min-height: 130px;
+}
+.perfil figure.perfil-fondo-izquierda {
+    float: left;
+    margin-top: 1.2rem;
+    margin-left: 4rem;
+}
+.perfil .perfil-fondo-izquierda img {
+    border: 2px solid #fff;
+    padding: 2px;
+}
+.perfil .perfil-fondo-derecha {
+    float: right;
+    margin-top: 2rem;
+    margin-right: 2.3rem;
+}
+.perfil .perfil-fondo-derecha p {
+    font-size: 22px;
+    font-weight: bold;
+}
+.perfil .perfil-fondo-derecha p:nth-child(2) {
+    margin-top: 15px;
+    display: inline-block;
+}
+.perfil .perfil-fondo-derecha strong {
+    color: #009fe3;
+}
+.perfil .perfil-fondo-derecha .dropdown-margin {
+    margin: 6px -165px 0px;
+    width: 200px;
+    height: 110px;
+}
+.perfil .perfil-fondo-derecha .dropdown-margin li {
+    margin-bottom: 10px;
+}
+.perfil .perfil-fondo-derecha .dropdown i {
+    cursor: pointer;
+}
+.perfil .dropdown-margin li i {
+    color: #000;
+    width: 20px;
+    text-align: center;
+}
+.perfil .dropdown-margin li a {
+    display: inline-block;
+    width: 100%;
 }
 .perfil .imagen-fondo-perfil .flex-container-perfil {
     display: flex;
@@ -312,42 +288,46 @@ Perfil
     height: 130px;
     align-items: center;
 }
-.imagen-fondo-perfil figure.perfil-fondo-izquierda {
-    margin-left: 4rem;
-}
-.imagen-fondo-perfil figure.perfil-fondo-izquierda img {
-    border: 2px solid #fff;
-    padding: 2px;
-}
-.imagen-fondo-perfil div.perfil-fondo-derecha p {
-    font-size: 22px;
-    font-weight: bold;
-}
-.imagen-fondo-perfil div.perfil-fondo-derecha .perfil-bienvenida {
-    margin-bottom: 16px;
-}
-.imagen-fondo-perfil div.perfil-fondo-derecha p strong {
-    color: #1C9CD9;
-}
-
 .menu .menu-seccion-izquierda {
     background-color: #1C9CD9;
     border-radius: 0 0 10px 10px;
     display: inline-block;
     /*padding: 20px;*/
     text-align: center;
-    width: 75.066666666666667%;
-    max-width: 563px;
+    width: 73.2%;
+    max-width: 549px;
 }
 .menu .menu-seccion-izquierda .lista-seccion {
     display: inline-block;
     width: 32.333333%;
     padding: 20px;
+    position: relative;
+}
+.menu .menu-seccion-izquierda .lista-seccion:after {
+    content: " ";
+    height: 30px;
+    position: absolute;
+    width: 1px;
+    top: 20px;
+    right: 0;
+    background: #fff;
+}
+.menu .menu-seccion-izquierda .lista-seccion:nth-child(3):after {
+    display: none;
+}
+.menu .menu-seccion-izquierda .lista-seccion a div,
+.menu .menu-seccion-derecha div a div {
+    margin-bottom: 9px;
+}
+.menu .menu-seccion-izquierda .lista-seccion i,
+.menu .menu-seccion-derecha i {
+    font-size: 20px;
 }
 .menu-seccion-izquierda .lista-seccion a,
 .menu-seccion-derecha div a {
     color: #fff;
     font-size: 13px;
+    display: inline-block;
 }
 .menu .menu-seccion-derecha {
     background-color: #39b54a;
@@ -355,8 +335,10 @@ Perfil
     display: inline-block;
     padding: 20px;
     text-align: center;
-    width: 23.266667%;
-    max-width: 174px;
+    max-width: 183px;
+    width: 24.4%;
+    float: right;
+    margin-right: 10px;
 }
 .menu .menu-seccion-derecha:hover {
     background-color: #277732;
@@ -369,6 +351,7 @@ Perfil - Cambiar Datos
     background-color: #fff;
     box-shadow: 0 1px 2px rgba(0,0,0,.4);
     padding: 20px 40px;
+    margin-top: 42px;
 }
 .contenedor-formulario-editar .contenedor-validacion {
     font-size: 12px;
@@ -392,4 +375,37 @@ Perfil - Cambiar Datos
     font-weight: 600;
     font-size: 25px;
     padding: 30px 0;
+}
+
+/*===========================
+Cambio de Contraseña
+===========================*/
+.contenedor-formulario-contraseña {
+    margin-top: 42px;
+    background-color: #fff;
+    box-shadow: 0 1px 2px rgba(0,0,0,.4);
+    padding: 20px 40px;
+}
+.contenedor-formulario-contraseña .contenedor-contraseña-titulo h1 {
+    color: #1c9cd9;
+    text-align: center;
+    font-weight: 600;
+    font-size: 25px;
+    padding: 30px 0;
+}
+.contenedor-formulario-contraseña .contenedor-validacion {
+    font-size: 12px;
+    margin-bottom: 15px;
+}
+.contenedor-formulario-contraseña .form-group label {
+    color: rgba(0,0,0,.5);
+    font-size: 15px;
+    font-weight: bold;
+    margin-bottom: 4px;
+}
+.contenedor-formulario-contraseña ul li {
+    color: #1c9cd9;
+    font-size: 12px;
+    font-weight: 700;
+    margin: 8px 0;
 }
