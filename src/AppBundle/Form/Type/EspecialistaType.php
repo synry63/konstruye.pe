@@ -20,6 +20,9 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Image;
+use AppBundle\Form\EventListener\AddCityFieldSubscriber;
+use AppBundle\Form\EventListener\AddCountryFieldSubscriber;
+use AppBundle\Form\EventListener\AddProvinceFieldSubscriber;
 
 class EspecialistaType extends AbstractType
 {
@@ -45,30 +48,25 @@ class EspecialistaType extends AbstractType
 
             )
         ));
-        $builder->add('departamento','Symfony\Component\Form\Extension\Core\Type\TextType',array(
-            'constraints' => array(
-                new NotBlank(),
+        $propertyPathToCity  = 'distrito';
 
-            )
-        ));
-        $builder->add('distrito','Symfony\Component\Form\Extension\Core\Type\TextType',array(
-            'constraints' => array(
-                new NotBlank(),
-
-            )
-        ));
+        $builder
+            ->addEventSubscriber(new AddCityFieldSubscriber($propertyPathToCity))
+            ->addEventSubscriber(new AddProvinceFieldSubscriber($propertyPathToCity))
+            ->addEventSubscriber(new AddCountryFieldSubscriber($propertyPathToCity))
+        ;
         $builder->add('telefono','Symfony\Component\Form\Extension\Core\Type\TextType',array(
             'constraints' => array(
                 new NotBlank(),
 
             )
         ));
-        $builder->add('web');
+        /*$builder->add('web');
         $builder->add('facebookLink');
         $builder->add('twitterLink');
         $builder->add('pinteresLink');
         $builder->add('instagramLink');
-        $builder->add('googleLink');
+        $builder->add('googleLink');*/
         $builder->add('email', 'Symfony\Component\Form\Extension\Core\Type\EmailType',array(
             'constraints' => array(
                 new NotBlank(),

@@ -41,7 +41,7 @@ class ProductoRepository extends EntityRepository
         $nombres = array_column($productos, 'nombre');
         return $nombres;
     }
-    public function getProductosByNegocio($n){
+    public function getProductosByNegocio($n,$orderBy = NULL){
         $em = $this->getEntityManager();
 
         $qb = $em->createQueryBuilder();
@@ -52,7 +52,8 @@ class ProductoRepository extends EntityRepository
             ->setParameters(array(
                 'negocio' => $n,
             ));
-        //$qb->addOrderBy('mymoy', 'DESC');
+        if($orderBy=='moy')
+            $qb->addOrderBy('mymoy', 'DESC');
         $qb->addGroupBy('p');
         $query = $qb->getQuery();
 

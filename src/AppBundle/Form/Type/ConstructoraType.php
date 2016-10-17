@@ -16,6 +16,9 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use AppBundle\Form\EventListener\AddCityFieldSubscriber;
+use AppBundle\Form\EventListener\AddCountryFieldSubscriber;
+use AppBundle\Form\EventListener\AddProvinceFieldSubscriber;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -45,7 +48,14 @@ class ConstructoraType extends AbstractType
 
             )
         ));
-        $builder->add('departamento','Symfony\Component\Form\Extension\Core\Type\TextType',array(
+        $propertyPathToCity  = 'distrito';
+
+        $builder
+            ->addEventSubscriber(new AddCityFieldSubscriber($propertyPathToCity))
+            ->addEventSubscriber(new AddProvinceFieldSubscriber($propertyPathToCity))
+            ->addEventSubscriber(new AddCountryFieldSubscriber($propertyPathToCity))
+        ;
+        /*$builder->add('departamento','Symfony\Component\Form\Extension\Core\Type\TextType',array(
             'constraints' => array(
                 new NotBlank(),
 
@@ -56,19 +66,19 @@ class ConstructoraType extends AbstractType
                 new NotBlank(),
 
             )
-        ));
+        ));*/
         $builder->add('telefono','Symfony\Component\Form\Extension\Core\Type\TextType',array(
             'constraints' => array(
                 new NotBlank(),
 
             )
         ));
-        $builder->add('web');
+        /*$builder->add('web');
         $builder->add('facebookLink');
         $builder->add('twitterLink');
         $builder->add('pinteresLink');
         $builder->add('instagramLink');
-        $builder->add('googleLink');
+        $builder->add('googleLink');*/
         $builder->add('email', 'Symfony\Component\Form\Extension\Core\Type\EmailType',array(
             'constraints' => array(
                 new NotBlank(),

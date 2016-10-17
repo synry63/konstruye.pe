@@ -54,32 +54,24 @@ class Builder implements ContainerAwareInterface
                 'uri' => '#',
                 'label' => 'Gestion de Proyectos',
             ));
-            $menu['gestion-producto']->addChild('ver-proyectos', array('label'=>'ver Proyectos','uri' => '#'));
-            $menu['gestion-producto']->addChild('agregar-proyecto', array('label'=>'Agregar Proyecto','uri' => '#'));
-            $menu['gestion-producto']->addChild('ordenar-proyecto', array('label'=>'Ornedar Proyecto','uri' => '#'));
+            $menu['gestion-proyectos']->addChild('ver-proyectos', array('label'=>'ver Proyectos','uri' => '#'));
+            $menu['gestion-proyectos']->addChild('agregar-proyecto', array('label'=>'Agregar Proyecto','uri' => '#'));
+            $menu['gestion-proyectos']->addChild('ordenar-proyecto', array('label'=>'Ornedar Proyecto','uri' => '#'));
         }
         else if($negocio instanceof Inmueble){
             $menu->addChild('gestion-inmueble', array(
                 'uri' => '#',
                 'label' => 'Gestion de Inmueble',
             ));
-            $menu['gestion-producto']->addChild('cambiar-datos-principales', array('label'=>'Cambiar Datos principales','uri' => '#'));
-            $menu['gestion-producto']->addChild('cambiar-datos-servicio', array('label'=>'Cambiar Datos Servicios','uri' => '#'));
-            $menu['gestion-producto']->addChild('cambiar-datos-generales', array('label'=>'Cambiar Datos Generales','uri' => '#'));
+            $menu['gestion-inmueble']->addChild('cambiar-datos-principales', array('label'=>'Cambiar Datos principales','uri' => '#'));
+            $menu['gestion-inmueble']->addChild('cambiar-datos-servicio', array('label'=>'Cambiar Datos Servicios','uri' => '#'));
+            $menu['gestion-inmueble']->addChild('cambiar-datos-generales', array('label'=>'Cambiar Datos Generales','uri' => '#'));
         }
 
         return $menu;
     }
-    public function menuProfile(FactoryInterface $factory, array $options){
+    public function menuProfileSettings(FactoryInterface $factory, array $options){
         $menu = $factory->createItem('root');
-        $menu->addChild('about-me',array(
-                'route' => 'fos_user_profile_show',
-                'label' => 'Mis datos',
-                'extras' => array(
-                    'icon' => 'fa fa-user'
-                )
-            )
-        );
         $menu->addChild('change-data',array(
                 'route' => 'fos_user_profile_edit',
                 'label' => 'Cambiar mis datos',
@@ -89,6 +81,26 @@ class Builder implements ContainerAwareInterface
 
             )
         );
+        $menu->addChild('change-password',array(
+                'route' => 'fos_user_change_password',
+                'label' => 'Cambiar mi contraseña',
+                'extras' => array(
+                    'icon' => 'fa fa-lock'
+                )
+            )
+        );
+        return $menu;
+    }
+    public function menuProfile(FactoryInterface $factory, array $options){
+        $menu = $factory->createItem('root');
+        /*$menu->addChild('about-me',array(
+                'route' => 'fos_user_profile_show',
+                'label' => 'Mis datos',
+                'extras' => array(
+                    'icon' => 'fa fa-user'
+                )
+            )
+        );*/
         $menu->addChild('show-comments',array(
                 'route' => 'show_profile_comments',
                 'label' => 'Mis Comentarios',
@@ -196,11 +208,15 @@ class Builder implements ContainerAwareInterface
 
             )
         );
-
-
         $menu->addChild('contactenos',array(
             'route' => 'show_contacto',
             'label' => 'contactenos'
+
+            )
+        );
+        $menu->addChild('faq',array(
+                'route' => 'show_faq',
+                'label' => 'FAQ'
 
             )
         );

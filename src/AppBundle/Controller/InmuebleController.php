@@ -12,38 +12,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 class InmuebleController extends Controller
 {
-    /**
-     * @param $text
-     * @return mixed|string
-     * slugify a text
-     */
-    private function slugify($text)
-    {
-        // replace non letter or digits by -
-        $text = preg_replace('~[^\pL\d]+~u', '-', $text);
 
-        // transliterate
-        $text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
-
-        // remove unwanted characters
-        $text = preg_replace('~[^-\w]+~', '', $text);
-
-        // trim
-        $text = trim($text, '-');
-
-        // remove duplicate -
-        $text = preg_replace('~-+~', '-', $text);
-
-        // lowercase
-        $text = strtolower($text);
-
-        if (empty($text))
-        {
-            return 'n-a';
-        }
-
-        return $text;
-    }
     public function registerConfirmationAction(Request $request){
 
         return $this->render('FOSUserBundle:Profile:negocio_register_confirmation.html.twig');
@@ -58,7 +27,8 @@ class InmuebleController extends Controller
         $form->handleRequest($request);
         if ($form->isValid()) {
             $inm->setUser($user);
-            $inm->setSlug($this->slugify($inm->getNombre()));
+            $slug = $this->get('slugify')->slugify($inm->getNombre());
+            $inm->setSlug($slug);
             $em = $this->getDoctrine()->getManager();
             $em->persist($inm);
             $em->flush();

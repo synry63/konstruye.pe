@@ -12,6 +12,7 @@ use Symfony\Component\Form\FormEvents;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\PropertyAccess\PropertyAccess;
 use Doctrine\ORM\EntityRepository;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 class AddProvinceFieldSubscriber implements EventSubscriberInterface
 {
@@ -35,12 +36,17 @@ class AddProvinceFieldSubscriber implements EventSubscriberInterface
 
         $formOptions = array(
             'class'         => 'AppBundle:Provincia',
-            'empty_value'   => 'Provincia',
-            'label'         => 'Provincia',
+            //'empty_value'   => 'Provincia',
+            //'label'         => 'Provincia',
+            'placeholder' => '',
             'choice_label' => 'nombre',
             'mapped'        => true,
             'attr'          => array(
                 'class' => 'province_selector',
+            ),
+            'constraints' => array(
+                new NotBlank(),
+
             ),
             'query_builder' => function (EntityRepository $repository) use ($country_id) {
                 $qb = $repository->createQueryBuilder('provincia')

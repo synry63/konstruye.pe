@@ -55,6 +55,9 @@ ver_mas_productos_proveedor:
 show_contacto:
     path:      /contacto
     defaults:  { _controller: AppBundle:Default:contacto}
+show_faq:
+    path:      /faq
+    defaults:  { _controller: AppBundle:Default:faq}
 lisdato_seccion_categoria:
     path:      /{slug_seccion}/categoria/{slug_categoria}/{page}
     defaults:  { _controller: AppBundle:Negocio:listadoSeccionCategoria,page:1}
@@ -68,6 +71,9 @@ show_profile_comments:
 show_profile_negocios:
     path:      /profile/mis-negocios
     defaults:  { _controller: AppBundle:User:showNegociosUser}
+show_profile_settings:
+    path:      /profile/settings
+    defaults:  { _controller: AppBundle:User:showUserSettings}
 negocio_proveedor_register:
     path:      /profile/proveedor/register
     defaults:  { _controller: AppBundle:Proveedor:register}

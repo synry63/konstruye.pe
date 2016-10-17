@@ -75,7 +75,26 @@ class Inmueble extends Negocio
      * @ORM\OneToMany(targetEntity="ServicioInmueble", mappedBy="inmueble")
      */
     private $sevicios;
+    /**
+     * @ORM\OneToMany(targetEntity="GeneralInmueble", mappedBy="inmueble")
+     */
+    private $generales;
 
+    /**
+     * @return mixed
+     */
+    public function getGenerales()
+    {
+        return $this->generales;
+    }
+
+    /**
+     * @param mixed $generales
+     */
+    public function setGenerales($generales)
+    {
+        $this->generales = $generales;
+    }
     /**
      * @return mixed
      */
@@ -124,6 +143,134 @@ class Inmueble extends Negocio
     public function setBanos($banos)
     {
         $this->banos = $banos;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPrecioSoles()
+    {
+        return $this->precioSoles;
+    }
+
+    /**
+     * @param mixed $precioSoles
+     */
+    public function setPrecioSoles($precioSoles)
+    {
+        $this->precioSoles = $precioSoles;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPrecioDolares()
+    {
+        return $this->precioDolares;
+    }
+
+    /**
+     * @param mixed $precioDolares
+     */
+    public function setPrecioDolares($precioDolares)
+    {
+        $this->precioDolares = $precioDolares;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAreaTotal()
+    {
+        return $this->areaTotal;
+    }
+
+    /**
+     * @param mixed $areaTotal
+     */
+    public function setAreaTotal($areaTotal)
+    {
+        $this->areaTotal = $areaTotal;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAreaTechada()
+    {
+        return $this->areaTechada;
+    }
+
+    /**
+     * @param mixed $areaTechada
+     */
+    public function setAreaTechada($areaTechada)
+    {
+        $this->areaTechada = $areaTechada;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDormitorios()
+    {
+        return $this->dormitorios;
+    }
+
+    /**
+     * @param mixed $dormitorios
+     */
+    public function setDormitorios($dormitorios)
+    {
+        $this->dormitorios = $dormitorios;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getMedioBanos()
+    {
+        return $this->medioBanos;
+    }
+
+    /**
+     * @param mixed $medioBanos
+     */
+    public function setMedioBanos($medioBanos)
+    {
+        $this->medioBanos = $medioBanos;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getStacionamientos()
+    {
+        return $this->stacionamientos;
+    }
+
+    /**
+     * @param mixed $stacionamientos
+     */
+    public function setStacionamientos($stacionamientos)
+    {
+        $this->stacionamientos = $stacionamientos;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUnidades()
+    {
+        return $this->unidades;
+    }
+
+    /**
+     * @param mixed $unidades
+     */
+    public function setUnidades($unidades)
+    {
+        $this->unidades = $unidades;
     }
 
 

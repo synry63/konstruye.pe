@@ -302,10 +302,9 @@ class NegocioController extends Controller
         $negocio = $this->getDoctrine()->getRepository('AppBundle:Negocio')->findOneBySlug($slug_negocio);
         $comments = $this->getDoctrine()->getRepository('AppBundle:ComentarioNegocio')->getAllComments($negocio);
         $moy = $this->getDoctrine()->getRepository('AppBundle:Negocio')->getNegocioRating($negocio);
-        $productos = $this->getDoctrine()->getRepository('AppBundle:Producto')->getProductosByNegocio($negocio)->getResult();
+
         $renderOut = array(
             'negocio'=>$negocio,
-            'productos'=>$productos,
             'moy'=>$moy,
             'comentarios'=>$comments,
         );
@@ -345,6 +344,8 @@ class NegocioController extends Controller
                 return $this->render('show_categorias.html.twig',$renderOut);
             }
             else if($negocio instanceof Proveedor){
+                $productos = $this->getDoctrine()->getRepository('AppBundle:Producto')->getProductosByNegocio($negocio,'moy')->getResult();
+                $renderOut['productos'] = $productos;
                 return $this->render('show_proveedores.html.twig',$renderOut);
             }
             else if($negocio instanceof Especialista){

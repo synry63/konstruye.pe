@@ -404,4 +404,7 @@ class UserController extends Controller
                 'negocios' => $negocios
             ));
     }
+    public function showUserSettingsAction(Request $request){
+        return $this->render('FOSUserBundle:Profile:show_settings.html.twig');
+    }
 }

@@ -23,6 +23,8 @@ services:
   form_serializer:
     class:        AppBundle\Form\FormErrorsSerializer
 
+  slugify:
+    class:        AppBundle\Tool\SlugifyClass
   swiftmailer.command.spool_send:
       class: Symfony\Bundle\SwiftmailerBundle\Command\SendEmailCommand
       calls:

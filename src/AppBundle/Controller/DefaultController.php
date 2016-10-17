@@ -42,6 +42,11 @@ class DefaultController extends Controller
         $response->setData($out);
         return $response;
     }
+    public function faqAction(Request $request){
+        return $this->render(
+            'faq.html.twig'
+        );
+    }
     public function contactoAction(Request $request)
     {
         $form = $this->createForm(new ContactType());

@@ -106,12 +106,13 @@ class InmuebleType extends AbstractType
 
             )
         ));
+        /*
         $builder->add('web');
         $builder->add('facebookLink');
         $builder->add('twitterLink');
         $builder->add('pinteresLink');
         $builder->add('instagramLink');
-        $builder->add('googleLink');
+        $builder->add('googleLink');*/
         $builder->add('email', 'Symfony\Component\Form\Extension\Core\Type\EmailType',array(
             'constraints' => array(
                 new NotBlank(),
