@@ -380,7 +380,7 @@ Perfil - Cambiar Datos
     color: rgba(0,0,0,.5);
     font-size: 15px;
     font-weight: bold;
-    margin-bottom: 4px;
+    margin-bottom: 5px;
 }
 .contenedor-formulario-editar ul li {
     color: #1c9cd9;
@@ -427,4 +427,19 @@ Cambio de Contraseña
     font-size: 12px;
     font-weight: 700;
     margin: 8px 0;
+}
+
+/*===========================
+Todos tus Comentarios
+===========================*/
+.contenedor-comentarios-usuario {
+    margin-top: 20px;
+}
+.contenedor-comentarios-usuario .comentario-usuario {
+    background-color: #fff;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    padding: 10px;
+    /*position: relative;*/
+    margin-bottom: 10px;
 }

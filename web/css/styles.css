@@ -786,19 +786,22 @@ Popup - Comentario_Negocio
 }
 .contenedor-popup-comentario label {
     color: rgba(0,0,0,.5);
-    /*margin-bottom: 5px;*/
+    margin-bottom: 5px;
     font-weight: bold;
     font-size: 15px;
 }
 .contenedor-popup-comentario  textarea {
     height: 200px;
+    resize: none;
 }
 
 div#container-alert {
     color: #1c9cd9;
-    font-size: 12px;
+    font-size: 14px;
     margin: 8px 0;
+    font-weight: 400;
 }
+
 
 /*=============
 Negocio

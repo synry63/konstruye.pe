@@ -60,7 +60,7 @@
                        window.location.href = data.success;
                    }else {
                        $('div#container-alert').remove();
-                       $('#cotizacion_send').prop('disabled', false);
+//                       $('#cotizacion_send').prop('disabled', false);
                        if(data.errors.fields.cotizacion_tel != undefined) {
                             $('#telefonoInput label').append("<div id='container-alert'><i class='fa fa-exclamation-circle' aria-hidden='true'></i> "+ data.errors.fields.cotizacion_tel+"</div>");
                        }

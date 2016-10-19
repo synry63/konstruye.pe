@@ -12,12 +12,12 @@
             <div class="popup-comentario-form">
                 {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
 
-                    <div class="form-group" id="input">
+                    <div class="form-group" id="tituloInput">
                         {{  form_label(form.titulo)}}
                         {{  form_errors(form.titulo)}}
                         {{  form_widget(form.titulo, {'attr':{'class':'form-control'}}) }}
                     </div>
-                    <div class="form-group" id="textarea">
+                    <div class="form-group" id="comentarioTextarea">
                         {{ form_label(form.comentario) }}
                         {{ form_errors(form.comentario) }}
                         {{ form_widget(form.comentario,{'attr':{'class':'form-control'}}) }}
@@ -38,7 +38,7 @@
         if (typeof jQuery != 'undefined'){
             $( document ).ready(function() {
                 $('#comentario_producto_submit').click(function(e){
-//                    $('#comentario_producto_submit').prop('disabled',true);
+                    $('#comentario_producto_submit').prop('disabled',true);
                     e.preventDefault();
                     $.ajax({
                         type     : $('form').attr( 'method' ),
@@ -46,17 +46,16 @@
                         data     : $('form').serialize(),
                         dataType : 'json'
                     }).done(function(data){
-                        console.log(data.success);
                         if(data.success!=undefined){
                             window.location.href = data.success;
                         }else {
                             $('div#container-alert').remove();
 //                            $('#comentario_proveedor_submit').prop('disabled',false);
                             if(data.errors.fields.comentario_producto_titulo != undefined){
-                                $('#input').prepend("<div id='container-alert'><i class='fa fa-exclamation-circle' aria-hidden='true'></i> "+ data.errors.fields.comentario_producto_titulo+"</div>");
+                                $('#tituloInput label').append("<div id='container-alert'><i class='fa fa-exclamation-circle' aria-hidden='true'></i> "+ data.errors.fields.comentario_producto_titulo+"</div>");
                             }
                             if(data.errors.fields.comentario_producto_comentario != undefined){
-                                $('#textarea').prepend("<div id='container-alert'><i class='fa fa-exclamation-circle' aria-hidden='true'></i> "+ data.errors.fields.comentario_producto_comentario+"</div>");
+                                $('#comentarioTextarea label').append("<div id='container-alert'><i class='fa fa-exclamation-circle' aria-hidden='true'></i> "+ data.errors.fields.comentario_producto_comentario+"</div>");
                             }
                             if(data.errors.global.length > 0){
                                 $( "#contenedor-rateyo").prepend("<div id='container-alert'><i class='fa fa-exclamation-circle' aria-hidden='true'></i> " + data.errors.global[0] + "</div>"  );
