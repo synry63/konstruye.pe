@@ -3,11 +3,11 @@
     <title>Konstruye.pe | Mi Perfil</title>
 {% endblock title %}
 
-{% block stylesheets %}
-    {{ parent() }}
+{#{% block stylesheets %}#}
+    {#{{ parent() }}#}
     {#Magnific Popup#}
     {#<link rel="stylesheet" href="{{ asset('css/magnific-popup.css') }}">#}
-{% endblock stylesheets %}
+{#{% endblock stylesheets %}#}
 
 {% block fos_user_content %}
 
@@ -28,7 +28,7 @@
             {#<div class="menu-perfil">#}
                 {#{{ knp_menu_render('AppBundle:Builder:menuProfile') }}#}
 
-            {#</div>#
+            {#</div>#}
         {#</div>#}
     {#</div>#}
 {% include "FOSUserBundle:Profile:show_include_perfil_menu.html.twig" %}

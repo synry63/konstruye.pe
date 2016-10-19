@@ -239,12 +239,31 @@ Perfil
 }
 .perfil figure.perfil-fondo-izquierda {
     float: left;
-    margin-top: 1.2rem;
-    margin-left: 4rem;
+    margin-top: 1rem;
+    margin-left: 3.4rem;
 }
-.perfil .perfil-fondo-izquierda img {
+.perfil figure.perfil-fondo-izquierda img {
+    width: 100px;
+    border-radius: 50%;
     border: 2px solid #fff;
     padding: 2px;
+}
+.perfil figure.perfil-fondo-izquierda a {
+    position: relative;
+    right: 25px;
+    bottom: 13px;
+    background-color: #fff;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    display: inline-block;
+}
+.perfil figure.perfil-fondo-izquierda a i {
+    color: #000;
+    font-size: 15px;
+    position: absolute;
+    left: 8px;
+    top: 5px;
 }
 .perfil .perfil-fondo-derecha {
     float: right;

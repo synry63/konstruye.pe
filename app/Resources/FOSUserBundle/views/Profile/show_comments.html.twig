@@ -1,1 +1,22 @@
-{{ dump(comentarios) }}
+{% extends "FOSUserBundle::layout.html.twig" %}
+{% block title %}
+    <title>Konstruye.pe | Mis Comentarios</title>
+{% endblock title %}
+{% block fos_user_content %}
+    {% include "FOSUserBundle:Profile:show_include_perfil_menu.html.twig" %}
+{#{{ dump(comentarios) }}#}
+    <div class="container">
+        <div class="col-md-12">
+            <div class="contenedor-comentarios-usuario">
+                {% for comentario in comentarios %}
+                    <div class="comentario-usuario">
+                        <p>{{ comentario.nota }}</p>
+                        <p>{{ comentario.titulo }}</p>
+                        <p>{{ comentario.comentario }}</p>
+                        <p>{{ comentario.adedAt.date }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock fos_user_content %}

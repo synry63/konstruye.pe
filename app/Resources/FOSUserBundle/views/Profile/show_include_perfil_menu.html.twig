@@ -1,3 +1,12 @@
+{% block title %}
+    <title>Konstruye.pe | </title>
+{% endblock title %}
+{% block stylesheets %}
+    {#{{ parent() }}#}
+    {#Magnific Popup#}
+    <link rel="stylesheet" href="{{ asset('css/magnific-popup.css') }}">
+{% endblock stylesheets %}
+
 <section class="perfil">
     <div class="container-fluid position">
         <div class="row ">
@@ -6,7 +15,8 @@
             </div>
             <div class="container flex-container-perfil">
                 <figure class="perfil-fondo-izquierda">
-                    <img class="img-circle" src="https://dummyimage.com/90" alt="Imagen Perfil"/>
+                    {{ render(controller('AppBundle:User:showProfile')) }}
+                    {#<img class="img-circle" src="https://dummyimage.com/90" alt="Imagen Perfil" width="90"/>#}
                 </figure>
                 <div class="perfil-fondo-derecha">
                     <p class="perfil-bienvenida">¡Bienvenido(a)!</p>
@@ -22,6 +32,24 @@
                     </p>
                 </div>
             </div>
+            {#<div class="container">#}
+                {#<div class="col-md-2 perfil">#}
+                    {#<div class="modal-image">#}
+                        {#<p style="margin-top: 10px">¡Bienvenido(a)!</p>#}
+                        {#{{ render(controller('AppBundle:User:showProfile')) }}#}
+                        {#<h1>{{ user.nombres }} {{ user.apellidos }}</h1>#}
+                        {#<p>{{ user.email }}</p>#}
+                        {#<p>{{ user.username }}</p>#}
+                    {#</div>#}
+                {#</div>#}
+                {#<div class="col-md-10">#}
+
+                    {#<div class="menu-perfil">#}
+                        {#{{ knp_menu_render('AppBundle:Builder:menuProfile') }}#}
+
+                    {#</div>#}
+                {#</div>#}
+            {#</div>#}
         </div>
     </div>
 </section>
