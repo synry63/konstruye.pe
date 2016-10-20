@@ -502,6 +502,21 @@ Listado de Negocios
     color: #1C9CD9;
     width: 15px;
     text-align: center;}
+/*=============
+Dashboard Negocios
+=============*/
+.top-seccion{
+    background: #fff;
+    height: 50px;
+}
+.top-seccion ul{
+    margin: 0;
+}
+.top-seccion ul li{
+    list-style: none;
+    display: inline-block;
+}
+
 
 /*=============
 Index

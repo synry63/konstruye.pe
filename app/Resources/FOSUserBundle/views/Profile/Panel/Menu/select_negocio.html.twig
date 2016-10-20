@@ -1,6 +1,5 @@
-<h1>Negocios</h1>
-<ul>
+<select>
     {% for n in app.user.negocios %}
-        <li>{{ n.id~' '~n.nombre }}</li>
+        <option value="{{ n.slug }}">{{ n.id~' '~n.nombre }}</option>
     {% endfor %}
-</ul>
+</select>
