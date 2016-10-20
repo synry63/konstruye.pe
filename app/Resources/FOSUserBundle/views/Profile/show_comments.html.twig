@@ -11,19 +11,30 @@
 {% block fos_user_content %}
 
     {% include "FOSUserBundle:Profile:show_include_perfil_menu.html.twig" %}
-    {#{{ dump(comentarios) }}#}
+    {{ dump(comentarios[0].negocio.logo.logoname) }}
         <div class="container">
             <div class="col-md-12">
                 <div class="col-md-8 col-md-offset-2">
                     <div class="contenedor-comentarios-usuario">
-                        {% for comentario in comentarios %}
-                            <div class="comentario-usuario">
-                                <p> {{ comentario.nota }}"</p>
-                                <p>{{ comentario.titulo }}</p>
-                                <p>{{ comentario.comentario }}</p>
-                                <p>{{ comentario.adedAt.date }}</p>
-                            </div>
-                        {% endfor %}
+
+                        {% if comentarios|length > 0 %}
+                            {% for comentario in comentarios %}
+                                <div class="comentario-usuario">
+                                    <div class="image-comentario">
+                                        <img src="{{ comentario.negocio.logo.logoname }}" alt="">
+                                    </div>
+                                    <div class="titulo-rating">
+                                        <h3>{{ comentario.titulo }} -</h3><span class="rateYo_comments" data-rating="{{ comentario.nota }}"></span>
+                                    </div>
+                                    <p>{{ comentario.comentario }}</p><a class="comentario-enlace"href="">Editar</a>
+                                    <div class="date">{{ comentario.adedAt|date("d F, Y") }}</div>
+
+                                </div>
+                            {% endfor %}
+                        {% else %}
+                            <p> - Ud. no tiene comentarios - </p>
+                        {% endif %}
+
                     </div>
                 </div>
             </div>
@@ -31,6 +42,31 @@
 {% endblock fos_user_content %}
 
 {% block javascripts %}
+    {{ parent() }}
     {#Rate Yo#}
     <script type="text/javascript" src="{{ asset('js/jquery.rateyo.min.js') }}"></script>
+    <script>
+        $(document).ready(function(){
+            var color="#30BDEF";
+            var test = $(".rateYo_comments").attr("data-rating");
+
+            $("#rateYo").rateYo({
+                rating: test,
+                starWidth: "14px",
+                ratedFill: color,
+                normalFill: "#A0A0A0",
+                readOnly: true
+            });
+
+            $( ".rateYo_comments" ).each(function( index ) {
+                $(this).rateYo({
+                    rating: $(this).attr("data-rating"),
+                    starWidth: "16px",
+                    readOnly: true,
+                    ratedFill: color,
+                    normalFill: "#A0A0A0"
+                });
+            });
+        })
+    </script>
 {% endblock javascripts %}

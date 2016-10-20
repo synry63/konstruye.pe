@@ -8,6 +8,7 @@
 {% endblock stylesheets %}
 
 <section class="perfil">
+    {#{{ dump(app.user) }}#}
     <div class="container-fluid position">
         <div class="row ">
             <div class="imagen-fondo-perfil fondo-defaults">
@@ -16,12 +17,11 @@
             <div class="container flex-container-perfil">
                 <figure class="perfil-fondo-izquierda">
                     {{ render(controller('AppBundle:User:showProfile')) }}
-                    {#<img class="img-circle" src="https://dummyimage.com/90" alt="Imagen Perfil" width="90"/>#}
                 </figure>
                 <div class="perfil-fondo-derecha">
                     <p class="perfil-bienvenida">¡Bienvenido(a)!</p>
-                    <p class="perfil-nombre">Javier <strong>Diaz</strong>
-                    <div class="dropdown " style="display: inline-block;margin-left: 35px;">
+                    <p class="perfil-nombre">{{ app.user.nombres}} <strong>{{ app.user.apellidos }}</strong>
+                    <div class="dropdown " style="display: inline-block;margin-left: 3px;">
                         <i class="fa fa-cog" aria-hidden="true" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"></i>
                         <ul class="dropdown-menu dropdown-margin">
                             <li><a href="{{ path('fos_user_profile_edit') }}"><i class="fa fa-pencil" aria-hidden="true"></i>Editar Datos</a></li>

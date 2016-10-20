@@ -1,7 +1,8 @@
 {% if app.user.profile is not null %}
     <img alt="user icon" src="{{ vich_uploader_asset(app.user.profile, 'profileFile','AppBundle\\Entity\\FotoProfile') }}">
+{% else %}
+    <img class="img-circle" width="50px" src="{{ asset('images/assets/user_icon.svg') }}" alt="">
 {% endif %}
-
 <a class="popup-modal" href="#test-modal"><i class="fa fa-pencil" aria-hidden="true"></i></a>
 
 <div id="test-modal" class="white-popup-block mfp-hide" style="text-align: center">

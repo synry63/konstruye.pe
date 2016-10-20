@@ -1,1 +1,10 @@
-{{ dump(negocios) }}
+{% extends "FOSUserBundle::layout.html.twig" %}
+{% block title %}
+    <title>Konstruye.pe | Mi Colección</title>
+{% endblock title %}
+{% block fos_user_content %}
+    {% include "FOSUserBundle:Profile:show_include_perfil_menu.html.twig" %}
+
+{% endblock fos_user_content %}
+{#{{ dump(negocios) }}#}
+{#holas#}

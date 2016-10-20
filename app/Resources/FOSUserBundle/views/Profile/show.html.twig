@@ -3,11 +3,13 @@
     <title>Konstruye.pe | Mi Perfil</title>
 {% endblock title %}
 
-{#{% block stylesheets %}#}
-    {#{{ parent() }}#}
+{% block stylesheets %}
+    {{ parent() }}
+    {#Noty#}
+    <link rel="stylesheet" href="{{ asset('css/animate.css') }}">
     {#Magnific Popup#}
     {#<link rel="stylesheet" href="{{ asset('css/magnific-popup.css') }}">#}
-{#{% endblock stylesheets %}#}
+{% endblock stylesheets %}
 
 {% block fos_user_content %}
 
@@ -31,6 +33,11 @@
             {#</div>#}
         {#</div>#}
     {#</div>#}
+    {% for type, messages in app.session.flashbag.all() %}
+        {% for message in messages %}
+            <div id="error" data-error="{{ message }}"></div>
+        {% endfor %}
+    {% endfor %}
 {% include "FOSUserBundle:Profile:show_include_perfil_menu.html.twig" %}
 {% include "FOSUserBundle:Profile:show_content.html.twig" %}
 {% endblock fos_user_content %}

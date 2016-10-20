@@ -273,6 +273,7 @@ Perfil
 .perfil .perfil-fondo-derecha p {
     font-size: 22px;
     font-weight: bold;
+    text-align: right;
 }
 .perfil .perfil-fondo-derecha p:nth-child(2) {
     margin-top: 15px;
@@ -440,6 +441,32 @@ Todos tus Comentarios
     border: 1px solid transparent;
     border-radius: 5px;
     padding: 10px;
-    /*position: relative;*/
+    position: relative;
     margin-bottom: 10px;
+    box-shadow: 0 1px 2px rgba(0,0,0,.3);
+    min-height: 100px;
+}
+.comentario-usuario .titulo-rating h3 {
+    font-size: 18px;
+    font-weight: 600;
+    text-transform: uppercase;
+    display: inline-block;
+}
+.comentario-usuario .titulo-rating span {
+    display: inline-block;
+}
+.comentario-usuario .date {
+    color: #A0A0A0;
+    font-style: italic;
+    margin-bottom: 10px;
+    font-size: 14px;
+    position: absolute;
+    top: 14px;
+    right: 11px;
+}
+.comentario-usuario p {
+    margin: 7px 0;
+}
+.comentario-usuario .comentario-enlace {
+    display: inline-block;
 }
