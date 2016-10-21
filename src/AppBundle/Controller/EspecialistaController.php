@@ -47,6 +47,8 @@ class EspecialistaController extends Controller
 
         if ($form->isValid()) {
             $esp->setUser($user);
+            $slug = $this->get('slugify')->slugify($esp->getNombre());
+            $esp->setSlug($slug);
             $em = $this->getDoctrine()->getManager();
             $em->persist($esp);
             $em->flush();

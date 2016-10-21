@@ -43,6 +43,8 @@ class ProveedorController extends Controller
 
         if ($form->isValid()) {
             $proveedor->setUser($user);
+            $slug = $this->get('slugify')->slugify($proveedor->getNombre());
+            $proveedor->setSlug($slug);
             $em = $this->getDoctrine()->getManager();
             $em->persist($proveedor);
             $em->flush();

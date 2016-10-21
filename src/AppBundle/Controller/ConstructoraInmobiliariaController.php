@@ -40,6 +40,8 @@ class ConstructoraInmobiliariaController extends Controller
 
         if ($form->isValid()) {
             $cons->setUser($user);
+            $slug = $this->get('slugify')->slugify($cons->getNombre());
+            $cons->setSlug($slug);
             $em = $this->getDoctrine()->getManager();
             $em->persist($cons);
             $em->flush();
