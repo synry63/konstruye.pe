@@ -127,4 +127,4 @@ profile_negocios_panel_dashboard:
     defaults:  { _controller: AppBundle:Panel:showPanelNegocioUserDashbord}
 profile_negocios_panel_gestion_negocio_cambiar_datos:
     path: /profile/panel/auth/datos
-    defaults:  { _controller: AppBundle:Panel:showPanelNegocioUserDashbord}
+    defaults:  { _controller: AppBundle:Panel:showPanelNegocioUserDatos}
