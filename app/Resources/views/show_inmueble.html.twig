@@ -15,6 +15,8 @@
     <link rel="stylesheet" href="{{ asset('css/masterslider.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('css/ms-gallery-style.css') }}">
+    {#Rateyo#}
+    <link rel="stylesheet" href="{{ asset('css/jquery.rateyo.min.css') }}">
 {% endblock stylesheets%}
 
 
@@ -197,14 +199,13 @@
                         </div>
                     </div>
 
+
                     <div class="col-md-4 zona-contactanos">
                             <div class="zona-contactanos-contenido">
                                 <div class="zona-contactanos-header">
                                     <a class="link-inmobiliaria" href="">
                                         <span> {{ negocio.nombre }} </span>
-                                        <img src="{{ asset('images/negocios/logo/' ~ negocio.logo.logoName ) }}" alt="" width="70px">
-                                        {#<img class="" width="70px" src="{{ vich_uploader_asset(negocio.logo.logoName, 'profileFile') }}" alt="">#}
-                                        {#<img class="img-circle" width="50px" src="{{ vich_uploader_asset(app.user.profile, 'profileFile') }}" alt="">#}
+                                        <img class="img-responsive" width="70" src="{{ vich_uploader_asset(negocio.logo, 'logoFile') }}" alt=""/>
                                     </a>
                                 </div>
                                 <div class="zona-telefono">
@@ -214,6 +215,58 @@
                                     <a class="btn btn-konstruye simple-ajax-popup" href="{{ path('negocio_solicitar_cotizacion',{'slug_negocio':negocio.slug}) }}">Contactar Anuncio</a>
                                 </div>
                             </div>
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="col-md-12 ">
+                <div class="row">
+                    <div class="col-md-8 datos-header">
+                        <h3 class="datos-titulo-comentarios">Comentarios</h3>
+                        {% if negocio.comentarios|length > 0 %}
+                            {% for comentario in negocio.comentarios %}
+                                <div class="show-perfil-image-comentario col-md-2 col-sm-2 col-xs-12">
+                                    <img class="img-circle" alt="user icon" width="70px" src="http://placehold.it/100x100x?text=Foto+Perfil">
+                                </div>
+
+                                <div class="show-perfil-comentario-usuario col-md-10 col-sm-10 col-xs-12">
+                                    <div class="titulo-rating">
+                                        <h3>{{ comentario.titulo }} -</h3><span class="rateYo_comments" data-rating="{{ comentario.nota }}"></span>
+                                    </div>
+
+                                    <div class="comentario_editar">
+                                        <p>{{ comentario.comentario }}</p>
+                                        {#<a class="comentario-enlace"href="">Editar</a>#}
+                                    </div>
+                                    <div  class="date hidden-xs-down">{{ comentario.adedAt|date("d F, Y") }}</div>
+                                </div>
+                            {% endfor %}
+                        {% else %}
+                            <section class="alerta-mensaje-ninguno">
+                                <p><i class="fa fa-exclamation-triangle" aria-hidden="true"></i></p>
+                                <p>Se el primero en dejar tú comentar.</p>
+                            </section>
+                        {% endif %}
+
+                        {% if app.user is not null %}
+                            <p>
+                                {% if myc is not null %}
+                                    <a class="simple-ajax-popup btn btn-konstruye btn-comentar" href="{{ path('negocio_me_comentar_edit',{'slug_negocio':negocio.slug}) }}">Editar</a>
+                                {% else %}
+                                    {#No entra por que nunca es Null#}
+                                    <a class="simple-ajax-popup btn btn-konstruye btn-comentar" href="{{ path('negocio_me_comentar_new',{'slug_negocio':negocio.slug}) }}">Comentar</a>
+                                {% endif %}
+                            </p>
+
+                        {% else %}
+                            <span class="media contenedor-registrate">
+                                <a id="registro" href="{{ path('fos_user_registration_register') }}">Registrarse</a>
+                                ó
+                                <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+                                para poder comentar.
+                            </span>
+                        {% endif %}
                     </div>
                 </div>
             </div>
@@ -226,6 +279,8 @@
     {#Slider#}
     <script  type="text/javascript" src="{{ asset('js/jquery.easing.min.js') }}"></script>
     <script  type="text/javascript" src="{{ asset('js/masterslider.min.js') }}"></script>
+    {#Rate Yo#}
+    <script type="text/javascript" src="{{ asset('js/jquery.rateyo.min.js') }}"></script>
 <script>
     $(document).ready(function(){
         {#Magnific Popup#}
@@ -249,6 +304,19 @@
 
         var gallery = new MSGallery('ms-gallery-1' , slider);
         gallery.setup();
+
+        {#Rateyo#}
+        var color="#30BDEF";
+
+        $( ".rateYo_comments" ).each(function( index ) {
+            $(this).rateYo({
+                rating: $(this).attr("data-rating"),
+                starWidth: "16px",
+                readOnly: true,
+                ratedFill: color,
+                normalFill: "#A0A0A0"
+            });
+        });
     });
 </script>
 {% endblock javascripts %}

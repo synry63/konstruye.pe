@@ -1,28 +1,8 @@
 
 
-/*!*=============*/
-/*SHOW INMUEBLE*/
-/*=============*!*/
-/*.contenedor-inmueble {*/
-    /*max-width: 1180px;*/
-    /*width: 81.944444%;*/
-    /*margin-left: auto;*/
-    /*margin-right: auto;*/
-    /*display: flex;*/
-    /*-webkit-flex-flow: row wrap;*/
-    /*flex-flow: row wrap;*/
-    /*min-width: 100vh;*/
-/*}*/
-/*.col-inmueble-1, .col-inmueble-1-1 {*/
-    /*width: 66.101694915254237%;*/
-    /*max-width: 780px;*/
-    /*min-height: 100%;*/
-/*}*/
-/*.col-inmueble-2 {*/
-    /*width: 33.898305084745763%;*/
-    /*max-width: 400px;*/
-    /*min-height: 100%;*/
-/*}*/
+/*===============
+SHOW INMUEBLE
+================*/
 .datos-header {
     padding: 20px;
     background-color: #fff;
@@ -95,29 +75,6 @@
     font-weight: 500;
     line-height: 28px;
 }
-/*.contenedor-inmueble span.precio-zona-inmueble {*/
-    /*float: right;*/
-    /*font-size: 28px;*/
-    /*font-weight: 600;*/
-/*}*/
-/*.contenedor-inmueble .precio {*/
-    /*overflow: hidden;*/
-    /*clear: both;*/
-/*}*/
-/*.contenedor-inmueble .calcula-hipoteca {*/
-    /*display: block;*/
-    /*text-align: right;*/
-    /*color: #27bdf1;*/
-    /*font-weight: normal;*/
-    /*font-size: 14px;*/
-    /*margin-top: 4px;*/
-/*}*/
-/*.contenedor-inmueble .zona-contactanos {*/
-    /*!*padding: 20px;*!*/
-    /*padding: 20px 0 0 20px;*/
-    /*max-width: 400px;*/
-    /*width: 100%;*/
-/*}*/
 .zona-contactanos-contenido {
     background-color: #fff;
     padding: 20px;
@@ -198,7 +155,7 @@ font-size: 14px;
     padding: 20px;
     box-shadow: 0 1px 2px rgba(0,0,0,.4);
 }
-.datos-descripcion-titulo ,.datos-principales-titulo, .datos-titulo-generales, .datos-titulo-servicios, .datos-titulo-ubicacion {
+.datos-descripcion-titulo ,.datos-titulo-comentarios, .datos-principales-titulo, .datos-titulo-generales, .datos-titulo-servicios, .datos-titulo-ubicacion {
     color: #1C9CD9;
     font-size: 20px;
     font-weight: 600;
@@ -217,6 +174,50 @@ font-size: 14px;
     box-shadow: 0 1px 2px rgba(0,0,0,.4);
 }
 
+
+/*===========================
+Show Inmueble - Comentarios
+=============================*/
+.show-perfil-image-comentario {
+    padding-right: 0;
+    padding-left: 20px;
+}
+.show-perfil-image-comentario img {
+    display: block;
+    margin: 0 auto;
+}
+.show-perfil-comentario-usuario {
+    background-color: #fff;
+    border: 1px solid rgba(0,0,0,.1);
+    border-radius: 5px;
+    padding: 10px;
+    position: relative;
+    margin-bottom: 10px;
+    max-width: 590px;
+    min-height: 82px;
+    overflow: hidden;
+}
+.show-perfil-comentario-usuario .titulo-rating h3 {
+    font-size: 18px;
+    font-weight: 600;
+    text-transform: uppercase;
+    display: inline-block;
+}
+.show-perfil-comentario-usuario .titulo-rating span {
+    display: inline-block;
+}
+.comentario_editar {
+    margin-top: 5px;
+}
+.show-perfil-comentario-usuario .date {
+    color: #A0A0A0;
+    font-style: italic;
+    margin-bottom: 10px;
+    font-size: 14px;
+    position: absolute;
+    top: 12px;
+    right: 11px;
+}
 
 /*=============
 Perfil
@@ -433,18 +434,31 @@ Cambio de Contraseña
 /*===========================
 Todos tus Comentarios
 ===========================*/
-.contenedor-comentarios-usuario {
+.marging-top {
     margin-top: 20px;
 }
-.contenedor-comentarios-usuario .comentario-usuario {
+.image-comentario {
+    padding-right: 0;
+}
+.image-comentario img {
+    margin-right: auto;
+    margin-left: auto;
+    border-radius: 5px;
+    box-shadow: 0 1px 2px rgba(0,0,0,.3);
+    margin-right: auto;
+    margin-left: auto;
+}
+.comentario-usuario {
     background-color: #fff;
     border: 1px solid transparent;
     border-radius: 5px;
     padding: 10px;
     position: relative;
     margin-bottom: 10px;
+    max-width: 590px;
     box-shadow: 0 1px 2px rgba(0,0,0,.3);
-    min-height: 100px;
+    min-height: 82px;
+    overflow: hidden;
 }
 .comentario-usuario .titulo-rating h3 {
     font-size: 18px;
@@ -455,18 +469,32 @@ Todos tus Comentarios
 .comentario-usuario .titulo-rating span {
     display: inline-block;
 }
+.comentario_editar {
+    margin-top: 5px;
+}
 .comentario-usuario .date {
     color: #A0A0A0;
     font-style: italic;
     margin-bottom: 10px;
     font-size: 14px;
     position: absolute;
-    top: 14px;
+    top: 12px;
     right: 11px;
 }
-.comentario-usuario p {
-    margin: 7px 0;
+.comentario_editar p {
+    font-size: 14px;
+    line-height: 17px;
 }
-.comentario-usuario .comentario-enlace {
-    display: inline-block;
+
+/*==================================
+Mensaje de Alert - Ninguno Elemento
+===================================*/
+.alerta-mensaje-ninguno {
+    text-align: center;
+}
+.alerta-mensaje-ninguno p i {
+    text-align: center;
+    font-size: 50px;
+    margin-bottom: 15px;
+    color: #1C9CD9;
 }

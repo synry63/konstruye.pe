@@ -11,33 +11,42 @@
 {% block fos_user_content %}
 
     {% include "FOSUserBundle:Profile:show_include_perfil_menu.html.twig" %}
-    {{ dump(comentarios[0].negocio.logo.logoname) }}
-        <div class="container">
-            <div class="col-md-12">
+    {{ dump(comentarios) }}
+        {#<div class="container">#}
+                <div class="row">
                 <div class="col-md-8 col-md-offset-2">
-                    <div class="contenedor-comentarios-usuario">
+                    <div class="marging-top">
 
                         {% if comentarios|length > 0 %}
                             {% for comentario in comentarios %}
-                                <div class="comentario-usuario">
-                                    <div class="image-comentario">
-                                        <img src="{{ comentario.negocio.logo.logoname }}" alt="">
+                                <div class="col-md-12 padding-left-right">
+                                    <div class="image-comentario col-md-2 col-sm-2 col-xs-12">
+                                        <img class="img-responsive" width="80" src="{{ vich_uploader_asset(comentario.negocio.logo, 'logoFile') }}" alt=""/>
                                     </div>
-                                    <div class="titulo-rating">
-                                        <h3>{{ comentario.titulo }} -</h3><span class="rateYo_comments" data-rating="{{ comentario.nota }}"></span>
-                                    </div>
-                                    <p>{{ comentario.comentario }}</p><a class="comentario-enlace"href="">Editar</a>
-                                    <div class="date">{{ comentario.adedAt|date("d F, Y") }}</div>
 
+                                    <div class="comentario-usuario col-md-10 col-sm-10 col-xs-12">
+                                        <div class="titulo-rating">
+                                            <h3>{{ comentario.titulo }} -</h3><span class="rateYo_comments" data-rating="{{ comentario.nota }}"></span>
+                                        </div>
+
+                                        <div class="comentario_editar">
+                                            <p>{{ comentario.comentario }}</p>
+                                            {#<a class="comentario-enlace"href="">Editar</a>#}
+                                        </div>
+                                        <div class="date">{{ comentario.adedAt|date("d F, Y") }}</div>
+                                    </div>
                                 </div>
                             {% endfor %}
                         {% else %}
-                            <p> - Ud. no tiene comentarios - </p>
+                            <section class="alerta-mensaje-ninguno">
+                                <p><i class="fa fa-exclamation-triangle" aria-hidden="true"></i></p>
+                                <p>Aun no ha realizado ninguna comentario.</p>
+                            </section>
                         {% endif %}
 
                     </div>
                 </div>
-            </div>
+                </div>
         </div>
 {% endblock fos_user_content %}
 
@@ -47,16 +56,8 @@
     <script type="text/javascript" src="{{ asset('js/jquery.rateyo.min.js') }}"></script>
     <script>
         $(document).ready(function(){
+            {#Rateyo#}
             var color="#30BDEF";
-            var test = $(".rateYo_comments").attr("data-rating");
-
-            $("#rateYo").rateYo({
-                rating: test,
-                starWidth: "14px",
-                ratedFill: color,
-                normalFill: "#A0A0A0",
-                readOnly: true
-            });
 
             $( ".rateYo_comments" ).each(function( index ) {
                 $(this).rateYo({

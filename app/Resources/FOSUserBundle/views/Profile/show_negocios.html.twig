@@ -1,10 +1,28 @@
 {% extends "FOSUserBundle::layout.html.twig" %}
 {% block title %}
-    <title>Konstruye.pe | Mi Colección</title>
+    <title> Konstruye.pe | Mi Colección </title>
 {% endblock title %}
 {% block fos_user_content %}
+    {#{{ dump(negocios) }}#}
     {% include "FOSUserBundle:Profile:show_include_perfil_menu.html.twig" %}
+        <div class="container">
 
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <div class="marging-top">
+                        {% if negocios|length > 0 %}
+                            <p>Hello World</p>
+                        {% else %}
+                            <section class="alerta-mensaje-ninguno">
+                                <p><i class="fa fa-exclamation-triangle" aria-hidden="true"></i></p>
+                                <p>No cuenta con ninguna colección por el momento.</p>
+                            </section>
+
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
 {% endblock fos_user_content %}
-{#{{ dump(negocios) }}#}
+
 {#holas#}
