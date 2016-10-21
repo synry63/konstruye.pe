@@ -1,3 +1,42 @@
+<div class="col-md-4">
+    <div class="negocio-box">
+        <a href="{{ path('show_negocio',
+        {"slug_negocio":n.negocio.slug}) }}">
+            <div class="banner">
+                <img src="{{ vich_uploader_asset(n.negocio.banner, 'bannerFile','AppBundle\\Entity\\Banner') }}" alt="{{ n.negocio.nombre }}" />
+            </div>
+            <div class="datos">
+                <div class="middle-section">
+                    <img width="80px" src="{{ vich_uploader_asset(n.negocio.logo, 'logoFile','AppBundle\\Entity\\Logo') }}" alt="{{ n.negocio.nombre }}" />
+                    {% if n.mymoy is null %}
+                        <div class="rateYo_negocios" data-rating="0"></div>
+                    {% else %}
+                        <div class="rateYo_negocios" data-rating="{{ n.mymoy }}"></div>
+                    {% endif %}
+                </div>
+                <div class="detalle-datos">
+                    <a href="{{ path('show_negocio',
+                    {"slug_negocio":n.negocio.slug}) }}">
+                        <h1>
+                            {{ n.negocio.nombre }}
+                        </h1>
+                    </a>
+                    <p><i class="fa fa-map-marker" aria-hidden="true"></i> {{ n.negocio.direccion }} - {{ n.negocio.distrito.nombre }} - {{ n.negocio.provincia.nombre }}</p>
+                    <p><i class="fa fa-phone" aria-hidden="true"></i> {{ n.negocio.telefono }}</p>
+                    <p><i class="fa fa-globe" aria-hidden="true"></i> {{ n.negocio.web }}</p>
+                    <p><i class="fa fa-envelope" aria-hidden="true"></i> {{ n.negocio.email }}</p>
+                </div>
+
+
+            </div>
+        </a>
+    </div>
+</div>
+
+
+
+
+{#
 <div class="row">
     <div class="negocio">
         <div class="col-md-2 logotipo">
@@ -9,7 +48,7 @@
         <div class="col-md-5 description">
             <h1><a href="{{ path('show_negocio',
                 {"slug_negocio":n.negocio.slug}) }}">{{ n.negocio.nombre }}</a></h1>
-            <p><i class="fa fa-map-marker" aria-hidden="true"></i> {{ n.negocio.direccion }} - {{ n.negocio.distrito }} - {{ n.negocio.departamento }}</p>
+            <p><i class="fa fa-map-marker" aria-hidden="true"></i> {{ n.negocio.direccion }} - {{ n.negocio.distrito.nombre }} - {{ n.negocio.provincia.nombre }}</p>
             <p><i class="fa fa-phone" aria-hidden="true"></i> {{ n.negocio.telefono }}</p>
             <p><i class="fa fa-globe" aria-hidden="true"></i> {{ n.negocio.web }}</p>
             <p><i class="fa fa-envelope" aria-hidden="true"></i> {{ n.negocio.email }}</p>
@@ -29,6 +68,5 @@
         </div>
     </div>
 </div>
-<hr class="style-two">
-
+#}
 

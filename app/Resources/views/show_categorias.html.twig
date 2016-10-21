@@ -7,15 +7,106 @@
     <link rel="stylesheet" href="{{ asset('css/jquery.rateyo.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/masterslider.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    {#Magnivi Popup#}
+    <link rel="stylesheet" href="{{ asset('css/magnific-popup.css') }}">
+    {#Rate Yo#}
+    <link rel="stylesheet" href="{{ asset('css/jquery.rateyo.min.css') }}">
 {% endblock %}
 
 {% block fos_user_content %}
+    {#{{ dump(app.user) }}#}
+    {#{{ dump(myc) }}#}
+    <div class="container">
+        <div class="master-slider ms-skin-default" id="masterslider">
+
+            {% if negocio.fotos|length > 0 %}
+                {% for nfo in negocio.fotos  %}
+                    <div class="ms-slide">
+                        {% if nfo.videoUrl is not null %}
+                            <a href="{{ nfo.videoUrl }}" data-type="video"> vimeo video </a>
+                        {% endif %}
+                        <img src="{{ vich_uploader_asset(nfo, 'imgFile') }}" alt="" />
+
+                    </div>
+                {% endfor %}
+            {% else %}
+
+                <div class="ms-slide">
+                    <img src="http://placehold.it/1170x350" alt="">
+                </div>
+                <div class="ms-slide">
+                    <img src="http://placehold.it/1170x350" alt="">
+                </div>
+                <div class="ms-slide">
+                    <img src="http://placehold.it/1170x350" alt="">
+                </div>
+
+            {% endif %}
+
+        </div>
+        <div class="datos-detail">
+            <div class="col-md-10 col-md-offset-1">
+                <div class="col-md-2 logo">
+                    <img width="80" src="{{ vich_uploader_asset(negocio.logo, 'logoFile','AppBundle\\Entity\\Logo') }}" alt="" />
+                </div>
+                <div class="col-md-7 info-negocio">
+                    <div class="row titulo-negocio">
+                        <h1> {{ negocio.nombre }} </h1>
+                        <span>
+                            <div style="display: inline-block" id="rateYo" data-rating="{{ moy }}"></div>
+                        </span>
+                    </div>
+                    <div class="row contacto">
+                        <span><i class="fa fa-phone" aria-hidden="true"></i> {{ negocio.telefono }}</span>
+                        <span><i class="fa fa-globe" aria-hidden="true"></i> {{ negocio.web }}</span>
+                        <span><i class="fa fa-envelope" aria-hidden="true"></i> {{ negocio.email }}</span>
+                    </div>
+                </div>
+                <div class="col-md-3 botones-sociales">
+                    <div class="row">
+                        <div class="social-icons">
+                            <a href="">
+                    <span class="fa-stack fa-lg">
+                      <i class="fa fa-square fa-stack-2x"></i>
+                      <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                    </span>
+                            </a>
+                            <a href="">
+                    <span class="fa-stack fa-lg">
+                      <i class="fa fa-square fa-stack-2x"></i>
+                      <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                    </span>
+                            </a>
+                            <a href="">
+                    <span class="fa-stack fa-lg">
+                      <i class="fa fa-square fa-stack-2x"></i>
+                      <i class="fa fa-instagram fa-stack-1x fa-inverse"></i>
+                    </span>
+                            </a>
+                            <a href="">
+                    <span class="fa-stack fa-lg">
+                      <i class="fa fa-square fa-stack-2x"></i>
+                      <i class="fa fa-google-plus fa-stack-1x fa-inverse"></i>
+                    </span>
+                            </a>
+                        </div>
+                        <a class="simple-ajax-popup contactenos_button" href="{{ path('negocio_solicitar_cotizacion',{'slug_negocio':negocio.slug}) }}">
+                            <button class="btn btn-default"> contáctanos </button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    {#
     <div class="container">
             <div class="col-md-4 logo_detail_section">
                 <img width="200" src="{{ vich_uploader_asset(negocio.logo, 'logoFile','AppBundle\\Entity\\Logo') }}" alt="" />
                 <div id="rateYo" data-rating="{{ moy }}"></div>
                 <p><i class="fa fa-map-marker" aria-hidden="true"></i> {{ negocio.direccion }}</p>
-                <p>{{ negocio.distrito }} - {{ negocio.departamento }}</p>
+                <p>{{ negocio.distrito.nombre }} - {{ negocio.departamento.nombre }}</p>
                 <p><i class="fa fa-phone" aria-hidden="true"></i> {{ negocio.telefono }}</p>
                 <p><i class="fa fa-globe" aria-hidden="true"></i> {{ negocio.web }}</p>
                 <p><i class="fa fa-envelope" aria-hidden="true"></i> {{ negocio.email }}</p>
@@ -84,6 +175,7 @@
 
             </div>
     </div>
+    #}
 
     <div class="container detail_description">
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium asperiores, aspernatur cupiditate ea eos eum incidunt ipsum iste maiores neque nobis odio quae quia repellat repudiandae soluta temporibus velit voluptatum. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa dignissimos distinctio dolore excepturi explicabo harum, id illum ipsum nisi provident quia quod, veritatis. Ad ea error maiores odit officiis pariatur!</p>
@@ -113,10 +205,7 @@
     {% else %}
         <h1 style="text-align:center;font-size: 50px;margin-bottom: 15px;color: #1C9CD9"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i></h1>
         <h2 style="text-align:center;">Este Negocio no tiene proyectos</h2>
-
     {% endif %}
-
-
 
     <div class="container-fluid googlemaps">
         <div class="row">
@@ -127,8 +216,6 @@
         </div>
     </div>
 
-
-
     <div class="container comments_details">
         <div class="col-md-8 col-md-offset-2">
 
@@ -138,70 +225,94 @@
                 {% endfor %}
             {% endfor %}
 
-            <div class="star-form">
-                {% if form is defined %}
-                    {{ form_start(form,{attr: {novalidate: 'novalidate'}}) }}
+            {#<div class="star-form">#}
+                {#{% if form is defined %}#}
+                    {#{{ form_start(form,{attr: {novalidate: 'novalidate'}}) }}#}
 
 
 
-                    <div class="rating-container">
-                        <div style="margin: 10px auto" id="rateYo2"></div>
-                        <div class="counter"></div>
-                    </div>
+                    {#<div class="rating-container">#}
+                        {#<div style="margin: 10px auto" id="rateYo2"></div>#}
+                        {#<div class="counter"></div>#}
+                    {#</div>#}
 
-                    {% if form.vars.errors|length>0 %}
-                        <div class="alert alert-danger" role="alert">
-                            <div> <i class="fa fa-exclamation-circle" aria-hidden="true"></i>{{ form_errors(form) }}</div>
-                        </div>
-                    {% endif %}
+                    {#{% if form.vars.errors|length>0 %}#}
+                        {#<div class="alert alert-danger" role="alert">#}
+                            {#<div> <i class="fa fa-exclamation-circle" aria-hidden="true"></i>{{ form_errors(form) }}</div>#}
+                        {#</div>#}
+                    {#{% endif %}#}
 
-                    <div class="form-group">
-                        {{ form_label(form.titulo,'Título') }}
-                        {% if form.titulo.vars.errors|length>0 %}
-                            <div class="alert alert-danger" role="alert">
-                                <div> <i class="fa fa-exclamation-circle" aria-hidden="true"></i>{{ form_errors(form.titulo) }}</div>
-                            </div>
-                        {% endif %}
+                    {#<div class="form-group">#}
+                        {#{{ form_label(form.titulo,'Título') }}#}
+                        {#{% if form.titulo.vars.errors|length>0 %}#}
+                            {#<div class="alert alert-danger" role="alert">#}
+                                {#<div> <i class="fa fa-exclamation-circle" aria-hidden="true"></i>{{ form_errors(form.titulo) }}</div>#}
+                            {#</div>#}
+                        {#{% endif %}#}
 
-                        {{ form_widget(form.titulo,{ 'attr': {'class': 'form-control','placeholder':'¡Excelente!'}}) }}
-                    </div>
-                    <div class="form-group">
-                        {{ form_label(form.comentario,'Comentario') }}
-                        {% if form.comentario.vars.errors|length>0 %}
-                            <div class="alert alert-danger" role="alert">
-                                <div> <i class="fa fa-exclamation-circle" aria-hidden="true"></i>{{ form_errors(form.comentario) }}</div>
-                            </div>
-                        {% endif %}
+                        {#{{ form_widget(form.titulo,{ 'attr': {'class': 'form-control','placeholder':'¡Excelente!'}}) }}#}
+                    {#</div>#}
+                    {#<div class="form-group">#}
+                        {#{{ form_label(form.comentario,'Comentario') }}#}
+                        {#{% if form.comentario.vars.errors|length>0 %}#}
+                            {#<div class="alert alert-danger" role="alert">#}
+                                {#<div> <i class="fa fa-exclamation-circle" aria-hidden="true"></i>{{ form_errors(form.comentario) }}</div>#}
+                            {#</div>#}
+                        {#{% endif %}#}
 
-                        {{ form_widget(form.comentario,{ 'attr': {'class': 'form-control','placeholder':'Tu comentario','rows':'6'}}) }}
-                    </div>
+                        {#{{ form_widget(form.comentario,{ 'attr': {'class': 'form-control','placeholder':'Tu comentario','rows':'6'}}) }}#}
+                    {#</div>#}
 
-                    <div class="form-group">
-                        {{ form_widget(form.submit,{ 'attr': {'class': 'btn btn-konstruye'},'label': 'Enviar'}) }}
-                    </div>
+                    {#<div class="form-group">#}
+                        {#{{ form_widget(form.submit,{ 'attr': {'class': 'btn btn-konstruye'},'label': 'Enviar'}) }}#}
+                    {#</div>#}
 
 
-                    {{ form_end(form) }}
-                {% endif %}
-            </div>
+                    {#{{ form_end(form) }}#}
+                {#{% endif %}#}
+            {#</div>#}
+
             <h1>Comentarios ({{ comentarios|length }})</h1>
-            {% for c in comentarios %}
+
+            {% for comentario in comentarios %}
                 <div class="media comment">
                     <div class="media-left">
-                        <img class="img-circle" alt="user icon" src="http://placehold.it/100x100x?text=Foto+Perfil">
+                        <img class="img-circle" alt="user icon" width="70px" src="http://placehold.it/100x100x?text=Foto+Perfil">
+                        <div class="" style="width: 0;height: 0;border-style: solid;border-width: 6px 7.6px 5px 0;border-color: transparent #fff transparent transparent;position: absolute;right: 0;top: 29px;"></div>
                     </div>
-                    <div class="media-body">
-                        <h3>{{ c.titulo }}</h3>
-                        <div class="rateYo_comments" data-rating="{{ c.nota }}"></div><span>{{ c.user.nombres }} - </span>
-                        <small class="date">{{ c.adedAt|date("d F, Y") }}</small>
+                    <div class="media-body comentarios-personales">
+                        <h3>{{ comentario.titulo }}</h3>
+
+                        <div>
+                            <span>{{ comentario.user.nombres }} -</span>
+                            <div class="rateYo_comments" data-rating="{{ comentario.nota }}"></div>
+                        </div>
+                        <div class="date">{{ comentario.adedAt|date("d F, Y") }}</div>
                         <p>
-                            {{ c.comentario }}
+                            {{ comentario.comentario }}
                         </p>
                     </div>
                 </div>
             {% endfor %}
-        </div>
 
+            {% if app.user is not null %}
+                <p>
+                    {% if myc is not null %}
+                        <a class="simple-ajax-popup btn btn-konstruye btn-comentar" href="{{ path('negocio_me_comentar_edit',{'slug_negocio':negocio.slug}) }}">Editar</a>
+                    {% else %}
+                        <a class="simple-ajax-popup btn btn-konstruye btn-comentar" href="{{ path('negocio_me_comentar_new',{'slug_negocio':negocio.slug}) }}">Comentar</a>
+                    {% endif %}
+                </p>
+            {% else %}
+                <span class="media contenedor-registrate">
+                    <a id="registro" href="{{ path('fos_user_registration_register') }}">Registrarse</a>
+                    ó
+                    <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+                    para poder comentar.
+                </span>
+            {% endif %}
+
+        </div>
     </div>
 {% endblock fos_user_content %}
 
@@ -275,8 +386,8 @@
             slider.control('bullets');
 
             slider.setup('masterslider' , {
-                width:750,
-                height:470,
+                width:1170,
+                height:350,
                 space:0,
                 grabCursor:false,
                 view:'basic',
@@ -307,6 +418,7 @@
             $("#rateYo").rateYo({
                 rating: test,
                 ratedFill: color,
+                starWidth: "18px",
                 normalFill: "#A0A0A0",
                 readOnly: true
             });
@@ -348,6 +460,11 @@
                     ratedFill: color,
                     normalFill: "#A0A0A0"
                 });
+            });
+
+            //Magnific popup
+            $('.simple-ajax-popup').magnificPopup({
+                type: 'ajax'
             });
 
         });
