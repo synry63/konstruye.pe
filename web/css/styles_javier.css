@@ -350,55 +350,6 @@ Detalle Negocio
 .proyect-slider{
     margin: 10px auto;
 }
-/* Seccion comments pablo emilio*/
-
-.comments_details{
-    margin: 15px auto;
-}
-.comentarios-personales {
-    background-color: #fff;
-    border: 1px solid transparent;
-    border-radius: 5px;
-    padding: 10px;
-    position: relative;
-}
-.comments_details h3{
-    font-size: 18px;
-    font-weight: 600;
-    text-transform: uppercase;
-    /*margin-bottom: 10px;*/
-}
-.comments_details .rateYo_comments{
-    margin: 0 0;
-    display: inline-block;
-    padding: 0;
-    position: relative;
-    top: 2px;
-}
-.comments_details .date{
-    color: #A0A0A0;
-    font-style: italic;
-    margin-bottom: 10px;
-    font-size:14px;
-    position: absolute;
-    top: 14px;
-    right: 11px;
-}
-.comments_details .media-body span {
-    color: #A0A0A0;
-    font-size: 16px;
-}
-.comments_details .media-body p{
-    /*margin-top: 10px;*/
-    color: #A0A0A0;
-    background: rgba(255,255,255,0.5);
-    padding: 9px 0 0;
-    border-radius: 3px;
-    font-size: 14px;
-}
-
-
-/* fin Seccion comments pablo emilio*/
 
 .googlemaps img{
     margin: 30px auto;
@@ -866,17 +817,24 @@ Dashboard Negocios
 }
 .header-left-select-negocio{
     float: left;
-
+    width: 500px;
     padding: 10px 0;
     margin-left: 240px;
     position: relative;
+}
+.header-left-select-negocio p{
+    float: left;
+    line-height: 30px;
+    margin: 0;
+    margin-right: 10px;
+    color: rgba(0,0,0,.7);
 }
 .header-left-select-negocio select option{
     margin: 10px 0;
 }
 .header-left-select-negocio select{
     background: #fff;
-    width: 100%;
+    width: 65%;
     font-weight: 400;
     line-height: 30px;
     height: 30px;
@@ -897,7 +855,7 @@ Dashboard Negocios
     color: #fff;
     border-radius: 0 3px 3px 0;
     top: 50%;
-    transform: translate(58%,-50%);
+    transform: translate(5%,-50%);
     width: 30px;
     height: 30px;
     text-align: center;
@@ -917,6 +875,19 @@ Dashboard Negocios
 .header-right-user img{
     padding: 5px 0;
     border-radius: 10px;
+}
+.title-dashboard{
+    text-align: center;
+    font-weight: bold;
+    padding-bottom: 5px;
+    color: #009FE3;
+    border-bottom: solid 1px rgba(0,0,0,.1);
+}
+.cambiar-datos{
+    padding: 30px;
+}
+.cambiar-datos textarea{
+    resize: none;
 }
 /*=============
 Index
@@ -949,6 +920,7 @@ Index
     color: #009fe3;
 }
 .contenedor-blanco{
+    min-height: 332px;
     background: white;
     box-shadow: 0 0 10px rgba(0,0,0,.1);
     padding: 15px;
@@ -957,6 +929,30 @@ Index
 
 .contenedor-transparente{
     padding: 15px;
+    min-height: 332px;
+}
+
+.mensaje-default-blanco{
+    text-align: right;
+    padding: 30px 0;
+}
+.mensaje-default-transparente{
+    text-align: left;
+    padding: 30px 0;
+}
+.mensaje-default-blanco h1,.mensaje-default-transparente h1{
+    font-size: 22px;
+    font-weight: bold;
+    color: rgba(0,0,0,.5);
+}
+.mensaje-default-blanco h2,.mensaje-default-transparente h2{
+    font-size: 20px;
+    font-weight: bold;
+    padding-top: 8px;
+    color: #009FE3;
+}
+.mensaje-default-blanco a, .mensaje-default-transparente a{
+    margin-top: 10px;
 }
 /*=============
 Footer Menu

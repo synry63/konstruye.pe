@@ -71,6 +71,9 @@
 {% block javascripts %}
     {{ parent() }}
     <script>
+
+        $('body').removeClass('background-image');
+
         function fb_login() {
             FB.login(function(response){
                 FB.getLoginStatus(function(response) {

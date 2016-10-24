@@ -1,8 +1,72 @@
 {% extends "FOSUserBundle::Profile/Panel/panel_layout.html.twig" %}
 
 {% block content_section %}
-{{ dump(negocio) }}
-{{ form(form, {'attr': {'novalidate': 'novalidate'}}) }}
+    <h1 class="title-dashboard">Cambiar Datos</h1>
+
+    <div class="col-md-6 col-md-offset-3 cambiar-datos">
+        {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+
+        <div class="form-group">
+            {{ form_label(form.description,'Descripción') }}
+            {{ form_errors(form.description) }}
+            {{ form_widget(form.description,{ 'attr': {'class': 'form-control','placeholder':'cgarcia@gmail.com','rows':10}}) }}
+        </div>
+
+        <div class="form-group">
+            {{ form_label(form.structure,'Estructura') }}
+            {{ form_errors(form.structure) }}
+            {{ form_widget(form.structure,{ 'attr': {'class': 'form-control','placeholder':'cgarcia@gmail.com'}}) }}
+        </div>
+
+        <div class="form-group">
+            {{ form_label(form.nombre,'Nombre') }}
+            {{ form_errors(form.nombre) }}
+            {{ form_widget(form.nombre,{ 'attr': {'class': 'form-control','placeholder':'cgarcia@gmail.com'}}) }}
+        </div>
+
+        <div class="form-group">
+            {{ form_label(form.direccion,'Dirección') }}
+            {{ form_errors(form.direccion) }}
+            {{ form_widget(form.direccion,{ 'attr': {'class': 'form-control','placeholder':'cgarcia@gmail.com'}}) }}
+        </div>
+
+        <div class="form-group">
+            {{ form_label(form.telefono,'Teléfono') }}
+            {{ form_errors(form.telefono) }}
+            {{ form_widget(form.telefono,{ 'attr': {'class': 'form-control','placeholder':'cgarcia@gmail.com'}}) }}
+        </div>
+
+        <div class="form-group">
+            {{ form_label(form.email,'Email') }}
+            {{ form_errors(form.email) }}
+            {{ form_widget(form.email,{ 'attr': {'class': 'form-control','placeholder':'cgarcia@gmail.com'}}) }}
+        </div>
+
+        <div class="form-group">
+            {{ form_label(form.departamento,'Departamento') }}
+            {{ form_errors(form.departamento) }}
+            {{ form_widget(form.departamento,{ 'attr': {'class': 'form-control','placeholder':'cgarcia@gmail.com'}}) }}
+        </div>
+
+        <div class="form-group">
+            {{ form_label(form.provincia,'Provincia') }}
+            {{ form_errors(form.provincia) }}
+            {{ form_widget(form.provincia,{ 'attr': {'class': 'form-control','placeholder':'cgarcia@gmail.com'}}) }}
+        </div>
+
+        <div class="form-group">
+            {{ form_label(form.distrito,'Distrito') }}
+            {{ form_errors(form.distrito) }}
+            {{ form_widget(form.distrito,{ 'attr': {'class': 'form-control','placeholder':'cgarcia@gmail.com'}}) }}
+        </div>
+
+        <div class="form-group">
+            {{ form_widget(form.submit,{ 'attr': {'class': 'btn btn-konstruye'},'label': 'Guardar'}) }}
+        </div>
+
+        {{ form_end(form) }}
+
+    </div>
 
 
 {% endblock %}

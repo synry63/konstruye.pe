@@ -22,6 +22,7 @@
                         <img src="{{ asset('images/logo-min-white.svg') }}" alt=""/>
                     </div>
                     <div class="header-left-select-negocio">
+                        <p>Seleccione un Negocio: </p>
                         <i class="fa fa-chevron-down" aria-hidden="true"></i>
                         {{ include('FOSUserBundle::Profile/Panel/Menu/select_negocio.html.twig')}}
                     </div>
@@ -86,11 +87,7 @@
             <script type="text/javascript" src="{{ asset('js/jquery-ui.js') }}"></script>
             <script type="text/javascript" src="{{ asset('js/bootstrap.js') }}"></script>
             <script>
-                $('#select-negocio').prepend($('<option>', {
-                    value: 0,
-                    text: 'Eliga un negocio',
-                    selected: 'selected'
-                }));
+
 
                 var  url = '{{ path('profile_negocios_panel') }}/'
 
@@ -100,6 +97,9 @@
                     document.location.href =  url+$(this).val();
 
                 });
+
+
+
             </script>
         {% endblock %}
     </body>

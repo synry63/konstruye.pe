@@ -42,65 +42,46 @@
                 <span style="font-weight: bold">Alfabetico</span>
             </div>
 
-    {% for ne in negocios.items %}
-            <div class="row">
-                <div class="negocio">
-                    <div class="col-md-2 logotipo">
-                    <a href="{{ path('show_negocio',{'slug_negocio':ne.negocio.slug}) }}">
-                        <img src="{{ vich_uploader_asset(ne.negocio.logo, 'logoFile','AppBundle\\Entity\\Logo') }}" alt="{{ ne.negocio.nombre }}" />
-                    </a>
-                    </div>
-                    <div class="col-md-5 description">
-                        <h1><a href="{{ path('show_negocio',{'slug_negocio':ne.negocio.slug}) }}">{{ ne.negocio.nombre }}</a></h1>
-                        <p><i class="fa fa-map-marker" aria-hidden="true"></i> {{ ne.negocio.direccion }} - {{ ne.negocio.distrito }} - {{ ne.negocio.departamento }}</p>
-                        <p><i class="fa fa-phone" aria-hidden="true"></i> {{ ne.negocio.telefono }}</p>
-                        <p><i class="fa fa-globe" aria-hidden="true"></i> {{ ne.negocio.web }}</p>
-                        <p><i class="fa fa-envelope" aria-hidden="true"></i> {{ ne.negocio.email }}</p>
-                        <p>
-                            {% if ne.mymoy is null %}
-                                <div class="rateYo_negocios" data-rating="0"></div>
-                            {% else %}
-                                <div class="rateYo_negocios" data-rating="{{ ne.mymoy }}"></div>
-                            {% endif %}
-                        </p>
-                    </div>
-                    <div class="col-md-5 banner_pub">
-                        <a href="{{ path('show_negocio',{'slug_negocio':ne.negocio.slug}) }}">
-                            <img src="{{ vich_uploader_asset(ne.negocio.banner, 'bannerFile','AppBundle\\Entity\\Banner') }}" alt="{{ ne.negocio.nombre }}" />
+
+            {% for ne in negocios.items %}
+                <div class="col-md-4">
+                    <div class="negocio-box">
+                        <a href="{{ path('show_negocio',
+                        {"slug_negocio":ne.negocio.slug}) }}">
+                            <div class="banner">
+                                <img src="{{ vich_uploader_asset(ne.negocio.banner, 'bannerFile','AppBundle\\Entity\\Banner') }}" alt="{{ ne.negocio.nombre }}" />
+                            </div>
+                            <div class="datos">
+                                <div class="middle-section">
+                                    <img width="80px" src="{{ vich_uploader_asset(ne.negocio.logo, 'logoFile','AppBundle\\Entity\\Logo') }}" alt="{{ ne.negocio.nombre }}" />
+                                    {% if ne.mymoy is null %}
+                                        <div class="rateYo_negocios" data-rating="0"></div>
+                                    {% else %}
+                                        <div class="rateYo_negocios" data-rating="{{ ne.mymoy }}"></div>
+                                    {% endif %}
+                                </div>
+                                <div class="detalle-datos">
+                                    <a href="{{ path('show_negocio',
+                                    {"slug_negocio":ne.negocio.slug}) }}">
+                                        <h1>
+                                            {{ ne.negocio.nombre }}
+                                        </h1>
+                                    </a>
+                                    <p><i class="fa fa-map-marker" aria-hidden="true"></i> {{ ne.negocio.direccion }} - {{ ne.negocio.distrito.nombre }} - {{ ne.negocio.provincia.nombre }}</p>
+                                    <p><i class="fa fa-phone" aria-hidden="true"></i> {{ ne.negocio.telefono }}</p>
+                                    <p><i class="fa fa-globe" aria-hidden="true"></i> {{ ne.negocio.web }}</p>
+                                    <p><i class="fa fa-envelope" aria-hidden="true"></i> {{ ne.negocio.email }}</p>
+                                </div>
+
+
+                            </div>
                         </a>
                     </div>
                 </div>
 
+            {% endfor %}
 
-                <div class="navigation">
-                    {{ knp_pagination_render(negocios,'foundation_v5_pagination.html.twig') }}
-                </div>
-            </div>
-            <hr class="style-two">
 
-    {% endfor %}
-
-            <div class="row">
-                {#
-                 {% for ne in negocios.items %}
-                    <div class="col-md-4 producto-box">
-                        <a href="">
-                            <img width="220px" src="http://placehold.it/220x220" alt="">
-                        </a>
-                        <a href=""><h1>{{ ne.negocio.nombre }}</h1></a>
-                        <h2>{{ ne.negocio.web }}</h2>
-                        <p>
-                            <i class="fa fa-star" aria-hidden="true"></i>
-                            <i class="fa fa-star" aria-hidden="true"></i>
-                            <i class="fa fa-star" aria-hidden="true"></i>
-                            <i class="fa fa-star" aria-hidden="true"></i>
-                            <i class="fa fa-star-o" aria-hidden="true"></i>
-                        </p>
-                    </div>
-                {% endfor %}
-                #}
-
-            </div>
         </div>
     </div>
 
