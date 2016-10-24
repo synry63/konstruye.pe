@@ -17,11 +17,7 @@
 
 {% block fos_user_content %}
      {#{{ dump(negocio) }}#}
-    {{ dump(app.user.profile) }}
-    {#No es null nunca, existe solamente cuando inicio sesion #}
     {#{{ dump(myc) }}#}
-
-
     {#{{ dump(negocio) }}#}
     <div class="container">
         <div class="master-slider ms-skin-default" id="masterslider">
@@ -232,8 +228,8 @@
                 {% for comentario in comentarios %}
                     <div class="media comment">
                         <div class="media-left">
-                            {% if app.user.profile is not null %}
-                                <img class="img-circle" alt="user icon" width="70px" src="http://placehold.it/100x100x?text=Foto+Perfil">
+                            {% if comentario.user.profile is not null %}
+                                <img class="img-circle" width="70px" src="{{ vich_uploader_asset(comentario.user.profile, 'profileFile') }}">
                             {% else %}
                                 <img class="img-circle" alt="user icon" width="70px" src="http://placehold.it/100x100x?text=Foto+Perfil">
                             {% endif %}
@@ -243,7 +239,7 @@
                         <div class="media-body comentarios-personales">
                             <h3>{{ comentario.titulo }}</h3>
 
-                            <div>
+                            <div class="seccion-nombre-rating">
                                 <span>{{ comentario.user.nombres }} -</span>
                                 <div class="rateYo_comments" data-rating="{{ comentario.nota }}"></div>
                             </div>

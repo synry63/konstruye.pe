@@ -225,75 +225,39 @@
                 {% endfor %}
             {% endfor %}
 
-            {#<div class="star-form">#}
-                {#{% if form is defined %}#}
-                    {#{{ form_start(form,{attr: {novalidate: 'novalidate'}}) }}#}
+            {% if comentarios|length > 0 %}
+                <h1 style="text-transform: uppercase;font-weight: bold;color: #009FE3;margin: 10px 0;">Comentarios ({{ comentarios|length }})</h1>
 
-
-
-                    {#<div class="rating-container">#}
-                        {#<div style="margin: 10px auto" id="rateYo2"></div>#}
-                        {#<div class="counter"></div>#}
-                    {#</div>#}
-
-                    {#{% if form.vars.errors|length>0 %}#}
-                        {#<div class="alert alert-danger" role="alert">#}
-                            {#<div> <i class="fa fa-exclamation-circle" aria-hidden="true"></i>{{ form_errors(form) }}</div>#}
-                        {#</div>#}
-                    {#{% endif %}#}
-
-                    {#<div class="form-group">#}
-                        {#{{ form_label(form.titulo,'Título') }}#}
-                        {#{% if form.titulo.vars.errors|length>0 %}#}
-                            {#<div class="alert alert-danger" role="alert">#}
-                                {#<div> <i class="fa fa-exclamation-circle" aria-hidden="true"></i>{{ form_errors(form.titulo) }}</div>#}
-                            {#</div>#}
-                        {#{% endif %}#}
-
-                        {#{{ form_widget(form.titulo,{ 'attr': {'class': 'form-control','placeholder':'¡Excelente!'}}) }}#}
-                    {#</div>#}
-                    {#<div class="form-group">#}
-                        {#{{ form_label(form.comentario,'Comentario') }}#}
-                        {#{% if form.comentario.vars.errors|length>0 %}#}
-                            {#<div class="alert alert-danger" role="alert">#}
-                                {#<div> <i class="fa fa-exclamation-circle" aria-hidden="true"></i>{{ form_errors(form.comentario) }}</div>#}
-                            {#</div>#}
-                        {#{% endif %}#}
-
-                        {#{{ form_widget(form.comentario,{ 'attr': {'class': 'form-control','placeholder':'Tu comentario','rows':'6'}}) }}#}
-                    {#</div>#}
-
-                    {#<div class="form-group">#}
-                        {#{{ form_widget(form.submit,{ 'attr': {'class': 'btn btn-konstruye'},'label': 'Enviar'}) }}#}
-                    {#</div>#}
-
-
-                    {#{{ form_end(form) }}#}
-                {#{% endif %}#}
-            {#</div>#}
-
-            <h1>Comentarios ({{ comentarios|length }})</h1>
-
-            {% for comentario in comentarios %}
-                <div class="media comment">
-                    <div class="media-left">
-                        <img class="img-circle" alt="user icon" width="70px" src="http://placehold.it/100x100x?text=Foto+Perfil">
-                        <div class="" style="width: 0;height: 0;border-style: solid;border-width: 6px 7.6px 5px 0;border-color: transparent #fff transparent transparent;position: absolute;right: 0;top: 29px;"></div>
-                    </div>
-                    <div class="media-body comentarios-personales">
-                        <h3>{{ comentario.titulo }}</h3>
-
-                        <div>
-                            <span>{{ comentario.user.nombres }} -</span>
-                            <div class="rateYo_comments" data-rating="{{ comentario.nota }}"></div>
+                {% for comentario in comentarios %}
+                    <div class="media comment">
+                        <div class="media-left">
+                            {% if comentario.user.profile is not null %}
+                                <img class="img-circle" width="70px" src="{{ vich_uploader_asset(comentario.user.profile, 'profileFile') }}">
+                            {% else %}
+                                <img class="img-circle" alt="user icon" width="70px" src="http://placehold.it/100x100x?text=Foto+Perfil">
+                            {% endif %}
+                            <div class="" style="width: 0;height: 0;border-style: solid;border-width: 6px 7.6px 5px 0;border-color: transparent #fff transparent transparent;position: absolute;right: 0;top: 29px;"></div>
                         </div>
-                        <div class="date">{{ comentario.adedAt|date("d F, Y") }}</div>
-                        <p>
-                            {{ comentario.comentario }}
-                        </p>
+                        <div class="media-body comentarios-personales">
+                            <h3>{{ comentario.titulo }}</h3>
+
+                            <div class="seccion-nombre-rating">
+                                <span>{{ comentario.user.nombres }} -</span>
+                                <div class="rateYo_comments" data-rating="{{ comentario.nota }}"></div>
+                            </div>
+                            <div class="date">{{ comentario.adedAt|date("d F, Y") }}</div>
+                            <p>
+                                {{ comentario.comentario }}
+                            </p>
+                        </div>
                     </div>
-                </div>
-            {% endfor %}
+                {% endfor %}
+            {% else %}
+                <section class="alerta-mensaje-ninguno">
+                    <p><i class="fa fa-exclamation-triangle" aria-hidden="true"></i></p>
+                    <p>Aun no ha realizado ninguna comentario.</p>
+                </section>
+            {% endif %}
 
             {% if app.user is not null %}
                 <p>

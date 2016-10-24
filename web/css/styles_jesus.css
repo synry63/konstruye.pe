@@ -504,3 +504,60 @@ Mensaje de Alert - Ninguno Elemento
     margin-bottom: 15px;
     color: #1C9CD9;
 }
+
+/*==================================
+Comentarios
+===================================*/
+.comments_details{
+    margin: 15px auto;
+}
+.comentarios-personales {
+    background-color: #fff;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    padding: 10px;
+    position: relative;
+}
+.comments_details h3{
+    font-size: 18px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+.comments_details .rateYo_comments{
+    margin: 0 0;
+    display: inline-block;
+    padding: 0;
+    position: relative;
+    top: 2px;
+}
+.comments_details .date{
+    color: #009FE3;
+    margin-bottom: 10px;
+    font-size: 14px;
+    position: absolute;
+    top: 14px;
+    right: 11px;
+    font-weight: 400;
+}
+.seccion-nombre-rating {
+    margin-top: 4px;
+}
+.comments_details .media-body span {
+    color: #A0A0A0;
+    font-size: 16px;
+    font-weight: 400;
+}
+.comments_details .media-body p{
+    line-height:20px;
+    color: #A0A0A0;
+    background: rgba(255,255,255,0.5);
+    padding: 9px 0 0;
+    border-radius: 3px;
+    font-size: 14px;
+}
+.media-left img.img-circle {
+    border: 2px solid #fff;
+}
+
+
+/* fin Seccion comments pablo emilio*/
