@@ -359,10 +359,7 @@ a.ui-button:active,
     margin-right: auto;
     display: block;
 }
-#search-cop2{
-    display: inline-block;
-    margin-left: 22%;
-}
+
 #search-cop3{
     margin: 20px auto;
 }
@@ -463,61 +460,7 @@ Dropdown Menu principal
     box-shadow: none;
 }
 /* menu 2 */
-.logi-reg .drop-menu{
-    width: 200px;
-    height: 150px;
-    left:-83px;
-    padding: 0px;
-    padding-top: 10px;
-    padding-right: 0;
-    padding-left: 0;
-    padding-bottom: 15px;
-}
-.logi-reg .drop-menu a{
-    margin: 5px auto;
-    width: 100%;
-    display: inline-block;
-    height: 35px;
-    color: rgba(0,0,0,.5) !important;
-    position: relative;
-    padding-left: 40px;
-    padding-top: 12px;
-    text-align: left;
-    transition: all .5s;
-}
-.logi-reg .drop-menu a:hover{
-    background: #30BDEF;
-    color: #fff !important;
-}
-.logi-reg .drop-menu a:hover i{
-    color: #fff;
-}
-.logi-reg .drop-menu a i{
-    position: absolute;
-    left: 15px;
-    margin-right: 8px;
-    color: #30BDEF;
-    font-size: 21px;
-    top: 8px;
-    width: 30px;
-    display: inline-block;
-    transition: all .5s;
-}
-.logi-reg .drop-menu a:before{
-    content: "| ";
-    display: inline;
-}
 
-.logi-reg .dropdown .btn-default{
-    border: none;
-    margin-top: -22px;
-}
-.logi-reg .dropdown .btn-default:hover, .logi-reg .dropdown .btn-default:focus, .logi-reg .dropdown .btn-default:active{
-    background: none;
-    outline: none;
-    border: none;
-    box-shadow: none;
-}
 .nombre-usuario {
     font-size: 12px;
     /* text-transform: uppercase; */
@@ -634,22 +577,8 @@ Menu Principal
     background: #fff;
     box-shadow: 2px 2px 5px rgba(0,0,0,.05);
 }
-.nav-principal2 .logi-reg{
-    margin-top: 22px;
-    display: inline-block;
-    float: right;
-}
 
 
-.nav-principal2 .logi-reg #registro{
-    background: #30BDEF;
-    padding: 5px;
-    border-radius: 5px;
-    color: #fff;
-}
-.logi-reg a{
-    text-decoration: none;
-}
 .navbar-right li .logout{
     display: inline-block;
     width: auto;

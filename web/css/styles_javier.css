@@ -350,6 +350,8 @@ Detalle Negocio
 .proyect-slider{
     margin: 10px auto;
 }
+/* Seccion comments pablo emilio*/
+
 .comments_details{
     margin: 15px auto;
 }
@@ -394,6 +396,10 @@ Detalle Negocio
     border-radius: 3px;
     font-size: 14px;
 }
+
+
+/* fin Seccion comments pablo emilio*/
+
 .googlemaps img{
     margin: 30px auto;
 }
@@ -503,6 +509,221 @@ Listado de Negocios
     width: 15px;
     text-align: center;}
 
+/*=============
+Buscador Principal
+=============*/
+
+.buscador-principal{
+    width: 55%;
+    position: absolute;
+    z-index: 3;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background: rgba(0, 159, 227,.5);
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.buscador-principal form input{
+    width: 60%;
+    line-height: 40px;
+    height: 40px;
+    border: none;
+    color: rgba(0,0,0,.7);
+    padding-left: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+}
+.buscador-principal .bootstrap-select{
+    width: 39% !important;
+    background: #fff;
+    border-radius: 5px;
+    margin-top: -3px;
+}
+.buscador-principal .bootstrap-select.open{
+    background: #fff;
+}
+.buscador-principal .bootstrap-select button{
+    width: 100%;
+    border: 0;
+    height: 40px;
+    color: rgba(0, 0, 0, .7);
+    -webkit-appearance: none;
+    padding-left: 10px;
+    border-radius: 5px;
+}
+
+.buscador-principal #buscador1 i, .buscador-principal #buscador2 i{
+    pointer-events: none;
+    position: absolute;
+    right: 41px;
+    z-index: 9;
+    background:#009FE3;
+    color: #fff;
+    border-radius: 0 3px 3px 0;
+    top: 50%;
+    transform: translate(58%,-50%);
+    width: 30px;
+    height: 40px;
+    text-align: center;
+}
+#buscador2{
+    display: none;
+}
+.buscador-principal form i:before{
+    line-height: 40px;
+}
+
+.buscador-principal #button1{
+    position: absolute;
+    top: -46px;
+    left: 20px;
+    font-weight: 500;
+    color: rgba(255,255,255,.5);
+    border-radius: 5px 5px 0 0;
+    padding: 15px 20px;
+    background: rgba(0, 0, 0,.2);
+}
+
+.buscador-principal #button2{
+    position: absolute;
+    top: -46px;
+    font-weight: 500;
+    color: rgba(255,255,255,.5);
+    left: 230px;
+    border-radius: 5px 5px 0 0;
+    padding: 15px 20px;
+    background: rgba(0, 0, 0,.2);
+}
+.buscador-principal #button1.active,.buscador-principal #button2.active{
+    background: rgba(0, 159, 227,.5);
+    color: #fff;
+}
+
+/*=============
+Nave Stiky
+=============*/
+.buscador_principal2{
+    padding: 5px;
+    background: #30BDEF;
+    border-radius: 5px;
+    position: relative;
+}
+.buscador_principal2 form{
+    display: inline-block;
+}
+#search-cop2{
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%,10%);
+    width: 50%;
+}
+#search-cop2 form{
+    width: 88%;
+}
+#search-cop2 form input{
+    width: 60%;
+    line-height: 35px;
+    height: 35px;
+    border: none;
+    color: rgba(0,0,0,.7);
+    padding-left: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+}
+#search-cop2 form .bootstrap-select{
+    width: 39% !important;
+    background: #fff;
+    border-radius: 5px;
+    margin-top: -3px;
+}
+#search-cop2 form .bootstrap-select.open{
+    background: #fff;
+}
+#search-cop2 form  .bootstrap-select button{
+    width: 100%;
+    border: 0;
+    height: 35px;
+    color: rgba(0, 0, 0, .7);
+    -webkit-appearance: none;
+    padding-left: 10px;
+    border-radius: 5px;
+}
+
+.nav-principal2 .logi-reg{
+    display: inline-block;
+    float: right;
+    line-height: 70px;
+}
+
+.nav-principal2 .logi-reg #registro{
+    background: #30BDEF;
+    padding: 5px;
+    border-radius: 5px;
+    color: #fff;
+}
+.logi-reg a{
+    text-decoration: none;
+}
+.logi-reg .drop-menu{
+    width: 200px;
+    height: 150px;
+    left:-61px;
+    padding: 0px;
+    padding-top: 10px;
+    padding-right: 0;
+    padding-left: 0;
+    padding-bottom: 15px;
+}
+.logi-reg .drop-menu a{
+    margin: 5px auto;
+    width: 100%;
+    display: inline-block;
+    height: 35px;
+    color: rgba(0,0,0,.5) !important;
+    position: relative;
+    padding-left: 40px;
+    padding-top: 8px;
+    text-align: left;
+    transition: all .5s;
+}
+.logi-reg .drop-menu a:hover{
+    background: #30BDEF;
+    color: #fff !important;
+}
+.logi-reg .drop-menu a:hover i{
+    color: #fff;
+}
+.logi-reg .drop-menu a i{
+    position: absolute;
+    left: 15px;
+    margin-right: 8px;
+    color: #30BDEF;
+    font-size: 21px;
+    top: 8px;
+    width: 30px;
+    display: inline-block;
+    transition: all .5s;
+}
+.logi-reg .drop-menu a:before{
+    content: "| ";
+    display: inline;
+}
+
+.logi-reg .dropdown .btn-default{
+    border: none;
+}
+.logi-reg .dropdown .btn-default:hover, .logi-reg .dropdown .btn-default:focus, .logi-reg .dropdown .btn-default:active{
+    background: none;
+    outline: none;
+    border: none;
+    box-shadow: none;
+}
+
+.logi-reg .dropdown-menu li{
+    line-height: normal;
+}
 /*=============
 Dashboard Negocios
 =============*/
