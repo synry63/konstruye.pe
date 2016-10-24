@@ -128,7 +128,7 @@
 
 
     <div class="container product-section" style="margin-top: 30px; text-align: center" >
-        <h4>También te puede interesar</h4>
+        <h4>TAMBIEN TE PUEDE INTERESAR</h4>
         <div class="row">
             <div class="col-md-3 producto-box">
                 <img src="http://placehold.it/200x200" alt="">
@@ -183,31 +183,40 @@
 
     <div class="container comments_details">
         <div class="col-md-8 col-md-offset-2 ">
-            <h1>Comentarios ({{ comentarios|length }})</h1>
-            {% for c in comentarios %}
-                <div class="media comment">
-                    <div class="media-left">
-                        <img class="img-circle" alt="user icon" width="70px"src="http://placehold.it/100x100x?text=Foto+Perfil">
-                        <div class="" style="width: 0;height: 0;border-style: solid;border-width: 6px 7.6px 5px 0;border-color: transparent #fff transparent transparent;position: absolute;right: 0;top: 29px;"></div>
-                    </div>
-                    <div class="media-body comentarios-personales">
-                        <h3>{{ c.titulo }}</h3>
-                        <div>
-                            <span>{{ c.user.nombres }} -</span>
-                            <div class="rateYo_comments" data-rating="{{ c.nota }}"></div>
+            {% if comentarios|length > 0 %}
+                <h1 style="text-transform: uppercase;font-weight: bold;color: #009FE3;margin: 10px 0;">Comentarios ({{ comentarios|length }})</h1>
+                {% for comentario in comentarios %}
+                    <div class="media comment">
+                        <div class="media-left">
+                            {% if app.user.profile is not null %}
+                                {#<img class="img-circle" alt="user icon" width="70px" src="{{ vich_uploader_asset(app.user.profile, 'logoFile') }}">#}
+                                <img class="img-circle" alt="user icon" width="70px"src="http://placehold.it/100x100x?text=Foto+Perfil">
+                            {% else %}
+                                <img class="img-circle" alt="user icon" width="70px"src="http://placehold.it/100x100x?text=Foto+Perfil">
+                            {% endif %}
+                            <div class="" style="width: 0;height: 0;border-style: solid;border-width: 6px 7.6px 5px 0;border-color: transparent #fff transparent transparent;position: absolute;right: 0;top: 29px;"></div>
                         </div>
-                        <div class="date">{{ c.adedAt|date("d F, Y") }}</div>
-                        <p>
-                            {{ c.comentario }}
-                        </p>
+                        <div class="media-body comentarios-personales">
+                            <h3>{{ comentario.titulo }}</h3>
+                            <div>
+                                <span>{{ comentario.user.nombres }} -</span>
+                                <div class="rateYo_comments" data-rating="{{ comentario.nota }}"></div>
+                            </div>
+                            <div class="date">{{ comentario.adedAt|date("d F, Y") }}</div>
+                            <p>
+                                {{ comentario.comentario }}
+                            </p>
+                        </div>
                     </div>
-                </div>
-            {% endfor %}
+                {% endfor %}
+            {% else %}
+                <section class="alerta-mensaje-ninguno">
+                    <p><i class="fa fa-exclamation-triangle" aria-hidden="true"></i></p>
+                    <p>Aun no ha realizado ninguna comentario.</p>
+                </section>
+            {% endif %}
 
-            {#<div>#}
-                {#<a class="simple-ajax-popup btn btn-konstruye btn-comentar" href="{{ path('producto_me_comentar_new',{'slug_producto':producto.slug}) }}">Comentar</a>#}
-            {#</div>#}
-
+            {#Flashbag#}
             {% for label, flash in app.session.flashbag.get('success') %}
                 <div id="success" data-success="{{ flash }}"> </div>
             {% endfor %}
@@ -230,10 +239,6 @@
             {% endif %}
         </div>
     </div>
-
-
-
-
 {% endblock fos_user_content %}
 
 
