@@ -72,13 +72,13 @@
                     <img src="{{ asset('images/assets/blank.gif') }}" data-src="{{ asset('images/assets/banner2.jpg') }}" alt="lorem ipsum dolor sit"/>
                 </div>
                 <div class="ms-slide">
-                    <img src="{{ asset('images/assets/blank.gif') }}" data-src="{{ asset('images/assets/banner3.jpg') }}" alt="lorem ipsum dolor sit"/>
+                    <img src="{{ asset('images/assets/blank.gif') }}" data-src="{{ asset('images/assets/banner6.jpg') }}" alt="lorem ipsum dolor sit"/>
                 </div>
                 <div class="ms-slide">
                     <img src="{{ asset('images/assets/blank.gif') }}" data-src="{{ asset('images/assets/banner4.jpg') }}" alt="lorem ipsum dolor sit"/>
                 </div>
                 <div class="ms-slide">
-                    <img src="{{ asset('images/assets/blank.gif') }}" data-src="{{ asset('images/assets/banner5.jpg') }}" alt="lorem ipsum dolor sit"/>
+                    <img src="{{ asset('images/assets/blank.gif') }}" data-src="{{ asset('images/assets/banner7.jpg') }}" alt="lorem ipsum dolor sit"/>
                 </div>
             </div>
         </div>
@@ -180,7 +180,7 @@
                         <div class="mensaje-default-blanco">
                             <h1>¡Descrube nuevos proveedores!</h1>
                             <h2>y hazlos tus favoritos</h2>
-                            <a href="javascript:void(0)" class="btn btn-primary">Empieza aquí</a>
+                            <a href="{{ path('lisdato_seccion',{'slug_seccion': 'proveedores'}) }}" class="btn btn-konstruye2">Empieza aquí</a>
                         </div>
 
 
@@ -226,7 +226,7 @@
                        <div class="mensaje-default-transparente">
                            <h1>¡Descrube asombrosos inmuebles!</h1>
                            <h2>y hazlos tus favoritos</h2>
-                           <a href="javascript:void(0)" class="btn btn-primary">Empieza aquí</a>
+                           <a href="{{ path('lisdato_seccion',{'slug_seccion': 'compra-venta-y-alquiler-inmuebles'}) }}" class="btn btn-konstruye2">Empieza aquí</a>
                        </div>
                    {% endif %}
                </div>
@@ -267,7 +267,7 @@
                         <div class="mensaje-default-blanco">
                             <h1>¡Descrube excelentes especialistas!</h1>
                             <h2>y hazlos tus favoritos</h2>
-                            <a href="javascript:void(0)" class="btn btn-konstruye2">Empieza aquí</a>
+                            <a href="{{ path('lisdato_seccion',{'slug_seccion': 'especialistas-servicios-personales'}) }}" class="btn btn-konstruye2">Empieza aquí</a>
                         </div>
                     {% endif %}
                 </div>
@@ -308,7 +308,7 @@
                         <div class="mensaje-default-transparente">
                             <h1>¡Descrube destacadas inmobiliarias!</h1>
                             <h2>y hazlos tus favoritos</h2>
-                            <a href="javascript:void(0)" class="btn btn-konstruye2">Empieza aquí</a>
+                            <a href="{{ path('lisdato_seccion',{'slug_seccion': 'constructoras-e-inmobiliarias'}) }}" class="btn btn-konstruye2">Empieza aquí</a>
                         </div>
                     {% endif %}
                 </div>

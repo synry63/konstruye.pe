@@ -1,6 +1,16 @@
 /*=============
 Formularios
 =============*/
+.btn-konstruye2{
+    background:#009FE3 ;
+    color: #fff;
+}
+.btn-konstruye2:hover{
+    background: #008CC4;
+    color: #fff;
+}
+
+
 .comprayventa{
     background: url("../images/fondo2.jpg") center/cover;
 }
