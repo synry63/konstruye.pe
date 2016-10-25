@@ -877,6 +877,14 @@ Dashboard Negocios
 .header-right-user{
     float: right;
     margin-right: 10px;
+    position: relative;
+}
+.header-right-user ul{
+    width: 200px;
+    background: #fff;
+    left: -145px;
+    top: 55px;
+    height: 100px;
 }
 .header-right-user a{
     text-decoration: none;

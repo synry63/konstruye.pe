@@ -27,7 +27,7 @@
                         {{ include('FOSUserBundle::Profile/Panel/Menu/select_negocio.html.twig')}}
                     </div>
                     <div class="header-right-user">
-                        <a href="">
+                        <a href="" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             {% if negocio.user.profile is not null %}
                                 <img width="40px" src="{{ vich_uploader_asset(negocio.user.profile, 'profileFile') }}" alt=""/>
                             {% else %}
@@ -36,6 +36,9 @@
 
                             <i class="fa fa-chevron-down" aria-hidden="true"></i>
                         </a>
+                        <ul class="dropdown-menu">
+                            salir
+                        </ul>
                     </div>
                 </div>
 
@@ -57,12 +60,7 @@
                             <h2>Bienvenido de nuevo,</h2>
                             <h3>{{ negocio.user.nombres }} {{ negocio.user.apellidos }}</h3>
                         </div>
-
-
-
                     </div>
-
-
                 </div>
 
                 <div class="menu-dashboard-principal">

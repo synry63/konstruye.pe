@@ -121,67 +121,74 @@
 
             <nav  class="navbar navbar-default nav-principal2">
                 <div class="container menu-principal2">
-                    <a class="navbar-brand" href="#" style="padding: 10px;height: auto;">
-                        <img alt="Brand" src="{{ asset('images/logo-min-color.svg') }}">
-                    </a>
 
 
-                    <div id="search-cop2" class="buscador-stiky">
-                        <div class="search-change2">
-                            <div id="hide3"><i class="fa fa-briefcase" aria-hidden="true"></i></div>
-                            <div id="hide4"><i class="fa fa-shopping-bag" aria-hidden="true"></i></div>
+                        <a class="navbar-brand" href="#" style="padding: 10px;height: auto;">
+                            <img alt="Brand" src="{{ asset('images/logo-min-color.svg') }}">
+                        </a>
+
+
+
+                        <div id="search-cop2" class="buscador-stiky">
+                            <div class="search-change2">
+                                <div id="hide3"><i class="fa fa-briefcase" aria-hidden="true"></i></div>
+                                <div id="hide4"><i class="fa fa-shopping-bag" aria-hidden="true"></i></div>
+                            </div>
+
+                            <form id="s4" data-buscar-url="{{ path('buscar_negocios_by_seccion_null') }}" action="{{ path('search_global_negocios') }}" class="s1 navbar-form navbar-left buscador_principal2" role="search">
+                                <input type="text" placeholder="Ejemplo: Casa de Playa, Carpintero, Trebol Celima">
+                                <select class="selectpicker">
+                                    <option value="">Selecciona una Categoria</option>
+                                    <option value="constructoras-e-inmobiliarias">Constructoras e Inmobiliarias</option>
+                                    <option value="especialistas-servicios-personales">Especialistas y Servicios Personales</option>
+                                    <option value="proveedores">Proveedores</option>
+                                </select>
+                            </form>
+
+                            <form id="s3" data-buscar-url="{{ path('buscar_productos') }}"  action="{{ path('search_global_productos') }}" class="s2 navbar-form navbar-left buscador_principal2" role="search">
+                                <input type="text"  placeholder="Ejemplo: Marmol, Madera, Mesas">
+                                <select class="selectpicker">
+                                    <option selected value="proveedores">Proveedores</option>
+                                </select>
+                            </form>
                         </div>
 
 
-                        <form id="s4" data-buscar-url="{{ path('buscar_negocios_by_seccion_null') }}" action="{{ path('search_global_negocios') }}" class="s1 navbar-form navbar-left buscador_principal2" role="search">
-                            <input type="text" placeholder="Ejemplo: Casa de Playa, Carpintero, Trebol Celima">
-                            <select class="selectpicker">
-                                <option value="">Selecciona una Categoria</option>
-                                <option value="constructoras-e-inmobiliarias">Constructoras e Inmobiliarias</option>
-                                <option value="especialistas-servicios-personales">Especialistas y Servicios Personales</option>
-                                <option value="proveedores">Proveedores</option>
-                            </select>
-                        </form>
 
-                        <form id="s3" data-buscar-url="{{ path('buscar_productos') }}"  action="{{ path('search_global_productos') }}" class="s2 navbar-form navbar-left buscador_principal2" role="search">
-                            <input type="text"  placeholder="Ejemplo: Marmol, Madera, Mesas">
-                            <select class="selectpicker">
-                                <option selected value="proveedores">Proveedores</option>
-                            </select>
-                        </form>
-                    </div>
+                        <div class="logi-reg" >
+                            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                                <div class="dropdown" style="margin-right: 70px">
+                                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                        {% if app.user.profile is not null %}
+                                            <img class="img-circle" width="50px" src="{{ vich_uploader_asset(app.user.profile, 'profileFile') }}" alt="">
+                                        {% else %}
+                                            <img class="img-circle" width="50px" src="{{ asset('images/assets/perfil_icon.png') }}" alt="">
+                                        {% endif %}
+                                    </button>
+                                    <ul class="dropdown-menu drop-menu" aria-labelledby="dropdownMenu2">
+                                        <li><a href="{{ path('profile_negocios_panel') }}"><i class="fa fa-briefcase" aria-hidden="true"></i> Panel de Negocios</a></li>
+                                        <li><a href="{{ path('fos_user_profile_show')}}"><i class="fa fa-user" aria-hidden="true"></i> Mi Perfil</a></li>
+                                        <li>
+                                            <a href="{{ path('fos_user_security_logout') }}">
+                                                <i class="fa fa-sign-out" aria-hidden="true"></i> {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+                                            </a>
+                                        </li>
 
-                    <div class="logi-reg" >
-                        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                            <div class="dropdown" style="margin-right: 70px">
-                                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                    {% if app.user.profile is not null %}
-                                        <img class="img-circle" width="50px" src="{{ vich_uploader_asset(app.user.profile, 'profileFile') }}" alt="">
-                                    {% else %}
-                                        <img class="img-circle" width="50px" src="{{ asset('images/assets/perfil_icon.png') }}" alt="">
-                                    {% endif %}
-                                </button>
-                                <ul class="dropdown-menu drop-menu" aria-labelledby="dropdownMenu2">
-                                    <li><a href="{{ path('profile_negocios_panel') }}"><i class="fa fa-briefcase" aria-hidden="true"></i> Panel de Negocios</a></li>
-                                    <li><a href="{{ path('fos_user_profile_show')}}"><i class="fa fa-user" aria-hidden="true"></i> Mi Perfil</a></li>
-                                    <li>
-                                        <a href="{{ path('fos_user_security_logout') }}">
-                                            <i class="fa fa-sign-out" aria-hidden="true"></i> {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
-                                        </a>
-                                    </li>
+                                    </ul>
+                                </div>
+                            {% else %}
+                                <div class="no-login">
+                                    <a id="registro" href="">Registrarse</a>
+                                    <span>|</span>
+                                    <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+                                </div>
 
-                                </ul>
-                            </div>
-                        {% else %}
-                            <div class="no-login">
-                                <a id="registro" href="">Registrarse</a>
-                                <span>|</span>
-                                <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
-                            </div>
+                            {% endif %}
+                        </div>
 
 
-                        {% endif %}
-                    </div>
+
+
                 </div>
             </nav>
 
