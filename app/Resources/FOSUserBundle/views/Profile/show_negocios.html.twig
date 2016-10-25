@@ -3,21 +3,55 @@
     <title> Konstruye.pe | Mi Colección </title>
 {% endblock title %}
 {% block fos_user_content %}
-    {#{{ dump(negocios) }}#}
+
     {% include "FOSUserBundle:Profile:show_include_perfil_menu.html.twig" %}
         <div class="container">
-
             <div class="row">
-                <div class="col-md-8 col-md-offset-2">
+                <div class="col-md-12">
+                    {#{{ dump(negocios) }}#}
                     <div class="marging-top">
                         {% if negocios|length > 0 %}
-                            <p>Hello World</p>
+                            {% for negocio in negocios %}
+                                <div class="col-md-3">
+                                    <div class="negocio-box negocio-perfil-box" style="    border-radius: 5px;background: #fff;box-shadow: 0 0 0 1px rgba(0,0,0,.15);border-bottom: 2px solid #1C9CD9;max-height: 375px;margin: 82px 0 0 0;">
+                                        {#<a href="{{ path('show_negocio',{"slug_negocio":negocio.slug}) }}">#}
+                                            {#<div class="banner">#}
+                                                {#<img src="{{ vich_uploader_asset(negocio.banner, 'bannerFile','AppBundle\\Entity\\Banner') }}" alt="{{ negocio.nombre }}" />#}
+                                            {#</div>#}
+                                            <div class="datos">
+                                                {#<div class="middle-section">#}
+                                                    {#<img width="80px" src="{{ vich_uploader_asset(negocio.logo, 'logoFile') }}" alt="{{ negocio.nombre }}" />#}
+                                                    {#{% if n.mymoy is null %}#}
+                                                        {#<div class="rateYo_negocios" data-rating="0"></div>#}
+                                                    {#{% else %}#}
+                                                        {#<div class="rateYo_negocios" data-rating="{{ n.mymoy }}"></div>#}
+                                                    {#{% endif %}#}
+                                                {#</div>#}
+
+                                                <div class="detalle-datos">
+                                                    {#{{ path('show_negocio',{"slug_negocio": negocio.slug}) }}#}
+                                                    <a href="" style="display: block">
+                                                        <h1>
+                                                            {{ negocio.nombre }}
+                                                        </h1>
+                                                    </a>
+                                                    <p>{#<i class="fa fa-wpforms" aria-hidden="true"></i>#} {{ negocio.description }}</p>
+                                                    <p><i class="fa fa-map-marker" aria-hidden="true"></i> {{ negocio.direccion }} - {{ negocio.distrito.nombre }} - {{ negocio.provincia.nombre }}</p>
+                                                    <p><i class="fa fa-phone" aria-hidden="true"></i> {{ negocio.telefono }}</p>
+                                                    <p><i class="fa fa-globe" aria-hidden="true"></i> {{ negocio.web }}</p>
+                                                    <p><i class="fa fa-envelope" aria-hidden="true"></i> {{ negocio.email }}</p>
+                                                </div>
+                                            </div>
+                                        {#</a>#}
+                                    </div>
+
+                                </div>
+                            {% endfor %}
                         {% else %}
                             <section class="alerta-mensaje-ninguno">
                                 <p><i class="fa fa-exclamation-triangle" aria-hidden="true"></i></p>
                                 <p>No cuenta con ninguna colección por el momento.</p>
                             </section>
-
                         {% endif %}
                     </div>
                 </div>

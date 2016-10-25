@@ -11,27 +11,27 @@
 {% block fos_user_content %}
 
     {% include "FOSUserBundle:Profile:show_include_perfil_menu.html.twig" %}
-    {{ dump(comentarios) }}
-        {#<div class="container">#}
-                <div class="row">
+    {#{{ dump(comentarios) }}#}
+        <div class="container">
+            <div class="row comentario-perfil">
                 <div class="col-md-8 col-md-offset-2">
                     <div class="marging-top">
-
                         {% if comentarios|length > 0 %}
                             {% for comentario in comentarios %}
-                                <div class="col-md-12 padding-left-right">
-                                    <div class="image-comentario col-md-2 col-sm-2 col-xs-12">
-                                        <img class="img-responsive" width="80" src="{{ vich_uploader_asset(comentario.negocio.logo, 'logoFile') }}" alt=""/>
+                                <div class="media comment">
+                                    <div class="media-left padding-right-comentarios">
+                                        <div class="image-comentario">
+                                            <img class="img-responsive" width="80" src="{{ vich_uploader_asset(comentario.negocio.logo, 'logoFile') }}" alt=""/>
+                                        </div>
                                     </div>
 
-                                    <div class="comentario-usuario col-md-10 col-sm-10 col-xs-12">
+                                    <div class="media-body comentarios-personales">
                                         <div class="titulo-rating">
                                             <h3>{{ comentario.titulo }} -</h3><span class="rateYo_comments" data-rating="{{ comentario.nota }}"></span>
                                         </div>
 
                                         <div class="comentario_editar">
                                             <p>{{ comentario.comentario }}</p>
-                                            {#<a class="comentario-enlace"href="">Editar</a>#}
                                         </div>
                                         <div class="date">{{ comentario.adedAt|date("d F, Y") }}</div>
                                     </div>
@@ -46,7 +46,7 @@
 
                     </div>
                 </div>
-                </div>
+            </div>
         </div>
 {% endblock fos_user_content %}
 

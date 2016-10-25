@@ -440,11 +440,38 @@ Cambio de Contraseña
 /*===========================
 Todos tus Comentarios
 ===========================*/
-.marging-top {
-    margin-top: 20px;
-}
-.image-comentario {
+.comentario-perfil .image-comentario {
     padding-right: 0;
+    width: 80px;
+}
+.comentario-perfil .titulo-rating h3 {
+    font-size: 18px;
+    font-weight: 700;
+    text-transform: uppercase;
+    display: inline-block;
+}
+.comentario-perfil .comentarios-personales .date {
+    color: #009FE3;
+    margin-bottom: 10px;
+    font-size: 14px;
+    position: absolute;
+    top: 14px;
+    right: 11px;
+    font-weight: 400;
+}
+.comentario-perfil .comentario_editar p {
+    font-size: 14px;
+    line-height: 20px;
+    color: #A0A0A0;
+}
+.comentario-perfil .titulo-rating span {
+    display: inline-block;
+}
+.comentario-perfil .padding-right-comentarios {
+    padding-right: 5px;
+}
+.marging-top {
+margin-top: 20px;
 }
 .image-comentario img {
     margin-right: auto;
@@ -466,7 +493,7 @@ Todos tus Comentarios
     min-height: 82px;
     overflow: hidden;
 }
-.comentario-usuario .titulo-rating h3 {
+.comentarios-usuario .titulo-rating h3 {
     font-size: 18px;
     font-weight: 600;
     text-transform: uppercase;
