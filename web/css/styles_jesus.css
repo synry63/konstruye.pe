@@ -390,11 +390,15 @@ Perfil - Cambiar Datos
     font-weight: bold;
     margin-bottom: 5px;
 }
+.contenedor-formulario-editar ul {
+    display: inline-block;
+}
 .contenedor-formulario-editar ul li {
-    color: #1c9cd9;
+    color: #009FE3;
     font-size: 12px;
     font-weight: 700;
-    margin: 8px 0;
+    margin: 0;
+    display: inline-block;
 }
 .contenedor-formulario-editar .contenedor-editar-titulo h1 {
     color: #1c9cd9;
@@ -518,6 +522,14 @@ margin-top: 20px;
     font-size: 14px;
     line-height: 17px;
 }
+.comentario-perfil .comentario_editar a:hover {
+    text-decoration: underline !important;
+}
+.comentario-perfil .comentario_editar a {
+color: #009FE3;
+font-weight: 400;
+display: inline;
+}
 
 /*==================================
 Mensaje de Alert - Ninguno Elemento
@@ -586,5 +598,30 @@ Comentarios
     border: 2px solid #fff;
 }
 
+/*=============================================
+Pagina de Confirmacion del Registro de Usuario
+==============================================*/
+.contenedor-confirmacion {
+    text-align: center;
+    margin-top: 70px;
+}
+.contenedor-confirmacion-cuenta {
+    margin-top: 30px;
+}
+.contenedor-confirmacion-cuenta p {
+    color: #A0A0A0;
+    font-weight: 400;
+}
+.contenedor-confirmacion .contenedor-icon-confirmacion i {
+    font-size: 220px;
+    color: #009FE3;
+}
 
-/* fin Seccion comments pablo emilio*/
+/*===============
+Alerta Konstruye
+================*/
+.alert-konstruye {
+    color: #009FE3;
+    background-color: rgba(0,159,227,.3);
+    border-color: #009FE3;
+}

@@ -6,6 +6,8 @@
     {{ parent() }}
     {#Rate Yo#}
     <link rel="stylesheet" href="{{ asset('css/jquery.rateyo.min.css') }}">
+    {#Magnific Popup#}
+    <link rel="stylesheet" href="{{ asset('css/magnific-popup.css') }}">
 {% endblock stylesheets%}
 
 {% block fos_user_content %}
@@ -18,7 +20,6 @@
                     <div class="marging-top">
                         {% if comentarios|length > 0 %}
                             {% for comentario in comentarios %}
-                                <a href="{{ path('negocio_me_comentar_profile_edit',{'slug_negocio':comentario.negocio.slug}) }}">editar</a>
                                 <div class="media comment">
                                     <div class="media-left padding-right-comentarios">
                                         <div class="image-comentario">
@@ -32,9 +33,10 @@
                                         </div>
 
                                         <div class="comentario_editar">
-                                            <p>{{ comentario.comentario }}</p>
+                                            <p>{{ comentario.comentario }} <span>| <a class="simple-ajax-popup" href="{{ path('negocio_me_comentar_profile_edit',{'slug_negocio':comentario.negocio.slug}) }}">Editar</a></span></p>
                                         </div>
-                                        <div class="date">{{ comentario.adedAt|date("d F, Y") }}</div>
+                                        <div class="date">{{ comentario.adedAt|date("d F, Y") }} </div>
+
                                     </div>
                                 </div>
                             {% endfor %}
@@ -68,6 +70,11 @@
                     ratedFill: color,
                     normalFill: "#A0A0A0"
                 });
+            });
+
+            {#Magnific Popup#}
+            $('.simple-ajax-popup').magnificPopup({
+                type: 'ajax'
             });
         })
     </script>
