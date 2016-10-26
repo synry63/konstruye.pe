@@ -50,7 +50,7 @@
                             <div class="zona-precio-contenido">
                                 <div class="precio">
                                     <span class="titulo-zona-inmueble">Desde:</span>
-                                    <span class="precio-zona-inmueble"> S/ {{ negocio.precioSoles }}</span>
+                                    <span class="precio-zona-inmueble"> S/ {{ negocio.precioSoles|number_format(2, '.', ',') }}</span>
                                 </div>
                                 <div class="zona-calcula-hipoteca">
                                     <a class="calcula-hipoteca" href="#">CALCULA TU HIPOTECA</a>
@@ -205,7 +205,12 @@
                                 <div class="zona-contactanos-header">
                                     <a class="link-inmobiliaria" href="">
                                         <span> {{ negocio.nombre }} </span>
-                                        <img class="img-responsive" width="70" src="{{ vich_uploader_asset(negocio.logo, 'logoFile') }}" alt=""/>
+                                        {% if negocio.logo is not null %}
+                                            <img class="img-responsive" width="70" src="{{ vich_uploader_asset(negocio.logo, 'logoFile') }}" alt=""/>
+                                            {% else %}
+                                                <img class="img-responsive" width="70" src="http://placehold.it/70x70" alt=""/>
+
+                                        {% endif %}
                                     </a>
                                 </div>
                                 <div class="zona-telefono">

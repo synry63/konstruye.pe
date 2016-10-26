@@ -1,35 +1,41 @@
+{% extends "FOSUserBundle::Profile/Panel/panel_layout.html.twig" %}
+{% block content_section %}
 {{ dump(fotos) }}
 
-<script>
-    /*new AnimOnScroll( document.getElementById( 'grid' ), {
-     minDuration : 0.4,
-     maxDuration : 0.7,
-     viewportFactor : 0.2
-     } );*/
-    var dev = "";
-    $( "#grid" ).sortable({
-        update: function( event, ui ) {
-            //var id = $(ui.item).attr('data-insp');
-            //alert("New position: " + ui.item.index());
-            var sorted = $( "#grid" ).sortable( "serialize" );
-            $.ajax({
-                type: "POST",
-                url: '{{ path("profile_negocios_panel_gestion_negocio_sort") }}',
-                data: {
-                    sort:sorted,
-                    what:"Foto"
-                    //sort: ui.item.index(),
-                    //id_inspiracion: $(ui.item).attr('data-insp')
+{% block javascripts %}
+    <script>
+        /*new AnimOnScroll( document.getElementById( 'grid' ), {
+         minDuration : 0.4,
+         maxDuration : 0.7,
+         viewportFactor : 0.2
+         } );*/
+        var dev = "";
+        $( "#grid" ).sortable({
+            update: function( event, ui ) {
+                //var id = $(ui.item).attr('data-insp');
+                //alert("New position: " + ui.item.index());
+                var sorted = $( "#grid" ).sortable( "serialize" );
+                $.ajax({
+                    type: "POST",
+                    url: '{{ path("profile_negocios_panel_gestion_negocio_sort") }}',
+                    data: {
+                        sort:sorted,
+                        what:"Foto"
+                        //sort: ui.item.index(),
+                        //id_inspiracion: $(ui.item).attr('data-insp')
 
-                },
-                //data:sorted,
-                dataType: "json",
-                success: function(response) {
-                    //console.log(response.sort);
-                    //$(ui.item).children('span').text(response.sort);
-                }
-            });
-        }
-    });
-    $( "#grid" ).disableSelection();
-</script>
+                    },
+                    //data:sorted,
+                    dataType: "json",
+                    success: function(response) {
+                        //console.log(response.sort);
+                        //$(ui.item).children('span').text(response.sort);
+                    }
+                });
+            }
+        });
+        $( "#grid" ).disableSelection();
+    </script>
+{% endblock %}
+
+{% endblock %}

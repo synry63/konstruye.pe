@@ -1,2 +1,8 @@
-{{ dump(banner) }}
-{{ form(form, {'attr': {'novalidate': 'novalidate'}}) }}
+{% extends "FOSUserBundle::Profile/Panel/panel_layout.html.twig" %}
+
+{% block content_section %}
+    {{ dump(banner) }}
+    {{ form(form, {'attr': {'novalidate': 'novalidate'}}) }}
+
+
+{% endblock %}

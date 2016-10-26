@@ -1,13 +1,23 @@
 <div class="col-md-4">
+
     <div class="negocio-box">
         <a href="{{ path('show_negocio',
         {"slug_negocio":n.negocio.slug}) }}">
             <div class="banner">
-                <img src="{{ vich_uploader_asset(n.negocio.banner, 'bannerFile','AppBundle\\Entity\\Banner') }}" alt="{{ n.negocio.nombre }}" />
+                {% if n.negocio.banner is not null %}
+                    <img src="{{ vich_uploader_asset(n.negocio.banner, 'bannerFile','AppBundle\\Entity\\Banner') }}" alt="{{ n.negocio.nombre }}" />
+                {% else %}
+                    <img src="http://placehold.it/350x150" alt="{{ n.negocio.nombre }}" />
+                {% endif %}
             </div>
             <div class="datos">
                 <div class="middle-section">
-                    <img width="80px" src="{{ vich_uploader_asset(n.negocio.logo, 'logoFile','AppBundle\\Entity\\Logo') }}" alt="{{ n.negocio.nombre }}" />
+                    {% if n.negocio.logo is not null %}
+                        <img width="80px" src="{{ vich_uploader_asset(n.negocio.logo, 'logoFile','AppBundle\\Entity\\Logo') }}" alt="{{ n.negocio.nombre }}" />
+                    {% else %}
+                        <img src="http://placehold.it/80x80" alt="{{ n.negocio.nombre }}" />
+                    {% endif %}
+
                     {% if n.mymoy is null %}
                         <div class="rateYo_negocios" data-rating="0"></div>
                     {% else %}
@@ -17,14 +27,39 @@
                 <div class="detalle-datos">
                     <a href="{{ path('show_negocio',
                     {"slug_negocio":n.negocio.slug}) }}">
-                        <h1>
+                        <h1 style="line-height: 25px;">
                             {{ n.negocio.nombre }}
                         </h1>
                     </a>
-                    <p><i class="fa fa-map-marker" aria-hidden="true"></i> {{ n.negocio.direccion }} - {{ n.negocio.distrito.nombre }} - {{ n.negocio.provincia.nombre }}</p>
-                    <p><i class="fa fa-phone" aria-hidden="true"></i> {{ n.negocio.telefono }}</p>
-                    <p><i class="fa fa-globe" aria-hidden="true"></i> {{ n.negocio.web }}</p>
-                    <p><i class="fa fa-envelope" aria-hidden="true"></i> {{ n.negocio.email }}</p>
+                    {% if type is defined %}
+                        <p><i class="fa fa-user" aria-hidden="true"></i> Javier Díaz</p>
+                        <p><i class="fa fa-location-arrow" aria-hidden="true"></i> {{ n.negocio.distrito.nombre}} - {{ n.negocio.provincia.nombre}}</p>
+                        {% if n.negocio.areaTotal is not null %}
+                            <p><i class="fa fa-arrows-alt" aria-hidden="true"></i> {{ n.negocio.areaTotal }} m²</p>
+                        {% else %}
+                            <p><i class="fa fa-arrows-alt" aria-hidden="true"></i> - m²</p>
+                        {% endif %}
+
+                        {% if n.negocio.dormitorios is not null %}
+                            <p><i class="fa fa-bed" aria-hidden="true"></i> {{ n.negocio.dormitorios}} Dormitorios</p>
+                        {% else %}
+                            <p><i class="fa fa-bed" aria-hidden="true"></i> - Dormitorios</p>
+                        {% endif %}
+                        {% if n.negocio.precioSoles is not null %}
+                            <p class="precio-listado">Desde S/.{{ n.negocio.precioSoles|number_format(2, '.', ',')}}</p>
+                        {% else %}
+                            <p class="precio-listado">Desde S/.</p>
+                        {% endif %}
+
+                    {% else %}
+                        <p><i class="fa fa-map-marker" aria-hidden="true"></i> {{ n.negocio.direccion }} - {{ n.negocio.distrito.nombre }} - {{ n.negocio.provincia.nombre }}</p>
+                        <p><i class="fa fa-phone" aria-hidden="true"></i> {{ n.negocio.telefono }}</p>
+                        <p><i class="fa fa-globe" aria-hidden="true"></i> {{ n.negocio.web }}</p>
+                        <p><i class="fa fa-envelope" aria-hidden="true"></i> {{ n.negocio.email }}</p>
+                    {% endif %}
+
+
+
                 </div>
 
 

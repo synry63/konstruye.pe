@@ -424,7 +424,7 @@ Listado de Negocios
     background: #fff;
     box-shadow: 0 0 0 1px rgba(0,0,0,.15);
     border-bottom: 2px solid #1C9CD9;
-    max-height: 375px;
+    min-height: 400px;
     margin: 15px 0;
 }
 .negocio-box .banner{
@@ -459,16 +459,33 @@ Listado de Negocios
     font-weight: 700;
 }
 .negocio-box .datos .detalle-datos a h1{
-    padding: 10px 0;
+    padding: 5px 0;
 }
 .negocio-box .detalle-datos p {
     font-size: 14px;
     padding: 3px 0;
-    line-height: 20px;}
+    line-height: 20px;
+}
 .detalle-datos p i {
     color: #1C9CD9;
     width: 15px;
-    text-align: center;}
+    text-align: center;
+}
+.precio-listado{
+    position: absolute;
+    border-radius: 5px 5px 0 0;
+    bottom: 17px;
+    background: #009fe3;
+    padding: 10px !important;
+    left: 50%;
+    width: 77%;
+    text-align: center;
+    transform: translate(-50%);
+    font-size: 18px !important;
+    color: #fff;
+    font-weight: bold;
+}
+
 
 /*=============
 Buscador Principal
@@ -743,14 +760,22 @@ Dashboard Negocios
 .header-logo h1{
     font-size: 20px;
     float: right;
+    width: 50px;
+    text-align: center;
     font-weight: bold;
     line-height: 50px;
     padding: 0 15px;
-    background: #009FE3;
     color: #fff;
     text-transform: uppercase;
     margin: 0;
 }
+.hl-p{
+    background: #009FE3;
+}
+.hl-i{
+    background: #5CB85C;
+}
+
 .user-welcome{
     padding: 10px;
     height: 70px;

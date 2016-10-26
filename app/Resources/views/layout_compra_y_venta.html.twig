@@ -59,7 +59,7 @@
         {#{{ dump(negocios.items) }}#}
         <div class="col-md-9 body-negocios">
             {% for n in negocios.items %}
-                {{ include('includes/listado_negocios.html.twig', { 'n': n }) }}
+                {{ include('includes/listado_negocios.html.twig', { 'n': n , 'type': 'inmueble'}) }}
             {% endfor %}
         </div>
         <div class="navigation">

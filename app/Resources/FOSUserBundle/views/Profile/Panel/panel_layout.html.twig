@@ -18,11 +18,17 @@
             <div class="container-fluid top-seccion">
                 <div class="row">
                     <div class="header-logo">
-                        <h1>C</h1>
+                        {% if negocio.id is odd %}
+                            <h1 class="hl-p">{{ negocio.nombre|truncate(1,false,"") }}</h1>
+                        {% else %}
+                            <h1 class="hl-i">{{ negocio.nombre|truncate(1,false,"") }}</h1>
+                        {% endif %}
+
+
                         <img src="{{ asset('images/logo-min-white.svg') }}" alt=""/>
                     </div>
                     <div class="header-left-select-negocio">
-                        {{ dump(app.session.get('negocio_id')) }}
+
                         <p>Seleccione un Negocio: </p>
                         <i class="fa fa-chevron-down" aria-hidden="true"></i>
                         {{ include('FOSUserBundle::Profile/Panel/Menu/select_negocio.html.twig')}}
@@ -96,6 +102,7 @@
                     document.location.href =  url+$(this).val();
 
                 });
+
 
 
 
