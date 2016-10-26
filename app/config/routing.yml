@@ -97,7 +97,9 @@ negocio_me_comentar_new:
 negocio_me_comentar_edit:
     path:      /user-action/negocio/{slug_negocio}/comentar/edit
     defaults:  { _controller: AppBundle:ComentarioNegocio:comentarNegocioUserEdit}
-
+negocio_me_comentar_profile_edit:
+    path:      /profile/negocio/{slug_negocio}/comentar/edit
+    defaults:  { _controller: AppBundle:User:comentarNegocioUserEdit}
 profile_negocio_comentar_edit:
     path:      /profile/negocio/{slug_negocio}/comentar/edit
     defaults:  { _controller: AppBundle:User:userCommentEdit}
@@ -128,3 +130,21 @@ profile_negocios_panel_dashboard:
 profile_negocios_panel_gestion_negocio_cambiar_datos:
     path: /profile/panel/auth/datos
     defaults:  { _controller: AppBundle:Panel:showPanelNegocioUserDatos}
+profile_negocios_panel_gestion_negocio_cambiar_banner:
+    path: /profile/panel/auth/banner
+    defaults:  { _controller: AppBundle:Panel:showPanelNegocioUserBanner}
+profile_negocios_panel_gestion_negocio_cambiar_fotos:
+    path: /profile/panel/auth/fotos
+    defaults:  { _controller: AppBundle:Panel:showPanelNegocioUserFotos}
+profile_negocios_panel_gestion_negocio_delete_foto:
+    path: /profile/panel/auth/foto/delete/{id}
+    defaults:  { _controller: AppBundle:Panel:showPanelNegocioUserFotoDelete}
+profile_negocios_panel_gestion_negocio_list_fotos:
+    path: /profile/panel/auth/list/fotos
+    defaults:  { _controller: AppBundle:Panel:showPanelNegocioUserListFotos}
+profile_negocios_panel_gestion_negocio_cambiar_mapa:
+    path: /profile/panel/auth/mapa
+    defaults:  { _controller: AppBundle:Panel:showPanelNegocioUserMapa}
+profile_negocios_panel_gestion_negocio_sort:
+    path: /profile/panel/auth/sort
+    defaults:  { _controller: AppBundle:Panel:showPanelNegocioUserSort}

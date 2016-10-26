@@ -35,11 +35,11 @@ class Builder implements ContainerAwareInterface
             'uri' => '#',
             'label' => 'Gestion Negocio',
         ));
-        $menu['gestion-negocio']->addChild('cambiar-datos', array('label'=>'Cambiar Datos','uri' => '#'));
-        $menu['gestion-negocio']->addChild('cambiar-banner', array('label'=>'Cambiar Banner','uri' => '#'));
-        $menu['gestion-negocio']->addChild('cambiar-imagenes', array('label'=>'Cambiar Imagenes','uri' => '#'));
-        $menu['gestion-negocio']->addChild('ordenar-imagenes', array('label'=>'Ordenar Imagenes','uri' => '#'));
-        $menu['gestion-negocio']->addChild('cambiar-ubicacion', array('label'=>'Ubicacion Google Map','uri' => '#'));
+        $menu['gestion-negocio']->addChild('cambiar-datos', array('label'=>'Cambiar Datos','route' => 'profile_negocios_panel_gestion_negocio_cambiar_datos'));
+        $menu['gestion-negocio']->addChild('cambiar-banner', array('label'=>'Cambiar Banner','route' => 'profile_negocios_panel_gestion_negocio_cambiar_banner'));
+        $menu['gestion-negocio']->addChild('cambiar-imagenes', array('label'=>'Cambiar Imagenes','route' => 'profile_negocios_panel_gestion_negocio_cambiar_fotos'));
+        $menu['gestion-negocio']->addChild('ordenar-imagenes', array('label'=>'Ordenar Imagenes','route' => 'profile_negocios_panel_gestion_negocio_list_fotos'));
+        $menu['gestion-negocio']->addChild('cambiar-ubicacion', array('label'=>'Ubicacion Google Map','route' => 'profile_negocios_panel_gestion_negocio_cambiar_mapa'));
         if($negocio instanceof Proveedor){
             $menu->addChild('gestion-producto', array(
                 'uri' => '#',

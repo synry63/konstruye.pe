@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
- * @ORM\Entity(repositoryClass="AppBundle\Repository\FotoRepository")
+ * @ORM\Entity
  * @Vich\Uploadable
  * @ORM\Table(name="fotos")
  */
@@ -52,7 +52,10 @@ class Foto
      * @ORM\Column(type="string",nullable=true, length=255)
      */
     private $videoUrl;
-
+    /**
+     * @ORM\Column(type="integer",nullable=true)
+     */
+    private $sort;
     /**
     @ORM\ManyToOne(targetEntity="Negocio",inversedBy="fotos")
     @ORM\JoinColumn(name="negocio_id", referencedColumnName="id")
@@ -90,6 +93,38 @@ class Foto
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * @param \DateTime $updatedAt
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSort()
+    {
+        return $this->sort;
+    }
+
+    /**
+     * @param mixed $sort
+     */
+    public function setSort($sort)
+    {
+        $this->sort = $sort;
     }
 
     /**

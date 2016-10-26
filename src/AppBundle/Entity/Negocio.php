@@ -237,6 +237,12 @@ class Negocio
     protected $googleMapLng;
 
     /**
+     * @ORM\Column(type="string",nullable=true, length=255)
+     *
+     */
+    private $googleMapFormatedAddress;
+
+    /**
      * @ORM\OneToMany(targetEntity="Proyecto", mappedBy="negocio")
      **/
     protected $proyectos;
@@ -247,6 +253,22 @@ class Negocio
     public function getGoogleLink()
     {
         return $this->googleLink;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getGoogleMapFormatedAddress()
+    {
+        return $this->googleMapFormatedAddress;
+    }
+
+    /**
+     * @param mixed $googleMapFormatedAddress
+     */
+    public function setGoogleMapFormatedAddress($googleMapFormatedAddress)
+    {
+        $this->googleMapFormatedAddress = $googleMapFormatedAddress;
     }
 
     /**
