@@ -61,11 +61,13 @@ class PanelController extends Controller
         $session = $this->getRequest()->getSession();
         $session->set('negocio_id', $negocio->getId());
 
+
         return $this->redirectToRoute('profile_negocios_panel_dashboard');
     }
 
     public function showPanelNegocioUserDashbordAction(Request $request){
         $negocio_id = $this->getRequest()->getSession()->get('negocio_id');
+
         if($negocio_id==null) return $this->redirectToRoute('profile_negocios_panel');
         $negocio_current = $this->getDoctrine()->getRepository('AppBundle:Negocio')->find($negocio_id);
         //$menu = $this->menuAllowedAction($negocio_current);
