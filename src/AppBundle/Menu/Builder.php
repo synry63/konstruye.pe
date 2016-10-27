@@ -30,33 +30,110 @@ class Builder implements ContainerAwareInterface
         $menu->addChild('dashboard', array(
             'route' => 'profile_negocios_panel_dashboard',
             'label' => 'Dashboard',
+            'extras' => array(
+                'icon' => 'fa fa-tachometer'
+            )
         ));
         $menu->addChild('gestion-negocio', array(
             'uri' => '#',
             'label' => 'Gestion Negocio',
+            'extras' => array(
+                'icon' => 'fa fa-briefcase'
+            )
         ));
-        $menu['gestion-negocio']->addChild('cambiar-datos', array('label'=>'Cambiar Datos','route' => 'profile_negocios_panel_gestion_negocio_cambiar_datos'));
-        $menu['gestion-negocio']->addChild('cambiar-banner', array('label'=>'Cambiar Banner','route' => 'profile_negocios_panel_gestion_negocio_cambiar_banner'));
-        $menu['gestion-negocio']->addChild('cambiar-imagenes', array('label'=>'Cambiar Imagenes','route' => 'profile_negocios_panel_gestion_negocio_cambiar_fotos'));
-        $menu['gestion-negocio']->addChild('ordenar-imagenes', array('label'=>'Ordenar Imagenes','route' => 'profile_negocios_panel_gestion_negocio_list_fotos'));
-        $menu['gestion-negocio']->addChild('cambiar-ubicacion', array('label'=>'Ubicacion Google Map','route' => 'profile_negocios_panel_gestion_negocio_cambiar_mapa'));
+        $menu['gestion-negocio']->addChild('cambiar-datos', array(
+            'label'=>'Cambiar Datos',
+            'route' => 'profile_negocios_panel_gestion_negocio_cambiar_datos',
+            'extras' => array(
+                'icon' => 'fa fa-pencil-square-o'
+            )
+        ));
+
+        $menu['gestion-negocio']->addChild('cambiar-banner', array(
+            'label'=>'Cambiar Banner',
+            'route' => 'profile_negocios_panel_gestion_negocio_cambiar_banner',
+            'extras' => array(
+                'icon' => 'fa fa-picture-o'
+            )
+        ));
+        $menu['gestion-negocio']->addChild('cambiar-logo', array(
+            'label'=>'Cambiar Logo',
+            'route' => 'profile_negocios_panel_gestion_negocio_cambiar_logo',
+            'extras' => array(
+                'icon' => 'fa fa-picture-o'
+            )
+        ));
+        $menu['gestion-negocio']->addChild('cambiar-imagenes', array(
+            'label'=>'Cambiar Imagenes',
+            'route' => 'profile_negocios_panel_gestion_negocio_cambiar_fotos',
+            'extras' => array(
+                'icon' => 'fa fa-picture-o'
+            )
+        ));
+        $menu['gestion-negocio']->addChild('ordenar-imagenes', array(
+            'label'=>'Ordenar Imagenes',
+            'route' => 'profile_negocios_panel_gestion_negocio_list_fotos',
+            'extras' => array(
+                'icon' => 'fa fa-picture-o'
+            )
+        ));
+        $menu['gestion-negocio']->addChild('cambiar-ubicacion', array(
+            'label'=>'Ubicacion Google Map',
+            'route' => 'profile_negocios_panel_gestion_negocio_cambiar_mapa',
+            'extras' => array(
+                'icon' => 'fa fa-map'
+            )
+        ));
         if($negocio instanceof Proveedor){
             $menu->addChild('gestion-producto', array(
                 'uri' => '#',
                 'label' => 'Gestion de Productos',
+                'extras' => array(
+                    'icon' => 'fa fa-shopping-basket'
+                )
             ));
-            $menu['gestion-producto']->addChild('ver-productos', array('label'=>'ver Productos','uri' => '#'));
-            $menu['gestion-producto']->addChild('agregar-productos', array('label'=>'Agregar Productos','uri' => '#'));
-            $menu['gestion-producto']->addChild('ordenar-productos', array('label'=>'Ornedar Productos','uri' => '#'));
+            $menu['gestion-producto']->addChild('ver-productos', array(
+                'label'=>'ver Productos',
+                'uri' => '#',
+                'extras' => array(
+                    'icon' => 'fa fa-shopping-basket'
+                )
+            ));
+            $menu['gestion-producto']->addChild('agregar-productos', array(
+                'label'=>'Agregar Productos',
+                'uri' => '#',
+                'extras' => array(
+                    'icon' => 'fa fa-plus'
+                )
+            ));
+            $menu['gestion-producto']->addChild('ordenar-productos', array(
+                'label'=>'Ornedar Productos',
+                'uri' => '#',
+                'extras' => array(
+                    'icon' => 'fa fa-sort'
+                )
+            ));
         }
         else if($negocio instanceof Especialista || $negocio instanceof ConstructoraInmobiliaria){
             $menu->addChild('gestion-proyectos', array(
                 'uri' => '#',
                 'label' => 'Gestion de Proyectos',
+                'extras' => array(
+                    'icon' => 'fa fa-clipboard'
+                )
             ));
-            $menu['gestion-proyectos']->addChild('ver-proyectos', array('label'=>'ver Proyectos','uri' => '#'));
-            $menu['gestion-proyectos']->addChild('agregar-proyecto', array('label'=>'Agregar Proyecto','uri' => '#'));
-            $menu['gestion-proyectos']->addChild('ordenar-proyecto', array('label'=>'Ornedar Proyecto','uri' => '#'));
+            $menu['gestion-proyectos']->addChild('ver-proyectos', array(
+                'label'=>'ver Proyectos',
+                'uri' => '#'
+            ));
+            $menu['gestion-proyectos']->addChild('agregar-proyecto', array(
+                'label'=>'Agregar Proyecto',
+                'uri' => '#'
+            ));
+            $menu['gestion-proyectos']->addChild('ordenar-proyecto', array(
+                'label'=>'Ornedar Proyecto',
+                'uri' => '#'
+            ));
         }
         else if($negocio instanceof Inmueble){
             $menu->addChild('gestion-inmueble', array(

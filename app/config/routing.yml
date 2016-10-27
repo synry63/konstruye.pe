@@ -145,6 +145,9 @@ profile_negocios_panel_gestion_negocio_list_fotos:
 profile_negocios_panel_gestion_negocio_cambiar_mapa:
     path: /profile/panel/auth/mapa
     defaults:  { _controller: AppBundle:Panel:showPanelNegocioUserMapa}
+profile_negocios_panel_gestion_negocio_cambiar_logo:
+    path: /profile/panel/auth/logo
+    defaults:  { _controller: AppBundle:Logo:showPanelNegocioUserLogo}
 profile_negocios_panel_gestion_negocio_sort:
     path: /profile/panel/auth/sort
     defaults:  { _controller: AppBundle:Panel:showPanelNegocioUserSort}

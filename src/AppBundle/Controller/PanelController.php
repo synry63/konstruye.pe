@@ -19,6 +19,7 @@ use AppBundle\Form\Type\EspecialistaType;
 use AppBundle\Form\Type\FotoType;
 use AppBundle\Form\Type\GoogleMapType;
 use AppBundle\Form\Type\InmuebleType;
+use AppBundle\Form\Type\LogoType;
 use AppBundle\Form\Type\ProveedorType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -130,7 +131,7 @@ class PanelController extends Controller
         }
         return $this->render(
             'FOSUserBundle:Profile:Panel/cambiar_banner.html.twig',
-            array('banner'=>$banner,'form'=>$form->createView())
+            array('negocio'=>$negocio_current,'banner'=>$banner,'form'=>$form->createView())
         );
     }
     public function showPanelNegocioUserFotosAction(Request $request){
@@ -155,7 +156,7 @@ class PanelController extends Controller
         }
         return $this->render(
             'FOSUserBundle:Profile:Panel/cambiar_fotos.html.twig',
-            array('fotos'=>$fotos,'form'=>$form->createView())
+            array('negocio'=>$negocio_current,'fotos'=>$fotos,'form'=>$form->createView())
         );
     }
     public function showPanelNegocioUserFotoDeleteAction(Request $request,$id){
