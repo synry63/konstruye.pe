@@ -178,7 +178,16 @@
     #}
 
     <div class="container detail_description">
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium asperiores, aspernatur cupiditate ea eos eum incidunt ipsum iste maiores neque nobis odio quae quia repellat repudiandae soluta temporibus velit voluptatum. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa dignissimos distinctio dolore excepturi explicabo harum, id illum ipsum nisi provident quia quod, veritatis. Ad ea error maiores odit officiis pariatur!</p>
+        <div class="box-description">
+            <div class="col-md-4 about-us-text">
+                <h1>Sobre</h1>
+                <h1><span>Nosotros</span></h1>
+            </div>
+            <div class="col-md-8">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium asperiores, aspernatur cupiditate ea eos eum incidunt ipsum iste maiores neque nobis odio quae quia repellat repudiandae soluta temporibus velit voluptatum. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa dignissimos distinctio dolore excepturi explicabo harum, id illum ipsum nisi provident quia quod, veritatis. Ad ea error maiores odit officiis pariatur!</p>
+            </div>
+        </div>
+
     </div>
 
     <div class="container proyects-links">
@@ -186,26 +195,25 @@
     </div>
 
 
-
-
-
-
     {% if negocio.proyectos|length>0  %}
         <div class="container proyect-slider">
-            <div class="col-md-9 col-xs-12 ajax-proyecto">
+                <h1>Nuestros <span>Proyectos</span></h1>
+                <div class="col-md-9 col-xs-12 ajax-proyecto">
 
-            </div>
-            <div class="col-md-3">
-                {{ render(controller(
-                'AppBundle:Proyecto:lastProyectos',
-                { 'id_negocio':negocio.id,'max': 4 }
-                )) }}
-            </div>
+                </div>
+                <div class="col-md-3">
+                    {{ render(controller(
+                    'AppBundle:Proyecto:lastProyectos',
+                    { 'id_negocio':negocio.id,'max': 4 }
+                    )) }}
+                </div>
+
         </div>
     {% else %}
         <h1 style="text-align:center;font-size: 50px;margin-bottom: 15px;color: #1C9CD9"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i></h1>
         <h2 style="text-align:center;">Este Negocio no tiene proyectos</h2>
     {% endif %}
+
 
     <div class="container-fluid googlemaps">
         <div class="row">

@@ -181,35 +181,47 @@
 
 
     <div class="container detail_description">
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium asperiores, aspernatur cupiditate ea eos eum incidunt ipsum iste maiores neque nobis odio quae quia repellat repudiandae soluta temporibus velit voluptatum. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa dignissimos distinctio dolore excepturi explicabo harum, id illum ipsum nisi provident quia quod, veritatis. Ad ea error maiores odit officiis pariatur!</p>
+        <div class="box-description">
+            <div class="col-md-4 about-us-text">
+                <h1>Sobre</h1>
+                <h1><span>Nosotros</span></h1>
+            </div>
+            <div class="col-md-8">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium asperiores, aspernatur cupiditate ea eos eum incidunt ipsum iste maiores neque nobis odio quae quia repellat repudiandae soluta temporibus velit voluptatum. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa dignissimos distinctio dolore excepturi explicabo harum, id illum ipsum nisi provident quia quod, veritatis. Ad ea error maiores odit officiis pariatur!</p>
+            </div>
+        </div>
+
     </div>
 
     <div class="container product-section">
-        <h1 class="tittle">Productos Destacados</h1>
-        <div class="row">
-            {% for nepro  in productos %}
-                <div class="col-md-3 producto-box">
-                    <a href="{{ path('show_producto',{'slug_producto':nepro.producto.slug}) }}">
-                        <img width="220px" src="http://placehold.it/220x220" alt="">
-                    </a>
-                    <a href="{{ path('show_producto',{'slug_producto':nepro.producto.slug}) }}"><h1>{{ nepro.producto.nombre }}</h1></a>
-                    <a href="{{ path('show_negocio',
-                    {"slug_seccion":app.request.get('slug_seccion'),"slug_negocio":nepro.producto.negocio.slug}) }}"><h2>{{ nepro.producto.negocio.nombre }}</h2></a>
-                    {% if nepro.mymoy is not null %}
-                        <div class="rateYo_productos" data-rating="{{ nepro.mymoy }}" style="margin: 0 auto"></div>
-                    {% else %}
-                        <div class="rateYo_productos" data-rating="0" style="margin: 0 auto"></div>
-                    {% endif %}
+        <div class="product-content">
+            <h1 class="tittle">Productos Destacados</h1>
+            <div class="row">
+                {% for nepro  in productos %}
+                    <div class="col-md-3 producto-box">
+                        <a href="{{ path('show_producto',{'slug_producto':nepro.producto.slug}) }}">
+                            <img width="220px" src="http://placehold.it/220x220" alt="">
+                        </a>
+                        <a href="{{ path('show_producto',{'slug_producto':nepro.producto.slug}) }}"><h1>{{ nepro.producto.nombre }}</h1></a>
+                        <a href="{{ path('show_negocio',
+                        {"slug_seccion":app.request.get('slug_seccion'),"slug_negocio":nepro.producto.negocio.slug}) }}"><h2>{{ nepro.producto.negocio.nombre }}</h2></a>
+                        {% if nepro.mymoy is not null %}
+                            <div class="rateYo_productos" data-rating="{{ nepro.mymoy }}" style="margin: 0 auto"></div>
+                        {% else %}
+                            <div class="rateYo_productos" data-rating="0" style="margin: 0 auto"></div>
+                        {% endif %}
 
+                    </div>
+                {% endfor %}
+
+
+                <div class="col-md-2 col-md-offset-5" style="margin-top: 10px">
+                    <a href="{{ path('ver_mas_productos_proveedor',{ 'slug_negocio':negocio.slug}) }}" class="btn btn-konstruye">Ver más</a>
                 </div>
-            {% endfor %}
 
-
-            <div class="col-md-2 col-md-offset-5" style="margin-top: 10px">
-                <a href="{{ path('ver_mas_productos_proveedor',{ 'slug_negocio':negocio.slug}) }}" class="btn btn-konstruye">Ver más</a>
             </div>
-
         </div>
+
     </div>
 
     <div class="container-fluid googlemaps">

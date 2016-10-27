@@ -73,8 +73,8 @@
                             <i class="fa fa-search" aria-hidden="true"></i>
                         </button>
 
-                        <a class="navbar-brand logo_prin" href="#"><img width="200" alt="Brand" src="{{ asset('images/logo-rc-color.svg') }}"></a>
-                        <a class="navbar-brand logo_resp" href="#"><img width="150"alt="Brand" src="{{ asset('images/logo-min-color.svg') }}"></a>
+                        <a class="navbar-brand logo_prin" href="{{ path('homepage') }}"><img width="200" alt="Brand" src="{{ asset('images/logo-rc-color.svg') }}"></a>
+                        <a class="navbar-brand logo_resp" href="{{ path('homepage') }}"><img width="150"alt="Brand" src="{{ asset('images/logo-min-color.svg') }}"></a>
 
                     </div>
 
@@ -92,8 +92,7 @@
                                             {% else %}
                                                 <img class="img-circle" width="50px" src="{{ asset('images/assets/perfil_icon.png') }}" alt="">
                                             {% endif %}
-                                            <span class="caret" id="caret"></span>
-                                            <p class="nombre-usuario">{{app.user.nombres}}</p>
+                                            <i class="fa fa-chevron-down" aria-hidden="true" style="position: absolute;top: 50%;transform: translate(30%,-50%);color: #808080;"></i>
                                         </button>
                                         <ul class="dropdown-menu drop-menu" aria-labelledby="dropdownMenu1">
                                             <a href="{{ path('profile_negocios_panel') }}"><i class="fa fa-briefcase" aria-hidden="true"></i> Panel de Negocios</a>
@@ -123,7 +122,7 @@
                 <div class="container menu-principal2">
 
 
-                        <a class="navbar-brand" href="#" style="padding: 10px;height: auto;">
+                        <a class="navbar-brand" href="{{ path('homepage') }}" style="padding: 10px;height: auto;">
                             <img alt="Brand" src="{{ asset('images/logo-min-color.svg') }}">
                         </a>
 
@@ -161,8 +160,10 @@
                                     <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                                         {% if app.user.profile is not null %}
                                             <img class="img-circle" width="50px" src="{{ vich_uploader_asset(app.user.profile, 'profileFile') }}" alt="">
+                                            <i class="fa fa-chevron-down" aria-hidden="true" style="position: absolute;top: 50%;transform: translate(30%,-50%);color: #808080;"></i>
                                         {% else %}
                                             <img class="img-circle" width="50px" src="{{ asset('images/assets/perfil_icon.png') }}" alt="">
+                                            <i class="fa fa-chevron-down" aria-hidden="true" style="position: absolute;top: 50%;transform: translate(30%,-50%);color: #808080;"></i>
                                         {% endif %}
                                     </button>
                                     <ul class="dropdown-menu drop-menu" aria-labelledby="dropdownMenu2">
