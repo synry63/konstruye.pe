@@ -434,11 +434,14 @@ Cambio de Contraseña
     font-weight: bold;
     margin-bottom: 4px;
 }
+.contenedor-formulario-contraseña ul {
+    display: inline-block;
+}
 .contenedor-formulario-contraseña ul li {
     color: #1c9cd9;
     font-size: 12px;
     font-weight: 700;
-    margin: 8px 0;
+    margin: 0;
 }
 
 /*===========================
@@ -625,3 +628,44 @@ Alerta Konstruye
     background-color: rgba(0,159,227,.3);
     border-color: #009FE3;
 }
+
+/*===============
+Faq
+================*/
+.contenedor-titulo-faq{
+    padding: 30px;
+    background-color: #fff;
+}
+.contenedor-body-faq {
+    background-color: #fff;
+    /*padding: 10px;*/
+    /*border: 1px solid rgba(0,0,0,.1)*/
+}
+.contenedor-titulo-faq.marging-top div p {
+    color: #009FE3;
+    text-transform: uppercase;
+    text-align: center;
+}
+.contenedor-titulo-faq.marging-top div .titulo-faq {
+    font-size: 22px;
+    font-weight: bold;
+}
+.faq-pregunta {
+    color: #009FE3;
+    font-weight: 400;
+    padding: 5px;
+    border: 1px solid rgba(0,0,0,.1);
+}
+.faq-pregunta i {
+    color: #A0A0A0;
+    font-weight: bold;
+}
+.faq-respuesta {
+    background-color: #ededed;
+    padding: 10px;
+    margin-top: 3px;
+    color: #888888;
+    font-weight: 400;
+    font-size: 14px;
+}
+
