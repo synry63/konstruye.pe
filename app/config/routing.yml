@@ -148,6 +148,21 @@ profile_negocios_panel_gestion_negocio_cambiar_mapa:
 profile_negocios_panel_gestion_negocio_cambiar_logo:
     path: /profile/panel/auth/logo
     defaults:  { _controller: AppBundle:Logo:showPanelNegocioUserLogo}
+profile_negocios_panel_gestion_negocio_cambiar_anunciante:
+    path: /profile/panel/auth/anunciante
+    defaults:  { _controller: AppBundle:Anunciante:showPanelNegocioUserAnunciante}
+profile_negocios_panel_gestion_negocio_ver_inmuebles:
+    path: /profile/panel/auth/inmuebles
+    defaults:  { _controller: AppBundle:Panel:showPanelNegocioUserInmuebles}
+profile_negocios_panel_gestion_negocio_add_inmueble:
+    path: /profile/panel/auth/inmueble/add
+    defaults:  { _controller: AppBundle:Panel:showPanelNegocioUserInmuebleAdd}
+profile_negocios_panel_gestion_negocio_edit_inmueble:
+    path: /profile/panel/auth/inmueble/{id}/edit
+    defaults:  { _controller: AppBundle:Panel:showPanelNegocioUserInmuebleEdit}
+profile_negocios_panel_gestion_negocio_delete_inmueble:
+    path: /profile/panel/auth/inmueble/{id}/delete
+    defaults:  { _controller: AppBundle:Panel:showPanelNegocioUserInmuebleEdit}
 profile_negocios_panel_gestion_negocio_sort:
     path: /profile/panel/auth/sort
     defaults:  { _controller: AppBundle:Panel:showPanelNegocioUserSort}

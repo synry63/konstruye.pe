@@ -81,11 +81,79 @@ class Inmueble extends Negocio
     private $generales;
 
     /**
+    @ORM\ManyToOne(targetEntity="ConstructoraInmobiliaria",inversedBy="inmuebles")
+    @ORM\JoinColumn(name="constructora_id", referencedColumnName="id")
+     **/
+    private $constructora;
+
+    /**
+     * @ORM\OneToOne(targetEntity="Anunciante",mappedBy="negocio",cascade={"persist"})
+     */
+    private $anunciante;
+
+    /**
+     * @ORM\Column(type="integer",nullable=true)
+     */
+    private $sort;
+
+    /**
+     * @return mixed
+     */
+    public function getSort()
+    {
+        return $this->sort;
+    }
+
+    /**
+     * @param mixed $sort
+     */
+    public function setSort($sort)
+    {
+        $this->sort = $sort;
+    }
+
+
+
+    /**
+     * @return mixed
+     */
+    public function getConstructora()
+    {
+        return $this->constructora;
+    }
+
+    /**
+     * @param mixed $constructora
+     */
+    public function setConstructora($constructora)
+    {
+        $this->constructora = $constructora;
+    }
+
+
+
+    /**
      * @return mixed
      */
     public function getGenerales()
     {
         return $this->generales;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAnunciante()
+    {
+        return $this->anunciante;
+    }
+
+    /**
+     * @param mixed $anunciante
+     */
+    public function setAnunciante($anunciante)
+    {
+        $this->anunciante = $anunciante;
     }
 
     /**

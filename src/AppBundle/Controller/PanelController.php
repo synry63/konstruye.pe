@@ -65,10 +65,9 @@ class PanelController extends Controller
 
         return $this->redirectToRoute('profile_negocios_panel_dashboard');
     }
-
+    /** START GESTION NEGOCIOS  **/
     public function showPanelNegocioUserDashbordAction(Request $request){
         $negocio_id = $this->getRequest()->getSession()->get('negocio_id');
-
         if($negocio_id==null) return $this->redirectToRoute('profile_negocios_panel');
         $negocio_current = $this->getDoctrine()->getRepository('AppBundle:Negocio')->find($negocio_id);
         //$menu = $this->menuAllowedAction($negocio_current);
@@ -88,7 +87,8 @@ class PanelController extends Controller
             $form = $this->createForm(new EspecialistaType(), $negocio_current);
         }
         else if($negocio_current instanceof Inmueble){
-            $form = $this->createForm(new InmuebleType(), $negocio_current);
+            $user = $this->container->get('security.context')->getToken()->getUser();
+            $form = $this->createForm(new InmuebleType($user), $negocio_current);
         }
         else if($negocio_current instanceof ConstructoraInmobiliaria){
             $form = $this->createForm(new ConstructoraType(), $negocio_current);
@@ -135,7 +135,6 @@ class PanelController extends Controller
         );
     }
     public function showPanelNegocioUserFotosAction(Request $request){
-
         $negocio_id = $this->getRequest()->getSession()->get('negocio_id');
         if($negocio_id==null) return $this->redirectToRoute('profile_negocios_panel');
         $negocio_current = $this->getDoctrine()->getRepository('AppBundle:Negocio')->find($negocio_id);
@@ -204,9 +203,84 @@ class PanelController extends Controller
         );
 
         return $this->render(
-            'FOSUserBundle:Profile:Panel/lista_fotos.html.twig',
+            'FOSUserBundle:Profile:Panel/sort_fotos.html.twig',
             array('fotos'=>$fotos)
         );
+    }
+    /** START GESTION PROYECTOS INMUEBLES  **/
+    public function showPanelNegocioUserInmueblesAction(Request $request){
+        $negocio_id = $this->getRequest()->getSession()->get('negocio_id');
+        if($negocio_id==null) return $this->redirectToRoute('profile_negocios_panel');
+        $negocio_current = $this->getDoctrine()->getRepository('AppBundle:ConstructoraInmobiliaria')->find($negocio_id);
+
+        $inmuebles = $this->getDoctrine()->getRepository('AppBundle:Inmueble')->findBy(
+            array('constructora'=>$negocio_current),
+            array('registeredAt'=>'DESC')
+        );
+        return $this->render(
+            'FOSUserBundle:Profile:Panel/inmuebles_ver.html.twig',
+            array('inmuebles'=>$inmuebles)
+        );
+    }
+    public function showPanelNegocioUserInmuebleAddAction(Request $request){
+        $negocio_id = $this->getRequest()->getSession()->get('negocio_id');
+        if($negocio_id==null) return $this->redirectToRoute('profile_negocios_panel');
+        $negocio_current = $this->getDoctrine()->getRepository('AppBundle:ConstructoraInmobiliaria')->find($negocio_id);
+        $user = $this->container->get('security.context')->getToken()->getUser();
+        $inm = new Inmueble();
+        $form = $this->createForm(new InmuebleType(null), $inm);
+        $form->handleRequest($request);
+        if ($form->isValid()) {
+            $inm->setUser($user);
+            $inm->setConstructora($negocio_current);
+            $slug = $this->get('slugify')->slugify($inm->getNombre());
+            $inm->setSlug($slug);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($inm);
+            $em->flush();
+            $request->getSession()->getFlashBag()->add('success', 'Proyecto agregado !');
+            return $this->redirectToRoute('profile_negocios_panel_gestion_negocio_ver_inmuebles');
+        }
+        return $this->render(
+            'FOSUserBundle:Profile:Panel/inmueble_form.html.twig',
+            array('form'=>$form->createView())
+        );
+
+    }
+    public function showPanelNegocioUserInmuebleEditAction(Request $request,$id){
+        $negocio_id = $this->getRequest()->getSession()->get('negocio_id');
+        if($negocio_id==null) return $this->redirectToRoute('profile_negocios_panel');
+        $negocio_current = $this->getDoctrine()->getRepository('AppBundle:ConstructoraInmobiliaria')->find($negocio_id);
+
+        $user = $this->container->get('security.context')->getToken()->getUser();
+        $inm = $this->getDoctrine()->getRepository('AppBundle:Inmueble')->find($id);
+        $form = $this->createForm(new InmuebleType(null), $inm);
+        $form->handleRequest($request);
+        if ($form->isValid()) {
+            $inm->setUser($user);
+            $inm->setConstructora($negocio_current);
+            $slug = $this->get('slugify')->slugify($inm->getNombre());
+            $inm->setSlug($slug);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($inm);
+            $em->flush();
+            $request->getSession()->getFlashBag()->add('success', 'Proyecto actualizado !');
+            return $this->redirectToRoute('profile_negocios_panel_gestion_negocio_ver_inmuebles');
+        }
+        return $this->render(
+            'FOSUserBundle:Profile:Panel/inmueble_form.html.twig',
+            array('form'=>$form->createView())
+        );
+
+    }
+    public function showPanelNegocioUserInmuebleDeleteAction(Request $request,$id){
+        $negocio_id = $this->getRequest()->getSession()->get('negocio_id');
+        if($negocio_id==null) return $this->redirectToRoute('profile_negocios_panel');
+        $negocio_current = $this->getDoctrine()->getRepository('AppBundle:Negocio')->find($negocio_id);
+
+        $inm = $this->getDoctrine()->getRepository('AppBundle:Inmueble')->find($id);
+
+
     }
     public function showPanelNegocioUserSortAction(Request $request){
         if($request->isXmlHttpRequest()) {

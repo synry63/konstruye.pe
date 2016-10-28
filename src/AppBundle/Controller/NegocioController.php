@@ -91,7 +91,7 @@ class NegocioController extends Controller
         $pagination = $paginator->paginate(
             $negocios,
             $page,
-            4
+            9
         );
         return $this->render($twig,array(
             'negocios'=>$pagination,
@@ -125,7 +125,7 @@ class NegocioController extends Controller
         $pagination = $paginator->paginate(
             $negocios,
             $page,
-            4
+            9
         );
         return $this->render($twig,array(
             'negocios'=>$pagination,

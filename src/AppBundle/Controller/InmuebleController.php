@@ -23,7 +23,7 @@ class InmuebleController extends Controller
         $user = $this->container->get('security.context')->getToken()->getUser();
         $inm = new Inmueble();
 
-        $form = $this->createForm(new InmuebleType(), $inm);
+        $form = $this->createForm(new InmuebleType($user), $inm);
         $form->handleRequest($request);
         if ($form->isValid()) {
             $inm->setUser($user);

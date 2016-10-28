@@ -21,5 +21,26 @@ use Symfony\Component\Validator\Context\ExecutionContextInterface;
  */
 class ConstructoraInmobiliaria extends Negocio
 {
+    /**
+     * @ORM\OneToMany(targetEntity="Inmueble", mappedBy="constructora")
+     */
+    private $inmuebles;
+
+    /**
+     * @return mixed
+     */
+    public function getInmuebles()
+    {
+        return $this->inmuebles;
+    }
+
+    /**
+     * @param mixed $inmuebles
+     */
+    public function setInmuebles($inmuebles)
+    {
+        $this->inmuebles = $inmuebles;
+    }
+
 
 }

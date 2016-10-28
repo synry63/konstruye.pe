@@ -1,16 +1,7 @@
-{% extends "FOSUserBundle::Profile/Panel/panel_layout.html.twig" %}
-{% block content_section %}
 {{ dump(fotos) }}
-
-{% block javascripts %}
-    <script>
-        /*new AnimOnScroll( document.getElementById( 'grid' ), {
-         minDuration : 0.4,
-         maxDuration : 0.7,
-         viewportFactor : 0.2
-         } );*/
-        var dev = "";
-        $( "#grid" ).sortable({
+{{ path("profile_negocios_panel_gestion_negocio_sort") }}
+        {#
+            $( "#grid" ).sortable({
             update: function( event, ui ) {
                 //var id = $(ui.item).attr('data-insp');
                 //alert("New position: " + ui.item.index());
@@ -35,7 +26,6 @@
             }
         });
         $( "#grid" ).disableSelection();
-    </script>
-{% endblock %}
 
-{% endblock %}
+        #}
+

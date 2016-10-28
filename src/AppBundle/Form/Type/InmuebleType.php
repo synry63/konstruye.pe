@@ -32,7 +32,10 @@ use Symfony\Component\Form\FormEvents;
 
 class InmuebleType extends AbstractType
 {
-
+    private $current_user;
+    public function __construct($user) {
+        $this->current_user = $user;
+    }
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
 
@@ -71,6 +74,20 @@ class InmuebleType extends AbstractType
             ->addEventSubscriber(new AddProvinceFieldSubscriber($propertyPathToCity))
             ->addEventSubscriber(new AddCountryFieldSubscriber($propertyPathToCity))
         ;
+
+        if($this->current_user!=null){
+            $builder->add('constructora',EntityType::class, array(
+                'class' => 'AppBundle:ConstructoraInmobiliaria',
+                'placeholder' => '',
+                'choice_label' => 'nombre',
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('c')
+                        ->where('c.user = :user')
+                        ->setParameter('user', $this->current_user)
+                        ->orderBy('c.nombre', 'ASC');
+                }
+            ));
+        }
 
         /*$builder->add('departamento',EntityType::class, array(
             'class' => 'AppBundle:Departamento',

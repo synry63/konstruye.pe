@@ -12,6 +12,7 @@ use AppBundle\Entity\ConstructoraInmobiliaria;
 use AppBundle\Entity\Especialista;
 use AppBundle\Entity\Inmueble;
 use AppBundle\Entity\Proveedor;
+use AppBundle\Form\Type\InmuebleType;
 use Knp\Menu\FactoryInterface;
 use Knp\Menu\Renderer\ListRenderer;
 use Knp\Menu\Matcher\Matcher;
@@ -56,13 +57,25 @@ class Builder implements ContainerAwareInterface
                 'icon' => 'fa fa-picture-o'
             )
         ));
-        $menu['gestion-negocio']->addChild('cambiar-logo', array(
-            'label'=>'Cambiar Logo',
-            'route' => 'profile_negocios_panel_gestion_negocio_cambiar_logo',
-            'extras' => array(
-                'icon' => 'fa fa-picture-o'
-            )
-        ));
+        if($negocio instanceof Inmueble){
+            $menu['gestion-negocio']->addChild('cambiar-anunciante', array(
+                'label'=>'Cambiar Anunciante',
+                'route' => 'profile_negocios_panel_gestion_negocio_cambiar_anunciante',
+                'extras' => array(
+                    'icon' => 'fa fa-picture-o'
+                )
+            ));
+        }
+        else{
+            $menu['gestion-negocio']->addChild('cambiar-logo', array(
+                'label'=>'Cambiar Logo',
+                'route' => 'profile_negocios_panel_gestion_negocio_cambiar_logo',
+                'extras' => array(
+                    'icon' => 'fa fa-picture-o'
+                )
+            ));
+        }
+
         $menu['gestion-negocio']->addChild('cambiar-imagenes', array(
             'label'=>'Cambiar Imagenes',
             'route' => 'profile_negocios_panel_gestion_negocio_cambiar_fotos',
@@ -114,7 +127,28 @@ class Builder implements ContainerAwareInterface
                 )
             ));
         }
-        else if($negocio instanceof Especialista || $negocio instanceof ConstructoraInmobiliaria){
+        else if($negocio instanceof ConstructoraInmobiliaria){
+            $menu->addChild('gestion-proyectos', array(
+                'uri' => '#',
+                'label' => 'Gestion de Proyectos',
+                'extras' => array(
+                    'icon' => 'fa fa-clipboard'
+                )
+            ));
+            $menu['gestion-proyectos']->addChild('ver-proyectos', array(
+                'label'=>'ver Proyectos',
+                'route' => 'profile_negocios_panel_gestion_negocio_ver_inmuebles'
+            ));
+            $menu['gestion-proyectos']->addChild('agregar-proyecto', array(
+                'label'=>'Agregar Proyecto',
+                'route' => 'profile_negocios_panel_gestion_negocio_add_inmueble'
+            ));
+            $menu['gestion-proyectos']->addChild('ordenar-proyecto', array(
+                'label'=>'Ornedar Proyecto',
+                'uri' => '#'
+            ));
+        }
+        else if($negocio instanceof Especialista){
             $menu->addChild('gestion-proyectos', array(
                 'uri' => '#',
                 'label' => 'Gestion de Proyectos',

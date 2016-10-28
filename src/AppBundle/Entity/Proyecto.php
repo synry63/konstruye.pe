@@ -62,12 +62,32 @@ class Proyecto
     private $negocio;
 
     /**
+     * @ORM\Column(type="integer",nullable=true)
+     */
+    private $sort;
+
+    /**
      * @ORM\Column(type="datetime")
      *
      * @var \DateTime
      */
     private $registeredAt;
 
+    /**
+     * @return mixed
+     */
+    public function getSort()
+    {
+        return $this->sort;
+    }
+
+    /**
+     * @param mixed $sort
+     */
+    public function setSort($sort)
+    {
+        $this->sort = $sort;
+    }
     /**
      * @param mixed $fotos
      */
