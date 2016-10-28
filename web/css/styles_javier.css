@@ -790,6 +790,34 @@ Nave Stiky
 /*=============
 Dashboard Negocios
 =============*/
+.dash-sup{
+    min-height: 200px;
+    padding: 20px;
+}
+.dash-sup i{
+    position: absolute;
+    font-size: 80px;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%,18%);
+    color: rgba(255,255,255,.3);
+}
+.dash-sup .dato-1 i{
+    color: rgba(255, 69, 0,.5);
+}
+.dash-sup .dato-2 i{
+    color: rgba(60, 179, 113,.5);
+}
+.dash-sup .dato-3 i{
+    color: rgba(100, 149, 237,.5);
+}
+.dash-sup p{
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 22px;
+}
 .confirmation-background{
     background: url('../images/especialista_home.jpg') left center no-repeat;
     background-size: contain;

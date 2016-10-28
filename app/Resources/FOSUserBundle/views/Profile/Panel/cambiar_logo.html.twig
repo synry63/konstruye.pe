@@ -1,5 +1,11 @@
+{% extends "FOSUserBundle::Profile/Panel/panel_layout.html.twig" %}
+
+{% block content_section %}
 {{ dump(logo) }}
 
 {{ path('processing_negocio_logo') }}
 <br/>
 {{ path('crop_negocio_logo') }}
+
+
+{% endblock %}
