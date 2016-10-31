@@ -164,9 +164,9 @@ $.noty.themes.defaultTheme = {
                 this.$bar.css({backgroundColor: '#C30057', borderColor: '#C30057', color: '#FFF'});
                 this.$buttons.css({borderTop: '1px solid #C30057'});
                 break;
-            case 'wedding':
-                this.$bar.css({backgroundColor: '#35B3B4', borderColor: '#35B3B4', color: '#fff'});
-                this.$buttons.css({borderTop: '1px solid #35B3B4'});
+            case 'konstruye':
+                this.$bar.css({backgroundColor: '#1C9CD9', borderColor: '#1C9CD9', color: '#fff'});
+                this.$buttons.css({borderTop: '1px solid #1C9CD9'});
                 break;
             default:
                 this.$bar.css({backgroundColor: '#FFF', borderColor: '#CCC', color: '#444'});

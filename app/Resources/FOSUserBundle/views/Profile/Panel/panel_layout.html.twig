@@ -8,6 +8,7 @@
         {% block stylesheets %}
             <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
             <link rel="stylesheet" href="{{ asset('css/bootstrap-select.min.css') }}">
+            <link rel="stylesheet" href="{{ asset('css/croppic.css') }}">
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
             <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300italic,300,400italic,800italic,800,700italic,700,600italic,600' rel='stylesheet' type='text/css'>
             <link rel="stylesheet" href="{{ asset('css/styles_javier.css') }}">
@@ -94,7 +95,7 @@
             <script>
 
 
-                var  url = '{{ path('profile_negocios_panel') }}/'
+                var  url = '{{ path('profile_negocios_panel') }}/';
 
 
                 $("#select-negocio").change(function()
