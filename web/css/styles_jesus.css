@@ -632,40 +632,46 @@ Alerta Konstruye
 /*===============
 Faq
 ================*/
-.contenedor-titulo-faq{
-    padding: 30px;
-    background-color: #fff;
-}
-.contenedor-body-faq {
-    background-color: #fff;
-    /*padding: 10px;*/
-    /*border: 1px solid rgba(0,0,0,.1)*/
-}
-.contenedor-titulo-faq.marging-top div p {
+/*.contenedor-titulo-faq{*/
+    /*padding: 30px;*/
+    /*background-color: #fff;*/
+/*}*/
+/*.contenedor-body-faq {*/
+    /*background-color: #fff;*/
+    /*!*padding: 10px;*!*/
+    /*!*border: 1px solid rgba(0,0,0,.1)*!*/
+/*}*/
+/*.contenedor-titulo-faq.marging-top div p {*/
+
+/*}*/
+.contenedor-titulo-faq.marging-top-lg p {
+    font-size: 30px;
+    font-weight: bold;
     color: #009FE3;
-    text-transform: uppercase;
+    /*text-transform: uppercase;*/
     text-align: center;
 }
-.contenedor-titulo-faq.marging-top div .titulo-faq {
-    font-size: 22px;
-    font-weight: bold;
+.contenedor-titulo-faq.marging-top-lg p strong {
+    color: rgba(0,0,0,.6);
+}
+.panel-heading a {
+    color: #009FE3;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 600;
 }
 .faq-pregunta {
-    color: #009FE3;
-    font-weight: 400;
-    padding: 5px;
-    border: 1px solid rgba(0,0,0,.1);
-}
-.faq-pregunta i {
-    color: #A0A0A0;
-    font-weight: bold;
+    padding: 15px;
 }
 .faq-respuesta {
-    background-color: #ededed;
-    padding: 10px;
-    margin-top: 3px;
-    color: #888888;
-    font-weight: 400;
-    font-size: 14px;
+    color: #A0A0A0;
+    line-height: 20px;
+}
+
+/*===============
+Margin
+================*/
+.marging-top-lg {
+    margin-top: 35px;
 }
 
