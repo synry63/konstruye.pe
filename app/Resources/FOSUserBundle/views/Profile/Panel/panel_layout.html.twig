@@ -9,14 +9,25 @@
             <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
             <link rel="stylesheet" href="{{ asset('css/bootstrap-select.min.css') }}">
             <link rel="stylesheet" href="{{ asset('css/croppic.css') }}">
+            <link rel="stylesheet" href="{{ asset('css/jquery.sidr.dark.css') }}">
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
             <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300italic,300,400italic,800italic,800,700italic,700,600italic,600' rel='stylesheet' type='text/css'>
             <link rel="stylesheet" href="{{ asset('css/styles_javier.css') }}">
+            <style>
+                #mobile-header {
+                    display: none;
+                }
+                @media only screen and (max-width: 767px){
+                    #mobile-header {
+                        display: block;
+                    }
+                }
+            </style>
         {% endblock %}
     </head>
     <body>
         {% block top_section %}
-            <div class="container-fluid top-seccion">
+            <div class="container-fluid top-seccion top-responsive">
                 <div class="row">
                     <div class="header-logo">
                         {% if negocio.id is odd %}
@@ -26,7 +37,7 @@
                         {% endif %}
 
 
-                        <img src="{{ asset('images/logo-min-white.svg') }}" alt=""/>
+                        <a href="{{ path('homepage') }}"><img src="{{ asset('images/logo-min-white.svg') }}" alt=""/></a>
                     </div>
                     <div class="header-left-select-negocio">
 
@@ -55,29 +66,46 @@
 
         {% block left_section %}
             {#{{  render(controller('AppBundle:Panel:menuAllowed')) }}#}
-            <div class="left-menu">
 
-                <div class="welcome">
-                    <div class="user-welcome">
-                        {% if negocio.user.profile is not null %}
-                            <img width="50px" src="{{ vich_uploader_asset(negocio.user.profile, 'profileFile') }}" alt=""/>
-                        {% else %}
-                            <img width="50px" src="{{ asset('images/assets/user_icon.svg') }}" alt="">
-                        {% endif %}
-                        <div class="title">
-                            <h2>Bienvenido de nuevo,</h2>
-                            <h3>{{ negocio.user.nombres }} {{ negocio.user.apellidos }}</h3>
+            <div id="mobile-header">
+                <a id="responsive-menu-button" href="#sidr-main">Menu</a>
+            </div>
+
+            <div id="navigation">
+                <nav class="nav">
+                    <div class="left-menu">
+                        <div class="welcome">
+                            <div class="select-nego">
+                                {{ include('FOSUserBundle::Profile/Panel/Menu/select_negocio.html.twig')}}
+                            </div>
+
+
+                            <div class="user-welcome">
+                                {% if negocio.user.profile is not null %}
+                                    <img width="50px" src="{{ vich_uploader_asset(negocio.user.profile, 'profileFile') }}" alt=""/>
+                                {% else %}
+                                    <img width="50px" src="{{ asset('images/assets/user_icon.svg') }}" alt="">
+                                {% endif %}
+                                <div class="title">
+                                    <h2>Bienvenido de nuevo,</h2>
+                                    <h3>{{ negocio.user.nombres }} {{ negocio.user.apellidos }}</h3>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="menu-dashboard-principal">
+                            {% set menuItem = knp_menu_get('AppBundle:Builder:menuPanelNegocio', [], {'negocio_id':negocio.id}) %}
+                            {{ knp_menu_render(menuItem) }}
                         </div>
                     </div>
-                </div>
-
-                <div class="menu-dashboard-principal">
-                    {% set menuItem = knp_menu_get('AppBundle:Builder:menuPanelNegocio', [], {'negocio_id':negocio.id}) %}
-                    {{ knp_menu_render(menuItem) }}
-                </div>
-
-
+                </nav>
             </div>
+
+
+
+
+
+
 
         {% endblock %}
 
@@ -92,8 +120,12 @@
             <script type="text/javascript" src="{{ asset('js/jquery-1.11.0.min.js') }}"></script>
             <script type="text/javascript" src="{{ asset('js/jquery-ui.js') }}"></script>
             <script type="text/javascript" src="{{ asset('js/bootstrap.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('js/jquery.sidr.js') }}"></script>
             <script>
-
+                $('#responsive-menu-button').sidr({
+                    name: 'sidr-main',
+                    source: '#navigation'
+                });
 
                 var  url = '{{ path('profile_negocios_panel') }}/';
 
@@ -104,7 +136,11 @@
 
                 });
 
+                $("#sidr-id-select-negocio").change(function()
+                {
+                    document.location.href =  url+$(this).val();
 
+                });
 
 
             </script>

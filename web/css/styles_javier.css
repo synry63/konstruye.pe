@@ -1045,6 +1045,47 @@ Dashboard Negocios
 .cambiar-datos textarea{
     resize: none;
 }
+.recomendacion{
+    border: solid 1px rgba(0,0,0,.1);
+    padding: 20px;
+    color: rgba(0,0,0,.6);
+    position: relative;
+    margin-bottom: 20px;
+}
+.recomendacion i{
+    font-size: 60px;
+    opacity: .5;
+    position: absolute;
+    top: 50%;
+    color: #009FE3;
+    left: 4%;
+    transform: translate(0%,-50%);
+}
+
+.recomendacion .pright{
+    display: inline-block;
+    width: 90%;
+    margin-left: 10%;
+}
+.recomendacion .pright ul{
+    padding: 0;
+}
+
+.recomendacion .pright li{
+    list-style: none;
+}
+.recomendacion .pright li:before{
+    content: "";
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background: rgba(0,0,0,.2);
+    border-radius: 50%;
+    margin: 1px 10px;
+}
+.select-nego{
+    display: none;
+}
 /*=============
 Index
 =============*/
@@ -1180,5 +1221,79 @@ Footer Menu
 
 .footer-menu .nav>li>a:focus,.footer-menu .nav>li>a:hover{
     background: none;
+}
+
+
+@media only screen and (min-width : 320px) and (max-width : 736px){
+
+    .top-responsive{
+        display: none;
+    }
+    .left-menu{
+        display: none;
+    }
+    .content-dashboard{
+        margin: 0;
+    }
+    .sidr-class-user-welcome{
+        min-height: 70px;
+    }
+    .sidr-class-user-welcome img{
+        float: left;
+        margin: 10px
+    }
+    .sidr-class-title{
+        float: left;
+        opacity: .8;
+    }
+    .sidr-class-title h2{
+        font-size: 15px;
+        margin: 0;
+        line-height: 37px;
+    }
+    .sidr-class-title h3{
+        font-size: 18px;
+        margin: 0;
+        font-weight: bold;
+    }
+
+    .sidr-class-fa{
+        display: inline-block;
+        font: normal normal normal 14px/1 FontAwesome;
+        font-size: inherit;
+        text-rendering: auto;
+        -webkit-font-smoothing: antialiased;
+    }
+    .sidr-class-fa-dashboard:before, .sidr-class-fa-tachometer:before{
+        content: "\f0e4";
+    }
+    .sidr-class-fa-dashboard:before, .sidr-class-fa-briefcase:before{
+        content: "\f0b1";
+    }
+    .sidr-class-fa-dashboard:before, .sidr-class-fa-pencil-square-o:before{
+        content: "\f044";
+    }
+    .sidr-class-fa-dashboard:before, .sidr-class-fa-picture-o:before{
+        content: "\f03e";
+    }
+    .sidr-class-fa-dashboard:before, .sidr-class-fa-map:before{
+        content: "\f279";
+    }
+    .sidr-class-fa-dashboard:before, .sidr-class-fa-shopping-basket:before{
+        content: "\f291";
+    }
+    .sidr-class-fa-dashboard:before, .sidr-class-fa-plus:before{
+        content: "\f067";
+    }
+    .sidr-class-fa-dashboard:before, .sidr-class-fa-sort:before{
+        content: "\f0dc";
+    }
+
+
+
+
+
+
+
 }
 

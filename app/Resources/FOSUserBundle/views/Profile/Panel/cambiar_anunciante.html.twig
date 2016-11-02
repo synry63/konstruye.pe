@@ -1,4 +1,140 @@
-{{ dump(anunciante) }}
-{{ path('processing_negocio_anunciante') }}
-<br/>
-{{ path('crop_negocio_anunciante') }}
+{% extends "FOSUserBundle::Profile/Panel/panel_layout.html.twig" %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        #cropContainerMinimal2 {
+            width: 188px;
+            height: 188px;
+            position:relative; /* or fixed or absolute */
+        }
+        .cropImgWrapper{
+            background: rgba(0,0,0,1);
+            border-radius: 50%;
+        }
+    </style>
+{% endblock %}
+
+{% block content_section %}
+
+    <h1 class="title-dashboard">Cambiar Anunciante</h1>
+
+
+
+    <div class="col-md-4">
+
+        <div class="negocio-box" style="width:275px; margin: 0 auto">
+            <a href="javascript:void(0)" style="text-decoration: none">
+                <div class="banner" style="filter: grayscale(100%); opacity: .8">
+                    {% if negocio.banner is not null %}
+                        <img src="{{ vich_uploader_asset(negocio.banner, 'bannerFile','AppBundle\\Entity\\Banner') }}" alt="{{ negocio.nombre }}" />
+                    {% else %}
+                        <img src="{{ asset('images/tubanner.png') }}" alt="{{ negocio.nombre }}" />
+                    {% endif %}
+
+
+
+                </div>
+                <div class="datos">
+                    <div class="middle-section">
+                        {% if negocio.logo is not null %}
+                            <img  style="outline: dotted 3px #1C9CD9" width="80px" src="{{ vich_uploader_asset(negocio.logo, 'logoFile','AppBundle\\Entity\\Logo') }}" alt="{{ negocio.nombre }}" />
+                        {% else %}
+                            <img src="http://placehold.it/80x80" alt="{{ negocio.nombre }}" />
+                        {% endif %}
+
+                        <div class="rateYo_negocios" data-rating="3"></div>
+
+                    </div>
+                    <div class="detalle-datos"  style="filter: grayscale(100%); opacity: .8">
+                        <a href="javascript:void(0)" style="text-decoration: none">
+                            <h1 style="line-height: 25px;font-size: 16px;font-weight: bold;margin: 10px 0">
+                                {{ negocio.nombre }}
+                            </h1>
+                        </a>
+                        {% if type is defined %}
+                            <p><i class="fa fa-user" aria-hidden="true"></i> Javier Díaz</p>
+                            <p><i class="fa fa-location-arrow" aria-hidden="true"></i> {{ negocio.distrito.nombre}} - {{ negocio.provincia.nombre}}</p>
+                            {% if negocio.areaTotal is not null %}
+                                <p><i class="fa fa-arrows-alt" aria-hidden="true"></i> {{ negocio.areaTotal }} m²</p>
+                            {% else %}
+                                <p><i class="fa fa-arrows-alt" aria-hidden="true"></i> - m²</p>
+                            {% endif %}
+
+                            {% if negocio.dormitorios is not null %}
+                                <p><i class="fa fa-bed" aria-hidden="true"></i> {{ negocio.dormitorios}} Dormitorios</p>
+                            {% else %}
+                                <p><i class="fa fa-bed" aria-hidden="true"></i> - Dormitorios</p>
+                            {% endif %}
+                            {% if negocio.precioSoles is not null %}
+                                <p class="precio-listado">Desde S/.{{ negocio.precioSoles|number_format(2, '.', ',')}}</p>
+                            {% else %}
+                                <p class="precio-listado">Desde S/.</p>
+                            {% endif %}
+
+                        {% else %}
+                            <p><i class="fa fa-map-marker" aria-hidden="true"></i> {{ negocio.direccion }} - {{ negocio.distrito.nombre }} - {{ negocio.provincia.nombre }}</p>
+                            <p><i class="fa fa-phone" aria-hidden="true"></i> {{ negocio.telefono }}</p>
+                            <p><i class="fa fa-globe" aria-hidden="true"></i> {{ negocio.web }}</p>
+                            <p><i class="fa fa-envelope" aria-hidden="true"></i> {{ negocio.email }}</p>
+                        {% endif %}
+
+
+
+                    </div>
+
+
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <div class="col-md-8">
+        <div id="cropContainerMinimal2" style="margin: 20px auto;border:solid 1px #1C9CD9"></div>
+
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('js/croppic_edited.js') }}"></script>
+    <script src="{{ asset('js/jquery.noty.packaged.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/default_noty.js') }}" type="text/javascript"></script>
+
+
+    <script>
+        var cropperOptions = {
+            uploadUrl:'{{ path('processing_negocio_anunciante') }}',
+            cropUrl:'{{ path('crop_negocio_anunciante') }}',
+            //uploadUrl:'/profile/image-processing',
+            //cropUrl:'/profile/image-crop',
+            modal:false,
+            doubleZoomControls:true,
+            rotateControls: false,
+            loaderHtml:'<div class="loader bubblingG"><span id="bubblingG_1"></span><span id="bubblingG_2"></span><span id="bubblingG_3"></span></div> ',
+            onBeforeImgUpload: function(){  },
+            onAfterImgUpload: function(){  },
+            onImgDrag: function(){  },
+            onImgZoom: function(){  },
+            onBeforeImgCrop: function(){  },
+            onAfterImgCrop:function(data){
+                noty({
+                    text: data.message,
+                    'layout':'bottom',
+                    type:'konstruye',
+                    timeout:2000});
+                setTimeout(function(){
+                    window.location.href = data.targetUrl;
+                }, 3000);
+                var n = noty({
+                    theme: 'default_noty',
+                });
+            },
+            onReset:function(){  },
+            onError:function(errormessage){ }
+
+        }
+
+        var cropperHeader = new Croppic('cropContainerMinimal2', cropperOptions);
+    </script>
+{% endblock %}

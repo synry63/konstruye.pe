@@ -51,12 +51,12 @@
                             </h1>
                         </a>
                         {% if type is defined %}
-                            <p><i class="fa fa-user" aria-hidden="true"></i> Javier Díaz</p>
+                            <p><i class="fa fa-user" aria-hidden="true"></i> Javier DÃ­az</p>
                             <p><i class="fa fa-location-arrow" aria-hidden="true"></i> {{ negocio.distrito.nombre}} - {{ negocio.provincia.nombre}}</p>
                             {% if negocio.areaTotal is not null %}
-                                <p><i class="fa fa-arrows-alt" aria-hidden="true"></i> {{ negocio.areaTotal }} m²</p>
+                                <p><i class="fa fa-arrows-alt" aria-hidden="true"></i> {{ negocio.areaTotal }} mÂ²</p>
                             {% else %}
-                                <p><i class="fa fa-arrows-alt" aria-hidden="true"></i> - m²</p>
+                                <p><i class="fa fa-arrows-alt" aria-hidden="true"></i> - mÂ²</p>
                             {% endif %}
 
                             {% if negocio.dormitorios is not null %}
@@ -88,7 +88,15 @@
     </div>
 
     <div class="col-md-8">
-
+        <div class="recomendacion">
+            <i class="fa fa-lightbulb-o" aria-hidden="true"></i>
+            <div class="pright">
+                <ul>
+                    <li>Recomendamos no dejar espacios en negro al recortar el logo</li>
+                    <li>Formato requerido JPG</li>
+                </ul>
+            </div>
+        </div>
         <div id="cropContainerMinimal2" style="margin: 20px auto;border:solid 1px #1C9CD9"></div>
 
     </div>
