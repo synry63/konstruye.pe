@@ -116,22 +116,18 @@
     {{ parent() }}
     <script>
         $(document).ready(function(){
-            var faqRespuesta = $('.faq-respuesta').hide(); //ocultar todo
-            $('.faq-respuesta:first').show(); //visualizo el primero
+            var faqRespuesta = $('.faq-respuesta').hide();
+            $('.faq-respuesta:first').show();
 
             $('.faq-pregunta > a').click(function() {
                 faqRespuesta.slideUp();
-//                if($('.faq-respuesta').hide()){
-//                    $(this).parent().next().slideDown();
-//                    return false;
-//                }
 
                 if($(this).parent().next().css('display') == 'none'){
                     $(this).parent().next().slideDown();
                 }else if($(this).parent().next().css('display') == 'block'){
                     $(this).parent().next().slideUp();
                 }
-//                return false;
+
             });
         });
     </script>

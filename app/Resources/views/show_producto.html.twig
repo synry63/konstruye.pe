@@ -15,7 +15,11 @@
 {% block fos_user_content %}
     {#{{ dump(app.user) }}#}
     {#{{ dump(myc) }}#}
+    {#{{ wo_render_breadcrumbs() }}#}
     <div class="container product-detail-section">
+        <div class="container-breadcrumb marging-top">
+            {{ wo_render_breadcrumbs() }}
+        </div>
         <div class="col-md-6">
             <div class="ms-showcase2-template ms-showcase2-vertical">
                 <!-- masterslider -->

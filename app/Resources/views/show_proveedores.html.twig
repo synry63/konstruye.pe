@@ -19,9 +19,12 @@
      {#{{ dump(negocio) }}#}
     {#{{ dump(myc) }}#}
     {#{{ dump(negocio) }}#}
-    <div class="container">
-        <div class="master-slider ms-skin-default" id="masterslider">
 
+    <div class="container">
+        <div class="container-breadcrumb marging-top">
+            {{ wo_render_breadcrumbs() }}
+        </div>
+        <div class="master-slider ms-skin-default" id="masterslider">
             {% if negocio.fotos|length > 0 %}
                 {% for nfo in negocio.fotos  %}
                     <div class="ms-slide">

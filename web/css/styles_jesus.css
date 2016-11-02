@@ -669,8 +669,31 @@ Faq
 }
 
 /*===============
-Margin
+breadcumbs
 ================*/
+.container-breadcrumb .breadcrumb{
+    background-color: #fff;
+    border-radius: 0;
+    padding: 25px 38px;
+    color: #009FE3;
+    font-weight: 600;
+    margin: 0 0 20px 0;
+    font-size: 12px;
+    text-transform: uppercase;
+}
+.container-breadcrumb .breadcrumb li:last-child span {
+    text-decoration: underline;
+}
+.container-breadcrumb .breadcrumb li a {
+    color: #666666;
+}
+.container-breadcrumb .breadcrumb li a:hover {
+    color: #009FE3;
+}
+
+    /*===============
+    Margin
+    ================*/
 .marging-top-lg {
     margin-top: 35px;
 }

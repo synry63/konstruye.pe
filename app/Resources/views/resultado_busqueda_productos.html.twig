@@ -9,6 +9,9 @@
 
 {% block fos_user_content %}
 
+    <div class="container-breadcrumb marging-top">
+        {{ wo_render_breadcrumbs() }}
+    </div>
     <div class="container resultado">
         <h1>Resultados de búsqueda: <strong>({{ productos|length }})</strong> Elementos encontrado(s)</h1>
     </div>
