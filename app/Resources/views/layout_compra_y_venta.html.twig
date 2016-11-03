@@ -49,12 +49,74 @@
             </form>
         </div>
     </div>
-
+{#{{ dump(negocios) }}#}
     <div class="container">
         <div class="col-md-3">
-            {% for cmain in categorias_hijas %}
-                {{ include('includes/filtros_negocios.html.twig', { 'cmain': cmain }) }}
-            {% endfor %}
+            {#{% for cmain in categorias_hijas %}#}
+                {#{{ include('includes/filtros_negocios.html.twig', { 'cmain': cmain }) }}#}
+            {#{% endfor %}#}
+            <div class="filtro">
+                <div class="container-filtro">
+                    <div class="title-filtro">
+                        <h4 class="titulo-filtro">Dormitorios <i class="fa fa-angle-down" aria-hidden="true"></i></h4>
+                    </div>
+                    <div class="body-filtro">
+                        <div class="body-filtro-list">
+                            <ul>
+                                <li><a href="#">1 Dormitorios <span>(100)</span></a></li>
+                                <li><a href="#">2 Dormitorios <span>(25)</span></a></li>
+                                <li><a href="#">3 Dormitorios <span>(10)</span></a></li>
+                                <li><a href="#">4 Dormitorios <span>(26)</span></a></li>
+                                <li><a href="#">5 Dormitorios <span>(700)</span></a></li>
+                                <li><a href="#">6 Dormitorios <span>(1020)</span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="container-filtro">
+                    <div class="title-filtro">
+                        <h4 class="titulo-filtro">Servicios <i class="fa fa-angle-down" aria-hidden="true"></i></h4>
+                    </div>
+                    <div class="body-filtro">
+                        <div class="body-filtro-list">
+                            <ul>
+                                <li><a href="#">Gimnasio <span>(59)</span></a></li>
+                                <li><a href="#">Parrilla <span>(450)</span></a></li>
+                                <li><a href="#">Areas Verdes <span>(1210)</span></a></li>
+                                <li><a href="#">Video Vigilancia <span>(1930)</span></a></li>
+                                <li><a href="#">Control de Acceso <span>(39951)</span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="container-filtro">
+                    <div class="title-filtro">
+                        <h4 class="titulo-filtro"> <i class="fa fa-angle-down" aria-hidden="true"></i></h4>
+                    </div>
+                    <div class="body-filtro">
+                        <div class="body-filtro-list">
+                            <ul>
+                                <li><a href="#">Gimnasio <span>(59)</span></a></li>
+                                <li><a href="#">Parrilla <span>(450)</span></a></li>
+                                <li><a href="#">Areas Verdes <span>(1210)</span></a></li>
+                                <li><a href="#">Video Vigilancia <span>(1930)</span></a></li>
+                                <li><a href="#">Control de Acceso <span>(39951)</span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="precio">
+
+            </div>
+
+            <div class="servicios">
+
+            </div>
         </div>
         {#{{ dump(negocios.items) }}#}
         <div class="col-md-9 body-negocios">
@@ -126,5 +188,17 @@
             minLength: 1,
         } );
         //google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+
+    <script>
+
+        $(document).ready(function(){
+            var bodyFiltro = $('.body-filtro-list').hide();
+            $('.body-filtro-list:first').show();
+
+            $('.titulo-filtro').click(function(){
+               $(this).parent().next().children().slideToggle();
+            });
+        });
     </script>
 {% endblock javascripts %}
