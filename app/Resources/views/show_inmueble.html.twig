@@ -29,7 +29,7 @@
                 <div class="row">
                     <div class="col-md-8 datos-header">
                         <div class="datos-anterior">
-                            <a href="#"><i class="fa fa-arrow-left" aria-hidden="true"></i></a>
+                            <a href="{{ path('lisdato_seccion',{'slug_seccion': 'compra-venta-y-alquiler-inmuebles'}) }}"><i class="fa fa-arrow-left" aria-hidden="true"></i></a>
                         </div>
                         <div class="datos-direccion">
                             <h1> {{ negocio.nombre }}</h1>
@@ -38,12 +38,12 @@
                             </div>
                         </div>
                         <div class="datos-icon-header">
-                            <ul>
-                                <li class="lista-header-icon"><i class="fa fa-flag" aria-hidden="true"></i></li>
-                                <li class="lista-header-icon"><i class="fa fa-heart-o" aria-hidden="true"></i></li>
-                                <li class="lista-header-icon"><i class="fa fa-flag" aria-hidden="true"></i></li>
-                                <li class="lista-header-icon"><i class="fa fa-heart-o" aria-hidden="true"></i></li>
-                            </ul>
+                            {% if moy is null %}
+                                <div id="rateYo" data-rating="0"></div>
+                            {% else %}
+                                <div id="rateYo" data-rating="{{ moy }}"></div>
+                            {% endif %}
+
                         </div>
                     </div>
                     <div class="col-md-4 zona-precio">
@@ -52,6 +52,7 @@
                                     <span class="titulo-zona-inmueble">Desde:</span>
                                     <span class="precio-zona-inmueble"> S/ {{ negocio.precioSoles|number_format(2, '.', ',') }}</span>
                                 </div>
+
                                 <div class="zona-calcula-hipoteca">
                                     <a class="calcula-hipoteca" href="#">CALCULA TU HIPOTECA</a>
                                 </div>
@@ -203,21 +204,25 @@
                     <div class="col-md-4 zona-contactanos">
                             <div class="zona-contactanos-contenido">
                                 <div class="zona-contactanos-header">
-                                    <a class="link-inmobiliaria" href="">
-                                        <span> {{ negocio.nombre }} </span>
-                                        {% if negocio.logo is not null %}
-                                            <img class="img-responsive" width="70" src="{{ vich_uploader_asset(negocio.logo, 'logoFile') }}" alt=""/>
-                                            {% else %}
-                                                <img class="img-responsive" width="70" src="http://placehold.it/70x70" alt=""/>
+                                    {% if negocio.constructora is not null %}
+                                        <a class="link-inmobiliaria" href="{{ path('show_negocio',
+                                        {"slug_negocio":negocio.constructora.slug}) }}" target="_blank">
+                                            <div class="col-md-4" style="padding: 0">
+                                                <img class="img-responsive" width="100%" src="{{ vich_uploader_asset(negocio.constructora.logo, 'logoFile') }}" alt=""/>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <h1 style="font-size: 20px;font-weight: bold;padding: 10px 0">{{ negocio.constructora.nombre }}</h1>
+                                            </div>
 
-                                        {% endif %}
-                                    </a>
+                                        </a>
+                                    {% endif %}
+
                                 </div>
                                 <div class="zona-telefono">
                                     <i class="fa fa-phone" aria-hidden="true"></i> VER TELÉFONO
                                 </div>
                                 <div class="zona-formulario">
-                                    <a class="btn btn-konstruye simple-ajax-popup" href="{{ path('negocio_solicitar_cotizacion',{'slug_negocio':negocio.slug}) }}">Contactar Anuncio</a>
+                                    <a class="btn btn-konstruye simple-ajax-popup" href="{{ path('negocio_solicitar_cotizacion',{'slug_negocio':negocio.slug}) }}">Contactar Anunciante</a>
                                 </div>
                             </div>
                     </div>
@@ -329,6 +334,19 @@
                 normalFill: "#A0A0A0"
             });
         });
+
+
+        var rating = $("#rateYo").attr("data-rating");
+
+
+        $("#rateYo").rateYo({
+            rating: rating,
+            ratedFill: color,
+            starWidth: "20px",
+            normalFill: "#A0A0A0",
+            readOnly: true
+        });
+
     });
 </script>
 {% endblock javascripts %}
