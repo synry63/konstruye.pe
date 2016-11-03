@@ -4,7 +4,11 @@
 {% endblock title %}
 {% block stylesheets %}
     {{ parent() }}
+    {#RateYo#}
     <link rel="stylesheet" href="{{ asset('css/jquery.rateyo.min.css') }}">
+    {#RangeSlide#}
+    <link rel="stylesheet" href="{{ asset('css/ion.rangeSlider.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/ion.rangeSlider.skinFlat.css') }}">
     <style>
         .pac-container:after {
             /* Disclaimer: not needed to show 'powered by Google' if also a Google Map is shown */
@@ -56,6 +60,22 @@
                 {#{{ include('includes/filtros_negocios.html.twig', { 'cmain': cmain }) }}#}
             {#{% endfor %}#}
             <div class="filtro">
+
+                <div class="container-filtro">
+                    <div class="title-filtro">
+                        <h4 class="titulo-filtro">Precio<i class="fa fa-angle-down" aria-hidden="true"></i></h4>
+                    </div>
+                    <div class="body-filtro">
+                        <div class="body-filtro-list">
+                            <div>
+                                <div>
+                                    <input type="text" id="range" value="" name="range" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="container-filtro">
                     <div class="title-filtro">
                         <h4 class="titulo-filtro">Dormitorios <i class="fa fa-angle-down" aria-hidden="true"></i></h4>
@@ -91,22 +111,7 @@
                     </div>
                 </div>
 
-                <div class="container-filtro">
-                    <div class="title-filtro">
-                        <h4 class="titulo-filtro"> <i class="fa fa-angle-down" aria-hidden="true"></i></h4>
-                    </div>
-                    <div class="body-filtro">
-                        <div class="body-filtro-list">
-                            <ul>
-                                <li><a href="#">Gimnasio <span>(59)</span></a></li>
-                                <li><a href="#">Parrilla <span>(450)</span></a></li>
-                                <li><a href="#">Areas Verdes <span>(1210)</span></a></li>
-                                <li><a href="#">Video Vigilancia <span>(1930)</span></a></li>
-                                <li><a href="#">Control de Acceso <span>(39951)</span></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+
 
             </div>
 
@@ -135,7 +140,25 @@
 
 {% block javascripts %}
     {{ parent() }}
+    {#Rateyo#}
     <script src="{{ asset('js/jquery.rateyo.min.js') }}"></script>
+    {#RangeSlide#}
+    <script src="{{ asset('js/ion.rangeSlider.js') }}"></script>
+    {#RangeSlide#}
+    <script>
+        $("#range").ionRangeSlider({
+            hide_min_max: true,
+            keyboard: false,
+            min: 0,
+            max: 500000,
+            from: 0,
+            to: 200000,
+            type: 'double',
+            step: 1,
+            prefix: "s/.",
+            grid: true,
+        });
+    </script>
     <script>
         function initialize() {
 
@@ -191,10 +214,10 @@
     </script>
 
     <script>
-
         $(document).ready(function(){
-            var bodyFiltro = $('.body-filtro-list').hide();
-            $('.body-filtro-list:first').show();
+            var bodyFiltro = $('.body-filtro-list').show();
+            $('.body-filtro-list:last').hide();
+
 
             $('.titulo-filtro').click(function(){
                $(this).parent().next().children().slideToggle();
