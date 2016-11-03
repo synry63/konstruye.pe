@@ -1,14 +1,33 @@
 {% extends "FOSUserBundle::Profile/Panel/panel_layout.html.twig" %}
 {% block content_section %}
-{{ dump(negocio) }}
-{{ form(form, {'attr': {'novalidate': 'novalidate'}}) }}
-<input id="pac-input" class="controls" type="text" value=""
-       placeholder="Introduzca una ubicación">
-<div id="map" style="height: 400px;
-    width: 799px;
-    margin: 10px auto;">
 
-</div>
+
+    <h1 class="title-dashboard">Ubicación Google Maps</h1>
+
+    <div class="col-md-6 col-md-offset-3 recomendacion">
+        <i class="fa fa-lightbulb-o" aria-hidden="true"></i>
+        <div class="pright">
+            <ul>
+                <li>Introduzca una dirección exacta, cuidad o departamento</li>
+            </ul>
+        </div>
+    </div>
+
+    <input id="pac-input" class="controls form-control" width="60%" type="text" value="" placeholder="Introduzca una ubicación">
+
+    <div id="map" style="height: 400px;width: 799px;margin: 10px auto;">
+    </div>
+
+    <div class="col-md-2 col-md-offset-5 map-form">
+        {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+        <div class="form-group">
+            {{ form_widget(form.submit,{ 'attr': {'class': 'btn btn-konstruye2'},'label': 'Subir'}) }}
+        </div>
+        {{ form_end(form) }}
+
+    </div>
+
+
     {% block javascripts %}
         {{ parent() }}
         <script>

@@ -19,12 +19,36 @@
     <h1 class="title-dashboard">Cambiar Fotos</h1>
     <div class="container">
 
-        {{ dump(fotos) }}
-        {{ form(form, {'attr': {'novalidate': 'novalidate'}}) }}
+        <div class="recomendacion">
+            <i class="fa fa-lightbulb-o" aria-hidden="true"></i>
+            <div class="pright">
+                <ul>
+                    <li>El Tamaño recomendado de la galeria de fotos es de 1170x350px</li>
+                    <li>Formato requerido JPG</li>
+                </ul>
+            </div>
+        </div>
+
+        {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+
+
+        <div class="form-group">
+            {{ form_label(form.imgFile,'Subir Foto') }}
+            {{ form_errors(form.imgFile) }}
+            {{ form_widget(form.imgFile,{ 'attr': {'class': 'form-control'}}) }}
+        </div>
+
+
+        <div class="form-group">
+            {{ form_widget(form.submit,{ 'attr': {'class': 'btn btn-konstruye2'},'label': 'Subir'}) }}
+        </div>
+
+        {{ form_end(form) }}
     </div>
 
 
-    <div class="container">
+    <div class="container" style="margin-bottom: 100px">
+        <h2 class="preview-title">Vista Previa</h2>
         <div class="master-slider ms-skin-default" id="masterslider">
 
             {% if negocio.fotos|length > 0 %}
@@ -52,7 +76,8 @@
             {% endif %}
 
         </div>
-        <div class="datos-detail">
+        <div class="datos-detail" style="border: solid 1px rgba(0,0,0,.2)">
+
             <div class="col-md-10 col-md-offset-1">
                 <div class="col-md-2 logo">
                     {% if negocio.logo is not null %}
@@ -103,7 +128,7 @@
                             </a>
                         </div>
                         <a class="simple-ajax-popup contactenos_button" href="{{ path('negocio_solicitar_cotizacion',{'slug_negocio':negocio.slug}) }}">
-                            <button class="btn btn-default"> cont�ctanos </button>
+                            <button class="btn btn-default"> contáctanos </button>
                         </a>
                     </div>
                 </div>
