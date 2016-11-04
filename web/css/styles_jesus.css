@@ -507,9 +507,14 @@ Filtro Compra Venta Y Alquiler Inmuebles
 }
 .body-filtro ul li a {
     color: #5D5D5D;
-    line-height: 23px;
+    line-height: 20px;
     font-weight: 400;
     font-size: 14px;
+    overflow: hidden;
+    white-space: nowrap;
+    word-break: break-all;
+    text-overflow: ellipsis;
+    display: block;
 }
 .body-filtro ul li a:before {
     content: "\f10c";

@@ -63,7 +63,7 @@
 
                 <div class="container-filtro">
                     <div class="title-filtro">
-                        <h4 class="titulo-filtro">Precio<i class="fa fa-angle-down" aria-hidden="true"></i></h4>
+                        <h4 class="titulo-filtro">Precio <i class="fa fa-angle-up" aria-hidden="true"></i></h4>
                     </div>
                     <div class="body-filtro">
                         <div class="body-filtro-list">
@@ -78,7 +78,7 @@
 
                 <div class="container-filtro">
                     <div class="title-filtro">
-                        <h4 class="titulo-filtro">Dormitorios <i class="fa fa-angle-down" aria-hidden="true"></i></h4>
+                        <h4 class="titulo-filtro">Dormitorios <i class="fa fa-angle-up" aria-hidden="true"></i></h4>
                     </div>
                     <div class="body-filtro">
                         <div class="body-filtro-list">
@@ -106,6 +106,40 @@
                                 <li><a href="#">Areas Verdes <span>(1210)</span></a></li>
                                 <li><a href="#">Video Vigilancia <span>(1930)</span></a></li>
                                 <li><a href="#">Control de Acceso <span>(39951)</span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="container-filtro">
+                    <div class="title-filtro">
+                        <h4 class="titulo-filtro">Generales <i class="fa fa-angle-down" aria-hidden="true"></i></h4>
+                    </div>
+                    <div class="body-filtro">
+                        <div class="body-filtro-list">
+                            <ul>
+                                <li><a href="#">Ascensor <span>(1350)</span></a></li>
+                                <li><a href="#">Intercomunicador <span>(1286)</span></a></li>
+                                <li><a href="#">Reposteros de cocinas <span>(1210)</span></a></li>
+                                <li><a href="#">Terraza <span>(1930)</span></a></li>
+                                <li><a href="#">Ascensor(es) <span>(39951)</span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="container-filtro">
+                    <div class="title-filtro">
+                        <h4 class="titulo-filtro">Antiguedad <i class="fa fa-angle-down" aria-hidden="true"></i></h4>
+                    </div>
+                    <div class="body-filtro">
+                        <div class="body-filtro-list">
+                            <ul>
+                                <li><a href="#">A estrenar <span>(35)</span></a></li>
+                                <li><a href="#">En construccion <span>(125)</span></a></li>
+                                <li><a href="#">Entre 10 y 20 años <span>(77)</span></a></li>
+                                <li><a href="#">Entre 20 y 50 años <span>(24)</span></a></li>
+                                <li><a href="#">Entre 5 y 10 años <span>(78)</span></a></li>
                             </ul>
                         </div>
                     </div>
@@ -216,10 +250,11 @@
     <script>
         $(document).ready(function(){
             var bodyFiltro = $('.body-filtro-list').show();
-            $('.body-filtro-list:last').hide();
-
+            $('.body-filtro-list:not(:first)').hide();
+            $('.body-filtro-list:eq(1)').show();
 
             $('.titulo-filtro').click(function(){
+               $(this).children().toggleClass('fa fa-angle-down fa fa-angle-up');
                $(this).parent().next().children().slideToggle();
             });
         });
