@@ -162,7 +162,16 @@ profile_negocios_panel_gestion_negocio_edit_inmueble:
     defaults:  { _controller: AppBundle:Panel:showPanelNegocioUserInmuebleEdit}
 profile_negocios_panel_gestion_negocio_delete_inmueble:
     path: /profile/panel/auth/inmueble/{id}/delete
-    defaults:  { _controller: AppBundle:Panel:showPanelNegocioUserInmuebleEdit}
+    defaults:  { _controller: AppBundle:Panel:showPanelNegocioUserInmuebleDelete}
 profile_negocios_panel_gestion_negocio_sort:
     path: /profile/panel/auth/sort
     defaults:  { _controller: AppBundle:Panel:showPanelNegocioUserSort}
+profile_negocios_panel_gestion_negocio_ver_inmuebles_servicios:
+    path: /profile/panel/auth/inmuebles/servicios
+    defaults:  { _controller: AppBundle:Panel:showPanelNegocioUserInmuebleServicios}
+profile_negocios_panel_gestion_negocio_ver_inmuebles_servicio_add:
+    path: /profile/panel/auth/inmueble/servicio/add
+    defaults:  { _controller: AppBundle:Panel:showPanelNegocioUserInmuebleServicioAdd}
+profile_negocios_panel_gestion_negocio_ver_inmuebles_servicio_add:
+    path: /profile/panel/auth/inmueble/servicio/delete
+    defaults:  { _controller: AppBundle:Panel:showPanelNegocioUserInmuebleServicioDelete}
