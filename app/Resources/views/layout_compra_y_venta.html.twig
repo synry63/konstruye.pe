@@ -35,30 +35,36 @@
     <div class="container">
         <div id="search-cop3">
             <form class="buscador_categorias" method="get" action="{{ path('lisdato_seccion',negocios.params) }}" role="search">
-                <select class="selectpicker">
-                    <option value="0">Comprar</option>
-                    <option value="1">Alquilar</option>
-                    <option value="2">Vender</option>
-                    <option value="3">Hipotecar</option>
+                <select class="selectpicker" name="operacion">
+                    {% for operacion in operaciones %}
+                        {% if(negocios.params.operacion is defined and negocios.params.operacion == operacion.id) %}
+                            <option selected value="{{ operacion.id }}" >{{ operacion.nombre }}</option>
+                        {% else %}
+                            <option value="{{ operacion.id }}">{{ operacion.nombre }}</option>
+                        {% endif %}
+                    {% endfor %}
                 </select>
-                <select class="selectpicker">
-                    <option value="0">Departamento</option>
-                    <option value="1">Casa</option>
-                    <option value="2">Departamento</option>
-                    <option value="3">Oficina</option>
+                <select class="selectpicker" name="structure">
+                    {% for structur in structures %}
+                        {% if(negocios.params.structure is defined and negocios.params.structure == structur.id)%}
+                            <option selected value="{{ structur.id }}" >{{ structur.nombre }}</option>
+                        {% else %}
+                            <option value="{{ structur.id }}" >{{ structur.nombre }}</option>
+                        {% endif %}
+                    {% endfor %}
                 </select>
                 <div class="form-group buscador">
-                    <input id="buscardor-form-inmuebles" name="lugar" type="text" class="form-control" placeholder="Ingresa Departamento,Provincia,Distrito">
+                    {% if(negocios.params.lugar is defined ) %}
+                        <input id="buscardor-form-inmuebles" name="lugar" value="{{ negocios.params.lugar }}" type="text" class="form-control" placeholder="Ingresa Departamento,Provincia,Distrito">
+                    {% endif %}
                 </div>
             </form>
         </div>
     </div>
 {#{{ dump(negocios) }}#}
     <div class="container">
+
         <div class="col-md-3">
-            {{ dump(servicios) }}
-            {{ dump(generales) }}
-            {{ dump(negocios.params) }}
             {#{% for cmain in categorias_hijas %}#}
                 {#{{ include('includes/filtros_negocios.html.twig', { 'cmain': cmain }) }}#}
             {#{% endfor %}#}
@@ -77,22 +83,33 @@
                             </div>
                         </div>
                     </div>
+                    {#{{ dump(structures) }}#}
+                    {#{{ dump(operaciones) }}#}
+                    {#{{ dump(negocios.params) }}#}
                 </div>
 
                 <div class="container-filtro">
+
                     <div class="title-filtro">
                         <h4 class="titulo-filtro">Dormitorios <i class="fa fa-angle-up" aria-hidden="true"></i></h4>
                     </div>
+
                     <div class="body-filtro">
                         <div class="body-filtro-list">
                             <ul>
-                                {% set params = negocios.params|merge({'dormi': '1'}) %}
-                                <li><a href="{{ path('lisdato_seccion',params) }}">1 Dormitorios <span>(100)</span></a></li>
-                                <li><a href="#">2 Dormitorios <span>(25)</span></a></li>
-                                <li><a href="#">3 Dormitorios <span>(10)</span></a></li>
-                                <li><a href="#">4 Dormitorios <span>(26)</span></a></li>
-                                <li><a href="#">5 Dormitorios <span>(700)</span></a></li>
-                                <li><a href="#">6 Dormitorios <span>(1020)</span></a></li>
+                                {#{{ dump(negocios) }}#}
+                                {% set paramsDorm = negocios.params|merge({'dormi': '1'}) %}
+                                <li><a href="{{ path('lisdato_seccion',paramsDorm) }}">1 Dormitorios <span>(100)</span></a></li>
+                                {% set paramsDorm = negocios.params|merge({'dormi':'2'}) %}
+                                <li><a href="{{ path('lisdato_seccion',paramsDorm) }}">2 Dormitorios <span>(25)</span></a></li>
+                                {% set paramsDorm = negocios.params|merge({'dormi':'3'}) %}
+                                <li><a href="{{ path('lisdato_seccion',paramsDorm) }}">3 Dormitorios <span>(10)</span></a></li>
+                                {% set paramsDorm = negocios.params|merge({'dormi':'4'}) %}
+                                <li><a href="{{ path('lisdato_seccion',paramsDorm) }}">4 Dormitorios <span>(26)</span></a></li>
+                                {% set paramsDorm = negocios.params|merge({'dormi':'5'}) %}
+                                <li><a href="{{ path('lisdato_seccion',paramsDorm) }}">5 Dormitorios <span>(700)</span></a></li>
+                                {% set paramsDorm = negocios.params|merge({'dormi':'6'}) %}
+                                <li><a href="{{ path('lisdato_seccion',paramsDorm) }}">6 Dormitorios <span>(1020)</span></a></li>
                             </ul>
                         </div>
                     </div>
@@ -105,11 +122,16 @@
                     <div class="body-filtro">
                         <div class="body-filtro-list">
                             <ul>
-                                <li><a href="#">Gimnasio <span>(59)</span></a></li>
-                                <li><a href="#">Parrilla <span>(450)</span></a></li>
-                                <li><a href="#">Areas Verdes <span>(1210)</span></a></li>
-                                <li><a href="#">Video Vigilancia <span>(1930)</span></a></li>
-                                <li><a href="#">Control de Acceso <span>(39951)</span></a></li>
+                                {% set paramsServ = negocios.params|merge({'servicio': '1'}) %}
+                                <li><a href="{{ path('lisdato_seccion',paramsServ) }}">Gimnasio <span>(59)</span></a></li>
+                                {% set paramsServ = negocios.params|merge({'servicio':'2'}) %}
+                                <li><a href="{{ path('lisdato_seccion',paramsServ) }}">Video Vigilancia <span>(450)</span></a></li>
+                                {% set paramsServ = negocios.params|merge({'servicio':'3'}) %}
+                                <li><a href="{{ path('lisdato_seccion',paramsServ) }}">Parrilla <span>(1210)</span></a></li>
+                                {% set paramsServ = negocios.params|merge({'servicio':'4'}) %}
+                                <li><a href="{{ path('lisdato_seccion', paramsServ) }}">Control de Acceso <span>(1930)</span></a></li>
+                                {% set paramsServ = negocios.params|merge({'servicio':'5'}) %}
+                                <li><a href="{{ path('lisdato_seccion', paramsServ) }}">Juegos Infantiles <span>(39951)</span></a></li>
                             </ul>
                         </div>
                     </div>
@@ -122,11 +144,18 @@
                     <div class="body-filtro">
                         <div class="body-filtro-list">
                             <ul>
-                                <li><a href="#">Ascensor <span>(1350)</span></a></li>
-                                <li><a href="#">Intercomunicador <span>(1286)</span></a></li>
-                                <li><a href="#">Reposteros de cocinas <span>(1210)</span></a></li>
-                                <li><a href="#">Terraza <span>(1930)</span></a></li>
-                                <li><a href="#">Ascensor(es) <span>(39951)</span></a></li>
+                                {%  set paramsGene = negocios.params|merge({'general':'1'}) %}
+                                <li><a href="{{ path('lisdato_seccion',paramsGene) }}">Intercomunicador <span>(1350)</span></a></li>
+                                {%  set paramsGene = negocios.params|merge({'general':'2'}) %}
+                                <li><a href="{{ path('lisdato_seccion',paramsGene) }}">Terraza <span>(1286)</span></a></li>
+                                {%  set paramsGene = negocios.params|merge({'general':'3'}) %}
+                                <li><a href="{{ path('lisdato_seccion',paramsGene) }}">Reposteros de cocinas <span>(1210)</span></a></li>
+                                {%  set paramsGene = negocios.params|merge({'general':'4'}) %}
+                                <li><a href="{{ path('lisdato_seccion',paramsGene) }}">Ascensor <span>(1930)</span></a></li>
+                                {%  set paramsGene = negocios.params|merge({'general':'6'}) %}
+                                <li><a href="{{ path('lisdato_seccion',paramsGene) }}">Jardin <span>(39951)</span></a></li>
+                                {%  set paramsGene = negocios.params|merge({'general':'8'}) %}
+                                <li><a href="{{ path('lisdato_seccion',paramsGene) }}">Piscina <span>(39951)</span></a></li>
                             </ul>
                         </div>
                     </div>
@@ -201,13 +230,19 @@
             hide_min_max: true,
             keyboard: false,
             min: 0,
-            max: 500000,
+            max: 1000000,
             from: 0,
             to: 200000,
             type: 'double',
             step: 1,
             prefix: "s/.",
+            postfix: "k",
             grid: true,
+            grid_num: 2,
+//            grid_margin: false
+            decorate_both: true
+
+
         });
     </script>
     <script>
@@ -271,8 +306,8 @@
     <script>
         $(document).ready(function(){
             var bodyFiltro = $('.body-filtro-list').show();
-            $('.body-filtro-list:not(:first)').hide();
-            $('.body-filtro-list:eq(1)').show();
+//            $('.body-filtro-list:not(:first)').hide();
+//            $('.body-filtro-list:eq(1)').show();
 
             $('.titulo-filtro').click(function(){
                $(this).children().toggleClass('fa fa-angle-down fa fa-angle-up');
