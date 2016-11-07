@@ -20,7 +20,7 @@
 {% endblock %}
 
 {% block fos_user_content %}
-
+    
     {#
     <input id="searchTextField" type="text" size="50" placeholder="Enter a location" autocomplete="on">
     #}
@@ -34,7 +34,7 @@
 
     <div class="container">
         <div id="search-cop3">
-            <form class="buscador_categorias" role="search">
+            <form class="buscador_categorias" method="get" action="{{ path('lisdato_seccion',negocios.params) }}" role="search">
                 <select class="selectpicker">
                     <option value="0">Comprar</option>
                     <option value="1">Alquilar</option>
@@ -48,7 +48,7 @@
                     <option value="3">Oficina</option>
                 </select>
                 <div class="form-group buscador">
-                    <input id="buscardor-form-inmuebles" type="text" class="form-control" placeholder="Ingresa Departamento,Provincia,Distrito">
+                    <input id="buscardor-form-inmuebles" name="lugar" type="text" class="form-control" placeholder="Ingresa Departamento,Provincia,Distrito">
                 </div>
             </form>
         </div>
@@ -86,7 +86,8 @@
                     <div class="body-filtro">
                         <div class="body-filtro-list">
                             <ul>
-                                <li><a href="#">1 Dormitorios <span>(100)</span></a></li>
+                                {% set params = negocios.params|merge({'dormi': '1'}) %}
+                                <li><a href="{{ path('lisdato_seccion',params) }}">1 Dormitorios <span>(100)</span></a></li>
                                 <li><a href="#">2 Dormitorios <span>(25)</span></a></li>
                                 <li><a href="#">3 Dormitorios <span>(10)</span></a></li>
                                 <li><a href="#">4 Dormitorios <span>(26)</span></a></li>
@@ -259,6 +260,10 @@
                 } );
             },
             minLength: 1,
+            select: function( event, ui ) {
+                $( "#buscardor-form-inmuebles").val(ui.item.label);
+                $(".buscador_categorias").submit();
+            }
         } );
         //google.maps.event.addDomListener(window, 'load', initialize);
     </script>
