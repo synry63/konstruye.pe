@@ -49,11 +49,20 @@
                         <a href="{{ path('show_negocio',
                         {"slug_negocio":ne.negocio.slug}) }}">
                             <div class="banner">
-                                <img src="{{ vich_uploader_asset(ne.negocio.banner, 'bannerFile','AppBundle\\Entity\\Banner') }}" alt="{{ ne.negocio.nombre }}" />
+                                {% if ne.negocio.banner is not null %}
+                                    <img src="{{ vich_uploader_asset(ne.negocio.banner, 'bannerFile','AppBundle\\Entity\\Banner') }}" alt="{{ ne.negocio.nombre }}" />
+                                {% else %}
+                                    <img src="http://placehold.it/350x150" alt=""/>
+                                {% endif %}
                             </div>
                             <div class="datos">
                                 <div class="middle-section">
-                                    <img width="80px" src="{{ vich_uploader_asset(ne.negocio.logo, 'logoFile','AppBundle\\Entity\\Logo') }}" alt="{{ ne.negocio.nombre }}" />
+                                    {% if ne.negocio.logo is not null %}
+                                        <img width="80px" src="{{ vich_uploader_asset(ne.negocio.logo, 'logoFile','AppBundle\\Entity\\Logo') }}" alt="{{ ne.negocio.nombre }}" />
+                                    {% else %}
+                                        <img src="http://placehold.it/80x80" alt=""/>
+                                    {% endif %}
+
                                     {% if ne.mymoy is null %}
                                         <div class="rateYo_negocios" data-rating="0"></div>
                                     {% else %}

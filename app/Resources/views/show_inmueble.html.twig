@@ -181,9 +181,14 @@
                                     <h3 class="datos-titulo-servicios">Servicios</h3>
                                     <div class="">
                                         {#{{ dump(negocio.sevicios[0]) }}#}
-                                        {% for servicio in negocio.sevicios%}
-                                            <p><i class="fa fa-check" aria-hidden="true"></i> {{ servicio.nombre }}</p>
-                                        {% endfor %}
+
+                                            {% for servicio in negocio.sevicios%}
+                                                {% if servicio.servicio.nombre is not null %}
+                                                    <p><i class="fa fa-check" aria-hidden="true"></i> {{ servicio.servicio.nombre }}</p>
+                                                {% endif %}
+                                            {% endfor %}
+
+
                                     </div>
                                 </div>
                             </div>
@@ -192,7 +197,7 @@
                                     <h3 class="datos-titulo-generales">Generales</h3>
                                     <div class="">
                                         {% for general in negocio.generales %}
-                                            <p><i class="fa fa-check" aria-hidden="true"></i> {{ general.nombre }}</p>
+                                            <p><i class="fa fa-check" aria-hidden="true"></i> {{ general.general.nombre }}</p>
                                         {% endfor %}
                                     </div>
                                 </div>

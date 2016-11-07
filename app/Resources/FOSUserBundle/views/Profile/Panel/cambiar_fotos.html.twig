@@ -51,8 +51,8 @@
         <h2 class="preview-title">Vista Previa</h2>
         <div class="master-slider ms-skin-default" id="masterslider">
 
-            {% if negocio.fotos|length > 0 %}
-                {% for nfo in negocio.fotos  %}
+            {% if fotos|length > 0 %}
+                {% for nfo in fotos  %}
                     <div class="ms-slide">
                         {% if nfo.videoUrl is not null %}
                             <a href="{{ nfo.videoUrl }}" data-type="video"> vimeo video </a>

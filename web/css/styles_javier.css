@@ -1020,6 +1020,59 @@ Nave Stiky
 /*=============
 Dashboard Negocios
 =============*/
+.editar{
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background: rgba(0,0,0,.5);
+    padding: 10px;
+    z-index: 9;
+    font-size: 22px;
+    color:#fff;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: all .5s;
+}
+.editar:hover{
+    font-size: 25px;
+    color: #fff;
+    text-decoration: none;
+}
+.editar:focus{
+    color: #fff;
+    text-decoration: none;
+}
+
+
+.eliminar{
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background: rgba(0,0,0,.5);
+    padding: 10px;
+    z-index: 9;
+    font-size: 22px;
+    color:#fff;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: all .5s;
+}
+.eliminar:hover{
+    font-size: 25px;
+    color: #fff;
+    text-decoration: none;
+}
+.eliminar:focus{
+    color: #fff;
+    text-decoration: none;
+}
+
+
+
+
+
 .bienvenido-dashboard{
     position: absolute;
     top: 50%;

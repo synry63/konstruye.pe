@@ -1,8 +1,40 @@
 {% extends "FOSUserBundle::Profile/Panel/panel_layout.html.twig" %}
 {% block content_section %}
-{{ dump(fotos) }}
-{{ path("profile_negocios_panel_gestion_negocio_sort") }}
-        {#
+
+    <h1 class="title-dashboard">Ordenar Fotos</h1>
+
+    <div class="col-md-8 col-md-offset-2">
+        <div class="recomendacion">
+            <i class="fa fa-lightbulb-o" aria-hidden="true"></i>
+            <div class="pright">
+                <ul>
+                    <li>Drag & Drop - Arrastre y suelte para ordenar las fotos automáticamente</li>
+                </ul>
+            </div>
+        </div>
+
+        <ul id="grid">
+            {% for f in fotos %}
+                <li  id="{{"foto_"~ f.id }}" data-insp="{{ f.id }}" class="ui-state-default" style="height: 230px;overflow: hidden;cursor: pointer">
+                    <img src="{{ vich_uploader_asset(f, 'imgFile') }}" alt=""/>
+                </li>
+            {% endfor %}
+        </ul>
+
+    </div>
+
+
+
+
+
+
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+
             $( "#grid" ).sortable({
             update: function( event, ui ) {
                 //var id = $(ui.item).attr('data-insp');
@@ -29,7 +61,6 @@
         });
         $( "#grid" ).disableSelection();
 
-        #}
 
-
-{% endblock %}
+    </script>
+{% endblock javascripts %}
