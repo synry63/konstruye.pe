@@ -56,6 +56,8 @@
                 <div class="form-group buscador">
                     {% if(negocios.params.lugar is defined ) %}
                         <input id="buscardor-form-inmuebles" name="lugar" value="{{ negocios.params.lugar }}" type="text" class="form-control" placeholder="Ingresa Departamento,Provincia,Distrito">
+                    {% else %}
+                        <input id="buscardor-form-inmuebles" name="lugar" type="text" class="form-control" placeholder="Ingresa Departamento,Provincia,Distrito">
                     {% endif %}
                 </div>
             </form>
@@ -78,14 +80,32 @@
                         <div class="body-filtro-list">
                             <div>
                                 <div>
-                                    <input type="text" id="range" value="" name="range" />
+                                    <input type="text" class="jsRangeSlider" id="range" value="" name="range" />
                                 </div>
                             </div>
                         </div>
+                        {#FORMULARIO DE PRECIO#}
+                        <form class="formIonSlider" method="get" action="{{ path('lisdato_seccion',negocios.params) }}" >
+                            {% if negocios.params.preciomin is defined %}
+                                <input type="text" name="preciomin" class="inputPrecioMin" value="{{negocios.params.preciomin}}" />
+                            {% else %}
+                                <input type="text" name="preciomin" class="inputPrecioMin" value="0" />
+                            {% endif %}
+
+                            {% if negocios.params.preciomax is defined %}
+                                <input type="text" name="preciomax" class="inputPrecioMax" value="{{ negocios.params.preciomax }}" />
+                            {% else %}
+                                <input type="text" name="preciomax" class="inputPrecioMax" value="0" />
+                            {% endif %}
+                            <button class="btn btn-konstruye">Buscar Rango de Precio</button>
+                        </form>
                     </div>
                     {#{{ dump(structures) }}#}
                     {#{{ dump(operaciones) }}#}
-                    {#{{ dump(negocios.params) }}#}
+                    {{ dump(negocios.params) }}
+                    {{ dump(domitorios) }}
+                    {{ dump(servicios) }}
+                    {{ dump(generales) }}
                 </div>
 
                 <div class="container-filtro">
@@ -226,24 +246,72 @@
     <script src="{{ asset('js/ion.rangeSlider.js') }}"></script>
     {#RangeSlide#}
     <script>
-        $("#range").ionRangeSlider({
-            hide_min_max: true,
-            keyboard: false,
-            min: 0,
-            max: 1000000,
-            from: 0,
-            to: 200000,
-            type: 'double',
-            step: 1,
-            prefix: "s/.",
-            postfix: "k",
-            grid: true,
-            grid_num: 2,
-//            grid_margin: false
-            decorate_both: true
+        $(document).ready( function(){
+            var rangeSlider = $('.jsRangeSlider');
+            var inpPreMin = $('.inputPrecioMin');
+            var inpPreMax = $('.inputPrecioMax');
+            var instance;
+
+            var preciomin = inpPreMin.val();
+            console.log(preciomin);
+            var preciomax = inpPreMax.val();
+            console.log(preciomax);
 
 
-        });
+
+            {#var preciomin = {{ negocios.params.preciomin }};#}
+            {#var preciomax = {{ negocios.params.preciomax }};#}
+
+
+
+//            if(typeof  !== 'undefined'){
+//                 = ;
+//            }
+            {#}else if({{ negocios.params.preciomin  }}){#}
+                {#preciomin = {{ negocios.params.preciomin }};#}
+                {#console.log(typeof(preciomin));#}
+            {#}#}
+
+
+            //IONRANGESLIDER
+            $("#range").ionRangeSlider({
+                hide_min_max: true,
+                keyboard: false,
+                min: 0,
+                max: 200000,
+//                from: 100000,
+//                to: 180000,
+                from: preciomin,
+                to: preciomax,
+                type: 'double',
+                step: 1,
+                prefix: "s/.",
+                grid: true,
+                grid_num: 2,
+                onStart: updateInputs,
+                onChange: updateInputs,
+                onFinish: updateInputs
+            });
+
+            //OBTENIENDO VALOR IONRANGESLIDER
+            function updateInputs (data) {
+                //console.log(data);
+                inpPreMin.prop("value", data.from);
+                inpPreMax.prop("value", data.to);
+            }
+
+//            function updateInputsChange (data) {
+//                //console.log(data);
+//                inpPreMin.prop("value", data.from);
+//                inpPreMax.prop("value", data.to);
+//
+////                $('.formIonSlider').submit();
+//            }
+
+            instance = rangeSlider.data("ionRangeSlider");
+
+        })
+
     </script>
     <script>
         function initialize() {
@@ -305,14 +373,16 @@
 
     <script>
         $(document).ready(function(){
+            //FILTRO LATERAL
             var bodyFiltro = $('.body-filtro-list').show();
-//            $('.body-filtro-list:not(:first)').hide();
-//            $('.body-filtro-list:eq(1)').show();
+            //$('.body-filtro-list:not(:first)').hide();
+            //$('.body-filtro-list:eq(1)').show();
 
             $('.titulo-filtro').click(function(){
                $(this).children().toggleClass('fa fa-angle-down fa fa-angle-up');
                $(this).parent().next().children().slideToggle();
             });
+
         });
     </script>
 {% endblock javascripts %}
