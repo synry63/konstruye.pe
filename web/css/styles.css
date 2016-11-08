@@ -546,12 +546,7 @@ Menu Principal
 .nav-principal .navbar-right{
     margin-top: 22px;
 }
-.nav-principal .navbar-right #registro{
-    background: #30BDEF;
-    padding: 5px;
-    border-radius: 5px;
-    color: #fff;
-}
+
 .dropdown-menu>li>a:first-letter{
     text-transform: uppercase;
 }
@@ -579,9 +574,11 @@ Menu Principal
     width: 170px;
 }
 .nav-principal2{
-    /*height: 85px;*/
-    background: #fff;
-    box-shadow: 2px 2px 5px rgba(0,0,0,.05);
+    background: rgb(28, 156, 217);
+    border: none;
+    height: 85px;
+    box-shadow: 2px 2px 5px rgba(0,0,0,.2);
+    padding: 7px 0;
 }
 
 

@@ -283,9 +283,9 @@
 
                         {% else %}
                             <span class="media contenedor-registrate">
-                                <a id="registro" href="{{ path('fos_user_registration_register') }}">Registrarse</a>
+                                <a style="color: #009FE3;font-weight: 500" href="{{ path('fos_user_registration_register') }}">Registrarse</a>
                                 ó
-                                <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+                                <a style="color: #009FE3;font-weight: 500" href="{{ path('fos_user_security_login') }}">Inicia Sesión</a>
                                 para poder comentar.
                             </span>
                         {% endif %}
@@ -328,7 +328,7 @@
         gallery.setup();
 
         {#Rateyo#}
-        var color="#30BDEF";
+        var color="#009FE3";
 
         $( ".rateYo_comments" ).each(function( index ) {
             $(this).rateYo({

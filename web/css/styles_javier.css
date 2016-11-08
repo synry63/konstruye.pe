@@ -19,7 +19,7 @@ SHOW INMUEBLE
 }
 .datos-anterior a {
     display: inline-block;
-    color: #27bdf1;
+    color: #009FE3;
 }
 .datos-anterior a i {
     font-size: 25px;
@@ -57,7 +57,7 @@ SHOW INMUEBLE
     float: right;
     font-size: 28px;
     font-weight: 600;
-    color: #27bdf1;
+    color: #009FE3;
 }
 .precio {
     overflow: hidden;
@@ -65,7 +65,7 @@ SHOW INMUEBLE
 .calcula-hipoteca {
     display: block;
     text-align: right;
-    color: #27bdf1;
+    color: #009FE3;
     font-weight: normal;
     font-size: 14px;
     margin-top: 4px;
@@ -137,7 +137,7 @@ SHOW INMUEBLE
     margin-top: 20px;
 }
 .zona-telefono {
-    color: #27bdf1;
+    color: #009FE3;
     font-weight: normal;
     font-size: 14px;
 }
@@ -158,13 +158,13 @@ SHOW INMUEBLE
     box-shadow: 0 1px 2px rgba(0,0,0,.4);
 }
 .datos-descripcion-titulo , .datos-principales-titulo, .datos-titulo-generales, .datos-titulo-servicios, .datos-titulo-ubicacion {
-    color: #1C9CD9;
+    color: #009FE3;
     font-size: 20px;
     font-weight: 600;
     padding-bottom: 20px;
 }
 .datos-titulo-comentarios {
-    color: #1C9CD9;
+    color: #009FE3;
     font-size: 20px;
     font-weight: 600;
     padding-bottom: 5px;
@@ -884,7 +884,7 @@ Buscador Principal
     top: -46px;
     font-weight: 500;
     color: rgba(255,255,255,.5);
-    left: 230px;
+    left: 250px;
     border-radius: 5px 5px 0 0;
     padding: 15px 20px;
     background: rgba(0, 0, 0,.2);
@@ -947,17 +947,35 @@ Nave Stiky
 .nav-principal2 .logi-reg{
     display: inline-block;
     float: right;
-    line-height: 70px;
+    padding-top: 6px;
 }
 
-.nav-principal2 .logi-reg #registro{
-    background: #30BDEF;
-    padding: 5px;
+#registro{
+    background: #1C9CD9;
+    padding: 7px 10px;
     border-radius: 5px;
     color: #fff;
 }
+.nav-principal2 .login-stiky{
+    text-align: center;
+}
+
+.nav-principal2 .login-stiky #registro2{
+    background: #fff;
+    padding: 7px 20px;
+    font-weight: 500;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    color: #1C9CD9;
+}
+
+
 .logi-reg a{
     text-decoration: none;
+}
+.logi-reg .login-stiky a{
+    display: block;
+    color: #fff;
 }
 .logi-reg .drop-menu{
     width: 200px;
@@ -982,7 +1000,7 @@ Nave Stiky
     transition: all .5s;
 }
 .logi-reg .drop-menu a:hover{
-    background: #30BDEF;
+    background: #1C9CD9;
     color: #fff !important;
 }
 .logi-reg .drop-menu a:hover i{
@@ -992,13 +1010,16 @@ Nave Stiky
     position: absolute;
     left: 15px;
     margin-right: 8px;
-    color: #30BDEF;
+    color: #1C9CD9;
     font-size: 21px;
     top: 8px;
     width: 30px;
     display: inline-block;
     transition: all .5s;
 }
+
+
+
 .logi-reg .drop-menu a:before{
     content: "| ";
     display: inline;
@@ -1439,6 +1460,75 @@ Index
 }
 .mensaje-default-blanco a, .mensaje-default-transparente a{
     margin-top: 10px;
+}
+
+
+/*=============
+Form Stiky
+=============*/
+.menu-principal2 .navbar-brand{
+    padding: 10px;
+    height: 73px;
+    top: 0;
+    background: none;
+    position: absolute;
+    box-shadow: none;
+    border-radius: 0 0 5px 5px;
+}
+.form-stiky{
+    width: 750px;
+    position: absolute;
+    top: 50%;
+    left: 51%;
+    transform: translate(-50%,-50%);
+}
+.form-stiky .form-control{
+    width: 70%;
+    display: inline-block;
+    border: none;
+}
+.form-stiky .btn-group.bootstrap-select{
+    margin-bottom: 2px;
+}
+.form-stiky .btn-group.bootstrap-select button{
+    border: none;
+    height: 34px;
+    background: #fff;
+}
+.form-stiky .btn-group.bootstrap-select button:hover{
+    background: #fff;
+}
+.logi-reg .btn-default{
+    background: none;
+    padding: 0;
+}
+.logi-reg .btn-default img{
+    border: solid 2px #fff;
+    padding: 2px;
+}
+.buttons-change{
+    color: #fff;
+    text-align: left;
+    padding-left: 20px;
+}
+.buttons-change div{
+    display: inline-block;
+    padding: 7px 15px;
+    font-size: 14px;
+    border-radius: 5px 5px 0 0;
+    background: rgba(0,0,0,.1);
+}
+.buttons-change div.active{
+    background: rgba(0,0,0,.3);
+}
+
+
+.buttons-change i{
+    display: inline;
+    padding-right: 5px;
+}
+.buttons-change #hide3, .buttons-change #hide4{
+    cursor:pointer;
 }
 /*=============
 Footer Menu

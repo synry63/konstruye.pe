@@ -31,8 +31,8 @@
         
                 <div class="buscador-principal">
 
-                    <a href="javascript:void(0)" id="button1">Buscador de Negocios</a>
-                    <a href="javascript:void(0)" id="button2">Buscador de Productos</a>
+                    <a href="javascript:void(0)" id="button1"><i class="fa fa-briefcase" aria-hidden="true"></i> Buscador de Negocios</a>
+                    <a href="javascript:void(0)" id="button2"><i class="fa fa-shopping-bag" aria-hidden="true"></i> Buscador de Productos</a>
 
 
                     <div id="buscador1">
@@ -159,14 +159,23 @@
                     {% if proveedores|length >= 5 %}
                         <!-- masterslider -->
                         <div class="master-slider3 " id="masterslider3">
-
                             {% for pro in proveedores %}
                                 <div class="ms-slide">
                                     <a href="{{ path('show_negocio',
                                     {"slug_negocio":pro.negocio.slug}) }}">
-                                        <img src="{{ asset('images/assets/blank.gif') }}" data-src="{{ vich_uploader_asset(pro.negocio.logo, 'logoFile','AppBundle\\Entity\\Logo') }}" alt="lorem ipsum dolor sit"/>
+                                        {% if pro.negocio.logo is not null %}
+                                            <img src="{{ asset('images/assets/blank.gif') }}" data-src="{{ vich_uploader_asset(pro.negocio.logo, 'logoFile','AppBundle\\Entity\\Logo') }}" alt="lorem ipsum dolor sit"/>
+                                        {% else %}
+                                            <img src="http://placehold.it/150x150" alt="" />
+                                        {% endif %}
                                     </a>
-                                    <img src="{{ asset('images/assets/blank.gif') }}" data-src="{{ vich_uploader_asset(pro.negocio.logo, 'logoFile','AppBundle\\Entity\\Logo') }}" alt="lorem ipsum dolor sit"/>
+                                    {% if pro.negocio.logo is not null %}
+                                        <img src="{{ asset('images/assets/blank.gif') }}" data-src="{{ vich_uploader_asset(pro.negocio.logo, 'logoFile','AppBundle\\Entity\\Logo') }}" alt="lorem ipsum dolor sit"/>
+                                    {% else %}
+                                        <img src="http://placehold.it/150x150" alt="" />
+                                    {% endif %}
+
+
                                     <div class="ms-info">
                                         <a href="{{ path('show_negocio',
                                         {"slug_negocio":pro.negocio.slug}) }}"><h3>{{ pro.negocio.nombre }}</h3></a>
@@ -210,9 +219,17 @@
                            <div class="ms-slide">
                                <a href="{{ path('show_negocio',
                                {"slug_negocio":inm.negocio.slug}) }}">
-                                   <img src="{{ asset('images/assets/blank.gif') }}" data-src="{{ vich_uploader_asset(inm.negocio.logo, 'logoFile','AppBundle\\Entity\\Logo') }}" alt="lorem ipsum dolor sit"/>
+                                   {% if inm.negocio.logo is not null %}
+                                       <img src="{{ asset('images/assets/blank.gif') }}" data-src="{{ vich_uploader_asset(inm.negocio.logo, 'logoFile','AppBundle\\Entity\\Logo') }}" alt="lorem ipsum dolor sit"/>
+                                   {% else %}
+                                       <img src="http://placehold.it/150x150" alt="" />
+                                   {% endif %}
                                </a>
-                               <img src="{{ asset('images/assets/blank.gif') }}" data-src="{{ vich_uploader_asset(inm.negocio.logo, 'logoFile','AppBundle\\Entity\\Logo') }}" alt="lorem ipsum dolor sit"/>
+                               {% if inm.negocio.logo is not null %}
+                                   <img src="{{ asset('images/assets/blank.gif') }}" data-src="{{ vich_uploader_asset(inm.negocio.logo, 'logoFile','AppBundle\\Entity\\Logo') }}" alt="lorem ipsum dolor sit"/>
+                               {% else %}
+                                   <img src="http://placehold.it/150x150" alt="" />
+                               {% endif %}
                                <div class="ms-info">
                                    <a href="{{ path('show_negocio',
                                    {"slug_negocio":inm.negocio.slug}) }}"><h3>{{ inm.negocio.nombre }}</h3></a>
@@ -251,9 +268,17 @@
                             <div class="ms-slide">
                                 <a href="{{ path('show_negocio',
                                 {"slug_negocio":es.negocio.slug}) }}">
-                                    <img src="{{ asset('images/assets/blank.gif') }}" data-src="{{ vich_uploader_asset(es.negocio.logo, 'logoFile','AppBundle\\Entity\\Logo') }}" alt="lorem ipsum dolor sit"/>
+                                    {% if es.negocio.logo is not null %}
+                                        <img src="{{ asset('images/assets/blank.gif') }}" data-src="{{ vich_uploader_asset(es.negocio.logo, 'logoFile','AppBundle\\Entity\\Logo') }}" alt="lorem ipsum dolor sit"/>
+                                    {% else %}
+                                        <img src="http://placehold.it/150x150" alt="" />
+                                    {% endif %}
                                 </a>
-                                <img src="{{ asset('images/assets/blank.gif') }}" data-src="{{ vich_uploader_asset(es.negocio.logo, 'logoFile','AppBundle\\Entity\\Logo') }}" alt="lorem ipsum dolor sit"/>
+                                {% if es.negocio.logo is not null %}
+                                    <img src="{{ asset('images/assets/blank.gif') }}" data-src="{{ vich_uploader_asset(es.negocio.logo, 'logoFile','AppBundle\\Entity\\Logo') }}" alt="lorem ipsum dolor sit"/>
+                                {% else %}
+                                    <img src="http://placehold.it/150x150" alt="" />
+                                {% endif %}
                                 <div class="ms-info">
                                     <a href="{{ path('show_negocio',
                                     {"slug_negocio":es.negocio.slug}) }}"><h3>{{ es.negocio.nombre }}</h3></a>
@@ -292,9 +317,18 @@
                             <div class="ms-slide">
                                 <a href="{{ path('show_negocio',
                                 {"slug_negocio":im.negocio.slug}) }}">
-                                    <img src="{{ asset('images/assets/blank.gif') }}" data-src="{{ vich_uploader_asset(im.negocio.logo, 'logoFile','AppBundle\\Entity\\Logo') }}" alt="lorem ipsum dolor sit"/>
+                                    {% if im.negocio.logo is not null %}
+                                        <img src="{{ asset('images/assets/blank.gif') }}" data-src="{{ vich_uploader_asset(im.negocio.logo, 'logoFile','AppBundle\\Entity\\Logo') }}" alt="lorem ipsum dolor sit"/>
+                                    {% else %}
+                                        <img src="http://placehold.it/150x150" alt="" />
+                                    {% endif %}
+
                                 </a>
-                                <img src="{{ asset('images/assets/blank.gif') }}" data-src="{{ vich_uploader_asset(im.negocio.logo, 'logoFile','AppBundle\\Entity\\Logo') }}" alt="lorem ipsum dolor sit"/>
+                                {% if im.negocio.logo is not null %}
+                                    <img src="{{ asset('images/assets/blank.gif') }}" data-src="{{ vich_uploader_asset(im.negocio.logo, 'logoFile','AppBundle\\Entity\\Logo') }}" alt="lorem ipsum dolor sit"/>
+                                {% else %}
+                                    <img src="http://placehold.it/150x150" alt="" />
+                                {% endif %}
                                 <div class="ms-info">
                                     <a href="{{ path('show_negocio',
                                     {"slug_negocio":im.negocio.slug}) }}"><h3>{{ im.negocio.nombre }}</h3></a>

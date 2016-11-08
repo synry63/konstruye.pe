@@ -122,48 +122,74 @@
                 <div class="container menu-principal2">
 
 
-                        <a class="navbar-brand" href="{{ path('homepage') }}" style="padding: 10px;height: auto;">
-                            <img alt="Brand" src="{{ asset('images/logo-min-color.svg') }}">
+                        <a class="navbar-brand" href="{{ path('homepage') }}">
+                            <img style="margin-top:10px" alt="Brand" src="{{ asset('images/logo-min-white.svg') }}">
                         </a>
 
 
 
-                        <div id="search-cop2" class="buscador-stiky">
-                            <div class="search-change2">
-                                <div id="hide3"><i class="fa fa-briefcase" aria-hidden="true"></i></div>
-                                <div id="hide4"><i class="fa fa-shopping-bag" aria-hidden="true"></i></div>
-                            </div>
 
-                            <form id="s4" data-buscar-url="{{ path('buscar_negocios_by_seccion_null') }}" action="{{ path('search_global_negocios') }}" class="s1 navbar-form navbar-left buscador_principal2" role="search">
-                                <input type="text" placeholder="Ejemplo: Casa de Playa, Carpintero, Trebol Celima">
-                                <select class="selectpicker">
-                                    <option value="">Selecciona una Categoria</option>
-                                    <option value="constructoras-e-inmobiliarias">Constructoras e Inmobiliarias</option>
-                                    <option value="especialistas-servicios-personales">Especialistas y Servicios Personales</option>
-                                    <option value="proveedores">Proveedores</option>
-                                </select>
-                            </form>
+                    <div class="form-stiky">
 
-                            <form id="s3" data-buscar-url="{{ path('buscar_productos') }}"  action="{{ path('search_global_productos') }}" class="s2 navbar-form navbar-left buscador_principal2" role="search">
-                                <input type="text"  placeholder="Ejemplo: Marmol, Madera, Mesas">
-                                <select class="selectpicker">
-                                    <option selected value="proveedores">Proveedores</option>
-                                </select>
-                            </form>
+                        <div class="buttons-change">
+                            <div id="hide3"><i class="fa fa-briefcase" aria-hidden="true"></i>Buscador de Negocios</div>
+                            <div id="hide4"><i class="fa fa-shopping-bag" aria-hidden="true"></i>Buscador de Productos</div>
+                        </div>
+                        <form id="s4" data-buscar-url="{{ path('buscar_negocios_by_seccion_null') }}" action="{{ path('search_global_negocios') }}" class="s1" role="search">
+                            <input class="form-control" type="text" placeholder="Ejemplo: Casa de Playa, Carpintero, Trebol Celima">
+                            <select class="selectpicker">
+                                <option value="">Selecciona una Categoria</option>
+                                <option value="constructoras-e-inmobiliarias">Constructoras e Inmobiliarias</option>
+                                <option value="especialistas-servicios-personales">Especialistas y Servicios Personales</option>
+                                <option value="proveedores">Proveedores</option>
+                            </select>
+                        </form>
+                        <form id="s3" data-buscar-url="{{ path('buscar_productos') }}"  action="{{ path('search_global_productos') }}" class="s2" role="search">
+                            <input class="form-control" type="text"  placeholder="Ejemplo: Marmol, Madera, Mesas">
+                            <select class="selectpicker">
+                                <option selected value="proveedores">Proveedores</option>
+                            </select>
+                        </form>
+                    </div>
+
+
+                    {#
+                    <div id="search-cop2" class="buscador-stiky">
+                        <div class="search-change2">
+                            <div id="hide3"><i class="fa fa-briefcase" aria-hidden="true"></i></div>
+                            <div id="hide4"><i class="fa fa-shopping-bag" aria-hidden="true"></i></div>
                         </div>
 
+                        <form id="s4" data-buscar-url="{{ path('buscar_negocios_by_seccion_null') }}" action="{{ path('search_global_negocios') }}" class="s1 navbar-form navbar-left buscador_principal2" role="search">
+                            <input type="text" placeholder="Ejemplo: Casa de Playa, Carpintero, Trebol Celima">
+                            <select class="selectpicker">
+                                <option value="">Selecciona una Categoria</option>
+                                <option value="constructoras-e-inmobiliarias">Constructoras e Inmobiliarias</option>
+                                <option value="especialistas-servicios-personales">Especialistas y Servicios Personales</option>
+                                <option value="proveedores">Proveedores</option>
+                            </select>
+                        </form>
+
+                        <form id="s3" data-buscar-url="{{ path('buscar_productos') }}"  action="{{ path('search_global_productos') }}" class="s2 navbar-form navbar-left buscador_principal2" role="search">
+                            <input type="text"  placeholder="Ejemplo: Marmol, Madera, Mesas">
+                            <select class="selectpicker">
+                                <option selected value="proveedores">Proveedores</option>
+                            </select>
+                        </form>
+                    </div>
+                    #}
 
 
                         <div class="logi-reg" >
                             {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                                <div class="dropdown" style="margin-right: 70px">
+                                <div class="dropdown" style="margin-right: 25px">
                                     <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                                         {% if app.user.profile is not null %}
                                             <img class="img-circle" width="50px" src="{{ vich_uploader_asset(app.user.profile, 'profileFile') }}" alt="">
-                                            <i class="fa fa-chevron-down" aria-hidden="true" style="position: absolute;top: 50%;transform: translate(30%,-50%);color: #808080;"></i>
+                                            <i class="fa fa-chevron-down" aria-hidden="true" style="position: absolute;top: 50%;transform: translate(30%,-50%);color: #fff;"></i>
                                         {% else %}
                                             <img class="img-circle" width="50px" src="{{ asset('images/assets/perfil_icon.png') }}" alt="">
-                                            <i class="fa fa-chevron-down" aria-hidden="true" style="position: absolute;top: 50%;transform: translate(30%,-50%);color: #808080;"></i>
+                                            <i class="fa fa-chevron-down" aria-hidden="true" style="position: absolute;top: 50%;transform: translate(30%,-50%);color: #fff;"></i>
                                         {% endif %}
                                     </button>
                                     <ul class="dropdown-menu drop-menu" aria-labelledby="dropdownMenu2">
@@ -178,9 +204,8 @@
                                     </ul>
                                 </div>
                             {% else %}
-                                <div class="no-login">
-                                    <a id="registro" href="">Registrarse</a>
-                                    <span>|</span>
+                                <div class="login-stiky">
+                                    <a id="registro2" href="">Registrarse</a>
                                     <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
                                 </div>
 
@@ -375,7 +400,7 @@
                 $(".menu-stiky ul").addClass("dropdown-menu")
 
                 $(window).bind('scroll', function () {
-                    if ($(window).scrollTop() > 200) {
+                    if ($(window).scrollTop() > 450) {
                         $('.nav-principal2').fadeIn("slow");
                         $('.nav-principal2').addClass("navbar-fixed-top");
                     } else {
