@@ -96,7 +96,7 @@ vich_uploader:
                 namer:              vich_uploader.namer_uniqid
             negocio_banner_listado:
                 uri_prefix:         /images/negocios/banner
-                upload_destination: %kernel.root_dir%/../web/images/negocios/logo
+                upload_destination: %kernel.root_dir%/../web/images/negocios/banner
                 namer:              vich_uploader.namer_uniqid
             proyecto_foto:
                 uri_prefix:         /images/negocios/proyectos/fotos
@@ -140,3 +140,6 @@ hwi_oauth:
                   profilepicture: picture.data.url
                 #options:
                 #    display: popup #dialog is optimized for popup window
+
+white_october_breadcrumbs:
+  separator:          ''

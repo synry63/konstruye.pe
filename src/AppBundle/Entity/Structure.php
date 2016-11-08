@@ -15,9 +15,10 @@ use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
 /**
- * @ORM\Entity(repositoryClass="AppBundle\Repository\UbicationRepository")
+ * @ORM\Entity
+ * @ORM\Table(name="structures")
  */
-class Departamento
+class Structure
 {
     /**
      * @ORM\Column(type="integer")
@@ -30,32 +31,10 @@ class Departamento
      */
     private $nombre;
 
-    /**
-     * @ORM\OneToMany(targetEntity="Provincia", mappedBy="departamento")
-     **/
-    private $provincias;
-    /**
-     * @return mixed
-     */
+
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getProvincias()
-    {
-        return $this->provincias;
-    }
-
-    /**
-     * @param mixed $provincias
-     */
-    public function setProvincias($provincias)
-    {
-        $this->provincias = $provincias;
     }
 
     /**
@@ -81,7 +60,5 @@ class Departamento
     {
         $this->nombre = $nombre;
     }
-
-
 
 }

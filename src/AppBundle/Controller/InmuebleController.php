@@ -19,7 +19,6 @@ class InmuebleController extends Controller
     }
     public function registerAction(Request $request){ // FIX ERROR ON /home/pmary/www/html/konstruye.pe/vendor/vich/uploader-bundle/Metadata/MetadataReader.php
 
-
         $user = $this->container->get('security.context')->getToken()->getUser();
         $inm = new Inmueble();
 
@@ -41,5 +40,8 @@ class InmuebleController extends Controller
                 'form'=>$form->createView()
             )
         );
+    }
+    public function filtroDormitorioInmuebleAcion(Request $request,$number){
+       $inmuebles = $this->getDoctrine()->getRepository('AppBundle:Inmueble')->getInmueblesByDormitorios($number);
     }
 }

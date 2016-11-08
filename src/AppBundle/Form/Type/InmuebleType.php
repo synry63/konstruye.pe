@@ -45,15 +45,27 @@ class InmuebleType extends AbstractType
 
             ),
         ));
-        $builder->add('structure', 'Symfony\Component\Form\Extension\Core\Type\ChoiceType',array(
-            'choices'  => array(
-                'casa' => 'Casa',
-                'departamente' => 'Departamente',
-                'Terreno' => 'Terreno/Lote',
-                'Oficina' => 'oficina',
-            ),
+
+        $builder->add('structure','entity', array(
+            'class' => 'AppBundle:Structure',
+            'placeholder' => '',
+            'choice_label' => 'nombre',
+            'query_builder' => function (EntityRepository $er) {
+                return $er->createQueryBuilder('s')
+                    ->orderBy('s.nombre', 'ASC');
+            }
         ));
 
+        $builder->add('operacion', 'entity',array(
+            'class' => 'AppBundle:Operacion',
+            'placeholder' => '',
+            'choice_label' => 'nombre',
+            'query_builder' => function (EntityRepository $er) {
+                return $er->createQueryBuilder('o')
+                    ->orderBy('o.nombre', 'ASC');
+            },
+            'placeholder' => '',
+        ));
         $builder->add('nombre','Symfony\Component\Form\Extension\Core\Type\TextType',array(
             'constraints' => array(
                 new NotBlank(),
@@ -76,7 +88,7 @@ class InmuebleType extends AbstractType
         ;
 
         if($this->current_user!=null){
-            $builder->add('constructora',EntityType::class, array(
+            $builder->add('constructora','entity', array(
                 'class' => 'AppBundle:ConstructoraInmobiliaria',
                 'placeholder' => '',
                 'choice_label' => 'nombre',

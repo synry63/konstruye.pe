@@ -16,9 +16,9 @@ use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
 /**
  * @ORM\Entity
- * @ORM\Table(name="generales_inmuebles")
+ * @ORM\Table(name="servicios")
  */
-class GeneralInmueble
+class Servicio
 {
     /**
      * @ORM\Column(type="integer")
@@ -26,56 +26,34 @@ class GeneralInmueble
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-    /**
-    @ORM\ManyToOne(targetEntity="Inmueble",inversedBy="generales")
-    @ORM\JoinColumn(name="inmueble_id", referencedColumnName="id")
-     **/
-    private $inmueble;
 
     /**
-    @ORM\ManyToOne(targetEntity="General",inversedBy="inmuebles")
-    @ORM\JoinColumn(name="general_id", referencedColumnName="id")
-     **/
-    private $general;
-
-    /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="string", length=100)
      */
-    private $cantidad;
+    private $nombre;
+
+    /**
+     * @ORM\OneToMany(targetEntity="ServicioInmueble", mappedBy="servicio")
+     */
+    private $inmuebles;
 
     /**
      * @return mixed
      */
-    public function getCantidad()
+    public function getInmuebles()
     {
-        return $this->cantidad;
+        return $this->inmuebles;
     }
 
     /**
-     * @param mixed $cantidad
+     * @param mixed $inmuebles
      */
-    public function setCantidad($cantidad)
+    public function setInmuebles($inmuebles)
     {
-        $this->cantidad = $cantidad;
+        $this->inmuebles = $inmuebles;
     }
 
 
-
-    /**
-     * @return mixed
-     */
-    public function getGeneral()
-    {
-        return $this->general;
-    }
-
-    /**
-     * @param mixed $general
-     */
-    public function setGeneral($general)
-    {
-        $this->general = $general;
-    }
 
     /**
      * @return mixed
@@ -93,21 +71,6 @@ class GeneralInmueble
         $this->id = $id;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getInmueble()
-    {
-        return $this->inmueble;
-    }
-
-    /**
-     * @param mixed $inmueble
-     */
-    public function setInmueble($inmueble)
-    {
-        $this->inmueble = $inmueble;
-    }
 
 
     /**

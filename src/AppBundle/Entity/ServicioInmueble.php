@@ -28,14 +28,38 @@ class ServicioInmueble
     private $id;
     /**
     @ORM\ManyToOne(targetEntity="Inmueble",inversedBy="servicios")
-    @ORM\JoinColumn(name="negocio_id", referencedColumnName="id")
+    @ORM\JoinColumn(name="inmueble_id", referencedColumnName="id")
      **/
     private $inmueble;
 
     /**
-     * @ORM\Column(type="string", length=100)
+    @ORM\ManyToOne(targetEntity="Servicio",inversedBy="inmuebles")
+    @ORM\JoinColumn(name="servicio_id", referencedColumnName="id")
+     **/
+    private $servicio;
+
+    /**
+     * @ORM\Column(type="integer")
      */
-    private $nombre;
+    private $cantidad;
+
+    /**
+     * @return mixed
+     */
+    public function getCantidad()
+    {
+        return $this->cantidad;
+    }
+
+    /**
+     * @param mixed $cantidad
+     */
+    public function setCantidad($cantidad)
+    {
+        $this->cantidad = $cantidad;
+    }
+
+
 
     /**
      * @return mixed
@@ -69,22 +93,24 @@ class ServicioInmueble
         $this->inmueble = $inmueble;
     }
 
-
     /**
      * @return mixed
      */
-    public function getNombre()
+    public function getServicio()
     {
-        return $this->nombre;
+        return $this->servicio;
     }
 
     /**
-     * @param mixed $nombre
+     * @param mixed $servicio
      */
-    public function setNombre($nombre)
+    public function setServicio($servicio)
     {
-        $this->nombre = $nombre;
+        $this->servicio = $servicio;
     }
 
-
+    public function __construct()
+    {
+        $this->cantidad = 1;
+    }
 }

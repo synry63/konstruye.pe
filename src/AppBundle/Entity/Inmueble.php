@@ -61,13 +61,25 @@ class Inmueble extends Negocio
      * @ORM\Column(type="integer",nullable=true)
      */
     private $unidades;
+
+    /**
+     * @ORM\Column(type="string",length=64,nullable=true)
+     */
+    private $paraUsoTipo;
     /**
      * @ORM\Column(type="string", length=64)
      */
     private $parametrosMunicipales;
 
     /**
-     * @ORM\Column(type="string", length=64)
+     * @ORM\OneToOne(targetEntity="Operacion",cascade={"persist"})
+     * @ORM\JoinColumn(name="operacion_id", referencedColumnName="id")
+     */
+    private $operacion;
+
+    /**
+     * @ORM\OneToOne(targetEntity="Structure",cascade={"persist"})
+     * @ORM\JoinColumn(name="structure_id", referencedColumnName="id")
      */
     private $structure;
 
@@ -95,6 +107,39 @@ class Inmueble extends Negocio
      * @ORM\Column(type="integer",nullable=true)
      */
     private $sort;
+
+    /**
+     * @return mixed
+     */
+    public function getParaUsoTipo()
+    {
+        return $this->paraUsoTipo;
+    }
+
+    /**
+     * @param mixed $paraUsoTipo
+     */
+    public function setParaUsoTipo($paraUsoTipo)
+    {
+        $this->paraUsoTipo = $paraUsoTipo;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getOperacion()
+    {
+        return $this->operacion;
+    }
+
+    /**
+     * @param mixed $operacion
+     */
+    public function setOperacion($operacion)
+    {
+        $this->operacion = $operacion;
+    }
+
 
     /**
      * @return mixed

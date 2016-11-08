@@ -99,38 +99,106 @@ class NegocioController extends Controller
         ));
 
     }
+
     public function listadoSeccionAction(Request $request,$slug_seccion,$page)
     {
+
+
         $twig = 'layout_categorias.html.twig';
+        $renderOut = array();
         if($slug_seccion=="constructoras-e-inmobiliarias"){
             $negocios = $this->getDoctrine()->getRepository('AppBundle:ConstructoraInmobiliaria')->getNegocios();
             $categorias = $this->getDoctrine()->getRepository('AppBundle:CategoriaListado')->getCategoriasChildren('constructura-inmobiliaria');
+            $renderOut['negocios'] = $negocios;
+            $renderOut['categorias_hijas'] = $categorias;
+
         }
         else if($slug_seccion=="compra-venta-y-alquiler-inmuebles"){
-            $negocios = $this->getDoctrine()->getRepository('AppBundle:Inmueble')->getNegocios();
-            $categorias = $this->getDoctrine()->getRepository('AppBundle:CategoriaListado')->getCategoriasChildren('inmueble');
+            $dormi = $request->query->get('dormi');
+            $lugar = $request->query->get('lugar');
+            $precio_min = $request->query->get('preciomin');
+            $precio_max = $request->query->get('preciomax');
+            $servicio_id = $request->query->get('servicio');
+            $general_id = $request->query->get('general');
+            $structure_id = $request->query->get('structure');
+            $operacion_id = $request->query->get('operacion');
+            if($lugar!=null){
+                $lugar_split = explode(',',$lugar);
+                if(count($lugar_split)==3){
+                    $arr_lugar = array('Distrito','Provincia','Departamento');
+                    $arr_lugar_entity = array();
+                }
+                else if(count($lugar_split)==2){
+                    $arr_lugar = array('Provincia','Departamento');
+                    $arr_lugar_entity = array();
+                }
+                else if(count($lugar_split)==1){
+                    $arr_lugar = array('Departamento');
+                    $arr_lugar_entity = array();
+                }
+                for($i=0;$i<count($lugar_split);$i++){
+                    $r= $this->getDoctrine()->getRepository('AppBundle:'.$arr_lugar[$i])->findOneBy(
+                        array('nombre'=>trim($lugar_split[$i]))
+                    );
+                    $arr_lugar_entity[$i] = $r;
+                }
+                $lugar = $arr_lugar_entity;
+            }
+            $negocios = $this->getDoctrine()->getRepository('AppBundle:Inmueble')->getNegocios($dormi,$lugar,$precio_min,$precio_max,$servicio_id,$general_id,$structure_id,$operacion_id);
+            $maxDormiWithCount = $this->getDoctrine()->getRepository('AppBundle:Inmueble')->getMaxDormiWithCount($structure_id,$operacion_id,$lugar);
+            $servicios = $this->getDoctrine()->getRepository('AppBundle:Servicio')->findBy(
+                array(),
+                array('nombre'=>'ASC')
+            );
+            $generales = $this->getDoctrine()->getRepository('AppBundle:General')->findBy(
+                array(),
+                array('nombre'=>'ASC')
+            );
+            $structures = $this->getDoctrine()->getRepository('AppBundle:Structure')->findBy(
+                array(),
+                array('nombre'=>'ASC')
+            );
+            //$aa = $this->getDoctrine()->getRepository('AppBundle:Inmueble')->getServiciosWithCount();
+            //var_dump($aa);
+            $operaciones = $this->getDoctrine()->getRepository('AppBundle:Operacion')->findBy(
+                array(),
+                array('nombre'=>'ASC')
+            );
+            //var_dump($maxDormiWithCount);
+            //$categorias = $this->getDoctrine()->getRepository('AppBundle:CategoriaListado')->getCategoriasChildren('inmueble');
+            $renderOut['negocios'] = $negocios;
+            $renderOut['ubicacion'] = $lugar;
+            $renderOut['servicios'] = $servicios;
+            $renderOut['structures'] = $structures;
+            $renderOut['generales'] = $generales;
+            $renderOut['operaciones'] = $operaciones;
+            $renderOut['domitorios'] = $maxDormiWithCount;
+            //$renderOut['categorias_hijas'] = $categorias;
+
             $twig = 'layout_compra_y_venta.html.twig';
 
         }
         else if($slug_seccion=="especialistas-servicios-personales"){
             $negocios = $this->getDoctrine()->getRepository('AppBundle:Especialista')->getNegocios();
             $categorias = $this->getDoctrine()->getRepository('AppBundle:CategoriaListado')->getCategoriasChildren('especialista');
+            $renderOut['negocios'] = $negocios;
+            $renderOut['categorias_hijas'] = $categorias;
         }
         else{
             $negocios = $this->getDoctrine()->getRepository('AppBundle:Proveedor')->getNegocios();
             $categorias = $this->getDoctrine()->getRepository('AppBundle:CategoriaListado')->getCategoriasChildren('proveedor');
+            $renderOut['negocios'] = $negocios;
+            $renderOut['categorias_hijas'] = $categorias;
         }
 
         $paginator  = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
-            $negocios,
+            $renderOut['negocios'],
             $page,
             9
         );
-        return $this->render($twig,array(
-            'negocios'=>$pagination,
-            'categorias_hijas'=>$categorias
-        ));
+        $renderOut['negocios'] = $pagination;
+        return $this->render($twig,$renderOut);
     }
 
     private function initGoogleMap($negocio,$slug_site = NULL){
@@ -300,11 +368,39 @@ class NegocioController extends Controller
     {
         $user = $this->container->get('security.context')->getToken()->getUser();
         $negocio = $this->getDoctrine()->getRepository('AppBundle:Negocio')->findOneBySlug($slug_negocio);
+        $fotos = $this->getDoctrine()->getRepository('AppBundle:Foto')->findBy(
+            array('negocio'=>$negocio),
+            array('sort'=>'ASC')
+        );
         $comments = $this->getDoctrine()->getRepository('AppBundle:ComentarioNegocio')->getAllComments($negocio);
         $moy = $this->getDoctrine()->getRepository('AppBundle:Negocio')->getNegocioRating($negocio);
 
+        //$inmuebles = $this->getDoctrine()->getRepository('AppBundle:Inmueble')->getInmueblesByDormitorios($number);
+
+        if($negocio instanceof Proveedor){
+            $breadcrumbs = $this->get("white_october_breadcrumbs");
+            $breadcrumbs->addItem('Proveedores', $this->get("router")->generate("lisdato_seccion",array('slug_seccion'=>'proveedores')));
+            $breadcrumbs->addItem($negocio->getNombre(), $this->get("router")->generate("show_negocio",array('slug_negocio'=>$negocio->getSlug())));
+        }
+        else if($negocio instanceof ConstructoraInmobiliaria){
+            $breadcrumbs = $this->get("white_october_breadcrumbs");
+            $breadcrumbs->addItem('constructura e inmobiliarias', $this->get("router")->generate("lisdato_seccion",array('slug_seccion'=>'constructoras-e-inmobiliarias')));
+            $breadcrumbs->addItem($negocio->getNombre(), $this->get("router")->generate("show_negocio",array('slug_negocio'=>$negocio->getSlug())));
+        }
+        else if($negocio instanceof Especialista){
+            $breadcrumbs = $this->get("white_october_breadcrumbs");
+            $breadcrumbs->addItem('Especialistas servicios personales', $this->get("router")->generate("lisdato_seccion",array('slug_seccion'=>'especialistas-servicios-personales')));
+            $breadcrumbs->addItem($negocio->getNombre(), $this->get("router")->generate("show_negocio",array('slug_negocio'=>$negocio->getSlug())));
+        }
+        else{
+            $breadcrumbs = $this->get("white_october_breadcrumbs");
+            $breadcrumbs->addItem('compra venta y alquiler de inmuebles', $this->get("router")->generate("lisdato_seccion",array('slug_seccion'=>'compra-venta-y-alquiler-inmuebles')));
+            $breadcrumbs->addItem($negocio->getNombre(), $this->get("router")->generate("show_negocio",array('slug_negocio'=>$negocio->getSlug())));
+
+        }
         $renderOut = array(
             'negocio'=>$negocio,
+            'fotos'=>$fotos,
             'moy'=>$moy,
             'comentarios'=>$comments,
         );

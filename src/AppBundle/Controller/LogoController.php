@@ -215,7 +215,7 @@ class LogoController extends Controller
                 "status" => 'success',
                 "message" => 'cambio realizado, en unos segundo la pagina se va actualizar para visualizar el cambio',
                 "url" => $my_path.$filename_out.$type,
-                "targetUrl" => $this->get('router')->generate('negocio_zona_logo')
+                "targetUrl" => $this->get('router')->generate('profile_negocios_panel_gestion_negocio_cambiar_logo')
             );
             // PERSISTANCE
             $negocio_id = $this->getRequest()->getSession()->get('negocio_id');

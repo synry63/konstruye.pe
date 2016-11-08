@@ -174,9 +174,9 @@ class Builder implements ContainerAwareInterface
                 'uri' => '#',
                 'label' => 'Gestion de Inmueble',
             ));
-            $menu['gestion-inmueble']->addChild('cambiar-datos-principales', array('label'=>'Cambiar Datos principales','uri' => '#'));
-            $menu['gestion-inmueble']->addChild('cambiar-datos-servicio', array('label'=>'Cambiar Datos Servicios','uri' => '#'));
-            $menu['gestion-inmueble']->addChild('cambiar-datos-generales', array('label'=>'Cambiar Datos Generales','uri' => '#'));
+            //$menu['gestion-inmueble']->addChild('cambiar-datos-principales', array('label'=>'Cambiar Datos principales','uri' => '#'));
+            $menu['gestion-inmueble']->addChild('cambiar-datos-servicio', array('label'=>'Ver Inmueble Servicios','route' => 'profile_negocios_panel_gestion_negocio_ver_inmuebles_servicios'));
+            $menu['gestion-inmueble']->addChild('cambiar-datos-generales', array('label'=>'Ver Inmueble Datos Generales','uri' => '#'));
         }
 
         return $menu;

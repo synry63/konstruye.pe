@@ -13,6 +13,7 @@ use AppBundle\Entity\Especialista;
 use AppBundle\Entity\Foto;
 use AppBundle\Entity\Inmueble;
 use AppBundle\Entity\Proveedor;
+use AppBundle\Entity\ServicioInmueble;
 use AppBundle\Form\Type\BannerType;
 use AppBundle\Form\Type\ConstructoraType;
 use AppBundle\Form\Type\EspecialistaType;
@@ -24,6 +25,7 @@ use AppBundle\Form\Type\ProveedorType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class PanelController extends Controller
 {
@@ -197,14 +199,17 @@ class PanelController extends Controller
         );
     }
     public function showPanelNegocioUserListFotosAction(Request $request){
+        $negocio_id = $this->getRequest()->getSession()->get('negocio_id');
+        if($negocio_id==null) return $this->redirectToRoute('profile_negocios_panel');
+        $negocio_current = $this->getDoctrine()->getRepository('AppBundle:Negocio')->find($negocio_id);
         $fotos = $this->getDoctrine()->getRepository('AppBundle:Foto')->findBy(
-            array(),
+            array('negocio'=>$negocio_current),
             array('sort' => 'ASC')
         );
 
         return $this->render(
             'FOSUserBundle:Profile:Panel/sort_fotos.html.twig',
-            array('fotos'=>$fotos)
+            array('fotos'=>$fotos,'negocio'=>$negocio_current)
         );
     }
     /** START GESTION PROYECTOS INMUEBLES  **/
@@ -219,7 +224,7 @@ class PanelController extends Controller
         );
         return $this->render(
             'FOSUserBundle:Profile:Panel/inmuebles_ver.html.twig',
-            array('inmuebles'=>$inmuebles)
+            array('inmuebles'=>$inmuebles,'negocio'=>$negocio_current)
         );
     }
     public function showPanelNegocioUserInmuebleAddAction(Request $request){
@@ -243,7 +248,7 @@ class PanelController extends Controller
         }
         return $this->render(
             'FOSUserBundle:Profile:Panel/inmueble_form.html.twig',
-            array('form'=>$form->createView())
+            array('form'=>$form->createView(),'negocio'=>$negocio_current)
         );
 
     }
@@ -265,11 +270,15 @@ class PanelController extends Controller
             $em->persist($inm);
             $em->flush();
             $request->getSession()->getFlashBag()->add('success', 'Proyecto actualizado !');
-            return $this->redirectToRoute('profile_negocios_panel_gestion_negocio_ver_inmuebles');
+            return $this->redirectToRoute('profile_negocios_panel_gestion_negocio_edit_inmueble',array('id'=>$id));
         }
         return $this->render(
             'FOSUserBundle:Profile:Panel/inmueble_form.html.twig',
-            array('form'=>$form->createView())
+            array(
+                'form'=>$form->createView(),
+                'negocio'=>$negocio_current,
+                'inmueble'=>$inm
+            )
         );
 
     }
@@ -277,10 +286,65 @@ class PanelController extends Controller
         $negocio_id = $this->getRequest()->getSession()->get('negocio_id');
         if($negocio_id==null) return $this->redirectToRoute('profile_negocios_panel');
         $negocio_current = $this->getDoctrine()->getRepository('AppBundle:Negocio')->find($negocio_id);
-
         $inm = $this->getDoctrine()->getRepository('AppBundle:Inmueble')->find($id);
 
+        $request->getSession()->getFlashBag()->add('success', 'Servicio agregado !');
+        return $this->redirectToRoute('profile_negocios_panel_gestion_negocio_ver_inmuebles_servicios');
 
+
+    }
+    public function showPanelNegocioUserInmuebleServiciosAction(Request $request){
+        $negocio_id = $this->getRequest()->getSession()->get('negocio_id');
+        if($negocio_id==null) return $this->redirectToRoute('profile_negocios_panel');
+        $negocio_current = $this->getDoctrine()->getRepository('AppBundle:Negocio')->find($negocio_id);
+
+        $servicios = $this->getDoctrine()->getRepository('AppBundle:Servicio')->findBy(
+            array(),
+            array('nombre'=>'ASC')
+        );
+        return $this->render(
+            'FOSUserBundle:Profile:Panel/inmuebles_servicios.html.twig',
+            array(
+                'negocio'=>$negocio_current,
+                'servicios'=>$servicios
+            )
+        );
+
+    }
+    public function showPanelNegocioUserInmuebleServicioAddAction(Request $request,$id){
+        $negocio_id = $this->getRequest()->getSession()->get('negocio_id');
+        if($negocio_id==null) return $this->redirectToRoute('profile_negocios_panel');
+        $negocio_current = $this->getDoctrine()->getRepository('AppBundle:Negocio')->find($negocio_id);
+
+        $servicio = $this->getDoctrine()->getRepository('AppBundle:Servicio')->find($id);
+        if($servicio!=null){
+            $servicioInmueble = new ServicioInmueble();
+            $servicioInmueble->setInmueble($negocio_current);
+            $servicioInmueble->setServicio($servicio);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($servicioInmueble);
+            $em->flush();
+            $request->getSession()->getFlashBag()->add('success', 'Servicio agregado !');
+            return $this->redirectToRoute('profile_negocios_panel_gestion_negocio_ver_inmuebles_servicios');
+        }
+
+    }
+    public function showPanelNegocioUserInmuebleServicioDeleteAction(Request $request,$id){
+        $negocio_id = $this->getRequest()->getSession()->get('negocio_id');
+        if($negocio_id==null) return $this->redirectToRoute('profile_negocios_panel');
+        $negocio_current = $this->getDoctrine()->getRepository('AppBundle:Negocio')->find($negocio_id);
+        $servicio = $this->getDoctrine()->getRepository('AppBundle:Servicio')->find($id);
+        $servicioInmueble = $this->getDoctrine()->getRepository('AppBundle:ServicioInmueble')->findOneBy(
+            array('inmueble'=>$negocio_current,'servicio'=>$servicio)
+        );
+        if($servicioInmueble!=null){
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($servicioInmueble);
+            $em->flush();
+
+            $request->getSession()->getFlashBag()->add('success', 'Servicio eliminado !');
+            return $this->redirectToRoute('profile_negocios_panel_gestion_negocio_ver_inmuebles_servicios');
+        }
     }
     public function showPanelNegocioUserSortAction(Request $request){
         if($request->isXmlHttpRequest()) {

@@ -172,6 +172,6 @@ profile_negocios_panel_gestion_negocio_ver_inmuebles_servicios:
 profile_negocios_panel_gestion_negocio_ver_inmuebles_servicio_add:
     path: /profile/panel/auth/inmueble/servicio/add
     defaults:  { _controller: AppBundle:Panel:showPanelNegocioUserInmuebleServicioAdd}
-profile_negocios_panel_gestion_negocio_ver_inmuebles_servicio_add:
+profile_negocios_panel_gestion_negocio_ver_inmuebles_servicio_delete:
     path: /profile/panel/auth/inmueble/servicio/delete
     defaults:  { _controller: AppBundle:Panel:showPanelNegocioUserInmuebleServicioDelete}

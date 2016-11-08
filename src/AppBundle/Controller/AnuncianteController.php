@@ -90,7 +90,7 @@ class AnuncianteController extends Controller
                 list($width, $height) = getimagesize( $filename );
                 $rand = rand();
                 move_uploaded_file($filename,  $imagePath . $rand);
-                $my_path = '/images/negocios/logo/temps/';
+                $my_path = '/images/negocios/anunciantes/temps/';
                 $response = array(
                     "status" => 'success',
                     "url" => $my_path.$rand,
@@ -135,7 +135,7 @@ class AnuncianteController extends Controller
         $angle = $_POST['rotation'];
 
         $jpeg_quality = 100;
-        $path = $this->get('kernel')->getRootDir() . '/../web/images/negocios/logo/' . $this->getRequest()->getBasePath();
+        $path = $this->get('kernel')->getRootDir() . '/../web/images/negocios/anunciantes/' . $this->getRequest()->getBasePath();
         $filename_out = "neogiciologo_".rand();
         $output_filename = $path.$filename_out;
 
@@ -211,7 +211,7 @@ class AnuncianteController extends Controller
             // finally output png image
             //imagepng($final_image, $output_filename.$type, $png_quality);
             imagejpeg($final_image, $output_filename.$type, $jpeg_quality);
-            $my_path = '/images/negocios/logo/';
+            $my_path = '/images/negocios/anunciantes/';
             $response = Array(
                 "status" => 'success',
                 "message" => 'cambio realizado, en unos segundo la pagina se va actualizar para visualizar el cambio',
