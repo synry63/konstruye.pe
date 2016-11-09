@@ -16,16 +16,18 @@
 
                         <a href="javascript:void(0)">
                             <div class="banner">
+
                                 {% if n.banner is not null %}
-                                    <img src="{{ vich_uploader_asset(n.negocio.banner, 'bannerFile','AppBundle\\Entity\\Banner') }}" alt="{{ n.negocio.nombre }}" />
+                                    <img src="{{ vich_uploader_asset(n.banner, 'bannerFile','AppBundle\\Entity\\Banner') }}" alt="{{ n.nombre }}" />
                                 {% else %}
                                     <img src="http://placehold.it/350x150" alt="{{ n.nombre }}" />
                                 {% endif %}
+
                             </div>
                             <div class="datos">
                                 <div class="middle-section">
                                     {% if n.logo is not null %}
-                                        <img width="80px" src="{{ vich_uploader_asset(n.negocio.logo, 'logoFile','AppBundle\\Entity\\Logo') }}" alt="{{ n.negocio.nombre }}" />
+                                        <img width="80px" src="{{ vich_uploader_asset(n.logo, 'logoFile','AppBundle\\Entity\\Logo') }}" alt="{{ n.nombre }}" />
                                     {% else %}
                                         <img src="http://placehold.it/80x80" alt="{{ n.nombre }}" />
                                     {% endif %}
