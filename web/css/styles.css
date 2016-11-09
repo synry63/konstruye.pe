@@ -840,7 +840,9 @@ hr.style-two {
 .btn-registrate {
     max-width: 105px;
 }
-
+.actif{
+    font-weight: bold!important;
+}
 
 /*=============
 Producto Detail Page
