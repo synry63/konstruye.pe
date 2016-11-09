@@ -33,12 +33,12 @@ class InmuebleRepository extends EntityRepository
                 ->andWhere('ng.general = :general')
                 ->setParameter('general', $general);
         }
-        if($structure!=null){
+        if(!empty($structure)){
             $qb->join('n.structure','s')
                 ->andWhere('s = :structure')
                 ->setParameter('structure', $structure);
         }
-        if($operacion!=null){
+        if(!empty($operacion)){
             $qb->join('n.operacion','o')
                 ->andWhere('o = :operacion')
                 ->setParameter('operacion', $operacion);
@@ -78,7 +78,140 @@ class InmuebleRepository extends EntityRepository
         $query = $qb->getQuery();
         return $query;
     }
-    public function getServiciosWithCount($structure = null,$operacion = null,$lugar = null){
+    public function getMinPrice($structure = null,$operacion = null,$lugar = null){
+        $em = $this->getEntityManager();
+        $qb = $em->createQueryBuilder();
+        $qb->select('MIN(n.precioSoles) as minPrice')
+            ->from('AppBundle\Entity\Inmueble', 'n');
+
+        if($lugar!=null && count($lugar)>0){
+            $number = count($lugar);
+            if($number==3){
+                $qb->andWhere('n.distrito = :distrito')
+                    ->setParameter('distrito', $lugar[0]);
+                $qb->andWhere('n.provincia = :provincia')
+                    ->setParameter('provincia', $lugar[1]);
+                $qb->andWhere('n.departamento = :departamento')
+                    ->setParameter('departamento', $lugar[2]);
+            }
+            else if($number==2){
+                $qb->andWhere('n.departamento = :departamento')
+                    ->setParameter('departamento', $lugar[0]);
+                $qb->andWhere('n.provincia = :provincia')
+                    ->setParameter('provincia', $lugar[1]);
+            }
+            else if($number==1){
+                $qb->andWhere('n.departamento = :departamento')
+                    ->setParameter('departamento', $lugar[0]);
+            }
+
+        }
+        if(!empty($structure)){
+            $qb->join('n.structure','st')
+                ->andWhere('st = :structure')
+                ->setParameter('structure', $structure);
+        }
+        if(!empty($operacion)){
+            $qb->join('n.operacion','o')
+                ->andWhere('o = :operacion')
+                ->setParameter('operacion', $operacion);
+        }
+
+        $query = $qb->getQuery();
+        return $query->getOneOrNullResult();
+    }
+    public function getMaxPrice($structure = null,$operacion = null,$lugar = null){
+        $em = $this->getEntityManager();
+        $qb = $em->createQueryBuilder();
+        $qb->select('MAX(n.precioSoles) as maxPrice')
+            ->from('AppBundle\Entity\Inmueble', 'n');
+
+        if($lugar!=null && count($lugar)>0){
+            $number = count($lugar);
+            if($number==3){
+                $qb->andWhere('n.distrito = :distrito')
+                    ->setParameter('distrito', $lugar[0]);
+                $qb->andWhere('n.provincia = :provincia')
+                    ->setParameter('provincia', $lugar[1]);
+                $qb->andWhere('n.departamento = :departamento')
+                    ->setParameter('departamento', $lugar[2]);
+            }
+            else if($number==2){
+                $qb->andWhere('n.departamento = :departamento')
+                    ->setParameter('departamento', $lugar[0]);
+                $qb->andWhere('n.provincia = :provincia')
+                    ->setParameter('provincia', $lugar[1]);
+            }
+            else if($number==1){
+                $qb->andWhere('n.departamento = :departamento')
+                    ->setParameter('departamento', $lugar[0]);
+            }
+
+        }
+        if(!empty($structure)){
+            $qb->join('n.structure','st')
+                ->andWhere('st = :structure')
+                ->setParameter('structure', $structure);
+        }
+        if(!empty($operacion)){
+            $qb->join('n.operacion','o')
+                ->andWhere('o = :operacion')
+                ->setParameter('operacion', $operacion);
+        }
+
+        $query = $qb->getQuery();
+        return $query->getOneOrNullResult();
+    }
+    public  function getGeneralesWithInmueblesCount($structure = null,$operacion = null,$lugar = null){
+        $em = $this->getEntityManager();
+        $qb = $em->createQueryBuilder();
+        $qb->select('g as general,count(g) cantidad')
+            ->from('AppBundle\Entity\General', 'g')
+            ->join('g.inmuebles','gi')
+            ->join('gi.inmueble','n')
+            ->where('n.isAccepted = :state')
+            ->setParameter('state', true);
+
+        if($lugar!=null && count($lugar)>0){
+            $number = count($lugar);
+            if($number==3){
+                $qb->andWhere('n.distrito = :distrito')
+                    ->setParameter('distrito', $lugar[0]);
+                $qb->andWhere('n.provincia = :provincia')
+                    ->setParameter('provincia', $lugar[1]);
+                $qb->andWhere('n.departamento = :departamento')
+                    ->setParameter('departamento', $lugar[2]);
+            }
+            else if($number==2){
+                $qb->andWhere('n.departamento = :departamento')
+                    ->setParameter('departamento', $lugar[0]);
+                $qb->andWhere('n.provincia = :provincia')
+                    ->setParameter('provincia', $lugar[1]);
+            }
+            else if($number==1){
+                $qb->andWhere('n.departamento = :departamento')
+                    ->setParameter('departamento', $lugar[0]);
+            }
+
+        }
+        if(!empty($structure)){
+            $qb->join('n.structure','st')
+                ->andWhere('st = :structure')
+                ->setParameter('structure', $structure);
+        }
+        if(!empty($operacion)){
+            $qb->join('n.operacion','o')
+                ->andWhere('o = :operacion')
+                ->setParameter('operacion', $operacion);
+        }
+
+        $qb->addGroupBy('general');
+        $qb->addOrderBy('g.nombre', 'ASC');
+        $query = $qb->getQuery();
+
+        return $query->getResult();
+    }
+    public  function getServiciosWithInmueblesCount($structure = null,$operacion = null,$lugar = null){
         $em = $this->getEntityManager();
         $qb = $em->createQueryBuilder();
         $qb->select('s as servicio,count(s) cantidad')
@@ -88,8 +221,41 @@ class InmuebleRepository extends EntityRepository
             ->where('n.isAccepted = :state')
             ->setParameter('state', true);
 
+        if($lugar!=null && count($lugar)>0){
+            $number = count($lugar);
+            if($number==3){
+                $qb->andWhere('n.distrito = :distrito')
+                    ->setParameter('distrito', $lugar[0]);
+                $qb->andWhere('n.provincia = :provincia')
+                    ->setParameter('provincia', $lugar[1]);
+                $qb->andWhere('n.departamento = :departamento')
+                    ->setParameter('departamento', $lugar[2]);
+            }
+            else if($number==2){
+                $qb->andWhere('n.departamento = :departamento')
+                    ->setParameter('departamento', $lugar[0]);
+                $qb->andWhere('n.provincia = :provincia')
+                    ->setParameter('provincia', $lugar[1]);
+            }
+            else if($number==1){
+                $qb->andWhere('n.departamento = :departamento')
+                    ->setParameter('departamento', $lugar[0]);
+            }
+
+        }
+        if(!empty($structure)){
+            $qb->join('n.structure','st')
+                ->andWhere('st = :structure')
+                ->setParameter('structure', $structure);
+        }
+        if(!empty($operacion)){
+            $qb->join('n.operacion','o')
+                ->andWhere('o = :operacion')
+                ->setParameter('operacion', $operacion);
+        }
+
         $qb->addGroupBy('servicio');
-        $qb->addOrderBy('servicio', 'ASC');
+        $qb->addOrderBy('s.nombre', 'ASC');
         $query = $qb->getQuery();
 
         return $query->getResult();
@@ -123,12 +289,12 @@ class InmuebleRepository extends EntityRepository
             }
 
         }
-        if($structure!=null){
+        if(!empty($structure)){
             $qb->join('n.structure','s')
                 ->andWhere('s = :structure')
                 ->setParameter('structure', $structure);
         }
-        if($operacion!=null){
+        if(!empty($operacion)){
             $qb->join('n.operacion','o')
                 ->andWhere('o = :operacion')
                 ->setParameter('operacion', $operacion);

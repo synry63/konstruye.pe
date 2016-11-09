@@ -42,7 +42,6 @@ class InmuebleType extends AbstractType
         $builder->add('description','Symfony\Component\Form\Extension\Core\Type\TextareaType',array(
             'constraints' => array(
                 new NotBlank(),
-
             ),
         ));
 
@@ -66,12 +65,21 @@ class InmuebleType extends AbstractType
             },
             'placeholder' => '',
         ));
+
+        $builder->add('precioSoles','Symfony\Component\Form\Extension\Core\Type\NumberType',array(
+            'constraints' => array(
+                new NotBlank(),
+
+            ),
+            'scale'=>2
+        ));
         $builder->add('nombre','Symfony\Component\Form\Extension\Core\Type\TextType',array(
             'constraints' => array(
                 new NotBlank(),
 
             )
         ));
+        $builder->add('web','Symfony\Component\Form\Extension\Core\Type\UrlType');
         $builder->add('direccion','Symfony\Component\Form\Extension\Core\Type\TextType',array(
             'constraints' => array(
                 new NotBlank(),

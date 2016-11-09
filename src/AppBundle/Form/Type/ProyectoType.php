@@ -24,11 +24,51 @@ use AppBundle\Form\EventListener\AddCityFieldSubscriber;
 use AppBundle\Form\EventListener\AddCountryFieldSubscriber;
 use AppBundle\Form\EventListener\AddProvinceFieldSubscriber;
 
-class ProveedorType extends AbstractType
+class ProyectoType extends AbstractType
 {
-
+    private $edit_mode;
+    public function __construct($edit_mode = false) {
+        $this->edit_mode = $edit_mode;
+    }
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        if($this->edit_mode){
+            $builder->add('imgFile', 'file',array(
+                'constraints' => array(
+                    new Image(array(
+                        'maxSize'       => '1M',
+                        /*'maxWidth'=>250,
+                        'maxHeight'=>250,
+                        'minWidth'=>250,
+                        'minHeight'=>250,*/
+                        'allowLandscape'=>true,
+                        'allowSquare'=>true,
+                        'allowPortrait'=>true,
+                        //'mimeTypes'=>array('image/jpeg')
+                    ))
+
+                ),
+            ));
+        }
+        else{
+            $builder->add('imgFile', 'file',array(
+                'constraints' => array(
+                    new NotBlank(),
+                    new Image(array(
+                        'maxSize'       => '1M',
+                        /*'maxWidth'=>250,
+                        'maxHeight'=>250,
+                        'minWidth'=>250,
+                        'minHeight'=>250,*/
+                        'allowLandscape'=>true,
+                        'allowSquare'=>true,
+                        'allowPortrait'=>true,
+                        //'mimeTypes'=>array('image/jpeg')
+                    ))
+
+                ),
+            ));
+        }
 
         $builder->add('description','Symfony\Component\Form\Extension\Core\Type\TextareaType',array(
             'constraints' => array(
@@ -42,44 +82,12 @@ class ProveedorType extends AbstractType
 
             )
         ));
-        $builder->add('web','Symfony\Component\Form\Extension\Core\Type\UrlType');
-        $builder->add('direccion','Symfony\Component\Form\Extension\Core\Type\TextType',array(
-            'constraints' => array(
-                new NotBlank(),
-
-            )
-        ));
-        $propertyPathToCity  = 'distrito';
-
-        $builder
-            ->addEventSubscriber(new AddCityFieldSubscriber($propertyPathToCity))
-            ->addEventSubscriber(new AddProvinceFieldSubscriber($propertyPathToCity))
-            ->addEventSubscriber(new AddCountryFieldSubscriber($propertyPathToCity))
-        ;
-        $builder->add('telefono','Symfony\Component\Form\Extension\Core\Type\TextType',array(
-            'constraints' => array(
-                new NotBlank(),
-
-            )
-        ));
-        /*$builder->add('web');
-        $builder->add('facebookLink');
-        $builder->add('twitterLink');
-        $builder->add('pinteresLink');
-        $builder->add('instagramLink');
-        $builder->add('googleLink');*/
-        $builder->add('email', 'Symfony\Component\Form\Extension\Core\Type\EmailType',array(
-            'constraints' => array(
-                new NotBlank(),
-
-            )
-        ));
         $builder->add('submit', 'Symfony\Component\Form\Extension\Core\Type\SubmitType');
     }
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Proveedor',
+            'data_class' => 'AppBundle\Entity\Proyecto',
         ));
     }
     /*public function getParent()

@@ -10,7 +10,9 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\ComentarioNegocio;
 use AppBundle\Entity\ConstructoraInmobiliaria;
 use AppBundle\Entity\Especialista;
+use AppBundle\Entity\Operacion;
 use AppBundle\Entity\Proveedor;
+use AppBundle\Entity\Structure;
 use AppBundle\Form\Type\ComentarioNegocioType;
 use AppBundle\Form\Type\CotizacionType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -146,24 +148,40 @@ class NegocioController extends Controller
             }
             $negocios = $this->getDoctrine()->getRepository('AppBundle:Inmueble')->getNegocios($dormi,$lugar,$precio_min,$precio_max,$servicio_id,$general_id,$structure_id,$operacion_id);
             $maxDormiWithCount = $this->getDoctrine()->getRepository('AppBundle:Inmueble')->getMaxDormiWithCount($structure_id,$operacion_id,$lugar);
-            $servicios = $this->getDoctrine()->getRepository('AppBundle:Servicio')->findBy(
+            $servicios = $this->getDoctrine()->getRepository('AppBundle:Inmueble')->getServiciosWithInmueblesCount($structure_id,$operacion_id,$lugar);
+            $generales = $this->getDoctrine()->getRepository('AppBundle:Inmueble')->getGeneralesWithInmueblesCount($structure_id,$operacion_id,$lugar);
+            //if($precio_max==null && $precio_min ==null){ // if params price not set only
+                $precio_max_default = $this->getDoctrine()->getRepository('AppBundle:Inmueble')->getMaxPrice($structure_id,$operacion_id,$lugar)['maxPrice'];
+                $precio_min_default = $this->getDoctrine()->getRepository('AppBundle:Inmueble')->getMinPrice($structure_id,$operacion_id,$lugar)['minPrice'];
+                $renderOut['precio_max_default'] = $precio_max_default;
+                $renderOut['precio_min_default'] = $precio_min_default;
+            //}
+            /*$servicios = $this->getDoctrine()->getRepository('AppBundle:Servicio')->findBy(
                 array(),
                 array('nombre'=>'ASC')
-            );
-            $generales = $this->getDoctrine()->getRepository('AppBundle:General')->findBy(
+            );*/
+            /*$generales = $this->getDoctrine()->getRepository('AppBundle:General')->findBy(
                 array(),
                 array('nombre'=>'ASC')
-            );
+            );*/
             $structures = $this->getDoctrine()->getRepository('AppBundle:Structure')->findBy(
                 array(),
                 array('nombre'=>'ASC')
             );
+            $temp_s = new Structure();
+            $temp_s->setId(0);
+            $temp_s->setNombre('Todos');
+            array_unshift($structures, $temp_s);
             //$aa = $this->getDoctrine()->getRepository('AppBundle:Inmueble')->getServiciosWithCount();
             //var_dump($aa);
             $operaciones = $this->getDoctrine()->getRepository('AppBundle:Operacion')->findBy(
                 array(),
                 array('nombre'=>'ASC')
             );
+            $temp_o = new Operacion();
+            $temp_o->setId(0);
+            $temp_o->setNombre('Todos');
+            array_unshift($operaciones, $temp_o);
             //var_dump($maxDormiWithCount);
             //$categorias = $this->getDoctrine()->getRepository('AppBundle:CategoriaListado')->getCategoriasChildren('inmueble');
             $renderOut['negocios'] = $negocios;

@@ -240,7 +240,7 @@ class Negocio
      * @ORM\Column(type="string",nullable=true, length=255)
      *
      */
-    private $googleMapFormatedAddress;
+    protected $googleMapFormatedAddress;
 
     /**
      * @ORM\OneToMany(targetEntity="Proyecto", mappedBy="negocio")

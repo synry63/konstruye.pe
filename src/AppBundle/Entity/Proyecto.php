@@ -72,7 +72,12 @@ class Proyecto
      * @var \DateTime
      */
     private $registeredAt;
-
+    /**
+     * @ORM\Column(type="datetime")
+     *
+     * @var \DateTime
+     */
+    private $updatedFotoAt;
     /**
      * @return mixed
      */
@@ -121,7 +126,7 @@ class Proyecto
         if ($image) {
             // It is required that at least one field changes if you are using doctrine
             // otherwise the event listeners won't be called and the file is lost
-            $this->updatedAt = new \DateTime('now');
+            $this->updatedFotoAt = new \DateTime('now');
         }
 
         return $this;

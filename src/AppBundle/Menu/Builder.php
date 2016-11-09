@@ -87,7 +87,7 @@ class Builder implements ContainerAwareInterface
             'label'=>'Ordenar Imagenes',
             'route' => 'profile_negocios_panel_gestion_negocio_list_fotos',
             'extras' => array(
-                'icon' => 'fa fa-picture-o'
+                'icon' => 'fa fa-plus'
             )
         ));
         $menu['gestion-negocio']->addChild('cambiar-ubicacion', array(
@@ -137,15 +137,24 @@ class Builder implements ContainerAwareInterface
             ));
             $menu['gestion-proyectos']->addChild('ver-proyectos', array(
                 'label'=>'ver Proyectos',
-                'route' => 'profile_negocios_panel_gestion_negocio_ver_inmuebles'
+                'route' => 'profile_negocios_panel_gestion_negocio_ver_inmuebles',
+                'extras' => array(
+                    'icon' => 'fa fa-building'
+                )
             ));
             $menu['gestion-proyectos']->addChild('agregar-proyecto', array(
                 'label'=>'Agregar Proyecto',
-                'route' => 'profile_negocios_panel_gestion_negocio_add_inmueble'
+                'route' => 'profile_negocios_panel_gestion_negocio_add_inmueble',
+                'extras' => array(
+                    'icon' => 'fa fa-plus'
+                )
             ));
             $menu['gestion-proyectos']->addChild('ordenar-proyecto', array(
                 'label'=>'Ornedar Proyecto',
-                'uri' => '#'
+                'uri' => '#',
+                'extras' => array(
+                    'icon' => 'fa fa-sort'
+                )
             ));
         }
         else if($negocio instanceof Especialista){
@@ -158,15 +167,26 @@ class Builder implements ContainerAwareInterface
             ));
             $menu['gestion-proyectos']->addChild('ver-proyectos', array(
                 'label'=>'ver Proyectos',
-                'uri' => '#'
+                'route' => 'profile_negocios_panel_gestion_negocio_ver_proyectos',
+                'extras' => array(
+                    'icon' => 'fa fa-building'
+                )
+
             ));
             $menu['gestion-proyectos']->addChild('agregar-proyecto', array(
                 'label'=>'Agregar Proyecto',
-                'uri' => '#'
+                'route' => 'profile_negocios_panel_gestion_negocio_add_proyecto',
+                'extras' => array(
+                    'icon' => 'fa fa-plus'
+                )
+
             ));
             $menu['gestion-proyectos']->addChild('ordenar-proyecto', array(
                 'label'=>'Ornedar Proyecto',
-                'uri' => '#'
+                'route' => 'profile_negocios_panel_gestion_negocio_list_proyectos',
+                'extras' => array(
+                    'icon' => 'fa fa-sort'
+                )
             ));
         }
         else if($negocio instanceof Inmueble){

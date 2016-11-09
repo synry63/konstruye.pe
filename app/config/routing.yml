@@ -190,3 +190,6 @@ profile_negocios_panel_gestion_negocio_edit_proyecto:
 profile_negocios_panel_gestion_negocio_delete_proyecto:
     path: /profile/panel/auth/proyectos/{id}/delete
     defaults:  { _controller: AppBundle:Panel:showPanelNegocioUserProyectoDelete}
+profile_negocios_panel_gestion_negocio_edit_proyecto_fotos:
+    path: /profile/panel/auth/proyecto/{id}/fotos
+    defaults:  { _controller: AppBundle:Panel:showPanelNegocioUserProyectoFotosEdit}

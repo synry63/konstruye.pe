@@ -28,6 +28,7 @@ class AnuncianteController extends Controller
 {
 
     public function showPanelNegocioUserAnuncianteAction(Request $request){
+        $user = $this->container->get('security.context')->getToken()->getUser();
         $negocio_id = $this->getRequest()->getSession()->get('negocio_id');
         if($negocio_id==null) return $this->redirectToRoute('profile_negocios_panel');
         $negocio_current = $this->getDoctrine()->getRepository('AppBundle:Negocio')->find($negocio_id);

@@ -11,17 +11,21 @@ use AppBundle\Entity\Banner;
 use AppBundle\Entity\ConstructoraInmobiliaria;
 use AppBundle\Entity\Especialista;
 use AppBundle\Entity\Foto;
+use AppBundle\Entity\FotoProyecto;
 use AppBundle\Entity\Inmueble;
 use AppBundle\Entity\Proveedor;
+use AppBundle\Entity\Proyecto;
 use AppBundle\Entity\ServicioInmueble;
 use AppBundle\Form\Type\BannerType;
 use AppBundle\Form\Type\ConstructoraType;
 use AppBundle\Form\Type\EspecialistaType;
+use AppBundle\Form\Type\FotoProyectoType;
 use AppBundle\Form\Type\FotoType;
 use AppBundle\Form\Type\GoogleMapType;
 use AppBundle\Form\Type\InmuebleType;
 use AppBundle\Form\Type\LogoType;
 use AppBundle\Form\Type\ProveedorType;
+use AppBundle\Form\Type\ProyectoType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -29,7 +33,25 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 class PanelController extends Controller
 {
-    public function menuAllowedAction(){
+    private function getArrayAcordingToTypeOf($n){
+        $arr_out = ['inmueble'=>false,'constructura-inmobiliaria'=>false,'especialista'=>false,'proveedor'=>false];
+        if($n instanceof Inmueble){
+            $arr_out['inmueble'] = true;
+        }
+        else if($n instanceof ConstructoraInmobiliaria){
+            $arr_out['constructura-inmobiliaria'] = true;
+        }
+        else if($n instanceof Proveedor){
+            $arr_out['proveedor'] = true;
+        }
+        else if($n instanceof Especialista){
+            $arr_out['especialista'] = true;
+        }
+
+        return $arr_out;
+    }
+
+    /*public function menuAllowedAction(){
         $menu_items = array('dashboard'=>true,'negocio'=>true,'proyectos'=>false,'inmueble'=>false,'productos'=>false);
 
         $negocio_id = $this->getRequest()->getSession()->get('negocio_id');
@@ -44,7 +66,7 @@ class PanelController extends Controller
         return $this->render('FOSUserBundle:Profile:Panel/Menu/menu.html.twig',
             array('menu'=>$menu_items)
         );
-    }
+    }*/
 
     public function setPanelNegocioAction(Request $request,$slug_negocio){
         $user = $this->container->get('security.context')->getToken()->getUser();
@@ -75,7 +97,7 @@ class PanelController extends Controller
         //$menu = $this->menuAllowedAction($negocio_current);
         return $this->render(
             'FOSUserBundle:Profile:Panel/dashboard.html.twig',
-            array('negocio'=>$negocio_current)
+            array('negocio'=>$negocio_current,'tipo'=>$this->getArrayAcordingToTypeOf($negocio_current))
         );
     }
     public function showPanelNegocioUserDatosAction(Request $request){
@@ -107,7 +129,7 @@ class PanelController extends Controller
         }
         return $this->render(
             'FOSUserBundle:Profile:Panel/cambiar_datos.html.twig',
-            array('negocio'=>$negocio_current,'form'=>$form->createView())
+            array('negocio'=>$negocio_current,'form'=>$form->createView(),'tipo'=>$this->getArrayAcordingToTypeOf($negocio_current))
         );
     }
     public function showPanelNegocioUserBannerAction(Request $request){
@@ -133,7 +155,7 @@ class PanelController extends Controller
         }
         return $this->render(
             'FOSUserBundle:Profile:Panel/cambiar_banner.html.twig',
-            array('negocio'=>$negocio_current,'banner'=>$banner,'form'=>$form->createView())
+            array('negocio'=>$negocio_current,'banner'=>$banner,'form'=>$form->createView(),'tipo'=>$this->getArrayAcordingToTypeOf($negocio_current))
         );
     }
     public function showPanelNegocioUserFotosAction(Request $request){
@@ -157,7 +179,7 @@ class PanelController extends Controller
         }
         return $this->render(
             'FOSUserBundle:Profile:Panel/cambiar_fotos.html.twig',
-            array('negocio'=>$negocio_current,'fotos'=>$fotos,'form'=>$form->createView())
+            array('negocio'=>$negocio_current,'fotos'=>$fotos,'form'=>$form->createView(),'tipo'=>$this->getArrayAcordingToTypeOf($negocio_current))
         );
     }
     public function showPanelNegocioUserFotoDeleteAction(Request $request,$id){
@@ -195,7 +217,7 @@ class PanelController extends Controller
         }
         return $this->render(
             'FOSUserBundle:Profile:Panel/cambiar_mapa.html.twig',
-            array('form'=>$form->createView(),'negocio'=>$negocio_current)
+            array('form'=>$form->createView(),'negocio'=>$negocio_current,'tipo'=>$this->getArrayAcordingToTypeOf($negocio_current))
         );
     }
     public function showPanelNegocioUserListFotosAction(Request $request){
@@ -209,7 +231,7 @@ class PanelController extends Controller
 
         return $this->render(
             'FOSUserBundle:Profile:Panel/sort_fotos.html.twig',
-            array('fotos'=>$fotos,'negocio'=>$negocio_current)
+            array('fotos'=>$fotos,'negocio'=>$negocio_current,'tipo'=>$this->getArrayAcordingToTypeOf($negocio_current))
         );
     }
     /** START GESTION PROYECTOS INMUEBLES  **/
@@ -224,7 +246,7 @@ class PanelController extends Controller
         );
         return $this->render(
             'FOSUserBundle:Profile:Panel/inmuebles_ver.html.twig',
-            array('inmuebles'=>$inmuebles,'negocio'=>$negocio_current)
+            array('inmuebles'=>$inmuebles,'negocio'=>$negocio_current,'tipo'=>$this->getArrayAcordingToTypeOf($negocio_current))
         );
     }
     public function showPanelNegocioUserInmuebleAddAction(Request $request){
@@ -248,7 +270,7 @@ class PanelController extends Controller
         }
         return $this->render(
             'FOSUserBundle:Profile:Panel/inmueble_form.html.twig',
-            array('form'=>$form->createView(),'negocio'=>$negocio_current)
+            array('form'=>$form->createView(),'negocio'=>$negocio_current,'tipo'=>$this->getArrayAcordingToTypeOf($negocio_current))
         );
 
     }
@@ -277,7 +299,8 @@ class PanelController extends Controller
             array(
                 'form'=>$form->createView(),
                 'negocio'=>$negocio_current,
-                'inmueble'=>$inm
+                'inmueble'=>$inm,
+                'tipo'=>$this->getArrayAcordingToTypeOf($negocio_current)
             )
         );
 
@@ -306,7 +329,8 @@ class PanelController extends Controller
             'FOSUserBundle:Profile:Panel/inmuebles_servicios.html.twig',
             array(
                 'negocio'=>$negocio_current,
-                'servicios'=>$servicios
+                'servicios'=>$servicios,
+                'tipo'=>$this->getArrayAcordingToTypeOf($negocio_current)
             )
         );
 
@@ -345,6 +369,130 @@ class PanelController extends Controller
             $request->getSession()->getFlashBag()->add('success', 'Servicio eliminado !');
             return $this->redirectToRoute('profile_negocios_panel_gestion_negocio_ver_inmuebles_servicios');
         }
+    }
+    public function showPanelNegocioUserProyectosAction(Request $request){
+        $negocio_id = $this->getRequest()->getSession()->get('negocio_id');
+        if($negocio_id==null) return $this->redirectToRoute('profile_negocios_panel');
+        $negocio_current = $this->getDoctrine()->getRepository('AppBundle:Negocio')->find($negocio_id);
+
+        $proyectos = $this->getDoctrine()->getRepository('AppBundle:Proyecto')->findBy(
+            array('negocio'=>$negocio_current),
+            array('sort'=>'ASC')
+        );
+        return $this->render(
+            'FOSUserBundle:Profile:Panel/proyectos.html.twig',
+            array(
+                'negocio'=>$negocio_current,
+                'proyectos'=>$proyectos,
+                'tipo'=>$this->getArrayAcordingToTypeOf($negocio_current)
+            )
+        );
+    }
+    public function showPanelNegocioUserProyectoDeleteAction(Request $request,$id){
+        $negocio_id = $this->getRequest()->getSession()->get('negocio_id');
+        if($negocio_id==null) return $this->redirectToRoute('profile_negocios_panel');
+        $negocio_current = $this->getDoctrine()->getRepository('AppBundle:Negocio')->find($negocio_id);
+    }
+    public function showPanelNegocioUserProyectoAddAction(Request $request){
+        $negocio_id = $this->getRequest()->getSession()->get('negocio_id');
+        if($negocio_id==null) return $this->redirectToRoute('profile_negocios_panel');
+        $negocio_current = $this->getDoctrine()->getRepository('AppBundle:Negocio')->find($negocio_id);
+        $proyecto = new Proyecto();
+        $form = $this->createForm(new ProyectoType(), $proyecto);
+        $form->handleRequest($request);
+        if ($form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $proyecto->setNegocio($negocio_current);
+            $slug = $this->get('slugify')->slugify($proyecto->getNombre());
+            $proyecto->setSlug($slug);
+            $em->persist($proyecto);
+            $em->flush();
+            $request->getSession()->getFlashBag()->add('success', 'Proyecto agregado !');
+            return $this->redirectToRoute('profile_negocios_panel_gestion_negocio_ver_proyectos');
+        }
+        return $this->render(
+            'FOSUserBundle:Profile:Panel/proyecto_form.html.twig',
+            array(
+                'form'=>$form->createView(),
+                'negocio'=>$negocio_current,
+                'tipo'=>$this->getArrayAcordingToTypeOf($negocio_current)
+            )
+        );
+
+    }
+    public function showPanelNegocioUserProyectoFotosEditAction(Request $request,$id){
+        $negocio_id = $this->getRequest()->getSession()->get('negocio_id');
+        if($negocio_id==null) return $this->redirectToRoute('profile_negocios_panel');
+        $negocio_current = $this->getDoctrine()->getRepository('AppBundle:Negocio')->find($negocio_id);
+        $proyecto = $this->getDoctrine()->getRepository('AppBundle:Proyecto')->find($id);
+        $fotos_proyectos = $this->getDoctrine()->getRepository('AppBundle:FotoProyecto')->findBy(
+            array('proyecto'=>$proyecto),
+            array('sort'=>'ASC')
+        );
+        $fp = new FotoProyecto();
+        $form = $this->createForm(new FotoProyectoType(), $fp);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $fp->setProyecto($proyecto);
+            $em = $this->getDoctrine()->getManager();
+            //$logo->setProveedor($proveedor);
+            $em->persist($fp);
+            $em->flush();
+            $request->getSession()->getFlashBag()->add('success', 'Su foto fue guardada !');
+            return $this->redirectToRoute('profile_negocios_panel_gestion_negocio_edit_proyecto_fotos',array('id'=>$id));
+        }
+
+        return $this->render(
+            'FOSUserBundle:Profile:Panel/proyecto_fotos_edit.html.twig',
+            array(
+                'form'=>$form->createView(),
+                'fotos'=>$fotos_proyectos,
+                'negocio'=>$negocio_current,
+                'tipo'=>$this->getArrayAcordingToTypeOf($negocio_current)
+            )
+        );
+    }
+    public function showPanelNegocioUserProyectoEditAction(Request $request,$id){
+        $negocio_id = $this->getRequest()->getSession()->get('negocio_id');
+        if($negocio_id==null) return $this->redirectToRoute('profile_negocios_panel');
+        $negocio_current = $this->getDoctrine()->getRepository('AppBundle:Negocio')->find($negocio_id);
+        $proyecto = $this->getDoctrine()->getRepository('AppBundle:Proyecto')->find($id);
+        $form = $this->createForm(new ProyectoType(true), $proyecto);
+        $form->handleRequest($request);
+        if ($form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $proyecto->setNegocio($negocio_current);
+            $slug = $this->get('slugify')->slugify($proyecto->getNombre());
+            $proyecto->setSlug($slug);
+            $em->persist($proyecto);
+            $em->flush();
+            $request->getSession()->getFlashBag()->add('success', 'Proyecto actualizado !');
+            return $this->redirectToRoute('profile_negocios_panel_gestion_negocio_edit_proyecto',array('id'=>$id));
+        }
+        return $this->render(
+            'FOSUserBundle:Profile:Panel/proyecto_form.html.twig',
+            array(
+                'form'=>$form->createView(),
+                'proyecto'=>$proyecto,
+                'negocio'=>$negocio_current,
+                'tipo'=>$this->getArrayAcordingToTypeOf($negocio_current)
+            )
+        );
+
+    }
+    public function showPanelNegocioUserListProyectosAction(Request $request){
+        $negocio_id = $this->getRequest()->getSession()->get('negocio_id');
+        if($negocio_id==null) return $this->redirectToRoute('profile_negocios_panel');
+        $negocio_current = $this->getDoctrine()->getRepository('AppBundle:Negocio')->find($negocio_id);
+        $proyectos = $this->getDoctrine()->getRepository('AppBundle:Proyecto')->findBy(
+            array('negocio'=>$negocio_current),
+            array('sort' => 'ASC')
+        );
+
+        return $this->render(
+            'FOSUserBundle:Profile:Panel/sort_proyectos.html.twig',
+            array('proyectos'=>$proyectos,'negocio'=>$negocio_current,'tipo'=>$this->getArrayAcordingToTypeOf($negocio_current))
+        );
     }
     public function showPanelNegocioUserSortAction(Request $request){
         if($request->isXmlHttpRequest()) {

@@ -42,6 +42,7 @@ class ConstructoraType extends AbstractType
 
             )
         ));
+        $builder->add('web','Symfony\Component\Form\Extension\Core\Type\UrlType');
         $builder->add('direccion','Symfony\Component\Form\Extension\Core\Type\TextType',array(
             'constraints' => array(
                 new NotBlank(),

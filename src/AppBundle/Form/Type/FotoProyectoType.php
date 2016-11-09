@@ -24,15 +24,13 @@ use AppBundle\Form\EventListener\AddCityFieldSubscriber;
 use AppBundle\Form\EventListener\AddCountryFieldSubscriber;
 use AppBundle\Form\EventListener\AddProvinceFieldSubscriber;
 
-class AnuncianteType extends AbstractType
+class FotoProyectoType extends AbstractType
 {
-    private $current_user;
-    public function __construct($user = null) {
-        $this->current_user = $user;
-    }
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-
+        $builder->add('nombre');
+        $builder->add('videoUrl','Symfony\Component\Form\Extension\Core\Type\UrlType');
         $builder->add('imgFile', 'file',array(
             'constraints' => array(
                 new NotBlank(),
@@ -55,7 +53,7 @@ class AnuncianteType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Anunciante',
+            'data_class' => 'AppBundle\Entity\FotoProyecto',
         ));
     }
     /*public function getParent()

@@ -36,6 +36,12 @@ class FotoProyecto
     private $imgFile;
 
     /**
+     * @ORM\Column(type="string")
+     * @Assert\NotBlank()
+     */
+    private $nombre;
+
+    /**
      * @ORM\Column(type="string",nullable=true, length=255)
      */
     private $videoUrl;
@@ -59,6 +65,11 @@ class FotoProyecto
     private $proyecto;
 
     /**
+     * @ORM\Column(type="integer",nullable=true)
+     */
+    private $sort;
+
+    /**
      * @ORM\Column(type="text",nullable=true)
      */
     private $description;
@@ -76,6 +87,54 @@ class FotoProyecto
     public function getDescription()
     {
         return $this->description;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getNombre()
+    {
+        return $this->nombre;
+    }
+
+    /**
+     * @param mixed $nombre
+     */
+    public function setNombre($nombre)
+    {
+        $this->nombre = $nombre;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * @param \DateTime $updatedAt
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSort()
+    {
+        return $this->sort;
+    }
+
+    /**
+     * @param mixed $sort
+     */
+    public function setSort($sort)
+    {
+        $this->sort = $sort;
     }
 
 
