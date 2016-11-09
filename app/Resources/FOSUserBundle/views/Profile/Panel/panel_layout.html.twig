@@ -30,12 +30,15 @@
             <div class="container-fluid top-seccion top-responsive">
                 <div class="row">
                     <div class="header-logo">
-                        {% if negocio.id is odd %}
-                            <h1 class="hl-p">{{ negocio.nombre|truncate(1,false,"") }}</h1>
-                        {% else %}
+                        {% if tipo.inmueble == true %}
                             <h1 class="hl-i">{{ negocio.nombre|truncate(1,false,"") }}</h1>
+                                {% elseif tipo.especialista == true %}
+                                    <h1 class="hl-e">{{ negocio.nombre|truncate(1,false,"") }}</h1>
+                                {% elseif tipo.proveedor == true %}
+                                    <h1 class="hl-p">{{ negocio.nombre|truncate(1,false,"") }}</h1>
+                        {% else %}
+                            <h1 class="hl-c">{{ negocio.nombre|truncate(1,false,"") }}</h1>
                         {% endif %}
-
 
                         <a href="{{ path('homepage') }}"><img src="{{ asset('images/logo-min-white.svg') }}" alt=""/></a>
                     </div>

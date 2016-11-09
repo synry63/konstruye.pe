@@ -1175,12 +1175,19 @@ Dashboard Negocios
     text-transform: uppercase;
     margin: 0;
 }
-.hl-p{
+.header-logo .hl-p{
     background: #009FE3;
 }
-.hl-i{
+.header-logo .hl-i{
     background: #5CB85C;
 }
+.header-logo .hl-c{
+    background: #c30000;
+}
+.header-logo .hl-e{
+    background: #d58512;
+}
+
 
 .user-welcome{
     padding: 10px;
@@ -1394,6 +1401,21 @@ Dashboard Negocios
     top: 9px !important;
     width: 70% !important;
 }
+
+.servicios{
+    text-align: center;
+    padding: 10px;
+}
+.servicios a{
+    text-decoration: none;
+    color: gray;
+    text-transform: capitalize;
+}
+.servicios a.active{
+    color: #009FE3;
+
+}
+
 /*=============
 Index
 =============*/

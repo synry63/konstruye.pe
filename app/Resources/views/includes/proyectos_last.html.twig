@@ -1,17 +1,47 @@
-<ul>
-    {% for p in proyectos %}
-        <li class="link_proyecto">
-            <a href="javascript:void(0)" data-url="{{ path('show_fotos_proyecto',{'id':p.id}) }}">
-                <div class="col-md-8">
-                    <img src="{{ vich_uploader_asset(p, 'imgFile') }}" alt="" />
-                </div>
-                {#
-                <div class="col-md-3" style="padding-top:15%">
-                    <span>{{ p.nombre }}</span>
-                </div>
-                #}
+{#<ul>#}
+    {#{% for p in proyectos %}#}
+        {#<li class="link_proyecto">#}
+            {#<a href="javascript:void(0)" data-url="{{ path('show_fotos_proyecto',{'id':p.id}) }}">#}
+                {#<div class="col-md-8">#}
+                    {#<img src="{{ vich_uploader_asset(p, 'imgFile') }}" alt="" />#}
+                {#</div>#}
+                {#&#123;&#35;#}
+                {#<div class="col-md-3" style="padding-top:15%">#}
+                    {#<span>{{ p.nombre }}</span>#}
+                {#</div>#}
+                {#&#35;&#125;#}
 
-            </a>
-        </li>
-    {% endfor %}
-</ul>
+            {#</a>#}
+        {#</li>#}
+    {#{% endfor %}#}
+{#</ul>#}
+
+
+<div class="flexslider" style="margin: 10px 0">
+    <ul class="slides">
+        {% for p in proyectos %}
+            <li  class="link_proyecto">
+                <a href="javascript:void(0)" data-url="{{ path('show_fotos_proyecto',{'id':p.id}) }}">
+                    <img src="{{ vich_uploader_asset(p, 'imgFile') }}" />
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+
+<script src="{{ asset('js/jquery-1.11.0.min.js') }}" type="text/javascript"></script>
+
+
+<script>
+    $(window).load(function() {
+        $('.flexslider').flexslider({
+            animation: "slide",
+            controlNav: false,
+            animationLoop: false,
+            itemWidth: 160,
+            itemMargin: 5,
+            minItems: 2,
+            maxItems: 6
+        });
+    });
+</script>

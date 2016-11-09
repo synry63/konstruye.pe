@@ -1,1 +1,45 @@
-{{ dump(servicios) }}
+{% extends "FOSUserBundle::Profile/Panel/panel_layout.html.twig" %}
+
+
+{% block content_section %}
+
+    <div class="container">
+        <div class="row" style="margin: 20px 0">
+
+            {% for s in servicios %}
+                {% set founded = false %}
+                    {% for sn in negocio.sevicios if not founded %}
+                        {% if s.id == sn.servicio.id %}
+                            {% set founded = true %}
+                        {% endif %}
+                    {% endfor %}
+                {% if founded == true %}
+                    <div class="col-md-2 servicios">
+                        <a class="active" href="{{ path('profile_negocios_panel_gestion_negocio_ver_inmuebles_servicio_delete',{'id':s.id}) }}">
+                            <div>
+                                <i style="font-size: 50px;" class="fa fa-bullhorn" aria-hidden="true"></i>
+                            </div>
+                            {{ s.nombre }}
+                        </a>
+                    </div>
+                {% else %}
+                    <div class="col-md-2 servicios">
+                        <a href="{{ path('profile_negocios_panel_gestion_negocio_ver_inmuebles_servicio_add',{'id':s.id}) }}">
+                            <div>
+                                <i style="font-size: 50px;" class="fa fa-bullhorn" aria-hidden="true"></i>
+                            </div>
+                            {{ s.nombre }}
+                        </a>
+                    </div>
+                {% endif %}
+
+
+
+
+
+            {% endfor %}
+
+
+        </div>
+    </div>
+{% endblock %}

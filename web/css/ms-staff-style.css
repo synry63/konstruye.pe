@@ -6,7 +6,6 @@
 	overflow: hidden;
 	margin: 25px auto;
 	position: relative;
-    height: 200px;
 }
 
 .ms-staff-carousel .ms-view{
@@ -42,10 +41,9 @@
 	color:#222222;
 }
 	.ms-staff-carousel .ms-staff-info h3{
-		font-size: 14pt;
+		font-weight: 300;
+		font-size: 22pt;
 		margin:0px;
-        font-family: 'Open Sans', sans-serif;
-        font-weight: 100;
 	}
 	
 	.ms-staff-carousel .ms-staff-info h4{
@@ -89,10 +87,9 @@
 
 .ms-staff-carousel.ms-round .ms-slide-bgcont {
 	border-radius: 5000px;
-	border: solid 8px rgba(48, 189, 239,.3);
+	border: solid 8px rgb(230, 230, 230);
 	margin: 0 -8px;
 }
-
 
 .ms-staff-carousel.ms-round .ms-nav-prev,
 .ms-staff-carousel.ms-round .ms-nav-next {

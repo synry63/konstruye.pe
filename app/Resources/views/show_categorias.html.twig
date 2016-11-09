@@ -6,6 +6,7 @@
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset('css/jquery.rateyo.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/masterslider.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/flexslider.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     {#Magnivi Popup#}
     <link rel="stylesheet" href="{{ asset('css/magnific-popup.css') }}">
@@ -21,7 +22,10 @@
         <div class="container-breadcrumb marging-top">
             {{ wo_render_breadcrumbs() }}
         </div>
+
         <div class="master-slider ms-skin-default" id="masterslider">
+
+
 
             {% if fotos|length > 0 %}
                 {% for nfo in fotos  %}
@@ -34,7 +38,6 @@
                     </div>
                 {% endfor %}
             {% else %}
-
                 <div class="ms-slide">
                     <img src="http://placehold.it/1170x350" alt="">
                 </div>
@@ -47,7 +50,10 @@
 
             {% endif %}
 
+
         </div>
+
+
         <div class="datos-detail">
             <div class="col-md-10 col-md-offset-1">
                 <div class="col-md-2 logo">
@@ -104,82 +110,7 @@
     </div>
 
 
-    {#
-    <div class="container">
-            <div class="col-md-4 logo_detail_section">
-                <img width="200" src="{{ vich_uploader_asset(negocio.logo, 'logoFile','AppBundle\\Entity\\Logo') }}" alt="" />
-                <div id="rateYo" data-rating="{{ moy }}"></div>
-                <p><i class="fa fa-map-marker" aria-hidden="true"></i> {{ negocio.direccion }}</p>
-                <p>{{ negocio.distrito.nombre }} - {{ negocio.departamento.nombre }}</p>
-                <p><i class="fa fa-phone" aria-hidden="true"></i> {{ negocio.telefono }}</p>
-                <p><i class="fa fa-globe" aria-hidden="true"></i> {{ negocio.web }}</p>
-                <p><i class="fa fa-envelope" aria-hidden="true"></i> {{ negocio.email }}</p>
-                <div class="social-icons">
-                    <a href="">
-                    <span class="fa-stack fa-lg">
-                      <i class="fa fa-square fa-stack-2x"></i>
-                      <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
-                    </span>
-                    </a>
-                    <a href="">
-                    <span class="fa-stack fa-lg">
-                      <i class="fa fa-square fa-stack-2x"></i>
-                      <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
-                    </span>
-                    </a>
-                    <a href="">
-                    <span class="fa-stack fa-lg">
-                      <i class="fa fa-square fa-stack-2x"></i>
-                      <i class="fa fa-instagram fa-stack-1x fa-inverse"></i>
-                    </span>
-                    </a>
-                    <a href="">
-                    <span class="fa-stack fa-lg">
-                      <i class="fa fa-square fa-stack-2x"></i>
-                      <i class="fa fa-google-plus fa-stack-1x fa-inverse"></i>
-                    </span>
-                    </a>
-                </div>
-                <a class="contactenos_button" href="#">
-                    <button class="btn btn-default"> contáctanos </button>
-                </a>
-            </div>
 
-            <div class="col-md-8">
-
-
-                    <div class="master-slider ms-skin-default" id="masterslider">
-                        {% if negocio.fotos|length > 0 %}
-                            {% for nfo in negocio.fotos  %}
-                                <div class="ms-slide">
-                                    {% if nfo.videoUrl is not null %}
-                                        <a href="{{ nfo.videoUrl }}" data-type="video"> vimeo video </a>
-                                    {% endif %}
-                                    <img src="{{ vich_uploader_asset(nfo, 'imgFile') }}" alt="" />
-
-                                </div>
-                            {% endfor %}
-                        {% else %}
-
-                            <div class="ms-slide">
-                                <img src="{{ asset('images/assets/cosapi_slider1.jpg') }}" alt="">
-                            </div>
-                            <div class="ms-slide">
-                                <img src="{{ asset('images/assets/cosapi_slider1.jpg') }}" alt="">
-                            </div>
-                            <div class="ms-slide">
-                                <img src="{{ asset('images/assets/cosapi_slider1.jpg') }}" alt="">
-                            </div>
-
-                        {% endif %}
-
-
-                    </div>
-
-
-            </div>
-    </div>
-    #}
 
     <div class="container detail_description">
         <div class="box-description">
@@ -202,21 +133,25 @@
     {% if negocio.proyectos|length>0  %}
         <div class="container proyect-slider">
                 <h1>Nuestros <span>Proyectos</span></h1>
-                <div class="col-md-9 col-xs-12 ajax-proyecto">
+            <div class="col-md-12">
+                {{ render(controller(
+                'AppBundle:Proyecto:lastProyectos',
+                { 'id_negocio':negocio.id,'max': 4 }
+                )) }}
+            </div>
 
-                </div>
-                <div class="col-md-3">
-                    {{ render(controller(
-                    'AppBundle:Proyecto:lastProyectos',
-                    { 'id_negocio':negocio.id,'max': 4 }
-                    )) }}
-                </div>
+            <div class="col-md-12 col-xs-12 ajax-proyecto">
+
+            </div>
 
         </div>
     {% else %}
         <h1 style="text-align:center;font-size: 50px;margin-bottom: 15px;color: #1C9CD9"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i></h1>
         <h2 style="text-align:center;">Este Negocio no tiene proyectos</h2>
     {% endif %}
+
+
+
 
 
     <div class="container-fluid googlemaps">
@@ -281,7 +216,7 @@
                 </p>
             {% else %}
                 <span class="media contenedor-registrate">
-                    <a id="registro" href="{{ path('fos_user_registration_register') }}">Registrarse</a>
+                    <a   href="{{ path('fos_user_registration_register') }}">Registrarse</a>
                     ó
                     <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
                     para poder comentar.
@@ -297,7 +232,10 @@
     {{ parent() }}
     <script src="{{ asset('js/jquery.rateyo.min.js') }}"></script>
     <script src="{{ asset('js/masterslider.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/jquery.flexslider-min.js') }}" type="text/javascript"></script>
+
     <script>
+
         $('.link_proyecto a').click(function(){
             var url = $(this).attr('data-url');
             sendAjax(url);
@@ -337,6 +275,7 @@
                 //}
             });
         }
+
         $(document).ready(function() {
             var errormsn = $("#error").attr("data-error");
 
@@ -372,19 +311,10 @@
             });
 
 
-            var slider2 = new MasterSlider();
-            slider2.control('arrows' ,{insertTo:'#masterslider2'});
-            slider2.control('bullets');
 
-            slider2.setup('masterslider2' , {
-                width:930,
-                height:500,
-                space:0,
-                grabCursor:false,
-                view:'basic',
-                layout:'boxed',
-                speed:20
-            });
+
+
+
 
 
             var color ="#30BDEF";
@@ -442,6 +372,8 @@
             $('.simple-ajax-popup').magnificPopup({
                 type: 'ajax'
             });
+
+
 
         });
     </script>
