@@ -151,7 +151,7 @@ class Builder implements ContainerAwareInterface
             ));
             $menu['gestion-proyectos']->addChild('ordenar-proyecto', array(
                 'label'=>'Ornedar Proyecto',
-                'uri' => '#',
+                'route' => 'profile_negocios_panel_gestion_negocio_list_inmuebles',
                 'extras' => array(
                     'icon' => 'fa fa-sort'
                 )

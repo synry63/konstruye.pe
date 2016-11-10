@@ -154,6 +154,9 @@ profile_negocios_panel_gestion_negocio_cambiar_anunciante:
 profile_negocios_panel_gestion_negocio_ver_inmuebles:
     path: /profile/panel/auth/inmuebles
     defaults:  { _controller: AppBundle:Panel:showPanelNegocioUserInmuebles}
+profile_negocios_panel_gestion_negocio_list_inmuebles:
+    path: /profile/panel/auth/list/inmuebles
+    defaults:  { _controller: AppBundle:Panel:showPanelNegocioUserListInmuebles}
 profile_negocios_panel_gestion_negocio_add_inmueble:
     path: /profile/panel/auth/inmueble/add
     defaults:  { _controller: AppBundle:Panel:showPanelNegocioUserInmuebleAdd}

@@ -197,6 +197,7 @@ class NegocioController extends Controller
 
         }
         else if($slug_seccion=="especialistas-servicios-personales"){
+            $slug_categoria = $request->query->get('slug_categoria');
             $negocios = $this->getDoctrine()->getRepository('AppBundle:Especialista')->getNegocios();
             $categorias = $this->getDoctrine()->getRepository('AppBundle:CategoriaListado')->getCategoriasChildren('especialista');
             $renderOut['negocios'] = $negocios;

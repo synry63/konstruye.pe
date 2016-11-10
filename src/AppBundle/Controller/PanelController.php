@@ -243,10 +243,24 @@ class PanelController extends Controller
 
         $inmuebles = $this->getDoctrine()->getRepository('AppBundle:Inmueble')->findBy(
             array('constructora'=>$negocio_current),
-            array('registeredAt'=>'DESC')
+            array('sort'=>'ASC')
         );
         return $this->render(
             'FOSUserBundle:Profile:Panel/inmuebles_ver.html.twig',
+            array('inmuebles'=>$inmuebles,'negocio'=>$negocio_current,'tipo'=>$this->getArrayAcordingToTypeOf($negocio_current))
+        );
+    }
+    public function showPanelNegocioUserListInmueblesAction(Request $request){
+        $negocio_id = $this->getRequest()->getSession()->get('negocio_id');
+        if($negocio_id==null) return $this->redirectToRoute('profile_negocios_panel');
+        $negocio_current = $this->getDoctrine()->getRepository('AppBundle:Negocio')->find($negocio_id);
+        $inmuebles = $this->getDoctrine()->getRepository('AppBundle:Inmueble')->findBy(
+            array('constructora'=>$negocio_current),
+            array('sort' => 'ASC')
+        );
+
+        return $this->render(
+            'FOSUserBundle:Profile:Panel/sort_inmuebles.html.twig',
             array('inmuebles'=>$inmuebles,'negocio'=>$negocio_current,'tipo'=>$this->getArrayAcordingToTypeOf($negocio_current))
         );
     }
