@@ -65,7 +65,7 @@ class NegocioController extends Controller
         return $text;
     }
 
-    public function listadoSeccionCategoriaAction(Request $request,$slug_seccion,$slug_categoria,$page)
+    /*public function listadoSeccionCategoriaAction(Request $request,$slug_seccion,$slug_categoria,$page)
     {
 
         $twig = 'layout_categorias.html.twig';
@@ -100,7 +100,7 @@ class NegocioController extends Controller
             'categorias_hijas'=>$categorias
         ));
 
-    }
+    }*/
 
     public function listadoSeccionAction(Request $request,$slug_seccion,$page)
     {
@@ -203,7 +203,8 @@ class NegocioController extends Controller
             $renderOut['categorias_hijas'] = $categorias;
         }
         else{
-            $negocios = $this->getDoctrine()->getRepository('AppBundle:Proveedor')->getNegocios();
+            $slug_categoria = $request->query->get('slug_categoria');
+            $negocios = $this->getDoctrine()->getRepository('AppBundle:Proveedor')->getNegocios($slug_categoria);
             $categorias = $this->getDoctrine()->getRepository('AppBundle:CategoriaListado')->getCategoriasChildren('proveedor');
             $renderOut['negocios'] = $negocios;
             $renderOut['categorias_hijas'] = $categorias;
@@ -228,6 +229,7 @@ class NegocioController extends Controller
         // Sets the zoom
         $map->setAutoZoom(false);
         $map->setMapOption('zoom', 16);
+        $map->setMapOption('scrollwheel', false);
         //$map->setBound(-2.1, -3.9, 2.6, 1.4, true, true);
         $map->setStylesheetOption('width', '100%');
         $map->setStylesheetOption('height', '400px');

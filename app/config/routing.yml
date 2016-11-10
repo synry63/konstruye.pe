@@ -58,12 +58,12 @@ show_contacto:
 show_faq:
     path:      /faq
     defaults:  { _controller: AppBundle:Default:faq}
-lisdato_seccion_categoria:
-    path:      /{slug_seccion}/categoria/{slug_categoria}/{page}
-    defaults:  { _controller: AppBundle:Negocio:listadoSeccionCategoria,page:1}
-    requirements:
-          slug_seccion: constructoras-e-inmobiliarias|compra-venta-y-alquiler-inmuebles|especialistas-servicios-personales|proveedores
-          page:  \d+
+#lisdato_seccion_categoria:
+#    path:      /{slug_seccion}/categoria/{slug_categoria}/{page}
+#    defaults:  { _controller: AppBundle:Negocio:listadoSeccionCategoria,page:1}
+#    requirements:
+#          slug_seccion: constructoras-e-inmobiliarias|compra-venta-y-alquiler-inmuebles|especialistas-servicios-personales|proveedores
+#          page:  \d+
 show_profile_comments:
     path:      /profile/comments
     defaults:  { _controller: AppBundle:User:userCommentsShow}
