@@ -170,11 +170,20 @@ profile_negocios_panel_gestion_negocio_ver_inmuebles_servicios:
     path: /profile/panel/auth/inmuebles/servicios
     defaults:  { _controller: AppBundle:Panel:showPanelNegocioUserInmuebleServicios}
 profile_negocios_panel_gestion_negocio_ver_inmuebles_servicio_add:
-    path: /profile/panel/auth/inmueble/servicio/add
+    path: /profile/panel/auth/inmueble/servicio/{id}/add
     defaults:  { _controller: AppBundle:Panel:showPanelNegocioUserInmuebleServicioAdd}
 profile_negocios_panel_gestion_negocio_ver_inmuebles_servicio_delete:
     path: /profile/panel/auth/inmueble/servicio/{id}/delete
     defaults:  { _controller: AppBundle:Panel:showPanelNegocioUserInmuebleServicioDelete}
+profile_negocios_panel_gestion_negocio_ver_inmuebles_generales:
+    path: /profile/panel/auth/inmuebles/generales
+    defaults:  { _controller: AppBundle:Panel:showPanelNegocioUserInmuebleGenerales}
+profile_negocios_panel_gestion_negocio_ver_inmuebles_general_add:
+    path: /profile/panel/auth/inmueble/general/{id}/add
+    defaults:  { _controller: AppBundle:Panel:showPanelNegocioUserInmuebleGeneralAdd}
+profile_negocios_panel_gestion_negocio_ver_inmuebles_general_delete:
+    path: /profile/panel/auth/inmueble/general/{id}/delete
+    defaults:  { _controller: AppBundle:Panel:showPanelNegocioUserInmuebleGeneralDelete}
 profile_negocios_panel_gestion_negocio_ver_proyectos:
     path: /profile/panel/auth/proyectos
     defaults:  { _controller: AppBundle:Panel:showPanelNegocioUserProyectos}
@@ -193,3 +202,6 @@ profile_negocios_panel_gestion_negocio_delete_proyecto:
 profile_negocios_panel_gestion_negocio_edit_proyecto_fotos:
     path: /profile/panel/auth/proyecto/{id}/fotos
     defaults:  { _controller: AppBundle:Panel:showPanelNegocioUserProyectoFotosEdit}
+profile_negocios_panel_gestion_negocio_proyecto_foto_delete:
+    path: /profile/panel/auth/proyecto/foto/{id}
+    defaults:  { _controller: AppBundle:Panel:showPanelNegocioUserProyectoFotoDelete}

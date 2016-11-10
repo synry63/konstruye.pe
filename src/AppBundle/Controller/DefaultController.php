@@ -32,9 +32,9 @@ class DefaultController extends Controller
     {
         $search = $request->query->get('q');
         $out =array();
-        $distritos = $this->getDoctrine()->getRepository('AppBundle:Distrito')->getDistritos($search);
-        foreach ($distritos as $d){
-            $item = $d->getNombre().', '.$d->getProvincia()->getNombre().', '.$d->getProvincia()->getDepartamento()->getNombre();
+        $departamentos = $this->getDoctrine()->getRepository('AppBundle:Departamento')->getDepartamentos($search);
+        foreach ($departamentos as $d){
+            $item = $d->getNombre();
             $out[] = $item;
         }
         $provincias = $this->getDoctrine()->getRepository('AppBundle:Provincia')->getProvincias($search);
@@ -42,9 +42,9 @@ class DefaultController extends Controller
             $item = $p->getNombre().', '.$p->getDepartamento()->getNombre();
             $out[] = $item;
         }
-        $departamentos = $this->getDoctrine()->getRepository('AppBundle:Departamento')->getDepartamentos($search);
-        foreach ($departamentos as $d){
-            $item = $d->getNombre();
+        $distritos = $this->getDoctrine()->getRepository('AppBundle:Distrito')->getDistritos($search);
+        foreach ($distritos as $d){
+            $item = $d->getNombre().', '.$d->getProvincia()->getNombre().', '.$d->getProvincia()->getDepartamento()->getNombre();
             $out[] = $item;
         }
         $response = new JsonResponse();

@@ -12,6 +12,7 @@ use AppBundle\Entity\ConstructoraInmobiliaria;
 use AppBundle\Entity\Especialista;
 use AppBundle\Entity\Foto;
 use AppBundle\Entity\FotoProyecto;
+use AppBundle\Entity\GeneralInmueble;
 use AppBundle\Entity\Inmueble;
 use AppBundle\Entity\Proveedor;
 use AppBundle\Entity\Proyecto;
@@ -316,6 +317,57 @@ class PanelController extends Controller
 
 
     }
+    public function showPanelNegocioUserInmuebleGeneralAddAction(Request $request,$id){
+        $negocio_id = $this->getRequest()->getSession()->get('negocio_id');
+        if($negocio_id==null) return $this->redirectToRoute('profile_negocios_panel');
+        $negocio_current = $this->getDoctrine()->getRepository('AppBundle:Negocio')->find($negocio_id);
+
+        $g = $this->getDoctrine()->getRepository('AppBundle:General')->find($id);
+        if($g!=null){
+            $gi = new GeneralInmueble();
+            $gi->setInmueble($negocio_current);
+            $gi->setGeneral($g);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($gi);
+            $em->flush();
+            $request->getSession()->getFlashBag()->add('success', 'General agregado !');
+            return $this->redirectToRoute('profile_negocios_panel_gestion_negocio_ver_inmuebles_generales');
+        }
+    }
+    public function showPanelNegocioUserInmuebleGeneralDeleteAction(Request $request,$id){
+        $negocio_id = $this->getRequest()->getSession()->get('negocio_id');
+        if($negocio_id==null) return $this->redirectToRoute('profile_negocios_panel');
+        $negocio_current = $this->getDoctrine()->getRepository('AppBundle:Negocio')->find($negocio_id);
+        $g = $this->getDoctrine()->getRepository('AppBundle:Servicio')->find($id);
+        $gi = $this->getDoctrine()->getRepository('AppBundle:GeneralInmueble')->findOneBy(
+            array('inmueble'=>$negocio_current,'general'=>$g)
+        );
+        if($gi!=null){
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($gi);
+            $em->flush();
+            $request->getSession()->getFlashBag()->add('success', 'General eliminado !');
+            return $this->redirectToRoute('profile_negocios_panel_gestion_negocio_ver_inmuebles_generales');
+        }
+    }
+    public function showPanelNegocioUserInmuebleGeneralesAction(Request $request){
+        $negocio_id = $this->getRequest()->getSession()->get('negocio_id');
+        if($negocio_id==null) return $this->redirectToRoute('profile_negocios_panel');
+        $negocio_current = $this->getDoctrine()->getRepository('AppBundle:Negocio')->find($negocio_id);
+
+        $generales = $this->getDoctrine()->getRepository('AppBundle:General')->findBy(
+            array(),
+            array('nombre'=>'ASC')
+        );
+        return $this->render(
+            'FOSUserBundle:Profile:Panel/inmuebles_generales.html.twig',
+            array(
+                'negocio'=>$negocio_current,
+                'generales'=>$generales,
+                'tipo'=>$this->getArrayAcordingToTypeOf($negocio_current)
+            )
+        );
+    }
     public function showPanelNegocioUserInmuebleServiciosAction(Request $request){
         $negocio_id = $this->getRequest()->getSession()->get('negocio_id');
         if($negocio_id==null) return $this->redirectToRoute('profile_negocios_panel');
@@ -451,6 +503,19 @@ class PanelController extends Controller
                 'tipo'=>$this->getArrayAcordingToTypeOf($negocio_current)
             )
         );
+    }
+    public function showPanelNegocioUserProyectoFotoDeleteAction(Request $request,$id){
+        $negocio_id = $this->getRequest()->getSession()->get('negocio_id');
+        if($negocio_id==null) return $this->redirectToRoute('profile_negocios_panel');
+        $fp = $this->getDoctrine()->getRepository('AppBundle:FotoProyecto')->find($id);
+        if($fp!=null){
+            $id_p = $fp->getProyecto()->getId();
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($fp);
+            $em->flush();
+            $request->getSession()->getFlashBag()->add('success', 'Foto proyecto borrada !');
+            return $this->redirectToRoute('profile_negocios_panel_gestion_negocio_edit_proyecto_fotos',array('id'=>$id_p));
+        }
     }
     public function showPanelNegocioUserProyectoEditAction(Request $request,$id){
         $negocio_id = $this->getRequest()->getSession()->get('negocio_id');
