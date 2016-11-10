@@ -217,9 +217,18 @@
                     </tr>
                 </table>
             </div>
-            {% for n in negocios.items %}
-                {{ include('includes/listado_negocios.html.twig', { 'n': n , type: 'inmueble'}) }}
-            {% endfor %}
+            {#{{ dump(negocios.items) }}#}
+            {% if negocios.items|length == 0 %}
+                <div class="mensaje-notfound">
+                    <p><i class="fa fa-exclamation-triangle" aria-hidden="true"></i></p>
+                    <p class="text-nf">No se encontró ningun resultado.</p>
+                    <p class="text-nf">Lo sentimos, no encontramos resultados para su búsqueda. Inténtalo nuevamente.</p>
+                </div>
+            {% else %}
+                {% for n in negocios.items %}
+                    {{  include('includes/listado_negocios.html.twig', { 'n': n , type: 'inmueble'}) }}
+                {% endfor %}
+            {% endif %}
         </div>
         <div class="navigation">
             {{ knp_pagination_render(negocios,'foundation_v5_pagination.html.twig') }}

@@ -548,3 +548,20 @@ RangeSlider
     background-color: #009fe3;
     /*border-radius: 3px;*/
 }
+
+/*===============
+Mensaje-Not Fount
+================*/
+.mensaje-notfound {
+    text-align: center;
+    margin: 24px 0;
+}
+.mensaje-notfound p i {
+    font-size: 120px;
+    color: #009fe3;
+}
+.mensaje-notfound .text-nf {
+    font-weight: 400;
+    color: #A0A0A0;
+
+}
