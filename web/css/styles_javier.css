@@ -1,8 +1,41 @@
+@font-face {
+    font-family: 'icomoon';
+    src:   url('../fonts/icomoon.ttf') format('truetype');
+}
 
+/*===============
+Icomoon
+================*/
+
+.icon-Intercomunicador:before {
+    content: "\e901";
+}
+.icon-Ascensor:before {
+    content: "\e902";
+}
+.icon-juegos.infantiles:before {
+    content: "\e900";
+}
+.icon-Gimnasio:before {
+    content: "\e906";
+}
+.icon-Control:before {
+    content: "\e915";
+}
+.icon-Jardin:before {
+    content: "\e905";
+}
+.icon-Parrilla:before {
+    content: "\e907";
+}
+.icon-Video.vigilancia:before {
+    content: "\e908";
+}
 
 /*===============
 SHOW INMUEBLE
 ================*/
+
 .datos-header {
     padding: 20px;
     background-color: #fff;

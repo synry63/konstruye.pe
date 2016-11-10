@@ -52,7 +52,7 @@
                         {% endif %}
 
                     {% else %}
-                        <p><i class="fa fa-map-marker" aria-hidden="true"></i> {{ n.negocio.direccion }} - {{ n.negocio.distrito.nombre }} - {{ n.negocio.provincia.nombre }}</p>
+                        <p><i class="fa fa-map-marker" aria-hidden="true"></i> {{ n.negocio.direccion | truncate(30,false) }} - {{ n.negocio.distrito.nombre }} - {{ n.negocio.provincia.nombre }}</p>
                         <p><i class="fa fa-phone" aria-hidden="true"></i> {{ n.negocio.telefono }}</p>
                         <p><i class="fa fa-globe" aria-hidden="true"></i> {{ n.negocio.web }}</p>
                         <p><i class="fa fa-envelope" aria-hidden="true"></i> {{ n.negocio.email }}</p>

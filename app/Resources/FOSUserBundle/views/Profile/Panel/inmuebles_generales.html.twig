@@ -1,1 +1,62 @@
-{{ dump(generales) }}
+{% extends "FOSUserBundle::Profile/Panel/panel_layout.html.twig" %}
+
+{% block content_section %}
+
+    <h1 class="title-dashboard">Servicios Generales de Inmueble</h1>
+
+
+    <div class="recomendacion">
+        <i class="fa fa-lightbulb-o" aria-hidden="true"></i>
+        <div class="pright">
+            <ul>
+                <li>Escoja un servicio general para añadirlo a su lista</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="container" >
+        <div class="row" style="margin: 20px 0">
+
+            {% for g in generales %}
+                {% set founded = false %}
+
+                {% for gn in negocio.generales if not founded %}
+                    {% if g.id == gn.general.id %}
+                        {% set founded = true %}
+                    {% endif %}
+                {% endfor %}
+
+
+                {% if founded == true %}
+                    <div class="col-md-2 servicios">
+                        <a class="active" href="{{ path('profile_negocios_panel_gestion_negocio_ver_inmuebles_general_delete',{'id':g.id}) }}">
+                            <div>
+                                <span class="icon-{{ g.nombre }}" style="font-family: 'icomoon';font-size: 50px"></span>
+                            </div>
+                            {{ g.nombre }}
+                        </a>
+                    </div>
+                {% else %}
+                    <div class="col-md-2 servicios">
+                        <a href="{{ path('profile_negocios_panel_gestion_negocio_ver_inmuebles_general_add',{'id':g.id}) }}">
+                            <div>
+                                <span class="icon-{{ g.nombre }}" style="font-family: 'icomoon';font-size: 50px"></span>
+                            </div>
+                            {{ g.nombre }}
+                        </a>
+                    </div>
+                {% endif %}
+
+
+
+
+
+            {% endfor %}
+
+
+        </div>
+    </div>
+
+
+
+{% endblock %}

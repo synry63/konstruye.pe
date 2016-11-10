@@ -92,6 +92,20 @@
         {% endif %}
 
         <div class="form-group">
+            {{ form_label(form.operacion,'Operación') }}
+            {{ form_errors(form.operacion) }}
+            {{ form_widget(form.operacion,{ 'attr': {'class': 'form-control','placeholder':'cgarcia@gmail.com'}}) }}
+        </div>
+
+        <div class="form-group">
+            {{ form_label(form.precioSoles,'Precio Soles') }}
+            {{ form_errors(form.precioSoles) }}
+            {{ form_widget(form.precioSoles,{ 'attr': {'class': 'form-control','placeholder':'cgarcia@gmail.com'}}) }}
+        </div>
+
+
+
+        <div class="form-group">
             {{ form_label(form.nombre,'Nombre') }}
             {{ form_errors(form.nombre) }}
             {{ form_widget(form.nombre,{ 'attr': {'class': 'form-control','placeholder':'cgarcia@gmail.com'}}) }}
@@ -120,7 +134,11 @@
             {{ form_errors(form.email) }}
             {{ form_widget(form.email,{ 'attr': {'class': 'form-control','placeholder':'cgarcia@gmail.com'}}) }}
         </div>
-
+        <div class="form-group">
+            {{ form_label(form.web,'Web') }}
+            {{ form_errors(form.web) }}
+            {{ form_widget(form.web,{ 'attr': {'class': 'form-control','placeholder':'cgarcia@gmail.com'}}) }}
+        </div>
         <div class="form-group">
             {{ form_label(form.departamento,'Departamento') }}
             {{ form_errors(form.departamento) }}
@@ -149,3 +167,53 @@
 
 
 {% endblock %}
+
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $("#inmueble_departamento").change(function(){
+            var data = {
+                departamento_id: $(this).val()
+            };
+
+            $.ajax({
+                type: 'post',
+                url: '{{ path("select_provinces") }}',
+                data: data,
+                success: function(data) {
+                    var $provincia_selector = $('#inmueble_provincia');
+
+                    $provincia_selector.html('<option>Provincia</option>');
+
+                    for (var i=0, total = data.length; i < total; i++) {
+                        $provincia_selector.append('<option value="' + data[i].id + '">' + data[i].nombre + '</option>');
+                    }
+                }
+            });
+        });
+        $("#inmueble_provincia").change(function(){
+            var data = {
+                provincia_id: $(this).val()
+            };
+
+            $.ajax({
+                type: 'post',
+                url: '{{ path("select_cities") }}',
+                data: data,
+                success: function(data) {
+                    var $distrito_selector = $('#inmueble_distrito');
+
+                    $distrito_selector.html('<option>Distrito</option>');
+
+                    for (var i=0, total = data.length; i < total; i++) {
+                        $distrito_selector.append('<option value="' + data[i].id + '">' + data[i].nombre + '</option>');
+                    }
+                }
+            });
+        });
+
+    </script>
+
+{% endblock javascripts %}
+

@@ -3,21 +3,32 @@
 
 {% block content_section %}
 
+    <h1 class="title-dashboard">Servicios de Inmueble</h1>
+
+    <div class="recomendacion">
+        <i class="fa fa-lightbulb-o" aria-hidden="true"></i>
+        <div class="pright">
+            <ul>
+                <li>Escoja un servicio para añadirlo a su lista</li>
+            </ul>
+        </div>
+    </div>
+
     <div class="container">
         <div class="row" style="margin: 20px 0">
 
             {% for s in servicios %}
                 {% set founded = false %}
-                    {% for sn in negocio.sevicios if not founded %}
-                        {% if s.id == sn.servicio.id %}
-                            {% set founded = true %}
-                        {% endif %}
-                    {% endfor %}
+                {% for sn in negocio.sevicios if not founded %}
+                    {% if s.id == sn.servicio.id %}
+                        {% set founded = true %}
+                    {% endif %}
+                {% endfor %}
                 {% if founded == true %}
                     <div class="col-md-2 servicios">
-                        <a class="active" href="{{ path('profile_negocios_panel_gestion_negocio_ver_inmuebles_servicio_delete',{'id':s.id}) }}">
+                        <a class="active" href="{{ path('profile_negocios_panel_gestion_negocio_ver_inmuebles_general_delete',{'id':s.id}) }}">
                             <div>
-                                <i style="font-size: 50px;" class="fa fa-bullhorn" aria-hidden="true"></i>
+                                <span class="icon-{{ s.nombre }}" style="font-family: 'icomoon';font-size: 50px"></span>
                             </div>
                             {{ s.nombre }}
                         </a>
@@ -26,7 +37,7 @@
                     <div class="col-md-2 servicios">
                         <a href="{{ path('profile_negocios_panel_gestion_negocio_ver_inmuebles_servicio_add',{'id':s.id}) }}">
                             <div>
-                                <i style="font-size: 50px;" class="fa fa-bullhorn" aria-hidden="true"></i>
+                                <span class="icon-{{ s.nombre }}" style="font-family: 'icomoon';font-size: 50px"></span>
                             </div>
                             {{ s.nombre }}
                         </a>
