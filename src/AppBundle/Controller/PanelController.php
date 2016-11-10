@@ -11,20 +11,24 @@ use AppBundle\Entity\Banner;
 use AppBundle\Entity\ConstructoraInmobiliaria;
 use AppBundle\Entity\Especialista;
 use AppBundle\Entity\Foto;
+use AppBundle\Entity\FotoProducto;
 use AppBundle\Entity\FotoProyecto;
 use AppBundle\Entity\GeneralInmueble;
 use AppBundle\Entity\Inmueble;
+use AppBundle\Entity\Producto;
 use AppBundle\Entity\Proveedor;
 use AppBundle\Entity\Proyecto;
 use AppBundle\Entity\ServicioInmueble;
 use AppBundle\Form\Type\BannerType;
 use AppBundle\Form\Type\ConstructoraType;
 use AppBundle\Form\Type\EspecialistaType;
+use AppBundle\Form\Type\FotoProductoType;
 use AppBundle\Form\Type\FotoProyectoType;
 use AppBundle\Form\Type\FotoType;
 use AppBundle\Form\Type\GoogleMapType;
 use AppBundle\Form\Type\InmuebleType;
 use AppBundle\Form\Type\LogoType;
+use AppBundle\Form\Type\ProductoType;
 use AppBundle\Form\Type\ProveedorType;
 use AppBundle\Form\Type\ProyectoType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -352,7 +356,7 @@ class PanelController extends Controller
         $negocio_id = $this->getRequest()->getSession()->get('negocio_id');
         if($negocio_id==null) return $this->redirectToRoute('profile_negocios_panel');
         $negocio_current = $this->getDoctrine()->getRepository('AppBundle:Negocio')->find($negocio_id);
-        $g = $this->getDoctrine()->getRepository('AppBundle:Servicio')->find($id);
+        $g = $this->getDoctrine()->getRepository('AppBundle:General')->find($id);
         $gi = $this->getDoctrine()->getRepository('AppBundle:GeneralInmueble')->findOneBy(
             array('inmueble'=>$negocio_current,'general'=>$g)
         );
@@ -457,7 +461,15 @@ class PanelController extends Controller
     public function showPanelNegocioUserProyectoDeleteAction(Request $request,$id){
         $negocio_id = $this->getRequest()->getSession()->get('negocio_id');
         if($negocio_id==null) return $this->redirectToRoute('profile_negocios_panel');
-        $negocio_current = $this->getDoctrine()->getRepository('AppBundle:Negocio')->find($negocio_id);
+        $proyecto = $this->getDoctrine()->getRepository('AppBundle:Proyecto')->find($id);
+        if($proyecto!=null){
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($proyecto);
+            $em->flush();
+            $request->getSession()->getFlashBag()->add('success', 'Proyecto borrado !');
+            return $this->redirectToRoute('profile_negocios_panel_gestion_negocio_ver_proyectos');
+        }
+
     }
     public function showPanelNegocioUserProyectoAddAction(Request $request){
         $negocio_id = $this->getRequest()->getSession()->get('negocio_id');
@@ -572,6 +584,148 @@ class PanelController extends Controller
             'FOSUserBundle:Profile:Panel/sort_proyectos.html.twig',
             array('proyectos'=>$proyectos,'negocio'=>$negocio_current,'tipo'=>$this->getArrayAcordingToTypeOf($negocio_current))
         );
+    }
+    public function showPanelNegocioUserProductosAction(Request $request){
+        $negocio_id = $this->getRequest()->getSession()->get('negocio_id');
+        if($negocio_id==null) return $this->redirectToRoute('profile_negocios_panel');
+        $negocio_current = $this->getDoctrine()->getRepository('AppBundle:Negocio')->find($negocio_id);
+
+        $productos = $this->getDoctrine()->getRepository('AppBundle:Producto')->findBy(
+            array('negocio'=>$negocio_current),
+            array('sort'=>'ASC')
+        );
+        return $this->render(
+            'FOSUserBundle:Profile:Panel/productos.html.twig',
+            array(
+                'negocio'=>$negocio_current,
+                'productos'=>$productos,
+                'tipo'=>$this->getArrayAcordingToTypeOf($negocio_current)
+            )
+        );
+    }
+    public function showPanelNegocioUserListProductosAction(Request $request){
+        $negocio_id = $this->getRequest()->getSession()->get('negocio_id');
+        if($negocio_id==null) return $this->redirectToRoute('profile_negocios_panel');
+        $negocio_current = $this->getDoctrine()->getRepository('AppBundle:Negocio')->find($negocio_id);
+        $productos = $this->getDoctrine()->getRepository('AppBundle:Producto')->findBy(
+            array('negocio'=>$negocio_current),
+            array('sort' => 'ASC')
+        );
+
+        return $this->render(
+            'FOSUserBundle:Profile:Panel/sort_productos.html.twig',
+            array('productos'=>$productos,'negocio'=>$negocio_current,'tipo'=>$this->getArrayAcordingToTypeOf($negocio_current))
+        );
+    }
+    public function showPanelNegocioUserProductoAddAction(Request $request){
+        $negocio_id = $this->getRequest()->getSession()->get('negocio_id');
+        if($negocio_id==null) return $this->redirectToRoute('profile_negocios_panel');
+        $negocio_current = $this->getDoctrine()->getRepository('AppBundle:Negocio')->find($negocio_id);
+        $producto = new Producto();
+        $form = $this->createForm(new ProductoType(), $producto);
+        $form->handleRequest($request);
+        if ($form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $producto->setNegocio($negocio_current);
+            $slug = $this->get('slugify')->slugify($producto->getNombre());
+            $producto->setSlug($slug);
+            $em->persist($producto);
+            $em->flush();
+            $request->getSession()->getFlashBag()->add('success', 'Producto agregado !');
+            return $this->redirectToRoute('profile_negocios_panel_gestion_negocio_ver_productos');
+        }
+        return $this->render(
+            'FOSUserBundle:Profile:Panel/producto_form.html.twig',
+            array(
+                'form'=>$form->createView(),
+                'negocio'=>$negocio_current,
+                'tipo'=>$this->getArrayAcordingToTypeOf($negocio_current)
+            )
+        );
+    }
+    public function showPanelNegocioUserProductoEditAction(Request $request,$id){
+        $negocio_id = $this->getRequest()->getSession()->get('negocio_id');
+        if($negocio_id==null) return $this->redirectToRoute('profile_negocios_panel');
+        $negocio_current = $this->getDoctrine()->getRepository('AppBundle:Negocio')->find($negocio_id);
+        $producto = $this->getDoctrine()->getRepository('AppBundle:Producto')->find($id);
+        $form = $this->createForm(new ProyectoType(true), $producto);
+        $form->handleRequest($request);
+        if ($form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $producto->setNegocio($negocio_current);
+            $slug = $this->get('slugify')->slugify($producto->getNombre());
+            $producto->setSlug($slug);
+            $em->persist($producto);
+            $em->flush();
+            $request->getSession()->getFlashBag()->add('success', 'Producto actualizado !');
+            return $this->redirectToRoute('profile_negocios_panel_gestion_negocio_edit_producto',array('id'=>$id));
+        }
+        return $this->render(
+            'FOSUserBundle:Profile:Panel/producto_form.html.twig',
+            array(
+                'form'=>$form->createView(),
+                'producto'=>$producto,
+                'negocio'=>$negocio_current,
+                'tipo'=>$this->getArrayAcordingToTypeOf($negocio_current)
+            )
+        );
+    }
+    public function showPanelNegocioUserProductoDeleteAction(Request $request,$id){
+        $negocio_id = $this->getRequest()->getSession()->get('negocio_id');
+        if($negocio_id==null) return $this->redirectToRoute('profile_negocios_panel');
+        $producto = $this->getDoctrine()->getRepository('AppBundle:Proyecto')->find($id);
+        if($producto!=null){
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($producto);
+            $em->flush();
+            $request->getSession()->getFlashBag()->add('success', 'Producto borrado !');
+            return $this->redirectToRoute('profile_negocios_panel_gestion_negocio_ver_productos');
+        }
+    }
+    public function showPanelNegocioUserProductoFotosEditAction(Request $request,$id){
+        $negocio_id = $this->getRequest()->getSession()->get('negocio_id');
+        if($negocio_id==null) return $this->redirectToRoute('profile_negocios_panel');
+        $negocio_current = $this->getDoctrine()->getRepository('AppBundle:Negocio')->find($negocio_id);
+        $producto = $this->getDoctrine()->getRepository('AppBundle:Producto')->find($id);
+        $fotos_productos = $this->getDoctrine()->getRepository('AppBundle:FotoProducto')->findBy(
+            array('producto'=>$producto),
+            array('sort'=>'ASC')
+        );
+        $fp = new FotoProducto();
+        $form = $this->createForm(new FotoProductoType(), $fp);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $fp->setProducto($producto);
+            $em = $this->getDoctrine()->getManager();
+            //$logo->setProveedor($proveedor);
+            $em->persist($fp);
+            $em->flush();
+            $request->getSession()->getFlashBag()->add('success', 'Su foto fue guardada !');
+            return $this->redirectToRoute('profile_negocios_panel_gestion_negocio_edit_producto_fotos',array('id'=>$id));
+        }
+
+        return $this->render(
+            'FOSUserBundle:Profile:Panel/producto_fotos_edit.html.twig',
+            array(
+                'form'=>$form->createView(),
+                'fotos'=>$fotos_productos,
+                'negocio'=>$negocio_current,
+                'tipo'=>$this->getArrayAcordingToTypeOf($negocio_current)
+            )
+        );
+    }
+    public function showPanelNegocioUserProductoFotoDeleteAction(Request $request,$id){
+        $negocio_id = $this->getRequest()->getSession()->get('negocio_id');
+        if($negocio_id==null) return $this->redirectToRoute('profile_negocios_panel');
+        $fp = $this->getDoctrine()->getRepository('AppBundle:FotoProducto')->find($id);
+        if($fp!=null){
+            $id_p = $fp->getProducto()->getId();
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($fp);
+            $em->flush();
+            $request->getSession()->getFlashBag()->add('success', 'Foto producto borrada !');
+            return $this->redirectToRoute('profile_negocios_panel_gestion_negocio_edit_producto_fotos',array('id'=>$id_p));
+        }
     }
     public function showPanelNegocioUserSortAction(Request $request){
         if($request->isXmlHttpRequest()) {

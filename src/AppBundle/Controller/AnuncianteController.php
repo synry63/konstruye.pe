@@ -26,6 +26,23 @@ use Symfony\Component\HttpFoundation\Request;
 
 class AnuncianteController extends Controller
 {
+    private function getArrayAcordingToTypeOf($n){
+        $arr_out = ['inmueble'=>false,'constructura-inmobiliaria'=>false,'especialista'=>false,'proveedor'=>false];
+        if($n instanceof Inmueble){
+            $arr_out['inmueble'] = true;
+        }
+        else if($n instanceof ConstructoraInmobiliaria){
+            $arr_out['constructura-inmobiliaria'] = true;
+        }
+        else if($n instanceof Proveedor){
+            $arr_out['proveedor'] = true;
+        }
+        else if($n instanceof Especialista){
+            $arr_out['especialista'] = true;
+        }
+
+        return $arr_out;
+    }
 
     public function showPanelNegocioUserAnuncianteAction(Request $request){
         $user = $this->container->get('security.context')->getToken()->getUser();
@@ -49,7 +66,8 @@ class AnuncianteController extends Controller
             'FOSUserBundle:Profile:Panel/cambiar_anunciante.html.twig',
             array(
                 'anunciante' => $a,
-                'negocio'=>$negocio_current
+                'negocio'=>$negocio_current,
+                'tipo'=>$this->getArrayAcordingToTypeOf($negocio_current)
         ));
     }
     /**

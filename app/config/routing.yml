@@ -194,13 +194,13 @@ profile_negocios_panel_gestion_negocio_list_proyectos:
     path: /profile/panel/auth/list/proyectos
     defaults:  { _controller: AppBundle:Panel:showPanelNegocioUserListProyectos}
 profile_negocios_panel_gestion_negocio_add_proyecto:
-    path: /profile/panel/auth/proyectos/add
+    path: /profile/panel/auth/proyecto/add
     defaults:  { _controller: AppBundle:Panel:showPanelNegocioUserProyectoAdd}
 profile_negocios_panel_gestion_negocio_edit_proyecto:
     path: /profile/panel/auth/proyecto/{id}/edit
     defaults:  { _controller: AppBundle:Panel:showPanelNegocioUserProyectoEdit}
 profile_negocios_panel_gestion_negocio_delete_proyecto:
-    path: /profile/panel/auth/proyectos/{id}/delete
+    path: /profile/panel/auth/proyecto/{id}/delete
     defaults:  { _controller: AppBundle:Panel:showPanelNegocioUserProyectoDelete}
 profile_negocios_panel_gestion_negocio_edit_proyecto_fotos:
     path: /profile/panel/auth/proyecto/{id}/fotos
@@ -208,3 +208,25 @@ profile_negocios_panel_gestion_negocio_edit_proyecto_fotos:
 profile_negocios_panel_gestion_negocio_proyecto_foto_delete:
     path: /profile/panel/auth/proyecto/foto/{id}
     defaults:  { _controller: AppBundle:Panel:showPanelNegocioUserProyectoFotoDelete}
+
+profile_negocios_panel_gestion_negocio_ver_productos:
+    path: /profile/panel/auth/productos
+    defaults:  { _controller: AppBundle:Panel:showPanelNegocioUserProductos}
+profile_negocios_panel_gestion_negocio_list_productos:
+    path: /profile/panel/auth/list/productos
+    defaults:  { _controller: AppBundle:Panel:showPanelNegocioUserListProductos}
+profile_negocios_panel_gestion_negocio_add_producto:
+    path: /profile/panel/auth/producto/add
+    defaults:  { _controller: AppBundle:Panel:showPanelNegocioUserProductoAdd}
+profile_negocios_panel_gestion_negocio_edit_producto:
+    path: /profile/panel/auth/producto/{id}/edit
+    defaults:  { _controller: AppBundle:Panel:showPanelNegocioUserProductoEdit}
+profile_negocios_panel_gestion_negocio_delete_producto:
+    path: /profile/panel/auth/producto/{id}/delete
+    defaults:  { _controller: AppBundle:Panel:showPanelNegocioUserProductoDelete}
+profile_negocios_panel_gestion_negocio_edit_producto_fotos:
+    path: /profile/panel/auth/producto/{id}/fotos
+    defaults:  { _controller: AppBundle:Panel:showPanelNegocioUserProductoFotosEdit}
+profile_negocios_panel_gestion_negocio_producto_foto_delete:
+    path: /profile/panel/auth/producto/foto/{id}
+    defaults:  { _controller: AppBundle:Panel:showPanelNegocioUserProductoFotoDelete}

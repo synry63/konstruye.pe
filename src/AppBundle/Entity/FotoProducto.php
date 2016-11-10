@@ -30,15 +30,11 @@ class FotoProducto
     /**
      * NOTE: This is not a mapped field of entity metadata, just a simple property.
      *
-     * @Vich\UploadableField(mapping="producto_foto", fileNameProperty="img")
+     * @Vich\UploadableField(mapping="producto_foto_galeria", fileNameProperty="img")
      * @var File
      */
     private $imgFile;
 
-    /**
-     * @ORM\Column(type="string",nullable=true, length=255)
-     */
-    private $videoUrl;
 
     /**
      * @ORM\Column(type="string", length=100)

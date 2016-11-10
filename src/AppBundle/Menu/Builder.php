@@ -107,21 +107,21 @@ class Builder implements ContainerAwareInterface
             ));
             $menu['gestion-producto']->addChild('ver-productos', array(
                 'label'=>'ver Productos',
-                'uri' => '#',
+                'route' => 'profile_negocios_panel_gestion_negocio_ver_productos',
                 'extras' => array(
                     'icon' => 'fa fa-shopping-basket'
                 )
             ));
             $menu['gestion-producto']->addChild('agregar-productos', array(
                 'label'=>'Agregar Productos',
-                'uri' => '#',
+                'route' => 'profile_negocios_panel_gestion_negocio_add_producto',
                 'extras' => array(
                     'icon' => 'fa fa-plus'
                 )
             ));
             $menu['gestion-producto']->addChild('ordenar-productos', array(
                 'label'=>'Ornedar Productos',
-                'uri' => '#',
+                'route' => 'profile_negocios_panel_gestion_negocio_list_productos',
                 'extras' => array(
                     'icon' => 'fa fa-sort'
                 )

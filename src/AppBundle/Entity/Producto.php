@@ -9,10 +9,13 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity(repositoryClass="AppBundle\Repository\ProductoRepository")
  * @ORM\Table(name="productos")
+ * @Vich\Uploadable
  */
 class Producto
 {
@@ -35,9 +38,21 @@ class Producto
     private $nombre;
 
     /**
+     * NOTE: This is not a mapped field of entity metadata, just a simple property.
+     *
+     * @Vich\UploadableField(mapping="producto_foto_descatada", fileNameProperty="img")
+     * @var File
+     */
+    private $imgFile;
+    /**
      * @ORM\Column(type="string", length=100)
      */
     private $img;
+
+    /**
+     * @ORM\Column(type="integer",nullable=true)
+     */
+    private $sort;
 
     /**
      * @ORM\Column(type="text")
@@ -50,6 +65,12 @@ class Producto
      * @var \DateTime
      */
     protected $registeredAt;
+    /**
+     * @ORM\Column(type="datetime")
+     *
+     * @var \DateTime
+     */
+    private $updatedFotoAt;
 
     /**
      @ORM\ManyToOne(targetEntity="Proveedor",inversedBy="productos")
@@ -99,6 +120,22 @@ class Producto
     public function getFotos()
     {
         return $this->fotos;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSort()
+    {
+        return $this->sort;
+    }
+
+    /**
+     * @param mixed $sort
+     */
+    public function setSort($sort)
+    {
+        $this->sort = $sort;
     }
 
 
@@ -208,6 +245,37 @@ class Producto
     {
         $this->img = $img;
     }
+    /**
+     * If manually uploading a file (i.e. not using Symfony Form) ensure an instance
+     * of 'UploadedFile' is injected into this setter to trigger the  update. If this
+     * bundle's configuration parameter 'inject_on_load' is set to 'true' this setter
+     * must be able to accept an instance of 'File' as the bundle will inject one here
+     * during Doctrine hydration.
+     *
+     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile $image
+     *
+     * @return Product
+     */
+    public function setImgFile(File $image = null)
+    {
+        $this->imgFile = $image;
+
+        if ($image) {
+            // It is required that at least one field changes if you are using doctrine
+            // otherwise the event listeners won't be called and the file is lost
+            $this->updatedFotoAt = new \DateTime('now');
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return File
+     */
+    public function getImgFile()
+    {
+        return $this->imgFile;
+    }
 
     /**
      * @return mixed
@@ -216,7 +284,10 @@ class Producto
     {
         return $this->img;
     }
-
+    public function __construct()
+    {
+        $this->registeredAt = new \DateTime('now');
+    }
 
 
 

@@ -125,6 +125,9 @@ class GeneralInmueble
     {
         $this->nombre = $nombre;
     }
-
+    public function __construct()
+    {
+        $this->cantidad = 1;
+    }
 
 }
