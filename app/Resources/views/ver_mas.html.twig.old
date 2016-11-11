@@ -1,0 +1,80 @@
+{% extends 'FOSUserBundle::layout.html.twig' %}
+{% block title %}
+    <title>Konstruye.pe | Ver más</title>
+{% endblock title %}
+{% block stylesheets %}
+    {{ parent() }}
+
+{% endblock %}
+
+{% block fos_user_content %}
+
+    <div class="container-fluid">
+        <div class="row">
+            <img width="100%" src="{{ asset('images/assets/celima_banner.jpg') }}" alt="">
+        </div>
+    </div>
+<div class="container product-section">
+
+    <div class="col-md-3">
+        <div class="list-group">
+            <a href="#" class="list-group-item disabled tittle-disable">Filtro</a>
+            <a href="#" class="list-group-item">Sub-Filtro</a>
+            <a href="#" class="list-group-item">Sub-Filtro</a>
+            <a href="#" class="list-group-item">Sub-Filtro</a>
+            <a href="#" class="list-group-item">Sub-Filtro</a>
+        </div>
+        <div class="list-group">
+            <a href="#" class="list-group-item disabled tittle-disable">Filtro</a>
+            <a href="#" class="list-group-item">Sub-Filtro</a>
+            <a href="#" class="list-group-item">Sub-Filtro</a>
+            <a href="#" class="list-group-item">Sub-Filtro</a>
+            <a href="#" class="list-group-item">Sub-Filtro</a>
+        </div>
+    </div>
+
+    <div class="col-md-9">
+        <div class="row table-filtros">
+            <span>Ordenar por:</span>
+            <table>
+                <tr>
+                    {# sorting of properties based on query components #}
+                    {#<th>{{ knp_pagination_sortable(negocios, 'Id', 'n.id') }}</th>#}
+                    <th{% if productos.isSorted('cp.nota') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(productos, 'Popularidad', 'cp.nota') }}</th>
+                    <th{% if productos.isSorted('p.nombre') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(productos, 'Alfabetico', 'p.nombre') }}</th>
+                    {# <th>{{ knp_pagination_sortable(negocios, 'Release', ['n.date', 'n.time']) }}</th> #}
+                    <th{% if productos.isSorted('p.registeredAt') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(productos, 'Más reciente ', 'p.registeredAt') }}</th>
+                </tr>
+            </table>
+        </div>
+
+        <div class="row">
+            {% for pro in productos %}
+                <div class="col-md-4 producto-box">
+                    <a href="{{ path('show_producto',{'slug_producto':pro.producto.slug}) }}">
+                        <img src="http://placehold.it/220x220" alt="">
+                    </a>
+                    <a href="{{ path('show_producto',{'slug_producto':pro.producto.slug}) }}"><h1>{{ pro.producto.nombre }}</h1></a>
+                    <a href="{{ path('show_negocio',
+                    {"slug_seccion":"proveedores","slug_negocio":negocio.slug}) }}"><h2>{{ negocio.nombre }}</h2></a>
+                    <p>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                    </p>
+                </div>
+            {% endfor %}
+        </div>
+
+    </div>
+</div>
+
+{% endblock fos_user_content %}
+
+
+{% block javascripts %}
+    {{ parent() }}
+
+{% endblock javascripts %}

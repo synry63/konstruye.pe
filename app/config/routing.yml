@@ -41,8 +41,8 @@ search_global_negocios:
     defaults:  { _controller: AppBundle:Negocio:searchNegocio,page:1}
 
 search_global_productos:
-    path:      /resultado-busqueda/productos/{search}/{page}
-    defaults:  { _controller: AppBundle:Producto:searchProducto,search:null,page:1}
+    path:      /resultado-busqueda/productos/{page}
+    defaults:  { _controller: AppBundle:Producto:searchProducto,page:1}
 show_producto:
     path:      /producto/{slug_producto}
     defaults:  { _controller: AppBundle:Producto:showDetail}
