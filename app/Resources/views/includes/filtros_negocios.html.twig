@@ -1,15 +1,30 @@
-<div class="list-group">
-    {% if app.request.get('slug_categoria') == cmain.slug %}
-        <a href="{{ path(name, {"slug_categoria":cmain.slug, "slug_seccion":app.request.get('slug_seccion'),"search":search}) }}" class="list-group-item tittle-disable actif">{{ cmain.nombre }}</a>
-    {% else %}
-        <a href="{{ path(name, {"slug_categoria":cmain.slug, "slug_seccion":app.request.get('slug_seccion'),"search":search}) }}" class="list-group-item tittle-disable">{{ cmain.nombre }}</a>
-    {% endif %}
-    {% for csub in cmain.children %}
-        {#{{ dump (csub )}}#}
-        {% if app.request.get('slug_categoria') == csub.slug  %}
-            <a href="{{ path(name, {"slug_categoria":csub.slug, "slug_seccion":app.request.get('slug_seccion'),"search":search}) }}" class="list-group-item text-right actif">{{ csub.nombre }}</a>
-        {% else %}
-            <a href="{{ path(name, {"slug_categoria":csub.slug, "slug_seccion":app.request.get('slug_seccion'),"search":search}) }}" class="list-group-item text-right ">{{ csub.nombre }}</a>
-        {% endif %}
-    {% endfor %}
+
+<div class="container-filtro">
+    <div class="title-filtro">
+        {#<h4 class="titulo-filtro">#}
+            {% if app.request.get('slug_categoria') == cmain.slug %}
+                <a href="{{ path(name, {"slug_categoria":cmain.slug, "slug_seccion":app.request.get('slug_seccion'),"search":search}) }}" class="actif">{{ cmain.nombre }}</a>  &nbsp;&nbsp;&nbsp;   <i class=" titulo-filtro fa fa-angle-up" aria-hidden="true"></i>
+            {% else %}
+                <a href="{{ path(name, {"slug_categoria":cmain.slug, "slug_seccion":app.request.get('slug_seccion'),"search":search}) }}" class="">{{ cmain.nombre }}</a> &nbsp;&nbsp;&nbsp;   <i class="titulo-filtro fa fa-angle-up " aria-hidden="true"></i>
+            {% endif %}
+        {#</h4>#}
+    </div>
+    <div class="body-filtro">
+        <div class="body-filtro-list">
+            <ul>
+                <li>
+                {% for csub in cmain.children %}
+                    {% if app.request.get('slug_categoria') == csub.slug  %}
+                        <a href="{{ path(name, {"slug_categoria":csub.slug, "slug_seccion":app.request.get('slug_seccion'),"search":search}) }}" class="actif">{{ csub.nombre }} </a>
+                        <a class="select" href="{{ path('lisdato_seccion',{'slug_seccion':app.request.get('slug_seccion')}) }}">x</a>
+                    {% else %}
+                        <a href="{{ path(name, {"slug_categoria":csub.slug, "slug_seccion":app.request.get('slug_seccion'),"search":search}) }}" class="">{{ csub.nombre }} </a>
+                    {% endif %}
+                {% endfor %}
+                </li>
+            </ul>
+        </div>
+    </div>
 </div>
+
+

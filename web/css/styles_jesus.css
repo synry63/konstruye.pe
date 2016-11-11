@@ -500,6 +500,9 @@ Filtro Compra Venta Y Alquiler Inmuebles
     color: #fff;
     font-weight: 600;
 }
+.filtro .title-filtro a {
+    color: #fff;
+}
 .filtro .body-filtro {
     border: 1px solid rgba(0,0,0,0.15);
     border-radius: 9px;

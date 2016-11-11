@@ -21,9 +21,12 @@
     <div class="container">
 
         <div class="col-md-3">
-            {% for cmain in categorias_hijas %}
-                {{ include('includes/filtros_negocios.html.twig', { 'cmain': cmain,'name':app.request.get('_route'),'search':app.request.get('search') }) }}
-            {% endfor %}
+            <div class="filtro">
+                {% for cmain in categorias_hijas %}
+                    {#{{ dump(cmain) }}#}
+                    {{ include('includes/filtros_negocios.html.twig', { 'cmain': cmain,'name':app.request.get('_route'),'search':app.request.get('search') }) }}
+                {% endfor %}
+            </div>
         </div>
 
         <div class="col-md-9 body-negocios">
@@ -40,9 +43,18 @@
                     </tr>
                 </table>
             </div>
-            {% for n in negocios.items %}
-                {{ include('includes/listado_negocios.html.twig', { 'n': n }) }}
-            {% endfor %}
+
+            {% if negocios.items|length > 0 %}
+                {% for n in negocios.items %}
+                        {{ include('includes/listado_negocios.html.twig', { 'n': n }) }}
+                {% endfor %}
+            {% else %}
+                <div class="mensaje-notfound">
+                    <p><i class="fa fa-exclamation-triangle" aria-hidden="true"></i></p>
+                    <p class="text-nf">No se encontró ningun resultado.</p>
+                    <p class="text-nf">Lo sentimos, no encontramos resultados para su búsqueda. Inténtalo nuevamente.</p>
+                </div>
+            {% endif %}
         </div>
 
         <div class="navigation">
@@ -60,4 +72,21 @@
     <script>
         {{ include('includes/js/rateyo.js') }}
     </script>
+    <script>
+
+        $(document).ready(function(){
+            //FILTRO LATERAL
+            var bodyFiltro = $('.body-filtro-list').show();
+//            $('.body-filtro-list:not(:first)').hide();
+//            $('.body-filtro-list:eq(1)').show();
+
+            $('.titulo-filtro').click(function(){
+//                console.log('click')
+                $(this).toggleClass('fa fa-angle-down fa fa-angle-up');
+                $(this).parent().next().children().slideToggle();
+            });
+
+        });
+    </script>
+
 {% endblock javascripts %}
