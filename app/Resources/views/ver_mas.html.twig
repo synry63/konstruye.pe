@@ -34,11 +34,18 @@
     </div>
 
     <div class="col-md-9">
-        <div style="width: 100%; color: #009FE3; text-align: right; margin-bottom: 10px">
-            <span>Ordenar por: </span>
-            <span>Más Reciente |</span>
-            <span>Rating |</span>
-            <span style="font-weight: bold">Alfabetico</span>
+        <div class="row table-filtros">
+            <span>Ordenar por:</span>
+            <table>
+                <tr>
+                    {# sorting of properties based on query components #}
+                    {#<th>{{ knp_pagination_sortable(negocios, 'Id', 'n.id') }}</th>#}
+                    <th{% if productos.isSorted('cp.nota') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(productos, 'Popularidad', 'cp.nota') }}</th>
+                    <th{% if productos.isSorted('p.nombre') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(productos, 'Alfabetico', 'p.nombre') }}</th>
+                    {# <th>{{ knp_pagination_sortable(negocios, 'Release', ['n.date', 'n.time']) }}</th> #}
+                    <th{% if productos.isSorted('p.registeredAt') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(productos, 'Más reciente ', 'p.registeredAt') }}</th>
+                </tr>
+            </table>
         </div>
 
         <div class="row">

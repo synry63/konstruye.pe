@@ -50,7 +50,7 @@ show_fotos_proyecto:
     path:      /proyecto/{id}
     defaults:  { _controller: AppBundle:Foto:showProyectoFotos}
 ver_mas_productos_proveedor:
-    path:      /ver-mas/{slug_negocio}/{page}
+    path:      /productos/{slug_negocio}/{page}
     defaults:  { _controller: AppBundle:Producto:showProductosProveedor,page:1}
 show_contacto:
     path:      /contacto
