@@ -79,6 +79,11 @@ class Producto
     private $negocio;
 
     /**
+     * @ORM\Column(type="string", length=100,nullable=true)
+     */
+    private $tags;
+
+    /**
      * @ORM\OneToMany(targetEntity="ComentarioProducto", mappedBy="producto")
      */
     private $comentarios;
@@ -102,6 +107,22 @@ class Producto
     public function setRegisteredAt($registeredAt)
     {
         $this->registeredAt = $registeredAt;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTags()
+    {
+        return $this->tags;
+    }
+
+    /**
+     * @param mixed $tags
+     */
+    public function setTags($tags)
+    {
+        $this->tags = $tags;
     }
 
 

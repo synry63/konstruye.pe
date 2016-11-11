@@ -105,7 +105,6 @@ class NegocioController extends Controller
     public function listadoSeccionAction(Request $request,$slug_seccion,$page)
     {
 
-
         $twig = 'layout_categorias.html.twig';
         $renderOut = array();
         if($slug_seccion=="constructoras-e-inmobiliarias"){
@@ -198,7 +197,9 @@ class NegocioController extends Controller
 
         }
         else if($slug_seccion=="especialistas-servicios-personales"){
+
             $slug_categoria = $request->query->get('slug_categoria');
+            //var_dump($slug_categoria);
             $negocios = $this->getDoctrine()->getRepository('AppBundle:Especialista')->getNegocios($slug_categoria);
             $categorias = $this->getDoctrine()->getRepository('AppBundle:CategoriaListado')->getCategoriasChildren('especialista');
             $renderOut['negocios'] = $negocios;

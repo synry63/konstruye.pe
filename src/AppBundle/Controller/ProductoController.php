@@ -61,11 +61,14 @@ class ProductoController extends Controller
         );
         $moy = $this->getDoctrine()->getRepository('AppBundle:Producto')->getProductoRating($producto);
         $comments = $this->getDoctrine()->getRepository('AppBundle:ComentarioProducto')->getAllComments($producto);
+        $producto_related = $this->getDoctrine()->getRepository('AppBundle:Producto')->getProductosRelated($producto,4);
+
 
         $renderOut = array(
             'producto'=>$producto,
             'moy'=>$moy,
             'fotos'=>$fotos,
+            'productos_relacionados'=>$producto_related,
             'comentarios'=>$comments,
         );
         if(is_object($user)){
@@ -194,7 +197,6 @@ class ProductoController extends Controller
         // }
     }
     public function showProductosProveedorAction(Request $request,$slug_negocio,$page){
-
         $negocio = $this->getDoctrine()->getRepository('AppBundle:Proveedor')->findOneBy(
             array('slug'=>$slug_negocio)
         );

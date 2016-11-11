@@ -15,7 +15,7 @@ class EspecialistaRepository extends EntityRepository
     /**
      * @return mixed
      */
-    public function getNegocios(){
+    public function getNegocios($slug_categoria = null){
         $qb = $this->createQueryBuilder('n')
             ->select('n as negocio,avg(cp.nota) as mymoy')
             ->leftJoin('n.comentarios','cp')
@@ -23,6 +23,11 @@ class EspecialistaRepository extends EntityRepository
             ->where('n.isAccepted = :state')
             ->setParameter('state', true);
         ;
+        if($slug_categoria!=null) {
+            $qb->join('n.categoriasListado','cl')
+                ->andWhere('cl.slug = :cate')
+                ->setParameter('cate', $slug_categoria);
+        }
         $qb->addGroupBy('n');
         $query = $qb->getQuery();
 
