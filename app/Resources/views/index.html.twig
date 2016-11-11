@@ -36,10 +36,10 @@
 
 
                     <div id="buscador1">
-                        <form data-buscar-url="{{ path('buscar_negocios_by_seccion_null') }}" action="{{ path('search_global_negocios') }}" role="search">
-                            <input type="text" placeholder="Ejemplo: Casa de Playa, Carpintero, Trebol Celima"/>
+                        <form method="GET" data-buscar-url="{{ path('buscar_negocios_by_seccion_null') }}" action="{{ path('search_global_negocios') }}" role="search">
+                            <input name="search" type="text" placeholder="Ejemplo: Carpintero, Trebol Celima"/>
                             <i class="fa fa-chevron-down" aria-hidden="true"></i>
-                            <select id="select-buscador" class="selectpicker">
+                            <select name="slug_seccion"  id="select-buscador" class="selectpicker">
                                 <option value="">Selecciona una Categoria</option>
                                 <option value="constructoras-e-inmobiliarias">Constructoras e Inmobiliarias</option>
                                 <option value="especialistas-servicios-personales">Especialistas y Servicios Personales</option>
@@ -52,9 +52,9 @@
 
                     <div id="buscador2">
                         <form data-buscar-url="{{ path('buscar_productos') }}"  action="{{ path('search_global_productos') }}" role="search">
-                            <input type="text" placeholder="Ejemplo: Marmol, Madera, Mesas"/>
+                            <input name="search" type="text" placeholder="Ejemplo: Marmol, Madera, Mesas"/>
                             <i class="fa fa-chevron-down" aria-hidden="true"></i>
-                            <select id="select-buscador2" class="selectpicker">
+                            <select name="slug_seccion" id="select-buscador2" class="selectpicker">
                                 <option selected value="proveedores">Proveedores</option>
                             </select>
 
@@ -404,7 +404,6 @@
         $( "#buscador1 form input" ).autocomplete({
             source: function( request, response ) {
                 var seccion = $("#buscador1 form .selectpicker").val();
-                console.log(seccion)
                 if(seccion==""){
                     noty({
                         text: '¡Escoja una categoria primero!',
@@ -440,10 +439,11 @@
             select: function( event, ui ) {
                 if(!s1_found_data) return false;
 
-                $( "#buscador1 form input").attr('value',ui.item.label);
-                var url = $('#buscador1 form').attr('action');
-                var search = ui.item.label;
-                window.open(url+'/'+search,'_self',false);
+                $( "#buscador1 form input").val(ui.item.label);
+                $( "#buscador1 form").submit();
+                //var url = $('#buscador1 form').attr('action');
+                //var search = ui.item.label;
+                //window.open(url+'/'+search,'_self',false);
                 //$('#s2').submit();
                 //alert(ui.item.label);
                 //log( "Selected: " + ui.item.label );
@@ -475,7 +475,7 @@
                 $( "#buscador2 form input").attr('value',ui.item.label);
                 var url = $('#buscador2 form').attr('action');
                 var search = ui.item.label;
-                window.open(url+'/'+search,'_self',false);
+                //window.open(url+'/'+search,'_self',false);
                 //$('#s2').submit();
                 //alert(ui.item.label);
                 //log( "Selected: " + ui.item.label );

@@ -109,7 +109,8 @@ class NegocioController extends Controller
         $twig = 'layout_categorias.html.twig';
         $renderOut = array();
         if($slug_seccion=="constructoras-e-inmobiliarias"){
-            $negocios = $this->getDoctrine()->getRepository('AppBundle:ConstructoraInmobiliaria')->getNegocios();
+            $slug_categoria = $request->query->get('slug_categoria');
+            $negocios = $this->getDoctrine()->getRepository('AppBundle:ConstructoraInmobiliaria')->getNegocios($slug_categoria);
             $categorias = $this->getDoctrine()->getRepository('AppBundle:CategoriaListado')->getCategoriasChildren('constructura-inmobiliaria');
             $renderOut['negocios'] = $negocios;
             $renderOut['categorias_hijas'] = $categorias;
@@ -198,7 +199,7 @@ class NegocioController extends Controller
         }
         else if($slug_seccion=="especialistas-servicios-personales"){
             $slug_categoria = $request->query->get('slug_categoria');
-            $negocios = $this->getDoctrine()->getRepository('AppBundle:Especialista')->getNegocios();
+            $negocios = $this->getDoctrine()->getRepository('AppBundle:Especialista')->getNegocios($slug_categoria);
             $categorias = $this->getDoctrine()->getRepository('AppBundle:CategoriaListado')->getCategoriasChildren('especialista');
             $renderOut['negocios'] = $negocios;
             $renderOut['categorias_hijas'] = $categorias;
@@ -473,13 +474,28 @@ class NegocioController extends Controller
             }
         }
     }
-    public function searchNegocioAction(Request $request,$search,$page){
+    public function searchNegocioAction(Request $request,$page){
 
+        $search = $request->query->get('search');
+        $seccion = $request->query->get('slug_seccion');
+        $slug_categoria = $request->query->get('slug_categoria');
         if(empty($search)){
             $negocios = array();
         }
         else{
-            $negocios = $this->getDoctrine()->getRepository('AppBundle:Negocio')->getNegociosBy($search);
+            if($seccion=="especialistas-servicios-personales"){
+                $negocios = $this->getDoctrine()->getRepository('AppBundle:Especialista')->getNegociosBy($search,$slug_categoria);
+                $categorias = $this->getDoctrine()->getRepository('AppBundle:CategoriaListado')->getCategoriasChildren('especialista');
+            }
+            else if($seccion=="proveedor"){
+                $negocios = $this->getDoctrine()->getRepository('AppBundle:Proveedor')->getNegociosBy($search,$slug_categoria);
+                $categorias = $this->getDoctrine()->getRepository('AppBundle:CategoriaListado')->getCategoriasChildren('proveedor');
+            }
+            else if($seccion=="constructoras-e-inmobiliarias"){
+                $negocios = $this->getDoctrine()->getRepository('AppBundle:ConstructoraInmobiliaria')->getNegociosBy($search,$slug_categoria);
+                $categorias = $this->getDoctrine()->getRepository('AppBundle:CategoriaListado')->getCategoriasChildren('constructura-inmobiliaria');
+            }
+
 
         }
 
@@ -489,8 +505,9 @@ class NegocioController extends Controller
             $page,
             6
         );
-        return $this->render('resultado_busqueda_negocios.html.twig',array(
+        return $this->render('layout_categorias.html.twig',array(
             'negocios'=>$pagination,
+            'categorias_hijas'=>$categorias
         ));
     }
     public function registerConfirmationAction(Request $request){

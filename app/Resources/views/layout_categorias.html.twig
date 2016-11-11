@@ -10,7 +10,6 @@
 {% block fos_user_content %}
 
 
-
     <div class="container-fluid">
         <div class="row" style="height: 300px;overflow: hidden">
             <img width="100%" src="{{ asset('images/assets/cementos_inka.jpg') }}" alt="">
@@ -23,7 +22,7 @@
 
         <div class="col-md-3">
             {% for cmain in categorias_hijas %}
-                {{ include('includes/filtros_negocios.html.twig', { 'cmain': cmain }) }}
+                {{ include('includes/filtros_negocios.html.twig', { 'cmain': cmain,'name':app.request.get('_route'),'search':app.request.get('search') }) }}
             {% endfor %}
         </div>
 

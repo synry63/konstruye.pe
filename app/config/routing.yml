@@ -37,8 +37,8 @@ show_negocio:
     #requirements:
           #slug_seccion: constructoras-e-inmobiliarias|compra-venta-y-alquiler-inmuebles|especialistas-servicios-personales|proveedores
 search_global_negocios:
-    path:      /resultado-busqueda/negocios/{search}/{page}
-    defaults:  { _controller: AppBundle:Negocio:searchNegocio,search:null,page:1}
+    path:      /resultado-busqueda/negocios/{page}
+    defaults:  { _controller: AppBundle:Negocio:searchNegocio,page:1}
 
 search_global_productos:
     path:      /resultado-busqueda/productos/{search}/{page}

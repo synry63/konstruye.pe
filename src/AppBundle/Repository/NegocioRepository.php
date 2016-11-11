@@ -34,21 +34,7 @@ class NegocioRepository extends EntityRepository
 
         return $query->getResult();
     }
-    public function getNegociosBy($search){
 
-        $em = $this->getEntityManager();
-        $qb = $em->createQueryBuilder();
-        $qb->select('n as negocio,avg(cp.nota) as mymoy')
-            ->from('AppBundle\Entity\Negocio', 'n')
-            ->leftJoin('n.comentarios','cp')
-            ->where($qb->expr()->like('n.nombre', ':search'))
-            ->setParameter('search', '%' . $search . '%');
-
-        $qb->addGroupBy('n');
-        $query = $qb->getQuery();
-        //$negocios = $query->getResult();
-        return $query;
-    }
     public function getNegociosOrderRecent(){
         $qb = $this->createQueryBuilder('p')
             ->orderBy('p.registeredAt', 'DESC')

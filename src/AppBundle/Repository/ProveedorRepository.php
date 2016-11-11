@@ -85,4 +85,25 @@ class ProveedorRepository extends EntityRepository
         $nombres = array_column($negocios, 'nombre');
         return $nombres;
     }
+    public function getNegociosBy($search,$slug_categoria = null){
+
+        $em = $this->getEntityManager();
+        $qb = $em->createQueryBuilder();
+        $qb->select('n as negocio,avg(cp.nota) as mymoy')
+            ->from('AppBundle\Entity\Proveedor', 'n')
+            ->leftJoin('n.comentarios','cp')
+            ->where($qb->expr()->like('n.nombre', ':search'))
+            ->setParameter('search', '%' . $search . '%');
+
+        if($slug_categoria!=null) {
+            $qb->join('n.categoriasListado','cl')
+                ->andWhere('cl.slug = :cate')
+                ->setParameter('cate', $slug_categoria);
+        }
+
+        $qb->addGroupBy('n');
+        $query = $qb->getQuery();
+        //$negocios = $query->getResult();
+        return $query;
+    }
 }
