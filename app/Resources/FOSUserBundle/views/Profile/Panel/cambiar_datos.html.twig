@@ -90,19 +90,20 @@
                 {{ form_widget(form.structure,{ 'attr': {'class': 'form-control','placeholder':'cgarcia@gmail.com'}}) }}
             </div>
         {% endif %}
-
+        {% if form.vars.value.operacion is defined %}
         <div class="form-group">
             {{ form_label(form.operacion,'Operación') }}
             {{ form_errors(form.operacion) }}
             {{ form_widget(form.operacion,{ 'attr': {'class': 'form-control','placeholder':'cgarcia@gmail.com'}}) }}
         </div>
-
+        {% endif %}
+        {% if form.vars.value.precioSoles is defined %}
         <div class="form-group">
             {{ form_label(form.precioSoles,'Precio Soles') }}
             {{ form_errors(form.precioSoles) }}
             {{ form_widget(form.precioSoles,{ 'attr': {'class': 'form-control','placeholder':'cgarcia@gmail.com'}}) }}
         </div>
-
+        {% endif %}
 
 
         <div class="form-group">

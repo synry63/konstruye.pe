@@ -57,7 +57,11 @@
         <div class="datos-detail">
             <div class="col-md-10 col-md-offset-1">
                 <div class="col-md-2 logo">
-                    <img width="80" src="{{ vich_uploader_asset(negocio.logo, 'logoFile','AppBundle\\Entity\\Logo') }}" alt="" />
+                    {% if negocio.logo is not null %}
+                        <img width="80" src="{{ vich_uploader_asset(negocio.logo, 'logoFile','AppBundle\\Entity\\Logo') }}" alt="" />
+                    {% else %}
+                        <img width="80" src="http://placehold.it/80x80" alt="" />
+                    {% endif %}
                 </div>
                 <div class="col-md-7 info-negocio">
                     <div class="row titulo-negocio">

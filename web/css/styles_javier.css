@@ -4,6 +4,49 @@
 }
 
 /*===============
+Filtro X
+================*/
+.container-filtro .body-filtro ul li .default-a{
+    padding: 3px 0;
+}
+.container-filtro .body-filtro ul .default-a:before{
+    content: '';
+    border: solid 1px #000;
+    font-size: 11px;
+    height: 20px;
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 20px;
+    border-radius: 50%;
+    color: #fff;
+    opacity: .5;
+    text-align: center;
+    width: 20px;
+}
+.container-filtro .body-filtro ul .default-a.actif:before{
+    content: "";
+    opacity: 0;
+}
+.body-filtro .select{
+    float: left;
+    background: red;
+    font-size: 11px;
+    height: 20px;
+    line-height: 20px;
+    border-radius: 50%;
+    color: #fff;
+    opacity: .5;
+    text-align: center;
+    width: 20px;
+    /* margin-left: -22px; */
+    margin-top: -24px;
+}
+.body-filtro .select:before{
+    content: "";
+    display: none;
+}
+
+/*===============
 Icomoon
 ================*/
 
@@ -31,18 +74,63 @@ Icomoon
 .icon-Video.vigilancia:before {
     content: "\e908";
 }
+.icon-Piscina:before {
+    content: "\e909";
+}
+
+.icon-Reposteros:before {
+    content: "\e90b";
+}
+.icon-Terraza:before {
+    content: "\e90a";
+}
+/*===============
+SHOW INMUEBLE ICONS
+================*/
+
+.icomoon span{
+    font-family: 'icomoon';
+    font-size: 23px;
+    vertical-align: middle;
+    color: rgba(0,0,0,.5);
+}
+.icon-areate:before {
+    content: "\e90b";
+}
+
+.icon-areato:before {
+    content: "\e90c";
+}
+.icon-dolares:before {
+    content: "\e90d";
+}
+.icon-soles:before {
+    content: "\e90e";
+}
+.icon-bano:before {
+    content: "\e90f";
+}
+.icon-proyecto:before {
+    content: "\e916";
+}
+
 
 /*===============
 SHOW INMUEBLE
 ================*/
+#ms-gallery-1.ms-gallery-template .ms-slide-info{
+    padding: 20px 8px;
+}
+
 
 .datos-header {
     padding: 20px;
     background-color: #fff;
     margin-bottom: 20px;
-    box-shadow: 0 1px 2px rgba(0,0,0,.4);
     position: relative;
-    margin-top: 20px;
+    height: 89px;
+    border-left: solid 4px rgba(0, 159, 227,1);
+
 }
 .datos-anterior {
     display: inline-block;
@@ -59,17 +147,19 @@ SHOW INMUEBLE
 }
 .datos-direccion {
     display: inline-block;
-    margin-left: 35px;
 }
 .datos-direccion h1 {
     font-size: 20px;
     line-height: 24px;
     margin-bottom: 7px;
-    font-weight: 400;
+    color: #009fe3;
+    font-weight: 600;
 }
 .datos-direccion div p {
     display: inline-block;
+    color: rgba(0,0,0,.7);
 }
+
 .datos-icon-header {
     display: inline-block;
     position: absolute;
@@ -79,18 +169,18 @@ SHOW INMUEBLE
     display: inline-block;
 }
 .zona-precio {
-    margin: 20px 0;
+    margin: 0;
 }
 .zona-precio-contenido {
     padding: 20px;
-    box-shadow: 0 1px 2px rgba(0,0,0,.4);
-    background-color: #fff;
+    max-height: 89px;
+    background-color: #009FE3;
 }
 .zona-precio-contenido span.precio-zona-inmueble {
     float: right;
     font-size: 28px;
     font-weight: 600;
-    color: #009FE3;
+    color: #fff;
 }
 .precio {
     overflow: hidden;
@@ -98,22 +188,22 @@ SHOW INMUEBLE
 .calcula-hipoteca {
     display: block;
     text-align: right;
-    color: #009FE3;
+    color: #fff;
     font-weight: normal;
     font-size: 14px;
-    margin-top: 4px;
+    margin-top: 8px;
 }
 .zona-precio-contenido span.titulo-zona-inmueble {
     float: left;
     text-transform: uppercase;
-    color: rgba(0,0,0,.5);
+    color: #fff;
     font-weight: 500;
     line-height: 28px;
 }
 .zona-contactanos-contenido {
     background-color: #fff;
     padding: 20px;
-    box-shadow: 0 1px 2px rgba(0,0,0,.4);
+    border: solid 1px rgba(0,0,0,.2);
 }
 .zona-contactanos-contenido a.link-inmobiliaria {
     display: block;
@@ -141,7 +231,7 @@ SHOW INMUEBLE
 .datos-izquierda, .data-izquierda_b {
     padding:20px;
     background-color: #fff;
-    box-shadow: 0 1px 2px rgba(0,0,0,.4);
+    border: solid 1px rgba(0,0,0,.2);
 }
 .data-izquierda_b .datos-descripcion-titulo {
     padding-bottom: 20px;
@@ -157,7 +247,6 @@ SHOW INMUEBLE
 }
 .datos-izquierda .lista-datos-principales i {
     color: #A0A0A0;
-    font-weight: bold;
 }
 .datos-izquierda .datos-principales-titulo {
     /*border: 1px solid #d1d1d1;*/
@@ -166,7 +255,7 @@ SHOW INMUEBLE
 .datos-ubicacion {
     padding:20px;
     background-color: #fff;
-    box-shadow: 0 1px 2px rgba(0,0,0,.4);
+    border: solid 1px rgba(0,0,0,.2);
     margin-top: 20px;
 }
 .zona-telefono {
@@ -188,8 +277,17 @@ SHOW INMUEBLE
     margin-top: 20px;
     background-color: #fff;
     padding: 20px;
-    box-shadow: 0 1px 2px rgba(0,0,0,.4);
+    font-size: 17px;
+    border: solid 1px rgba(0,0,0,.2);
 }
+
+.datos-servicios .contenedor-servicios span{
+    font-size: 23px;
+    vertical-align: middle;
+    opacity: .7;
+}
+
+
 .datos-descripcion-titulo , .datos-principales-titulo, .datos-titulo-generales, .datos-titulo-servicios, .datos-titulo-ubicacion {
     color: #009FE3;
     font-size: 20px;
@@ -212,9 +310,15 @@ SHOW INMUEBLE
 .datos-generales .contenedor-generales {
     background-color: #fff;
     padding: 20px;
-    box-shadow: 0 1px 2px rgba(0,0,0,.4);
+    font-size: 17px;
+    border: solid 1px rgba(0,0,0,.2);
+    margin-top: 20px;
 }
-
+.datos-generales .contenedor-generales span{
+    font-size: 23px;
+    vertical-align: middle;
+    opacity: .7;
+}
 
 /*===========================
 Show Inmueble - Comentarios
@@ -694,9 +798,23 @@ Producto Page
     background: #fff;
     padding: 20px;
 }
+
+.title-default{
+    font-size: 25px;
+    color: #009FE3;
+    margin-top: 10px;
+    margin-bottom: 25px;
+    text-align: center;
+    font-weight: bold;
+}
+.title-default span{
+    color: rgba(0,0,0,.6);
+}
+
 .product-section .producto-box{
     text-align: center;
     margin: 10px auto;
+    padding: 25px;
 }
 .product-section .producto-box a{
     text-decoration: none;
@@ -883,7 +1001,7 @@ Buscador Principal
 .buscador-principal #buscador1 i, .buscador-principal #buscador2 i{
     pointer-events: none;
     position: absolute;
-    right: 38px;
+    left: 296px;
     z-index: 9;
     background:#009FE3;
     color: #fff;
@@ -1563,8 +1681,8 @@ Form Stiky
 }
 .buttons-change{
     color: #fff;
-    text-align: left;
-    padding-left: 20px;
+    text-align: right;
+    padding-right: 70px;
 }
 .buttons-change div{
     display: inline-block;

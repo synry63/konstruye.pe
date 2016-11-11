@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="{{ asset('css/jquery.rateyo.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/masterslider.css') }}">
     <link rel="stylesheet" href="{{ asset('css/ms-showcase2.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/flexslider.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     {#Magnific Popup#}
     <link rel="stylesheet" href="{{ asset('css/magnific-popup.css') }}">
@@ -204,24 +205,32 @@
 
     <div class="container product-section">
         <div class="product-content">
-            <h1 class="tittle">Productos Destacados</h1>
+            <h1 class="title-default" style="margin-bottom: 10px">Productos <span>Destacados</span></h1>
             <div class="row">
-                {% for nepro  in productos %}
-                    <div class="col-md-3 producto-box">
-                        <a href="{{ path('show_producto',{'slug_producto':nepro.producto.slug}) }}">
-                            <img width="220px" src="http://placehold.it/220x220" alt="">
-                        </a>
-                        <a href="{{ path('show_producto',{'slug_producto':nepro.producto.slug}) }}"><h1>{{ nepro.producto.nombre }}</h1></a>
-                        <a href="{{ path('show_negocio',
-                        {"slug_seccion":app.request.get('slug_seccion'),"slug_negocio":nepro.producto.negocio.slug}) }}"><h2>{{ nepro.producto.negocio.nombre }}</h2></a>
-                        {% if nepro.mymoy is not null %}
-                            <div class="rateYo_productos" data-rating="{{ nepro.mymoy }}" style="margin: 0 auto"></div>
-                        {% else %}
-                            <div class="rateYo_productos" data-rating="0" style="margin: 0 auto"></div>
-                        {% endif %}
 
-                    </div>
-                {% endfor %}
+                <div class="flexslider" style="margin: 10px 0">
+                    <ul class="slides">
+                        {% for nepro  in productos %}
+                            <li>
+                                <div class="producto-box">
+                                    <a href="{{ path('show_producto',{'slug_producto':nepro.producto.slug}) }}">
+                                        <img width="220px" src="http://placehold.it/220x220" alt="">
+                                    </a>
+                                    <a href="{{ path('show_producto',{'slug_producto':nepro.producto.slug}) }}"><h1>{{ nepro.producto.nombre }}</h1></a>
+                                    <a href="{{ path('show_negocio',
+                                    {"slug_seccion":app.request.get('slug_seccion'),"slug_negocio":nepro.producto.negocio.slug}) }}"><h2>{{ nepro.producto.negocio.nombre }}</h2></a>
+                                    {% if nepro.mymoy is not null %}
+                                        <div class="rateYo_productos" data-rating="{{ nepro.mymoy }}" style="margin: 0 auto"></div>
+                                    {% else %}
+                                        <div class="rateYo_productos" data-rating="0" style="margin: 0 auto"></div>
+                                    {% endif %}
+                                </div>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+
 
 
                 <div class="col-md-2 col-md-offset-5" style="margin-top: 10px">
@@ -311,6 +320,7 @@
     {{ parent() }}
     <script src="{{ asset('js/jquery.rateyo.min.js') }}"></script>
     <script src="{{ asset('js/masterslider.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/jquery.flexslider-min.js') }}" type="text/javascript"></script>
     {#Magnific Popup#}
     <script type="text/javascript" src="{{ asset('js/jquery.magnific-popup.min.js') }}"></script>
     {#Rate Yo#}
@@ -318,6 +328,18 @@
     {#<script src="text/javascript" src="{{ asset('js/default_noty.js') }}"></script>#}
     <script>
         $(document).ready(function() {
+
+            $(window).load(function() {
+                $('.flexslider').flexslider({
+                    animation: "slide",
+                    controlNav: false,
+                    animationLoop: false,
+                    itemWidth: 160,
+                    itemMargin: 5,
+                    minItems: 2,
+                    maxItems: 4
+                });
+            });
 
 
             var errormsn = $("#error").attr("data-error");
@@ -434,7 +456,7 @@
                     text: flashMessage,
                     layout: 'bottom',
                     timeout: 2000,
-                    type:'wedding'
+                    type:'konstruye'
                 });
 
                 var n = noty({

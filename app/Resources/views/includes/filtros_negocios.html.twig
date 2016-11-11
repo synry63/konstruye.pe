@@ -15,10 +15,10 @@
                 <li>
                 {% for csub in cmain.children %}
                     {% if app.request.get('slug_categoria') == csub.slug  %}
-                        <a href="{{ path(name, {"slug_categoria":csub.slug, "slug_seccion":app.request.get('slug_seccion'),"search":search}) }}" class="actif">{{ csub.nombre }} </a>
-                        <a class="select" href="{{ path('lisdato_seccion',{'slug_seccion':app.request.get('slug_seccion')}) }}">x</a>
+                        <a href="{{ path(name, {"slug_categoria":csub.slug, "slug_seccion":app.request.get('slug_seccion'),"search":search}) }}" class="actif default-a">{{ csub.nombre }} </a>
+                        <a class="select" href="{{ path('lisdato_seccion',{'slug_seccion':app.request.get('slug_seccion')}) }}"><i class="fa fa-times" aria-hidden="true"></i></a>
                     {% else %}
-                        <a href="{{ path(name, {"slug_categoria":csub.slug, "slug_seccion":app.request.get('slug_seccion'),"search":search}) }}" class="">{{ csub.nombre }} </a>
+                        <a href="{{ path(name, {"slug_categoria":csub.slug, "slug_seccion":app.request.get('slug_seccion'),"search":search}) }}" class="default-a">{{ csub.nombre }} </a>
                     {% endif %}
                 {% endfor %}
                 </li>

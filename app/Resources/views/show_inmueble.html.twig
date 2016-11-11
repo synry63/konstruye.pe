@@ -24,16 +24,14 @@
 {#{{ dump(negocio) }}#}
 {#<div class="container">#}
     <div class="container">
-        <div class="container-breadcrumb marging-top">
+        <div class="container-breadcrumb marging-top" style="margin-right: 15px">
             {{ wo_render_breadcrumbs() }}
         </div>
         <section class="header">
             <div class="col-md-12">
                 <div class="row">
                     <div class="col-md-8 datos-header">
-                        <div class="datos-anterior">
-                            <a href="{{ path('lisdato_seccion',{'slug_seccion': 'compra-venta-y-alquiler-inmuebles'}) }}"><i class="fa fa-arrow-left" aria-hidden="true"></i></a>
-                        </div>
+
                         <div class="datos-direccion">
                             <h1> {{ negocio.nombre }}</h1>
                             <div>
@@ -76,21 +74,21 @@
                                 <img src="{{ asset('css/blank.gif') }}" data-src="{{ asset('images/comprayventa.jpg') }}" alt="lorem ipsum dolor sit"/>
                                 <img src="{{ asset('images/comprayventa.jpg') }}" alt="thumb-1" class="ms-thumb"/>
                                 <div class="ms-info">
-                                    INMUEBLE
+                                    {{ negocio.nombre }}
                                 </div>
                             </div>
                             <div class="ms-slide">
                                 <img src="{{ asset('css/blank.gif') }}" data-src="{{ asset('images/comprayventa.jpg') }}" alt="lorem ipsum dolor sit"/>
                                 <img src="{{ asset('images/comprayventa.jpg') }}" alt="thumb-1" class="ms-thumb"/>
                                 <div class="ms-info">
-                                    INMUEBLE
+                                    {{ negocio.nombre }}
                                 </div>
                             </div>
                             <div class="ms-slide">
                                 <img src="{{ asset('css/blank.gif') }}" data-src="{{ asset('images/comprayventa.jpg') }}" alt="lorem ipsum dolor sit"/>
                                 <img src="{{ asset('images/comprayventa.jpg') }}" alt="thumb-1" class="ms-thumb"/>
                                 <div class="ms-info">
-                                    INMUEBLE
+                                    {{ negocio.nombre }}
                                 </div>
                             </div>
                         </div>
@@ -111,44 +109,44 @@
                                         <h3 class="datos-principales-titulo">Datos Principales</h3>
                                         <ul>
                                             <li class="lista-datos-principales">
-                                                <span class="">
-                                                    <i class="fa fa-heart-o" aria-hidden="true"></i> Proyecto Inmobiliario
+                                                <span class="icomoon">
+                                                    <span class="icon-proyecto"></span> Proyecto Inmobiliario
                                                 </span>
                                                 <span></span>
                                             </li>
                                             <li class="lista-datos-principales">
-                                               <span class="">
-                                                   <i class="fa fa-heart-o" aria-hidden="true"></i> Precio Desde {{ negocio.precioSoles }}
+                                               <span class="icomoon">
+                                                   <span class="icon-soles"></span> Precio Desde {{ negocio.precioSoles }}
                                                </span>
                                                 <span></span>
                                             </li>
                                             <li class="lista-datos-principales">
-                                               <span class="">
-                                                   <i class="fa fa-heart-o" aria-hidden="true"></i> Precio en Dólares desde US$ {{ negocio.precioDolares }}
+                                               <span class="icomoon">
+                                                   <span class="icon-dolares"></span> Precio en Dólares desde US$ {{ negocio.precioDolares }}
                                                </span>
                                                 <span></span>
                                             </li>
                                             <li class="lista-datos-principales">
-                                               <span class="">
-                                                   <i class="fa fa-heart-o" aria-hidden="true"></i> {{ negocio.areaTotal }} Área Total
+                                               <span class="icomoon">
+                                                   <span class="icon-areato"></span> {{ negocio.areaTotal }} Área Total
                                                </span>
                                                 <span></span>
                                             </li>
                                             <li class="lista-datos-principales">
-                                               <span class="">
-                                                   <i class="fa fa-heart-o" aria-hidden="true"></i> {{ negocio.areaTechada }} Área Techada
+                                               <span class="icomoon">
+                                                   <span class="icon-areate"></span> {{ negocio.areaTechada }} Área Techada
                                                </span>
                                                 <span></span>
                                             </li>
                                             <li class="lista-datos-principales">
-                                               <span class="">
-                                                   <i class="fa fa-heart-o" aria-hidden="true"></i> {{ negocio.dormitorios }} Dormitorios
+                                               <span class="icomoon">
+                                                   <i class="fa fa-bed" aria-hidden="true"></i> {{ negocio.dormitorios }} Dormitorios
                                                </span>
                                                 <span></span>
                                             </li>
                                             <li class="lista-datos-principales">
-                                               <span class="">
-                                                   <i class="fa fa-heart-o" aria-hidden="true"></i> {{ negocio.banos }} Baños
+                                               <span class="icomoon">
+                                                   <span class="icon-bano"></span> {{ negocio.banos }} Baños
                                                </span>
                                                 <span></span>
                                             </li>
@@ -187,7 +185,7 @@
 
                                             {% for servicio in negocio.sevicios%}
                                                 {% if servicio.servicio.nombre is not null %}
-                                                    <p><i class="fa fa-check" aria-hidden="true"></i> {{ servicio.servicio.nombre }}</p>
+                                                    <p style="padding: 5px;"><span class="icon-{{ servicio.servicio.nombre }}" style="font-family: 'icomoon'"></span> {{ servicio.servicio.nombre }}</p>
                                                 {% endif %}
                                             {% endfor %}
 
@@ -200,7 +198,7 @@
                                     <h3 class="datos-titulo-generales">Generales</h3>
                                     <div class="">
                                         {% for general in negocio.generales %}
-                                            <p><i class="fa fa-check" aria-hidden="true"></i> {{ general.general.nombre }}</p>
+                                            <p style="padding: 5px;"><span class="icon-{{general.general.nombre }}" style="font-family: 'icomoon'"></span> {{ general.general.nombre }}</p>
                                         {% endfor %}
                                     </div>
                                 </div>
@@ -215,7 +213,7 @@
                                     {% if negocio.constructora is not null %}
                                         <a class="link-inmobiliaria" href="{{ path('show_negocio',
                                         {"slug_negocio":negocio.constructora.slug}) }}" target="_blank">
-                                            <div class="col-md-4" style="padding: 0">
+                                            <div class="col-md-4" style="padding: 10px">
                                                 <img class="img-responsive" width="100%" src="{{ vich_uploader_asset(negocio.constructora.logo, 'logoFile') }}" alt=""/>
                                             </div>
                                             <div class="col-md-8">
@@ -239,8 +237,12 @@
                 </div>
             </div>
             <div class="col-md-12 comments_details">
+                {#FlashBack#}
+                {% for label, flash in app.session.flashbag.get('success') %}
+                    <div id="success" data-success="{{ flash }}"> </div>
+                {% endfor %}
                 <div class="row">
-                    <div class="col-md-8 datos-header">
+                    <div class="col-md-8" style="background: #fff;padding: 20px;border: solid 1px rgba(0,0,0,.2);">
                         <h2 class="datos-titulo-comentarios">Comentarios ({{ comentarios|length }})</h2>
                         {% if negocio.comentarios|length > 0 %}
                             {% for comentario in negocio.comentarios %}
@@ -306,8 +308,30 @@
     <script  type="text/javascript" src="{{ asset('js/masterslider.min.js') }}"></script>
     {#Rate Yo#}
     <script type="text/javascript" src="{{ asset('js/jquery.rateyo.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/fixto.min.js') }}"></script>
 <script>
     $(document).ready(function(){
+
+        //Noty
+        var flashMessage= $('#success').attr('data-success');
+        if(flashMessage!=undefined){
+            noty({
+                text: flashMessage,
+                layout: 'bottom',
+                timeout: 2000,
+                type:'konstruye'
+            });
+
+            var n = noty({
+                theme: 'default_noty'
+            });
+        }
+
+        $('.zona-contactanos').fixTo('.padding-left-right', {
+           top: 100
+        });
+
+
         {#Magnific Popup#}
         $('.simple-ajax-popup').magnificPopup({
             type: 'ajax'
@@ -329,6 +353,8 @@
 
         var gallery = new MSGallery('ms-gallery-1' , slider);
         gallery.setup();
+
+
 
         {#Rateyo#}
         var color="#009FE3";

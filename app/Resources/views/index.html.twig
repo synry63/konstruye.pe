@@ -37,7 +37,7 @@
 
                     <div id="buscador1">
                         <form method="GET" data-buscar-url="{{ path('buscar_negocios_by_seccion_null') }}" action="{{ path('search_global_negocios') }}" role="search">
-                            <input name="search" type="text" placeholder="Ejemplo: Carpintero, Trebol Celima"/>
+
                             <i class="fa fa-chevron-down" aria-hidden="true"></i>
                             <select name="slug_seccion"  id="select-buscador" class="selectpicker">
                                 <option value="">Selecciona una Categoria</option>
@@ -45,19 +45,19 @@
                                 <option value="especialistas-servicios-personales">Especialistas y Servicios Personales</option>
                                 <option value="proveedores">Proveedores</option>
                             </select>
-
+                            <input name="search" type="text" placeholder="Ejemplo: Carpintero, Trebol Celima"/>
                         </form>
                     </div>
 
 
                     <div id="buscador2">
                         <form data-buscar-url="{{ path('buscar_productos') }}"  action="{{ path('search_global_productos') }}" role="search">
-                            <input name="search" type="text" placeholder="Ejemplo: Marmol, Madera, Mesas"/>
+
                             <i class="fa fa-chevron-down" aria-hidden="true"></i>
                             <select name="slug_seccion" id="select-buscador2" class="selectpicker">
                                 <option selected value="proveedores">Proveedores</option>
                             </select>
-
+                            <input name="search" type="text" placeholder="Ejemplo: Marmol, Madera, Mesas"/>
                         </form>
                     </div>
 
@@ -209,7 +209,7 @@
            <h1 class="mejores_tittle"><span>Mejores Inmuebles</span></h1>
        </div>
        <div class="container" style="position: relative">
-           <img width="280px" style="position: absolute;bottom: -15px;right: 0" src="{{ asset('images/comprayventa_home.png') }}" alt=""/>
+           <img width="338px" style="position: absolute;bottom: -15px;right: 0" src="{{ asset('images/inmobiliarias_home.png') }}" alt=""/>
            <div class="col-md-8">
                <div class="ms-staff-carousel ms-round">
                    {% if inmuebles|length >= 5 %}

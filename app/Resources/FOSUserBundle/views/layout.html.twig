@@ -136,19 +136,21 @@
                             <div id="hide4"><i class="fa fa-shopping-bag" aria-hidden="true"></i>Buscador de Productos</div>
                         </div>
                         <form id="s4" data-buscar-url="{{ path('buscar_negocios_by_seccion_null') }}" action="{{ path('search_global_negocios') }}" class="s1" role="search">
-                            <input name="search" class="form-control" type="text" placeholder="Ejemplo: Carpintero, Trebol Celima">
+
                             <select name="slug_seccion" class="selectpicker">
                                 <option value="">Selecciona una Categoria</option>
                                 <option value="constructoras-e-inmobiliarias">Constructoras e Inmobiliarias</option>
                                 <option value="especialistas-servicios-personales">Especialistas y Servicios Personales</option>
                                 <option value="proveedores">Proveedores</option>
                             </select>
+                            <input name="search" class="form-control" type="text" placeholder="Ejemplo: Carpintero, Trebol Celima">
                         </form>
                         <form id="s3" data-buscar-url="{{ path('buscar_productos') }}"  action="{{ path('search_global_productos') }}" class="s2" role="search">
-                            <input name="search" class="form-control" type="text"  placeholder="Ejemplo: Marmol, Madera, Mesas">
+
                             <select name="slug_seccion" class="selectpicker">
                                 <option selected value="proveedores">Proveedores</option>
                             </select>
+                            <input name="search" class="form-control" type="text"  placeholder="Ejemplo: Marmol, Madera, Mesas">
                         </form>
                     </div>
 
@@ -263,7 +265,7 @@
             <script src="{{ asset('js/jquery.noty.packaged.min.js') }}" type="text/javascript"></script>
             {#Defaut Noty - ESTO ESTUVO OCASIONANDO ERROR#}
             {#<script src="{{ asset('js/default_noty.js') }}" type="text/javascript"></script>#}
-            <script src="{{ asset('js/default.js') }}" type="text/javascript"></script>
+            <script src="{{ asset('js/default_noty.js') }}" type="text/javascript"></script>
             <script>
 
                 function monkeyPatchAutocomplete() {

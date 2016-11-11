@@ -10,30 +10,14 @@
 {% block fos_user_content %}
 
     <div class="container-fluid">
-        <div class="row">
+        <div class="row" style="height: 300px;overflow: hidden">
             <img width="100%" src="{{ asset('images/assets/celima_banner.jpg') }}" alt="">
         </div>
     </div>
     <div class="container product-section">
 
-        <div class="col-md-3">
-            <div class="list-group">
-                <a href="#" class="list-group-item disabled tittle-disable">Filtro</a>
-                <a href="#" class="list-group-item">Sub-Filtro</a>
-                <a href="#" class="list-group-item">Sub-Filtro</a>
-                <a href="#" class="list-group-item">Sub-Filtro</a>
-                <a href="#" class="list-group-item">Sub-Filtro</a>
-            </div>
-            <div class="list-group">
-                <a href="#" class="list-group-item disabled tittle-disable">Filtro</a>
-                <a href="#" class="list-group-item">Sub-Filtro</a>
-                <a href="#" class="list-group-item">Sub-Filtro</a>
-                <a href="#" class="list-group-item">Sub-Filtro</a>
-                <a href="#" class="list-group-item">Sub-Filtro</a>
-            </div>
-        </div>
 
-        <div class="col-md-9">
+        <div class="col-md-12 body-negocios">
             <div class="row table-filtros">
                 <span>Ordenar por:</span>
                 <table>
@@ -50,7 +34,7 @@
 
             <div class="row">
                 {% for pro in productos %}
-                    <div class="col-md-4 producto-box">
+                    <div class="col-md-3 producto-box">
                         <a href="{{ path('show_producto',{'slug_producto':pro.producto.slug}) }}">
                             <img src="http://placehold.it/220x220" alt="">
                         </a>
