@@ -37,6 +37,10 @@ class ProductoController extends Controller
             6
         );
 
+        $breadcrumbs = $this->get("white_october_breadcrumbs");
+        $breadcrumbs->addItem('Inicio', $this->get("router")->generate("homepage"));
+        $breadcrumbs->addItem('Resultado de busqueda');
+
         return $this->render('layout_productos.html.twig',array(
             'productos'=>$pagination,
         ));
@@ -63,6 +67,11 @@ class ProductoController extends Controller
         $comments = $this->getDoctrine()->getRepository('AppBundle:ComentarioProducto')->getAllComments($producto);
         $producto_related = $this->getDoctrine()->getRepository('AppBundle:Producto')->getProductosRelated($producto,4);
 
+        $breadcrumbs = $this->get("white_october_breadcrumbs");
+        $breadcrumbs->addItem('Proveedores', $this->get("router")->generate("lisdato_seccion",array('slug_seccion'=>'proveedores')));
+        $breadcrumbs->addItem($producto->getNegocio()->getNombre(), $this->get("router")->generate("show_negocio",array('slug_negocio'=>$producto->getNegocio()->getSlug())));
+        $breadcrumbs->addItem('Productos',$this->get("router")->generate("ver_mas_productos_proveedor",array('slug_negocio'=>$producto->getNegocio()->getSlug())));
+        $breadcrumbs->addItem($producto->getNombre());
 
         $renderOut = array(
             'producto'=>$producto,
@@ -201,6 +210,12 @@ class ProductoController extends Controller
             array('slug'=>$slug_negocio)
         );
         $productos = $this->getDoctrine()->getRepository('AppBundle:Producto')->getProductosByNegocio($negocio);
+
+        $breadcrumbs = $this->get("white_october_breadcrumbs");
+        $breadcrumbs->addItem('Proveedores', $this->get("router")->generate("lisdato_seccion",array('slug_seccion'=>'proveedores')));
+        $breadcrumbs->addItem($negocio->getNombre(), $this->get("router")->generate("show_negocio",array('slug_negocio'=>$negocio->getSlug())));
+        $breadcrumbs->addItem('Productos');
+
 
         $paginator  = $this->get('knp_paginator');
         $pagination = $paginator->paginate(

@@ -499,6 +499,10 @@ class NegocioController extends Controller
 
 
         }
+        $breadcrumbs = $this->get("white_october_breadcrumbs");
+        $breadcrumbs->addItem('Inicio', $this->get("router")->generate("homepage"));
+        $breadcrumbs->addItem('Resultado de busqueda');
+
 
         $paginator  = $this->get('knp_paginator');
         $pagination = $paginator->paginate(

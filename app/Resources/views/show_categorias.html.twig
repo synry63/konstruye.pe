@@ -104,7 +104,11 @@
                     </span>
                             </a>
                         </div>
-                        <a class="simple-ajax-popup contactenos_button" href="{{ path('negocio_solicitar_cotizacion',{'slug_negocio':negocio.slug}) }}">
+                        {% set ajax_popup = '' %}
+                        {% if app.user is not null %}
+                            {% set ajax_popup = 'simple-ajax-popup' %}
+                        {% endif %}
+                        <a class="{{ajax_popup~ ' contactenos_button' }}" href="{{ path('negocio_solicitar_cotizacion',{'slug_negocio':negocio.slug}) }}">
                             <button class="btn btn-default"> contáctanos </button>
                         </a>
                     </div>

@@ -19,7 +19,9 @@
 
 
     <div class="container">
-
+        <div class="col-md-12 container-breadcrumb marging-top" style="padding-right: 0px;">
+            {{ wo_render_breadcrumbs() }}
+        </div>
         <div class="col-md-3">
             <div class="filtro">
                 {% for cmain in categorias_hijas %}

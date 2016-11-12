@@ -14,7 +14,6 @@
 {% endblock %}
 
 {% block fos_user_content %}
-    {#{{ dump(app.user) }}#}
     {#{{ dump(myc) }}#}
     {#{{ wo_render_breadcrumbs() }}#}
     <div class="container product-detail-section">
@@ -69,10 +68,14 @@
             <a href="{{ path('show_negocio',{"slug_negocio":producto.negocio.slug}) }}">
                 <h2>{{ producto.negocio.nombre }}</h2>
             </a>
-            <p>{{ producto.description }}</p>
+            <p>{{ producto.description|nl2br }}</p>
 
             {#Solicitar Cotizacion#}
-            <a class="simple-ajax-popup" href="{{ path('producto_solicitar_cotizacion',{'slug_producto':producto.slug}) }}">
+            {% set ajax_popup = '' %}
+            {% if app.user is not null %}
+                {% set ajax_popup = 'simple-ajax-popup' %}
+            {% endif %}
+            <a class="{{ ajax_popup }}" href="{{ path('producto_solicitar_cotizacion',{'slug_producto':producto.slug}) }}">
                 <button class="btn btn-konstruye btn-cotizacion"> Solicitar Cotización</button>
             </a>
             {#<a class="simple-ajax-popup" href="{{ path('producto_solicitar_cotizacion',{'slug_producto':producto.slug}) }}">Solicitar Cotizacion</a>#}
@@ -175,11 +178,10 @@
                 {% for comentario in comentarios %}
                     <div class="media comment">
                         <div class="media-left">
-                            {% if app.user.profile is not null %}
-                                {#<img class="img-circle" alt="user icon" width="70px" src="{{ vich_uploader_asset(app.user.profile, 'logoFile') }}">#}
-                                <img class="img-circle" alt="user icon" width="70px"src="http://placehold.it/100x100x?text=Foto+Perfil">
+                            {% if comentario.user.profile is not null %}
+                                <img class="img-circle" width="70px" src="{{ vich_uploader_asset(comentario.user.profile, 'profileFile') }}">
                             {% else %}
-                                <img class="img-circle" alt="user icon" width="70px"src="http://placehold.it/100x100x?text=Foto+Perfil">
+                                <img class="img-circle" alt="user icon" width="70px" src="http://placehold.it/100x100x?text=Foto+Perfil">
                             {% endif %}
                             <div class="" style="width: 0;height: 0;border-style: solid;border-width: 6px 7.6px 5px 0;border-color: transparent #fff transparent transparent;position: absolute;right: 0;top: 29px;"></div>
                         </div>

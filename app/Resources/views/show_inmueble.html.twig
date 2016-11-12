@@ -228,7 +228,11 @@
                                     <i class="fa fa-phone" aria-hidden="true"></i> VER TELÉFONO
                                 </div>
                                 <div class="zona-formulario">
-                                    <a class="btn btn-konstruye simple-ajax-popup" href="{{ path('negocio_solicitar_cotizacion',{'slug_negocio':negocio.slug}) }}">Contactar Anunciante</a>
+                                    {% set ajax_popup = '' %}
+                                    {% if app.user is not null %}
+                                        {% set ajax_popup = 'simple-ajax-popup' %}
+                                    {% endif %}
+                                    <a class="{{ajax_popup~ ' btn btn-konstruye' }}" href="{{ path('negocio_solicitar_cotizacion',{'slug_negocio':negocio.slug}) }}">Contactar Anunciante</a>
                                 </div>
                             </div>
                     </div>

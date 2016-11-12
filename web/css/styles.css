@@ -862,12 +862,12 @@ Producto Detail Page
 .product-detail-section p{
     color: rgba(0,0,0,.5);
 }
-.product-detail-section span{
+/*.product-detail-section span{
     color: #009FE3;
     font-size: 20px;
     padding: 10px 0 0 0;
     display: block;
-}
+}*/
 .product-section h4{
     padding-left: 30px;
     font-size: 16px;

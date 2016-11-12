@@ -16,9 +16,9 @@ class ProductoRepository extends EntityRepository
     public function getProductosBy($search){
         $em = $this->getEntityManager();
         $qb = $em->createQueryBuilder();
-        $qb->select('p as producto,avg(pc.nota) as mymoy')
+        $qb->select('p as producto,avg(cp.nota) as mymoy')
             ->from('AppBundle\Entity\Producto', 'p')
-            ->leftJoin('p.comentarios','pc');
+            ->leftJoin('p.comentarios','cp');
         $qb->where($qb->expr()->like('p.nombre', ':search'))
             ->setParameter('search', '%' . $search . '%');
 
