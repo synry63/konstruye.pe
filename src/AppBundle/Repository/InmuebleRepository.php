@@ -265,7 +265,9 @@ class InmuebleRepository extends EntityRepository
         $qb = $em->createQueryBuilder();
         $qb->select('n.dormitorios as dormitorios,count(n) cantidad')
             ->from('AppBundle\Entity\Inmueble', 'n')
-            ->where($qb->expr()->isNotNull('n.dormitorios'));
+            ->where($qb->expr()->isNotNull('n.dormitorios'))
+            ->andWhere('n.isAccepted = :state')
+            ->setParameter('state', true);
 
         if($lugar!=null && count($lugar)>0){
             $number = count($lugar);

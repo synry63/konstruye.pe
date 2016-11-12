@@ -38,7 +38,7 @@
                     <div id="buscador1">
                         <form method="GET" data-buscar-url="{{ path('buscar_negocios_by_seccion_null') }}" action="{{ path('search_global_negocios') }}" role="search">
 
-                            <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                            <!--<i class="fa fa-chevron-down" aria-hidden="true"></i>-->
                             <select name="slug_seccion"  id="select-buscador" class="selectpicker">
                                 <option value="">Selecciona una Categoria</option>
                                 <option value="constructoras-e-inmobiliarias">Constructoras e Inmobiliarias</option>
@@ -53,7 +53,7 @@
                     <div id="buscador2">
                         <form data-buscar-url="{{ path('buscar_productos') }}"  action="{{ path('search_global_productos') }}" role="search">
 
-                            <i class="fa fa-chevron-down" aria-hidden="true"></i>
+
                             <select name="slug_seccion" id="select-buscador2" class="selectpicker">
                                 <option selected value="proveedores">Proveedores</option>
                             </select>
@@ -568,6 +568,7 @@
                 slider5.control('arrows');
                 slider5.control('slideinfo',{insertTo:'#staff-info5'});
 
+                $(".btn-group.bootstrap-select").prepend('<i class="fa fa-chevron-down" aria-hidden="true"></i>');
             });
 
 

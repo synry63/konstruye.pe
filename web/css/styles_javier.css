@@ -1001,13 +1001,14 @@ Buscador Principal
 .buscador-principal #buscador1 i, .buscador-principal #buscador2 i{
     pointer-events: none;
     position: absolute;
-    left: 296px;
+    left: 100%;
+    margin-left: -29px;
     z-index: 9;
     background:#009FE3;
     color: #fff;
     border-radius: 0 3px 3px 0;
-    top: 50%;
-    transform: translate(58%,-50%);
+    /*top: 50%;
+    transform: translate(58%,-50%);*/
     width: 30px;
     height: 40px;
     text-align: center;

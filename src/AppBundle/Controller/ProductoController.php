@@ -20,15 +20,15 @@ use Symfony\Component\Console\Output\ConsoleOutput;
 
 class ProductoController extends Controller
 {
-    public function searchProductoAction(Request $request,$search,$page){
+    public function searchProductoAction(Request $request,$page){
 
+        $search = $request->query->get('search');
         if(empty($search)){
             $productos = array();
         }
         else{
             $productos = $this->getDoctrine()->getRepository('AppBundle:Producto')->getProductosBy($search);
         }
-
 
         $paginator  = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
@@ -37,7 +37,7 @@ class ProductoController extends Controller
             6
         );
 
-        return $this->render('resultado_busqueda_productos.html.twig',array(
+        return $this->render('layout_productos.html.twig',array(
             'productos'=>$pagination,
         ));
     }
@@ -209,9 +209,8 @@ class ProductoController extends Controller
             6
         );
 
-        return $this->render('ver_mas.html.twig',
+        return $this->render('layout_productos.html.twig',
             array(
-                'negocio'=>$negocio,
                 'productos'=>$pagination
             )
         );

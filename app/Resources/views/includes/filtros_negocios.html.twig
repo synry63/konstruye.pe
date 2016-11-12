@@ -3,9 +3,9 @@
     <div class="title-filtro">
         {#<h4 class="titulo-filtro">#}
             {% if app.request.get('slug_categoria') == cmain.slug %}
-                <a href="{{ path(name, {"slug_categoria":cmain.slug, "slug_seccion":app.request.get('slug_seccion'),"search":search}) }}" class="actif">{{ cmain.nombre }}</a>  &nbsp;&nbsp;&nbsp;   <i class=" titulo-filtro fa fa-angle-up" aria-hidden="true"></i>
+                <a onclick="return false;" href="{{ path(name, {"slug_categoria":cmain.slug, "slug_seccion":app.request.get('slug_seccion'),"search":search}) }}" class="actif">{{ cmain.nombre }}</a>  &nbsp;&nbsp;&nbsp;   <i class=" titulo-filtro fa fa-angle-up" aria-hidden="true"></i>
             {% else %}
-                <a href="{{ path(name, {"slug_categoria":cmain.slug, "slug_seccion":app.request.get('slug_seccion'),"search":search}) }}" class="">{{ cmain.nombre }}</a> &nbsp;&nbsp;&nbsp;   <i class="titulo-filtro fa fa-angle-up " aria-hidden="true"></i>
+                <a onclick="return false;" href="{{ path(name, {"slug_categoria":cmain.slug, "slug_seccion":app.request.get('slug_seccion'),"search":search}) }}" class="">{{ cmain.nombre }}</a> &nbsp;&nbsp;&nbsp;   <i class="titulo-filtro fa fa-angle-up " aria-hidden="true"></i>
             {% endif %}
         {#</h4>#}
     </div>

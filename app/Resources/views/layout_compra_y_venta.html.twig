@@ -116,15 +116,23 @@
                     <div class="body-filtro">
                         <div class="body-filtro-list">
                             <ul>
-                                {#{{ dump(negocios) }}#}
-
                                 {% for d in domitorios %}
-                                    {% set actif = '' %}
                                     {% set paramsDorm = negocios.params|merge({'dormi': d.dormitorios}) %}
                                     {% if negocios.params['dormi'] is defined and negocios.params['dormi']==d.dormitorios %}
-                                        {% set actif = 'actif' %}
+                                        <li>
+                                            <a class="actif default-a" href="{{ path('lisdato_seccion',paramsDorm) }}">{{d.dormitorios ~ ' Dormitorios'  }} <span>{{ '(' ~d.cantidad~ ')' }}</span></a>
+                                            {% set arr = [] %}
+                                            {% for key,p in paramsDorm %}
+                                                {% if key !='dormi' %}
+                                                    {% set arr = arr|merge({(key):p}) %}
+                                                {% endif %}
+                                            {% endfor %}
+                                            <a class="select" href="{{ path('lisdato_seccion',arr) }}"><i class="fa fa-times" aria-hidden="true"></i></a>
+                                        </li>
+                                    {% else %}
+                                        <li><a class="default-a" href="{{ path('lisdato_seccion',paramsDorm) }}">{{d.dormitorios ~ ' Dormitorios'  }} <span>{{ '(' ~d.cantidad~ ')' }}</span></a></li>
                                     {% endif %}
-                                    <li><a class="{{ actif }}" href="{{ path('lisdato_seccion',paramsDorm) }}">{{d.dormitorios ~ ' Dormitorios'  }} <span>{{ '(' ~d.cantidad~ ')' }}</span></a></li>
+
                                 {% endfor %}
 
                             </ul>
@@ -140,12 +148,22 @@
                         <div class="body-filtro-list">
                             <ul>
                                 {% for s in servicios %}
-                                    {% set actif = '' %}
                                     {% set paramsServ = negocios.params|merge({'servicio': s.servicio.id}) %}
                                     {% if negocios.params['servicio'] is defined and negocios.params['servicio']==s.servicio.id %}
-                                        {% set actif = 'actif' %}
+                                        <li>
+                                            <a class="actif default-a" href="{{ path('lisdato_seccion',paramsServ) }}">{{ s.servicio.nombre }} <span>{{ '(' ~s.cantidad~ ')' }}</span></a>
+                                            {% set arr = [] %}
+                                            {% for key,p in paramsServ %}
+                                                {% if key !='servicio' %}
+                                                    {% set arr = arr|merge({(key):p}) %}
+                                                {% endif %}
+                                            {% endfor %}
+                                            <a class="select" href="{{ path('lisdato_seccion',arr) }}"><i class="fa fa-times" aria-hidden="true"></i></a>
+                                        </li>
+
+                                    {% else %}
+                                         <li><a class="default-a" href="{{ path('lisdato_seccion',paramsServ) }}">{{ s.servicio.nombre }} <span>{{ '(' ~s.cantidad~ ')' }}</span></a></li>
                                     {% endif %}
-                                    <li><a class="{{ actif }}" href="{{ path('lisdato_seccion',paramsServ) }}">{{ s.servicio.nombre }} <span>{{ '(' ~s.cantidad~ ')' }}</span></a></li>
                                 {% endfor %}
                             </ul>
                         </div>
@@ -160,12 +178,20 @@
                         <div class="body-filtro-list">
                             <ul>
                                 {% for g in generales %}
-                                    {% set actif = '' %}
                                     {%  set paramsGene = negocios.params|merge({'general':g.general.id}) %}
                                     {% if negocios.params['general'] is defined and negocios.params['general']==g.general.id %}
-                                        {% set actif = 'actif' %}
+                                        <li>
+                                            <a class="actif default-a" href="{{ path('lisdato_seccion',paramsGene) }}">{{ g.general.nombre }} <span>{{ '(' ~g.cantidad~ ')' }}</span></a>
+                                            {% set arr = [] %}
+                                            {% for key,p in paramsGene %}
+                                                {% if key !='general' %}
+                                                    {% set arr = arr|merge({(key):p}) %}
+                                                {% endif %}
+                                            {% endfor %}
+                                            <a class="select" href="{{ path('lisdato_seccion',arr) }}"><i class="fa fa-times" aria-hidden="true"></i></a>
+                                        </li>
                                     {% endif %}
-                                    <li><a class="{{ actif }}" href="{{ path('lisdato_seccion',paramsGene) }}">{{ g.general.nombre }} <span>{{ '(' ~g.cantidad~ ')' }}</span></a></li>
+                                    <li><a class="default-a" href="{{ path('lisdato_seccion',paramsGene) }}">{{ g.general.nombre }} <span>{{ '(' ~g.cantidad~ ')' }}</span></a></li>
                                 {% endfor %}
                             </ul>
                         </div>
