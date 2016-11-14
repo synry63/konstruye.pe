@@ -56,6 +56,7 @@ html, body {
 }
 #wrap{
     min-height: 100%;
+    margin-top: 60px;
 }
 .content-inside {
     padding-top: 0;
@@ -86,9 +87,10 @@ gris: #CDCCCC
 #s3{
     display: none;
 }
+/*
 .nav-principal2{
     display: none;
-}
+}*/
 /*=============
 Formulario de registro
 =============*/
@@ -556,9 +558,7 @@ Menu Principal
 .menu-stiky li{
     height: 30px;
 }
-.nav-principal2 .navbar-brand img{
-    width: 150px;
-}
+
 
 .menu-stiky{
     position: absolute;
@@ -576,9 +576,8 @@ Menu Principal
 .nav-principal2{
     background: rgb(28, 156, 217);
     border: none;
-    height: 85px;
+    height: 60px;
     box-shadow: 2px 2px 5px rgba(0,0,0,.2);
-    padding: 7px 0;
 }
 
 

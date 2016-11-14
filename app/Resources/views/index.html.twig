@@ -8,6 +8,12 @@
     <link rel="stylesheet" href="{{ asset('css/ms-staff-style.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <style>
+        #wrap{
+            margin-top: 0;
+        }
+        .nav-principal2{
+            display: none;
+        }
         .ui-autocomplete-loading {
             background: white url("/images/assets/ui-anim_basic_16x16.gif") right center no-repeat;
         }
@@ -26,6 +32,52 @@
 
     <div class="container-fluid">
         <div class="row">
+
+            <div class="container">
+                <div class="index-menu">
+                    <div class="decoration"></div>
+                    <a href="{{ path('homepage') }}" class="logo-index">
+                        <img src="{{ asset('images/logo-min-white.svg') }}" alt="">
+                    </a>
+
+                        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                            <div class="dropdown index-logeado" style="margin-right: 78px">
+                                <div class="dropdown-toggle" type="button" id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                    {% if app.user.profile is not null %}
+                                        <img class="img-circle" width="50px" src="{{ vich_uploader_asset(app.user.profile, 'profileFile') }}" alt="">
+                                        <div class="stiky-name">{{ app.user.nombres }} <i class="fa fa-chevron-down" aria-hidden="true"></i></div>
+
+                                    {% else %}
+                                        <img class="img-circle" width="50px" src="{{ asset('images/assets/perfil_icon.png') }}" alt="">
+                                        <div class="stiky-name">{{ app.user.nombres }} <i class="fa fa-chevron-down" aria-hidden="true"></i></div>
+                                    {% endif %}
+                                </div>
+                                <ul class="dropdown-menu drop-menu" aria-labelledby="dropdownMenu3">
+                                    <li><a href="{{ path('profile_negocios_panel') }}"><i class="fa fa-briefcase" aria-hidden="true"></i> Panel de Negocios</a></li>
+                                    <li><a href="{{ path('fos_user_profile_show')}}"><i class="fa fa-user" aria-hidden="true"></i> Mi Perfil</a></li>
+                                    <li>
+                                        <a href="{{ path('fos_user_security_logout') }}">
+                                            <i class="fa fa-sign-out" aria-hidden="true"></i> {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        {% else %}
+                            <div class="login-index">
+                                    <div class="login-stiky">
+                                        <a href="{{ path('fos_user_registration_register') }}">Registrate</a>
+                                        <a href="{{ path('fos_user_security_login') }}">Inicia Sesión</a>
+
+                                    </div>
+                            </div>
+                        {% endif %}
+
+
+
+                </div>
+            </div>
+
 
             {# Buscador Principal #}
         
@@ -69,10 +121,10 @@
             <div class="master-slider ms-skin-default" id="masterslider">
                 <!-- new slide -->
                 <div class="ms-slide">
-                    <img src="{{ asset('images/assets/blank.gif') }}" data-src="{{ asset('images/assets/banner2.jpg') }}" alt="lorem ipsum dolor sit"/>
+                    <img src="{{ asset('images/assets/blank.gif') }}" data-src="{{ asset('images/assets/banner6.jpg') }}" alt="lorem ipsum dolor sit"/>
                 </div>
                 <div class="ms-slide">
-                    <img src="{{ asset('images/assets/blank.gif') }}" data-src="{{ asset('images/assets/banner6.jpg') }}" alt="lorem ipsum dolor sit"/>
+                    <img src="{{ asset('images/assets/blank.gif') }}" data-src="{{ asset('images/assets/banner2.jpg') }}" alt="lorem ipsum dolor sit"/>
                 </div>
                 <div class="ms-slide">
                     <img src="{{ asset('images/assets/blank.gif') }}" data-src="{{ asset('images/assets/banner4.jpg') }}" alt="lorem ipsum dolor sit"/>
@@ -366,7 +418,10 @@
 
     <script>
 
+
         $("#button1").addClass("active");
+
+
 
         $("#button1").click(function(){
             $("#button2").removeClass("active");
@@ -567,6 +622,17 @@
                 });
                 slider5.control('arrows');
                 slider5.control('slideinfo',{insertTo:'#staff-info5'});
+
+
+                $(window).bind('scroll', function () {
+                    if ($(window).scrollTop() > 768) {
+                        $('.nav-principal2').fadeIn("slow");
+                        $('.nav-principal2').addClass("navbar-fixed-top");
+                    } else {
+                        $('.nav-principal2').fadeOut("slow");
+                    }
+                });
+
 
                 $("#buscador1 .btn-group.bootstrap-select,#buscador2 .btn-group.bootstrap-select").prepend('<i class="fa fa-chevron-down" aria-hidden="true"></i>');
             });

@@ -1049,6 +1049,9 @@ Buscador Principal
 /*=============
 Nave Stiky
 =============*/
+.menu-principal2{
+   height: 100%;
+}
 .buscador_principal2{
     padding: 5px;
     background: #30BDEF;
@@ -1125,10 +1128,7 @@ Nave Stiky
 .logi-reg a{
     text-decoration: none;
 }
-.logi-reg .login-stiky a{
-    display: block;
-    color: #fff;
-}
+
 .logi-reg .drop-menu{
     width: 200px;
     height: 150px;
@@ -1571,6 +1571,79 @@ Dashboard Negocios
 /*=============
 Index
 =============*/
+.index-logeado .dropdown-menu{
+    width: 200px;
+    height: 150px;
+    left: -61px;
+    padding: 0px;
+    padding-top: 10px;
+    padding-right: 0;
+    padding-left: 0;
+    padding-bottom: 15px;
+}
+.index-logeado .dropdown-menu li{
+    line-height: normal;
+}
+.index-logeado .dropdown-menu a{
+    margin: 5px auto;
+    width: 100%;
+    display: inline-block;
+    height: 35px;
+    color: rgba(0,0,0,.5) !important;
+    text-shadow: none;
+    position: relative;
+    padding-left: 40px;
+    padding-top: 8px;
+    text-align: left;
+    transition: all .5s;
+}
+.index-logeado .drop-menu a:before{
+    content: "| ";
+    display: inline;
+}
+
+.index-logeado .dropdown-menu a i{
+    position: absolute;
+    left: 15px;
+    margin-right: 8px;
+    color: #1C9CD9;
+    font-size: 21px;
+    top: 8px;
+    width: 30px;
+    display: inline-block;
+    transition: all .5s;
+}
+.index-logeado .drop-menu a:hover i{
+    color: #fff;
+}
+
+
+.index-logeado .drop-menu a:hover {
+    background: #1C9CD9;
+    color: #fff !important;
+}
+.index-logeado img{
+    border: solid 2px;
+    padding: 2px;
+}
+.index-logeado{
+    margin-right: 78px;
+    position: absolute;
+    z-index: 1;
+    right: 0;
+    padding: 10px;
+    width: 120px;
+    color: #fff;
+    text-shadow: 0 1px 2px rgba(0,0,0,.5);
+    font-weight: 600;
+}
+.index-logeado .stiky-name{
+    position: absolute;
+    right: -12px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
 
 .about-text{
     padding: 10px;
@@ -1640,24 +1713,62 @@ Index
 /*=============
 Form Stiky
 =============*/
-.menu-principal2 .navbar-brand{
-    padding: 10px;
-    height: 73px;
-    top: 0;
-    background: none;
+
+.menu-principal2 #dropdownMenustiky{
     position: absolute;
-    box-shadow: none;
-    border-radius: 0 0 5px 5px;
+    left: 17%;
+    width: 6%;
+    background: none;
+    color: #fff;
+    font-size: 16px;
+    top: 50%;
+    transform: translateY(-53%);
+    height: 100%;
+    text-align: center;
+    border: none;
 }
+.menu-principal2 #dropdownMenustiky::after{
+    content: '';
+    width: 1px;
+    height: 61px;
+    background: rgb(15, 135, 191);
+    display: inline-block;
+    position: absolute;
+    right: -27px;
+    top: 0;
+}
+
+.menu-principal2 #dropdownMenustiky i{
+    font-size: 15px;
+}
+.menu-principal2 .navbar-brand{
+    background: #fff;
+    height: 110%;
+    border-radius: 0 0 10px 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,.2);
+}
+.menu-principal2 .navbar-brand:hover,.menu-principal2 .navbar-brand:focus{
+    background: #fff;
+}
+.menu-principal2 .navbar-brand img{
+    position: relative;
+    top: -10px;
+    width: 160px;
+}
+
 .form-stiky{
-    width: 750px;
+    width: 600px;
     position: absolute;
     top: 50%;
-    left: 51%;
-    transform: translate(-50%,-50%);
+    left: 53%;
+    transform: translate(-52%,-50%);
+
 }
+
+
+
 .form-stiky .form-control{
-    width: 70%;
+    width: 55%;
     display: inline-block;
     border: none;
 }
@@ -1667,7 +1778,10 @@ Form Stiky
 .form-stiky .btn-group.bootstrap-select button{
     border: none;
     height: 34px;
+    border-radius: 4px 0 0 4px;
+    margin-left: 10px;
     background: #fff;
+    border-right: solid 1px rgba(0,0,0,.2);
 }
 .form-stiky .btn-group.bootstrap-select button:hover{
     background: #fff;
@@ -1683,27 +1797,164 @@ Form Stiky
 .buttons-change{
     color: #fff;
     text-align: right;
-    padding-right: 70px;
+    padding-right: 39px;
+    position: absolute;
+    right: -70px;
+    top: 0;
 }
 .buttons-change div{
     display: inline-block;
-    padding: 7px 15px;
+    padding: 0 7px;
+    height: 34px;
+    text-align: center;
+    width: 34px;
+    color: rgba(255, 255, 255,.5);
+    border-radius: 5px;
+    line-height: 34px;
     font-size: 14px;
-    border-radius: 5px 5px 0 0;
-    background: rgba(0,0,0,.1);
+    background: rgba(0, 0, 0,.2);
+}
+.buttons-change div i{
+    font-size: 18px;
+    line-height: 34px;
 }
 .buttons-change div.active{
-    background: rgba(0,0,0,.3);
+    background: #fff;
+    color: rgb(15, 135, 191);
 }
 
+.logi-reg .login-stiky:before{
+    content: '';
+    width: 1px;
+    height: 61px;
+    background: rgb(15, 135, 191);
+    display: inline-block;
+    position: absolute;
+    left: -13px;
+    top: -23px;
+}
+.logi-reg .login-stiky:after{
+    content: '';
+    width: 1px;
+    height: 61px;
+    background: rgb(15, 135, 191);
+    display: inline-block;
+    position: absolute;
+    right: -13px;
+    top: -23px;
+}
 
-.buttons-change i{
-    display: inline;
+.logi-reg .login-stiky{
+    position: absolute;
+    width: 17%;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.logi-reg .login-stiky a:first-child{
     padding-right: 5px;
+    border-right: solid 1px rgb(15, 135, 191);
 }
+
+
+.logi-reg .login-stiky a{
+    display: inline-block;
+    color: #fff;
+    padding: 0 2px;
+}
+
 .buttons-change #hide3, .buttons-change #hide4{
     cursor:pointer;
 }
+
+#menu-stiky li{
+    display: inline-block;
+    width: 24.5%;
+    text-align: center;
+    padding-top: 10px;
+}
+
+#menu-stiky li a{
+    white-space: pre-wrap;
+    display: inline-block;
+    vertical-align: top;
+}
+#menu-stiky li a:hover{
+    background: none;
+}
+#menu-stiky li a div i{
+    font-size: 30px;
+}
+#menu-stiky li a div img{
+    position: absolute;
+    top: 3px;
+    height: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+ul#menu-stiky{
+    width: 84%;
+    padding: 10px;
+    position: absolute;
+    left: 200px;
+}
+
+/*=============
+Index Menu
+=============*/
+.index-menu{
+    position: relative;
+}
+.index-menu .logo-index{
+    position: absolute;
+    z-index: 99999;
+    background: #009fe3;
+    padding: 5px 20px;
+    border-radius: 0 0 10px 10px;
+    left: -15px;
+}
+
+#dropdownMenu2 .stiky-name{
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    margin: 0 10px;
+    color: #fff;
+}
+
+
+
+.index-menu .logo-index img{
+    height: 55px;
+}
+.index-menu .login-index{
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 99999;
+    padding: 20px 15px;
+    border-radius: 0 0 5px 5px;
+}
+.index-menu .login-index a{
+    padding: 10px 5px;
+    color: #fff;
+    position: relative;
+    font-weight: 600;
+    text-shadow: 0 1px 2px rgba(0,0,0,.5);
+}
+
+.index-menu .login-index a:first-child::after{
+    content: '';
+    width: 1px;
+    height: 20px;
+    background: #fff;
+    position: absolute;
+    right: -2px;
+    box-shadow: 0 1px 0 rgba(0,0,0,.5);
+}
+
 /*=============
 Footer Menu
 =============*/

@@ -10,6 +10,8 @@
             <link rel="stylesheet" href="{{ asset('css/main.css') }}">
             <link rel="stylesheet" href="{{ asset('css/animate.css') }}">
             <link rel="stylesheet" href="{{ asset('css/croppic.css') }}">
+            <link rel="stylesheet" href="{{ asset('css/tooltipster.bundle.min.css') }}">
+            <link rel="stylesheet" href="{{ asset('css/tooltipster-sideTip-shadow.min.css') }}">
             {#Font-awesome CDN#}
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
             <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
@@ -58,6 +60,7 @@
     </script>
 
         <div id="wrap">
+            {#
             <nav  class="navbar navbar-default nav-principal">
                 <div class="container">
                     <div class="navbar-header">
@@ -117,29 +120,50 @@
 
                 </div>
             </nav>
+            #}
 
-            <nav  class="navbar navbar-default nav-principal2">
-                <div class="container menu-principal2">
+
+            <nav  class="navbar navbar-default nav-principal2 navbar-fixed-top">
+                <div class="container menu-principal2" style="position: relative;">
 
 
                         <a class="navbar-brand" href="{{ path('homepage') }}">
-                            <img style="margin-top:10px" alt="Brand" src="{{ asset('images/logo-min-white.svg') }}">
+                            <img alt="Brand" src="{{ asset('images/logo-min-color.svg') }}">
                         </a>
 
 
 
 
+                    <button  class="btn btn-default dropdown-toggle" type="button" id="dropdownMenustiky" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        Menu <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                    </button>
+                    <ul id="menu-stiky" class="dropdown-menu drop-menu" aria-labelledby="dropdownMenustiky">
+                        <li><a href="{{ path('lisdato_seccion',{'slug_seccion':'proveedores'}) }}"><div><i class="fa fa-truck" aria-hidden="true"></i></div>Proveedores</a></li>
+                        <li><a href="{{ path('lisdato_seccion',{'slug_seccion':'compra-venta-y-alquiler-inmuebles'}) }}"><div><i class="fa fa-home" aria-hidden="true"></i></div>Compra venta y alquiler de inmuebles</a></li>
+                        <li><a style="padding-top: 32px;position: relative;" href="{{ path('lisdato_seccion',{'slug_seccion':'especialistas-servicios-personales'}) }}"><div><img src="{{ asset('images/esp_icon.svg') }}" alt=""></div>Especialistas servicios personales</a></li>
+                        <li><a href="{{ path('lisdato_seccion',{'slug_seccion':'constructoras-e-inmobiliarias'}) }}"><div><i class="fa fa-building-o" aria-hidden="true"></i></div>Constructoras e inmobiliarias</a></li>
+
+                    </ul>
+
+
                     <div class="form-stiky">
 
+
+
+
                         <div class="buttons-change">
-                            <div id="hide3"><i class="fa fa-briefcase" aria-hidden="true"></i>Buscador de Negocios</div>
-                            <div id="hide4"><i class="fa fa-shopping-bag" aria-hidden="true"></i>Buscador de Productos</div>
+                            <div id="hide3" class="tooltip2" title="Buscador de Negocios"><i class="fa fa-briefcase" aria-hidden="true"></i></div>
+                            <div id="hide4" class="tooltip2" title="Buscador de Productos"><i class="fa fa-shopping-bag" aria-hidden="true"></i></div>
                         </div>
+
+
+
+
                         <form id="s4" data-buscar-url="{{ path('buscar_negocios_by_seccion_null') }}" action="{{ path('search_global_negocios') }}" class="s1" role="search">
 
                             <select name="slug_seccion" class="selectpicker">
                                 <option value="">Selecciona una Categoria</option>
-                                <option value="constructoras-e-inmobiliarias">Constructoras e Inmobiliarias</option>
+                                <option value="constructoras-e-inmobiliarias" style="overflow: hidden">Constructoras e Inmobiliarias</option>
                                 <option value="especialistas-servicios-personales">Especialistas y Servicios Personales</option>
                                 <option value="proveedores">Proveedores</option>
                             </select>
@@ -155,44 +179,23 @@
                     </div>
 
 
-                    {#
-                    <div id="search-cop2" class="buscador-stiky">
-                        <div class="search-change2">
-                            <div id="hide3"><i class="fa fa-briefcase" aria-hidden="true"></i></div>
-                            <div id="hide4"><i class="fa fa-shopping-bag" aria-hidden="true"></i></div>
-                        </div>
-
-                        <form id="s4" data-buscar-url="{{ path('buscar_negocios_by_seccion_null') }}" action="{{ path('search_global_negocios') }}" class="s1 navbar-form navbar-left buscador_principal2" role="search">
-                            <input type="text" placeholder="Ejemplo: Casa de Playa, Carpintero, Trebol Celima">
-                            <select class="selectpicker">
-                                <option value="">Selecciona una Categoria</option>
-                                <option value="constructoras-e-inmobiliarias">Constructoras e Inmobiliarias</option>
-                                <option value="especialistas-servicios-personales">Especialistas y Servicios Personales</option>
-                                <option value="proveedores">Proveedores</option>
-                            </select>
-                        </form>
-
-                        <form id="s3" data-buscar-url="{{ path('buscar_productos') }}"  action="{{ path('search_global_productos') }}" class="s2 navbar-form navbar-left buscador_principal2" role="search">
-                            <input type="text"  placeholder="Ejemplo: Marmol, Madera, Mesas">
-                            <select class="selectpicker">
-                                <option selected value="proveedores">Proveedores</option>
-                            </select>
-                        </form>
-                    </div>
-                    #}
 
 
                         <div class="logi-reg" >
                             {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                                <div class="dropdown" style="margin-right: 25px">
+                                <div class="dropdown" style="margin-right: 78px">
                                     <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                                         {% if app.user.profile is not null %}
                                             <img class="img-circle" width="50px" src="{{ vich_uploader_asset(app.user.profile, 'profileFile') }}" alt="">
-                                            <i class="fa fa-chevron-down" aria-hidden="true" style="position: absolute;top: 50%;transform: translate(30%,-50%);color: #fff;"></i>
+                                            <div class="stiky-name">{{ app.user.nombres }} <i class="fa fa-chevron-down" aria-hidden="true"></i></div>
+
                                         {% else %}
                                             <img class="img-circle" width="50px" src="{{ asset('images/assets/perfil_icon.png') }}" alt="">
-                                            <i class="fa fa-chevron-down" aria-hidden="true" style="position: absolute;top: 50%;transform: translate(30%,-50%);color: #fff;"></i>
+                                            <div class="stiky-name">{{ app.user.nombres }} <i class="fa fa-chevron-down" aria-hidden="true"></i></div>
+
                                         {% endif %}
+
+
                                     </button>
                                     <ul class="dropdown-menu drop-menu" aria-labelledby="dropdownMenu2">
                                         <li><a href="{{ path('profile_negocios_panel') }}"><i class="fa fa-briefcase" aria-hidden="true"></i> Panel de Negocios</a></li>
@@ -207,8 +210,9 @@
                                 </div>
                             {% else %}
                                 <div class="login-stiky">
-                                    <a id="registro2" href="">Registrarse</a>
+                                    <a href="{{ path('fos_user_registration_register') }}">Registrarse</a>
                                     <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+
                                 </div>
 
                             {% endif %}
@@ -261,12 +265,19 @@
             <script type="text/javascript" src="{{ asset('js/croppic.min.js') }}"></script>
             <script type="text/javascript" src="{{ asset('js/jquery.magnific-popup.min.js') }}"></script>
             <script type="text/javascript" src="{{ asset('js/main.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('js/tooltipster.bundle.min.js') }}"></script>
             {#Noty#}
             <script src="{{ asset('js/jquery.noty.packaged.min.js') }}" type="text/javascript"></script>
             {#Defaut Noty - ESTO ESTUVO OCASIONANDO ERROR#}
             {#<script src="{{ asset('js/default_noty.js') }}" type="text/javascript"></script>#}
             <script src="{{ asset('js/default_noty.js') }}" type="text/javascript"></script>
             <script>
+
+                $(document).ready(function() {
+                    $('.tooltip2').tooltipster({
+                        theme: 'tooltipster-shadow'
+                    });
+                });
 
                 function monkeyPatchAutocomplete() {
 
@@ -299,7 +310,7 @@
                                 },
                                 theme:'defaultTheme',
                                 'layout':'bottomCenter',
-                                type: 'error',
+                                type: 'alerta',
                                 timeout:5000
                             });
                         }
@@ -399,16 +410,18 @@
                     $("#bs-example-navbar-collapse-1").slideToggle();
                 });
 
-                $(".menu-stiky ul").addClass("dropdown-menu")
 
-                $(window).bind('scroll', function () {
-                    if ($(window).scrollTop() > 450) {
-                        $('.nav-principal2').fadeIn("slow");
-                        $('.nav-principal2').addClass("navbar-fixed-top");
-                    } else {
-                        $('.nav-principal2').fadeOut("slow");
-                    }
-                });
+                /*
+                $(".menu-stiky ul").addClass("dropdown-menu")
+                */
+
+
+
+
+
+
+
+
 
                 var dev = "/app_dev.php";
                 var cropperOptions = {
