@@ -45,11 +45,11 @@
                                 <div class="dropdown-toggle" type="button" id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                                     {% if app.user.profile is not null %}
                                         <img class="img-circle" width="50px" src="{{ vich_uploader_asset(app.user.profile, 'profileFile') }}" alt="">
-                                        <div class="stiky-name">{{ app.user.nombres }} <i class="fa fa-chevron-down" aria-hidden="true"></i></div>
+                                        <div class="stiky-name"><i class="fa fa-chevron-down" aria-hidden="true"></i></div>
 
                                     {% else %}
                                         <img class="img-circle" width="50px" src="{{ asset('images/assets/perfil_icon.png') }}" alt="">
-                                        <div class="stiky-name">{{ app.user.nombres }} <i class="fa fa-chevron-down" aria-hidden="true"></i></div>
+                                        <div class="stiky-name"><i class="fa fa-chevron-down" aria-hidden="true"></i></div>
                                     {% endif %}
                                 </div>
                                 <ul class="dropdown-menu drop-menu" aria-labelledby="dropdownMenu3">
@@ -139,42 +139,18 @@
 
 
 
+    <div class="container-fluid"  id="menu-index-bottom">
+        <div class="container">
+            <ul>
+                <li><a href="{{ path('lisdato_seccion',{'slug_seccion':'proveedores'}) }}"><i class="fa fa-truck" aria-hidden="true"></i> Proveedores</a></li>
+                <li><a href="{{ path('lisdato_seccion',{'slug_seccion':'compra-venta-y-alquiler-inmuebles'}) }}"><i class="fa fa-home" aria-hidden="true"></i> Compra venta y alquiler de inmuebles</a></li>
+                <li><a href="{{ path('lisdato_seccion',{'slug_seccion':'especialistas-servicios-personales'}) }}"><i class="fa fa-users" aria-hidden="true"></i> Especialistas servicios personales</a></li>
+                <li><a href="{{ path('lisdato_seccion',{'slug_seccion':'constructoras-e-inmobiliarias'}) }}"><i class="fa fa-building-o" aria-hidden="true"></i> Constructoras e inmobiliarias</a></li>
 
-    {#
-    <div id="search-cop">
-        <div class="search-change">
-            <span id="hide1">Buscador de Negocios</span>
-            <span>|</span>
-            <span id="hide2">Buscador de Productos</span>
+            </ul>
         </div>
 
-
-
-        <form id="s1" data-buscar-url="{{ path('buscar_negocios_by_seccion_null') }}" action="{{ path('search_global_negocios') }}" class="buscador_principal" role="search">
-            <div class="form-group buscador">
-                <input type="text" class="form-control" placeholder="Buscar Negocios">
-            </div>
-            <select class="selectpicker">
-                <option value="">Selecciona una Categoria</option>
-                <option value="constructoras-e-inmobiliarias">Constructoras e Inmobiliarias</option>
-                <option value="especialistas-servicios-personales">Especialistas y Servicios Personales</option>
-                <option value="proveedores">Proveedores</option>
-            </select>
-        </form>
-
-
-        <form id="s2" data-buscar-url="{{ path('buscar_productos') }}"  action="{{ path('search_global_productos') }}" class="buscador_principal" role="search">
-            <div class="form-group buscador">
-                <input type="text" class="form-control" placeholder="Buscar Productos">
-            </div>
-            <select class="selectpicker">
-                <option selected value="proveedores">Proveedores</option>
-            </select>
-        </form>
     </div>
-    #}
-
-
 
 
 

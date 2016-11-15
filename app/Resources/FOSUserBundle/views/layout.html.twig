@@ -187,11 +187,11 @@
                                     <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                                         {% if app.user.profile is not null %}
                                             <img class="img-circle" width="50px" src="{{ vich_uploader_asset(app.user.profile, 'profileFile') }}" alt="">
-                                            <div class="stiky-name">{{ app.user.nombres }} <i class="fa fa-chevron-down" aria-hidden="true"></i></div>
+                                            <div class="stiky-name"><i class="fa fa-chevron-down" aria-hidden="true"></i></div>
 
                                         {% else %}
                                             <img class="img-circle" width="50px" src="{{ asset('images/assets/perfil_icon.png') }}" alt="">
-                                            <div class="stiky-name">{{ app.user.nombres }} <i class="fa fa-chevron-down" aria-hidden="true"></i></div>
+                                            <div class="stiky-name"><i class="fa fa-chevron-down" aria-hidden="true"></i></div>
 
                                         {% endif %}
 

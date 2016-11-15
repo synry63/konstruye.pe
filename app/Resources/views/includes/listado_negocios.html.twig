@@ -1,3 +1,4 @@
+{#
 <div class="col-md-4">
 
     <div class="negocio-box">
@@ -67,41 +68,80 @@
         </a>
     </div>
 </div>
-
-
-
-
-{#
-<div class="row">
-    <div class="negocio">
-        <div class="col-md-2 logotipo">
-            <a href="{{ path('show_negocio',
-            {"slug_negocio":n.negocio.slug}) }}">
-                <img src="{{ vich_uploader_asset(n.negocio.logo, 'logoFile','AppBundle\\Entity\\Logo') }}" alt="{{ n.negocio.nombre }}" />
-            </a>
-        </div>
-        <div class="col-md-5 description">
-            <h1><a href="{{ path('show_negocio',
-                {"slug_negocio":n.negocio.slug}) }}">{{ n.negocio.nombre }}</a></h1>
-            <p><i class="fa fa-map-marker" aria-hidden="true"></i> {{ n.negocio.direccion }} - {{ n.negocio.distrito.nombre }} - {{ n.negocio.provincia.nombre }}</p>
-            <p><i class="fa fa-phone" aria-hidden="true"></i> {{ n.negocio.telefono }}</p>
-            <p><i class="fa fa-globe" aria-hidden="true"></i> {{ n.negocio.web }}</p>
-            <p><i class="fa fa-envelope" aria-hidden="true"></i> {{ n.negocio.email }}</p>
-            <p>
-                {% if n.mymoy is null %}
-            <div class="rateYo_negocios" data-rating="0"></div>
-            {% else %}
-                <div class="rateYo_negocios" data-rating="{{ n.mymoy }}"></div>
-            {% endif %}
-            </p>
-        </div>
-        <div class="col-md-5 banner_pub">
-            <a href="{{ path('show_negocio',
-            {"slug_negocio":n.negocio.slug}) }}">
-                <img src="{{ vich_uploader_asset(n.negocio.banner, 'bannerFile','AppBundle\\Entity\\Banner') }}" alt="{{ n.negocio.nombre }}" />
-            </a>
-        </div>
-    </div>
-</div>
 #}
+
+
+<div class="col-md-12 listado-negocios">
+   <div class="row">
+       <div class="col-md-2" style="text-align: center">
+           <a href="{{ path('show_negocio',
+           {"slug_negocio":n.negocio.slug}) }}">
+               {% if n.negocio.logo is not null %}
+                   <img width="100px" src="{{ vich_uploader_asset(n.negocio.logo, 'logoFile','AppBundle\\Entity\\Logo') }}" alt="{{ n.negocio.nombre }}" />
+               {% else %}
+                   <img src="http://placehold.it/100x100" alt="{{ n.negocio.nombre }}" />
+               {% endif %}
+           </a>
+           {% if n.mymoy is null %}
+               <div style="margin: 5px auto" class="rateYo_negocios" data-rating="0"></div>
+           {% else %}
+               <div style="margin: 5px auto" class="rateYo_negocios" data-rating="{{ n.mymoy }}"></div>
+           {% endif %}
+       </div>
+       <div class="col-md-5">
+           <div class="detalle-datos">
+               <a href="{{ path('show_negocio',
+               {"slug_negocio":n.negocio.slug}) }}">
+                   <h1 style="line-height: 25px;">
+                       {{ n.negocio.nombre }}
+                   </h1>
+               </a>
+               {% if type is defined %}
+                   <p><i class="fa fa-user" aria-hidden="true"></i> Javier Díaz</p>
+                   <p><i class="fa fa-location-arrow" aria-hidden="true"></i> {{ n.negocio.distrito.nombre}} - {{ n.negocio.provincia.nombre}}</p>
+                   {% if n.negocio.areaTotal is not null %}
+                       <p><i class="fa fa-arrows-alt" aria-hidden="true"></i> {{ n.negocio.areaTotal }} m²</p>
+                   {% else %}
+                       <p><i class="fa fa-arrows-alt" aria-hidden="true"></i> - m²</p>
+                   {% endif %}
+
+                   {% if n.negocio.dormitorios is not null %}
+                       <p><i class="fa fa-bed" aria-hidden="true"></i> {{ n.negocio.dormitorios}} Dormitorios</p>
+                   {% else %}
+                       <p><i class="fa fa-bed" aria-hidden="true"></i> - Dormitorios</p>
+                   {% endif %}
+
+
+               {% else %}
+                   <p><i class="fa fa-map-marker" aria-hidden="true"></i> {{ n.negocio.direccion | truncate(30,false) }} - {{ n.negocio.distrito.nombre }} - {{ n.negocio.provincia.nombre }}</p>
+                   <p><i class="fa fa-phone" aria-hidden="true"></i> {{ n.negocio.telefono }}</p>
+                   {% if n.negocio.web is not null %}
+                       <p><i class="fa fa-globe" aria-hidden="true"></i> {{ n.negocio.web }}</p>
+                   {% endif %}
+                   <p><i class="fa fa-envelope" aria-hidden="true"></i> {{ n.negocio.email }}</p>
+               {% endif %}
+
+           </div>
+
+
+       </div>
+
+       <div class="banner">
+           {% if n.negocio.banner is not null %}
+               <img src="{{ vich_uploader_asset(n.negocio.banner, 'bannerFile','AppBundle\\Entity\\Banner') }}" alt="{{ n.negocio.nombre }}" />
+           {% else %}
+               <img src="http://placehold.it/350x150" alt="{{ n.negocio.nombre }}" />
+           {% endif %}
+       </div>
+
+       {% if type is defined %}
+           {% if n.negocio.precioSoles is not null %}
+               <p class="precio-listado">Desde S/.{{ n.negocio.precioSoles|number_format(2, '.', ',')}}</p>
+           {% else %}
+               <p class="precio-listado">Desde S/.</p>
+           {% endif %}
+       {% endif %}
+   </div>
+</div>
+
 

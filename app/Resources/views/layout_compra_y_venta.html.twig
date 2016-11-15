@@ -27,40 +27,41 @@
     <div class="container-fluid">
         <div class="row" style="height: 300px;overflow: hidden">
             <img width="100%" src="{{ asset('images/assets/cosapi_banner.jpg') }}" alt="">
+
+            <div id="search-cop3">
+                <form class="buscador_categorias" method="get" action="{{ path('lisdato_seccion',negocios.params) }}" role="search">
+                    <select class="selectpicker" name="operacion">
+                        {% for operacion in operaciones %}
+                            {% if(negocios.params.operacion is defined and negocios.params.operacion == operacion.id) %}
+                                <option selected value="{{ operacion.id }}" >{{ operacion.nombre }}</option>
+                            {% else %}
+                                <option value="{{ operacion.id }}">{{ operacion.nombre }}</option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+                    <select class="selectpicker" name="structure">
+                        {% for structur in structures %}
+                            {% if(negocios.params.structure is defined and negocios.params.structure == structur.id)%}
+                                <option selected value="{{ structur.id }}" >{{ structur.nombre }}</option>
+                            {% else %}
+                                <option value="{{ structur.id }}" >{{ structur.nombre }}</option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+                    <div class="form-group buscador">
+                        {% if(negocios.params.lugar is defined ) %}
+                            <input id="buscardor-form-inmuebles" name="lugar" value="{{ negocios.params.lugar }}" type="text" class="form-control" placeholder="Ingresa Departamento,Provincia,Distrito">
+                        {% else %}
+                            <input id="buscardor-form-inmuebles" name="lugar" type="text" class="form-control" placeholder="Ingresa Departamento,Provincia,Distrito">
+                        {% endif %}
+                    </div>
+                </form>
+            </div>
+
+
         </div>
     </div>
 
-    <div class="container">
-        <div id="search-cop3">
-            <form class="buscador_categorias" method="get" action="{{ path('lisdato_seccion',negocios.params) }}" role="search">
-                <select class="selectpicker" name="operacion">
-                    {% for operacion in operaciones %}
-                        {% if(negocios.params.operacion is defined and negocios.params.operacion == operacion.id) %}
-                            <option selected value="{{ operacion.id }}" >{{ operacion.nombre }}</option>
-                        {% else %}
-                            <option value="{{ operacion.id }}">{{ operacion.nombre }}</option>
-                        {% endif %}
-                    {% endfor %}
-                </select>
-                <select class="selectpicker" name="structure">
-                    {% for structur in structures %}
-                        {% if(negocios.params.structure is defined and negocios.params.structure == structur.id)%}
-                            <option selected value="{{ structur.id }}" >{{ structur.nombre }}</option>
-                        {% else %}
-                            <option value="{{ structur.id }}" >{{ structur.nombre }}</option>
-                        {% endif %}
-                    {% endfor %}
-                </select>
-                <div class="form-group buscador">
-                    {% if(negocios.params.lugar is defined ) %}
-                        <input id="buscardor-form-inmuebles" name="lugar" value="{{ negocios.params.lugar }}" type="text" class="form-control" placeholder="Ingresa Departamento,Provincia,Distrito">
-                    {% else %}
-                        <input id="buscardor-form-inmuebles" name="lugar" type="text" class="form-control" placeholder="Ingresa Departamento,Provincia,Distrito">
-                    {% endif %}
-                </div>
-            </form>
-        </div>
-    </div>
 {#{{ dump(negocios) }}#}
     <div class="container">
 
