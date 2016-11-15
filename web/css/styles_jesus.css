@@ -20,7 +20,7 @@ Perfil
 .perfil figure.perfil-fondo-izquierda {
     float: left;
     margin-top: 1rem;
-    margin-left: 3.4rem;
+    margin-left: 2rem;
 }
 .perfil figure.perfil-fondo-izquierda img {
     width: 100px;
@@ -47,6 +47,7 @@ Perfil
 }
 .perfil .perfil-fondo-derecha {
     float: right;
+    text-align: right;
     margin-top: 2rem;
     margin-right: 2.3rem;
 }
@@ -89,60 +90,73 @@ Perfil
     align-items: center;
 }
 .menu .menu-seccion-izquierda {
-    background-color: #1C9CD9;
+    background-color: #fff;
     border-radius: 0 0 10px 10px;
     display: inline-block;
-    /*padding: 20px;*/
+    /* padding: 20px; */
     text-align: center;
-    width: 73.2%;
-    max-width: 549px;
+    width: 191px;
+    /* max-width: 509px; */
 }
 .menu .menu-seccion-izquierda .lista-seccion {
-    display: inline-block;
-    width: 32.333333%;
-    padding: 20px;
+    display: block;
+    /*width: 32.333333%;*/
+    padding: 28px;
     position: relative;
 }
-.menu .menu-seccion-izquierda .lista-seccion:after {
-    content: " ";
-    height: 30px;
+li.lista-seccion::after {
+    content: '';
+    width: 191px;
+    height: 1px;
+    background: rgba(0,0,0,.15);
+    display: block;
     position: absolute;
-    width: 1px;
-    top: 20px;
-    right: 0;
-    background: #fff;
+    display: block;
+    right: 0px;
+    top: 0;
 }
-.menu .menu-seccion-izquierda .lista-seccion:nth-child(3):after {
-    display: none;
-}
-.menu .menu-seccion-izquierda .lista-seccion a div,
-.menu .menu-seccion-derecha div a div {
+/*.menu .menu-seccion-izquierda .lista-seccion:after {*/
+    /*content: " ";*/
+    /*height: 30px;*/
+    /*position: absolute;*/
+    /*width: 1px;*/
+    /*top: 20px;*/
+    /*right: 0;*/
+    /*background: #fff;*/
+/*}*/
+/*.menu .menu-seccion-izquierda .lista-seccion:nth-child(3):after {*/
+    /*display: none;*/
+/*}*/
+.menu .menu-seccion-izquierda .lista-seccion a div
+/*.menu .menu-seccion-derecha div a div*/ {
     margin-bottom: 9px;
 }
-.menu .menu-seccion-izquierda .lista-seccion i,
-.menu .menu-seccion-derecha i {
+.menu .menu-seccion-izquierda .lista-seccion i
+/*.menu .menu-seccion-derecha i*/ {
     font-size: 20px;
+    color: #009fe3;
 }
-.menu-seccion-izquierda .lista-seccion a,
-.menu-seccion-derecha div a {
-    color: #fff;
+.menu-seccion-izquierda .lista-seccion a
+/*.menu-seccion-derecha div a*/ {
+    color: #808080;
     font-size: 13px;
     display: inline-block;
+    font-weight: 400;
 }
-.menu .menu-seccion-derecha {
-    background-color: #39b54a;
-    border-radius: 0 0 10px 10px;
-    display: inline-block;
-    padding: 20px;
-    text-align: center;
-    max-width: 183px;
-    width: 24.4%;
-    float: right;
-    margin-right: 10px;
-}
-.menu .menu-seccion-derecha:hover {
-    background-color: #277732;
-}
+/*.menu .menu-seccion-derecha {*/
+    /*background-color: #39b54a;*/
+    /*border-radius: 0 0 10px 10px;*/
+    /*display: inline-block;*/
+    /*padding: 20px;*/
+    /*text-align: center;*/
+    /*max-width: 183px;*/
+    /*width: 24.4%;*/
+    /*float: right;*/
+    /*margin-right: 10px;*/
+/*}*/
+/*.menu .menu-seccion-derecha:hover {*/
+    /*background-color: #277732;*/
+/*}*/
 
 /*=======================
 Perfil - Cambiar Datos
