@@ -89,6 +89,10 @@ Perfil
     height: 130px;
     align-items: center;
 }
+div.menu {
+    position: relative;
+    right: 16px;
+}
 .menu .menu-seccion-izquierda {
     background-color: #fff;
     border-radius: 0 0 10px 10px;
@@ -101,8 +105,9 @@ Perfil
 .menu .menu-seccion-izquierda .lista-seccion {
     display: block;
     /*width: 32.333333%;*/
-    padding: 28px;
+    /*padding: 28px;*/
     position: relative;
+    text-align: left;
 }
 li.lista-seccion::after {
     content: '';
@@ -129,7 +134,7 @@ li.lista-seccion::after {
 /*}*/
 .menu .menu-seccion-izquierda .lista-seccion a div
 /*.menu .menu-seccion-derecha div a div*/ {
-    margin-bottom: 9px;
+    /*margin-bottom: 9px;*/
 }
 .menu .menu-seccion-izquierda .lista-seccion i
 /*.menu .menu-seccion-derecha i*/ {
@@ -142,6 +147,7 @@ li.lista-seccion::after {
     font-size: 13px;
     display: inline-block;
     font-weight: 400;
+    padding: 30px 15px 30px 20px;
 }
 /*.menu .menu-seccion-derecha {*/
     /*background-color: #39b54a;*/

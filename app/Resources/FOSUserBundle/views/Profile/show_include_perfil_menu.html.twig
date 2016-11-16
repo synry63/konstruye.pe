@@ -50,50 +50,12 @@
                     {#</div>#}
                 {#</div>#}
             {#</div>#}
-        </div>
-    </div>
-</section>
-<section class="menu">
-    <div class="container">
-        <div class="row">
-            <div class="display:inline-block">
-                <div class="menu-seccion-izquierda">
-                    <ul>
-                        <li class="lista-seccion">
-                            <a href="{{ path('show_profile_comments') }}">
-                                <div><i class="fa fa-commenting-o" aria-hidden="true"></i></div>
-                                <span>MIS COMENTARIOS</span>
-                            </a>
-                        </li>
-                        <li class="lista-seccion">
-                            <a href="{{ path('show_profile_negocios') }}">
-                                <div><i class="fa fa-archive" aria-hidden="true"></i></div>
-                                <span>MI COLECCIÓN</span>
-                            </a>
-                        </li>
-                        <li class="lista-seccion">
-                            <a href="#">
-                                <div><i class="fa fa-users" aria-hidden="true"></i></div>
-                                <span>MI PERFIL PUBLICO</span>
-                            </a>
-                        </li>
-                        <li class="lista-seccion">
-                            <a href="#">
-                                <div><i class="fa fa-commenting-o" aria-hidden="true"></i></div>
-                                <span>REGISTRAR NEGOCIO</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                {#<div class="menu-seccion-derecha">#}
-                    {#<div>#}
-                        {#<a href="{{ path('profile_negocios_seletion') }}">#}
-                            {#<div><i class="fa fa-commenting-o" aria-hidden="true"></i></div>#}
-                            {#<span>REGISTRAR NEGOCIO</span>#}
-                        {#</a>#}
-                    {#</div>#}
+
+            {#<div class="">#}
+                {#<div class="container">#}
+                    {#{% include "FOSUserBundle:Profile:show_include_menu_lateral.html.twig" %}#}
                 {#</div>#}
-            </div>
+            {#</div>#}
         </div>
     </div>
 </section>

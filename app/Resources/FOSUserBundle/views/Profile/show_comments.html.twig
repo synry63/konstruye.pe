@@ -14,16 +14,26 @@
 
     {% include "FOSUserBundle:Profile:show_include_perfil_menu.html.twig" %}
     {#{{ dump(comentarios) }}#}
+
+
+    <div class="comment" style="margin-bottom: 20px">
         <div class="container">
-            <div class="row comentario-perfil">
-                <div class="col-md-8 col-md-offset-2">
+
+            {% include "FOSUserBundle:Profile:show_include_menu_lateral.html.twig" %}
+
+            <div class=" comentario-perfil">
+                <div class="col-md-10 ">
                     <div class="marging-top">
                         {% if comentarios|length > 0 %}
                             {% for comentario in comentarios %}
                                 <div class="media comment">
                                     <div class="media-left padding-right-comentarios">
                                         <div class="image-comentario">
-                                            <img class="img-responsive" width="80" src="{{ vich_uploader_asset(comentario.negocio.logo, 'logoFile') }}" alt=""/>
+                                            {% if comentario.negocio.logo is not null %}
+                                                <img class="img-responsive" width="80" src="{{ vich_uploader_asset(comentario.negocio.logo, 'logoFile') }}" alt=""/>
+                                            {% else %}
+                                                <img class="img-responsive" width="80" src="http://placehold.it/80x80" alt=""/>
+                                            {% endif %}
                                         </div>
                                     </div>
 
@@ -50,7 +60,9 @@
                     </div>
                 </div>
             </div>
+
         </div>
+    </div>
 {% endblock fos_user_content %}
 
 {% block javascripts %}
