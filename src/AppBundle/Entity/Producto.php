@@ -84,6 +84,12 @@ class Producto
     private $tags;
 
     /**
+     * @ORM\ManyToMany(targetEntity="CategoriaListadoProducto", inversedBy="productos")
+     * @ORM\JoinTable(name="productos_categorias_listado")
+     */
+    private $categoriasListado;
+
+    /**
      * @ORM\OneToMany(targetEntity="ComentarioProducto", mappedBy="producto")
      */
     private $comentarios;
@@ -92,6 +98,22 @@ class Producto
      * @ORM\OneToMany(targetEntity="FotoProducto", mappedBy="producto")
      **/
     private $fotos;
+
+    /**
+     * @return mixed
+     */
+    public function getCategoriasListado()
+    {
+        return $this->categoriasListado;
+    }
+
+    /**
+     * @param mixed $categoriaListado
+     */
+    public function setCategoriasListado($categoriaListado)
+    {
+        $this->categoriasListado = $categoriaListado;
+    }
 
     /**
      * @return \DateTime

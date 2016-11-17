@@ -20,6 +20,11 @@
      {#{{ dump(negocio) }}#}
     {#{{ dump(myc) }}#}
     {#{{ dump(negocio) }}#}
+    {{ dump(categorias) }}
+    {% if sub_categorias is defined %}
+        {{ dump(sub_categorias) }}
+        {{ dump(productos_categoria) }}
+    {% endif %}
 
     <div class="container">
         <div class="container-breadcrumb marging-top">
@@ -214,7 +219,7 @@
 
                 <div class="flexslider" style="margin: 10px 0">
                     <ul class="slides">
-                        {% for nepro  in productos %}
+                        {% for nepro  in productos_destacados %}
                             <li>
                                 <div class="producto-box">
                                     <a href="{{ path('show_producto',{'slug_producto':nepro.producto.slug}) }}">

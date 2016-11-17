@@ -463,8 +463,22 @@ class NegocioController extends Controller
                 return $this->render('show_categorias.html.twig',$renderOut);
             }
             else if($negocio instanceof Proveedor){
-                $productos = $this->getDoctrine()->getRepository('AppBundle:Producto')->getProductosByNegocio($negocio,'moy')->getResult();
-                $renderOut['productos'] = $productos;
+                $slug_categoria = $request->query->get('slug_categoria');
+                $best_productos = $this->getDoctrine()->getRepository('AppBundle:Producto')->getProductosByNegocio($negocio,'moy')->getResult();
+                $ids = array();
+                foreach ($best_productos as $p){
+                    $ids[] = $p['producto']->getId();
+                }
+                $categorias_main_products = $this->getDoctrine()->getRepository('AppBundle:CategoriaListadoProducto')->getCategoriasMainFromProducts($ids);
+                if($slug_categoria!=null){
+                    $productos_categoria = $this->getDoctrine()->getRepository('AppBundle:Producto')->getProductosByNegocioCategoria($negocio,$slug_categoria)->getResult();
+                    $categorias_child = $this->getDoctrine()->getRepository('AppBundle:CategoriaListadoProducto')->getCategoriasChildren($slug_categoria);
+                    $renderOut['sub_categorias'] = $categorias_child;
+                    $renderOut['productos_categoria'] = $productos_categoria;
+                }
+
+                $renderOut['categorias'] = $categorias_main_products;
+                $renderOut['productos_destacados'] = $best_productos;
                 return $this->render('show_proveedores.html.twig',$renderOut);
             }
             else if($negocio instanceof Especialista){

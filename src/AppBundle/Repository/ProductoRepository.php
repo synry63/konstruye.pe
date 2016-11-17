@@ -41,6 +41,25 @@ class ProductoRepository extends EntityRepository
         $nombres = array_column($productos, 'nombre');
         return $nombres;
     }
+    public function getProductosByNegocioCategoria($n,$c){
+        $em = $this->getEntityManager();
+
+        $qb = $em->createQueryBuilder();
+        $qb->select('p as producto,avg(cp.nota) as mymoy')
+            ->from('AppBundle\Entity\Producto', 'p')
+            ->leftJoin('p.comentarios','cp')
+            ->where('p.negocio = :negocio')
+            ->setParameter('negocio', $n);
+
+            $qb->join('p.categoriasListado','pc')
+                ->andWhere('pc.slug = :categoria')
+                ->setParameter('categoria', $c);
+
+        $qb->addGroupBy('p');
+        $query = $qb->getQuery();
+
+        return $query;
+    }
     public function getProductosByNegocio($n,$orderBy = NULL){
         $em = $this->getEntityManager();
 
