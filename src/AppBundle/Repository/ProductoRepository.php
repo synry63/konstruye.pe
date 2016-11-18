@@ -13,7 +13,7 @@ use Doctrine\ORM\EntityRepository;
 class ProductoRepository extends EntityRepository
 {
 
-    public function getProductosBy($search){
+    public function getProductosBy($search,$c = null){
         $em = $this->getEntityManager();
         $qb = $em->createQueryBuilder();
         $qb->select('p as producto,avg(cp.nota) as mymoy')
@@ -22,6 +22,11 @@ class ProductoRepository extends EntityRepository
         $qb->where($qb->expr()->like('p.nombre', ':search'))
             ->setParameter('search', '%' . $search . '%');
 
+        if($c!=null){
+            $qb->join('p.categoriasListado','pc')
+                ->andWhere('pc.slug = :categoria')
+                ->setParameter('categoria', $c);
+        }
         $qb->addGroupBy('p');
         $query = $qb->getQuery();
 

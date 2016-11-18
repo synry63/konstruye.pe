@@ -1,15 +1,1 @@
-<div class="list-group">
-    {% if app.request.get('slug_categoria') == cmain.slug %}
-        <a href="{{ path(name, {"slug_categoria":cmain.slug, "slug_seccion":app.request.get('slug_seccion'),"search":search}) }}" class="list-group-item tittle-disable actif">{{ cmain.nombre }}</a>
-    {% else %}
-        <a href="{{ path(name, {"slug_categoria":cmain.slug, "slug_seccion":app.request.get('slug_seccion'),"search":search}) }}" class="list-group-item tittle-disable">{{ cmain.nombre }}</a>
-    {% endif %}
-    {% for csub in cmain.children %}
-        {#{{ dump (csub )}}#}
-        {% if app.request.get('slug_categoria') == csub.slug  %}
-            <a href="{{ path(name, {"slug_categoria":csub.slug, "slug_seccion":app.request.get('slug_seccion'),"search":search}) }}" class="list-group-item text-right actif">{{ csub.nombre }}</a>
-        {% else %}
-            <a href="{{ path(name, {"slug_categoria":csub.slug, "slug_seccion":app.request.get('slug_seccion'),"search":search}) }}" class="list-group-item text-right ">{{ csub.nombre }}</a>
-        {% endif %}
-    {% endfor %}
-</div>
+here left content

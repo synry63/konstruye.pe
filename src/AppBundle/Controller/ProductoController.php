@@ -21,13 +21,29 @@ use Symfony\Component\Console\Output\ConsoleOutput;
 class ProductoController extends Controller
 {
     public function searchProductoAction(Request $request,$page){
-
+        $renderOut = array();
         $search = $request->query->get('search');
+        $slug_categoria = $request->query->get('slug_categoria');
         if(empty($search)){
             $productos = array();
         }
         else{
-            $productos = $this->getDoctrine()->getRepository('AppBundle:Producto')->getProductosBy($search);
+            $productos = $this->getDoctrine()->getRepository('AppBundle:Producto')->getProductosBy($search)->getResult();
+        }
+        if(!empty($productos))
+        {
+            $ids = array();
+            foreach ($productos as $p){
+                $ids[] = $p['producto']->getId();
+            }
+            $categorias_main_products = $this->getDoctrine()->getRepository('AppBundle:CategoriaListadoProducto')->getCategoriasMainFromProducts($ids);
+            $renderOut['categorias'] = $categorias_main_products;
+
+            if($slug_categoria!=null){
+                $categorias_child = $this->getDoctrine()->getRepository('AppBundle:CategoriaListadoProducto')->getCategoriasChildren($slug_categoria);
+                $productos = $this->getDoctrine()->getRepository('AppBundle:Producto')->getProductosBy($search,$slug_categoria);
+                $renderOut['sub_categorias'] = $categorias_child;
+            }
         }
 
         $paginator  = $this->get('knp_paginator');
@@ -36,14 +52,13 @@ class ProductoController extends Controller
             $page,
             6
         );
+        $renderOut['productos'] = $pagination;
 
         $breadcrumbs = $this->get("white_october_breadcrumbs");
         $breadcrumbs->addItem('Inicio', $this->get("router")->generate("homepage"));
         $breadcrumbs->addItem('Resultado de busqueda');
 
-        return $this->render('layout_productos.html.twig',array(
-            'productos'=>$pagination,
-        ));
+        return $this->render('layout_productos.html.twig',$renderOut);
     }
     public function buscarListaProductosAction(Request $request){
 
@@ -206,15 +221,29 @@ class ProductoController extends Controller
         // }
     }
     public function showProductosProveedorAction(Request $request,$slug_negocio,$page){
+        $renderOut = array();
         $negocio = $this->getDoctrine()->getRepository('AppBundle:Proveedor')->findOneBy(
             array('slug'=>$slug_negocio)
         );
-        $productos = $this->getDoctrine()->getRepository('AppBundle:Producto')->getProductosByNegocio($negocio);
+        $slug_categoria = $request->query->get('slug_categoria');
+        $productos = $this->getDoctrine()->getRepository('AppBundle:Producto')->getProductosByNegocio($negocio,'moy')->getResult();
+        $ids = array();
+        foreach ($productos as $p){
+            $ids[] = $p['producto']->getId();
+        }
+        $categorias_main_products = $this->getDoctrine()->getRepository('AppBundle:CategoriaListadoProducto')->getCategoriasMainFromProducts($ids);
+        $renderOut['categorias'] = $categorias_main_products;
+        if($slug_categoria!=null){
+            $categorias_child = $this->getDoctrine()->getRepository('AppBundle:CategoriaListadoProducto')->getCategoriasChildren($slug_categoria);
+            $productos = $this->getDoctrine()->getRepository('AppBundle:Producto')->getProductosByNegocioCategoria($negocio,$slug_categoria);
+            $renderOut['sub_categorias'] = $categorias_child;
+        }
 
         $breadcrumbs = $this->get("white_october_breadcrumbs");
         $breadcrumbs->addItem('Proveedores', $this->get("router")->generate("lisdato_seccion",array('slug_seccion'=>'proveedores')));
         $breadcrumbs->addItem($negocio->getNombre(), $this->get("router")->generate("show_negocio",array('slug_negocio'=>$negocio->getSlug())));
         $breadcrumbs->addItem('Productos');
+
 
 
         $paginator  = $this->get('knp_paginator');
@@ -223,11 +252,9 @@ class ProductoController extends Controller
             $page,
             6
         );
-
+        $renderOut['productos'] = $pagination;
         return $this->render('layout_productos.html.twig',
-            array(
-                'productos'=>$pagination
-            )
+            $renderOut
         );
     }
 
