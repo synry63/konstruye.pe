@@ -216,35 +216,42 @@
         <div class="product-content">
             <h1 class="title-default" style="margin-bottom: 10px">Productos <span>Destacados</span></h1>
             <div class="row">
+                <div class="col-md-4">
+                    Filtros
+                </div>
+                <div class="col-md-8">
+                    <div class="flexslider" style="margin: 10px 0">
+                        <ul class="slides">
+                            {% for nepro  in productos_destacados %}
+                                <li>
+                                    <div class="producto-box">
+                                        <a href="{{ path('show_producto',{'slug_producto':nepro.producto.slug}) }}">
+                                            <img width="220px" src="http://placehold.it/220x220" alt="">
+                                        </a>
+                                        <a href="{{ path('show_producto',{'slug_producto':nepro.producto.slug}) }}"><h1>{{ nepro.producto.nombre }}</h1></a>
+                                        <a href="{{ path('show_negocio',
+                                        {"slug_seccion":app.request.get('slug_seccion'),"slug_negocio":nepro.producto.negocio.slug}) }}"><h2>{{ nepro.producto.negocio.nombre }}</h2></a>
+                                        {% if nepro.mymoy is not null %}
+                                            <div class="rateYo_productos" data-rating="{{ nepro.mymoy }}" style="margin: 0 auto"></div>
+                                        {% else %}
+                                            <div class="rateYo_productos" data-rating="0" style="margin: 0 auto"></div>
+                                        {% endif %}
+                                    </div>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
 
-                <div class="flexslider" style="margin: 10px 0">
-                    <ul class="slides">
-                        {% for nepro  in productos_destacados %}
-                            <li>
-                                <div class="producto-box">
-                                    <a href="{{ path('show_producto',{'slug_producto':nepro.producto.slug}) }}">
-                                        <img width="220px" src="http://placehold.it/220x220" alt="">
-                                    </a>
-                                    <a href="{{ path('show_producto',{'slug_producto':nepro.producto.slug}) }}"><h1>{{ nepro.producto.nombre }}</h1></a>
-                                    <a href="{{ path('show_negocio',
-                                    {"slug_seccion":app.request.get('slug_seccion'),"slug_negocio":nepro.producto.negocio.slug}) }}"><h2>{{ nepro.producto.negocio.nombre }}</h2></a>
-                                    {% if nepro.mymoy is not null %}
-                                        <div class="rateYo_productos" data-rating="{{ nepro.mymoy }}" style="margin: 0 auto"></div>
-                                    {% else %}
-                                        <div class="rateYo_productos" data-rating="0" style="margin: 0 auto"></div>
-                                    {% endif %}
-                                </div>
-                            </li>
-                        {% endfor %}
-                    </ul>
+                    <div class="col-md-2 col-md-offset-5" style="margin-top: 10px">
+                        <a href="{{ path('ver_mas_productos_proveedor',{ 'slug_negocio':negocio.slug}) }}" class="btn btn-konstruye">Ver más</a>
+                    </div>
                 </div>
 
 
 
 
-                <div class="col-md-2 col-md-offset-5" style="margin-top: 10px">
-                    <a href="{{ path('ver_mas_productos_proveedor',{ 'slug_negocio':negocio.slug}) }}" class="btn btn-konstruye">Ver más</a>
-                </div>
+
+
 
             </div>
         </div>
@@ -346,7 +353,8 @@
                     itemWidth: 160,
                     itemMargin: 5,
                     minItems: 2,
-                    maxItems: 4
+                    move: 1,
+                    maxItems: 3
                 });
             });
 

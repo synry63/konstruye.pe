@@ -103,7 +103,7 @@
 
 
                     <div id="buscador2">
-                        <form data-buscar-url="{{ path('buscar_productos') }}"  action="{{ path('search_global_productos') }}" role="search">
+                        <form method="GET" data-buscar-url="{{ path('buscar_productos') }}"  action="{{ path('search_global_productos') }}" role="search">
 
 
                             <select name="slug_seccion" id="select-buscador2" class="selectpicker">
@@ -446,7 +446,7 @@
                         },
                         theme:'defaultTheme',
                         'layout':'bottomCenter',
-                        type: 'error',
+                        type: 'alerta',
                         timeout:5000
                     });
                 }
@@ -507,7 +507,7 @@
                 var url = $('#buscador2 form').attr('action');
                 var search = ui.item.label;
                 //window.open(url+'/'+search,'_self',false);
-                //$('#s2').submit();
+                $('#buscador2 form').submit();
                 //alert(ui.item.label);
                 //log( "Selected: " + ui.item.label );
             }
