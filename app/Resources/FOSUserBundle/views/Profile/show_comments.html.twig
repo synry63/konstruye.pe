@@ -11,18 +11,22 @@
 {% endblock stylesheets%}
 
 {% block fos_user_content %}
-
-    {% include "FOSUserBundle:Profile:show_include_perfil_menu.html.twig" %}
     {#{{ dump(comentarios) }}#}
+    <header class="perfil">
+        <div class="container-fluid position">
+            {% include "FOSUserBundle:Profile:show_include_perfil_header.html.twig" %}
+        </div>
+    </header>
 
 
     <div class="comment" style="margin-bottom: 20px">
         <div class="container">
+            <div>
+                {% include "FOSUserBundle:Profile:show_include_menu_lateral.html.twig" %}
+            </div>
 
-            {% include "FOSUserBundle:Profile:show_include_menu_lateral.html.twig" %}
-
-            <div class=" comentario-perfil">
-                <div class="col-md-10 ">
+            <div class="comentario-perfil" >
+                <div class="col-md-10" style="padding-left: 25px">
                     <div class="marging-top">
                         {% if comentarios|length > 0 %}
                             {% for comentario in comentarios %}

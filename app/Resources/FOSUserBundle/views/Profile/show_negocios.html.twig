@@ -2,11 +2,20 @@
 {% block title %}
     <title> Konstruye.pe | Mi Colección </title>
 {% endblock title %}
+{% block  stylesheets%}
+    {{ parent() }}
+    {#Magnific Popup#}
+    <link rel="stylesheet" href="{{ asset('css/magnific-popup.css') }}">
+{% endblock stylesheets%}
 {% block fos_user_content %}
-
-    {% include "FOSUserBundle:Profile:show_include_perfil_menu.html.twig" %}
+    {#{{ dump(negocios) }}#}
+    {#{% include "FOSUserBundle:Profile:show_include_perfil_menu.html.twig" %}#}
+    <header class="perfil">
+        <div class="container-fluid position">
+            {% include "FOSUserBundle:Profile:show_include_perfil_header.html.twig" %}
+        </div>
+    </header>
     <div class="">
-        {#{{ dump(negocios) }}#}
         <div class="container">
             {% include "FOSUserBundle:Profile:show_include_menu_lateral.html.twig" %}
             <div class="col-md-10" style="margin-bottom: 20px">
@@ -59,3 +68,29 @@
         </div>
     </div>
 {% endblock fos_user_content %}
+{% block javascripts %}
+    {{ parent() }}
+    {#Rate Yo#}
+    <script type="text/javascript" src="{{ asset('js/jquery.rateyo.min.js') }}"></script>
+    <script>
+        $(document).ready(function(){
+            {#Rateyo#}
+            var color="#30BDEF";
+
+            $( ".rateYo_comments" ).each(function( index ) {
+                $(this).rateYo({
+                    rating: $(this).attr("data-rating"),
+                    starWidth: "16px",
+                    readOnly: true,
+                    ratedFill: color,
+                    normalFill: "#A0A0A0"
+                });
+            });
+
+            {#Magnific Popup#}
+            $('.simple-ajax-popup').magnificPopup({
+                type: 'ajax'
+            });
+        })
+    </script>
+{% endblock javascripts %}
