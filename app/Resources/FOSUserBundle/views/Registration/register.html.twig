@@ -26,6 +26,39 @@
     <script>
         $("body").addClass("fondo-register");
         $('body').removeClass('background-image');
+
+        //var $isWhat = $('#fos_user_registration_form_isWhat');
+        $('#fos_user_registration_form_isWhat_0,#fos_user_registration_form_isWhat_1').change(function () {
+            // ... retrieve the corresponding form.
+            //var $form = $(this).closest('form');
+            var $form =  $('form[name="fos_user_registration_form"]')
+            // Simulate form data, but only include the selected sport value.
+            var data = {};
+            data[$(this).attr('name')] = $(this).val();
+            // Submit data via AJAX to the form's action path.
+            $.ajax({
+                url : $form.attr('action'),
+                type: $form.attr('method'),
+                data : data,
+                success: function(html) {
+                    // Replace current position field ...
+                    /*$form_dom_result = $(html).find('form[name="fos_user_registration_form"]');
+                    $nombres = $($form_dom_result).find("#fos_user_registration_form_nombres").parent();
+                    $apellidos = $($form_dom_result).find("#fos_user_registration_form_apellidos").parent();
+                    $dni = $($form_dom_result).find("#fos_user_registration_form_dni").parent();
+                    $(".form-group.rtype").html($nombres.html()+$apellidos.html()+$dni.html());*/
+                    var $extras = $(html).find('.form-group.extra-input');
+                    $.each($extras, function( index, value ) {
+
+                    });
+
+                    $(".to-put-inside").html($extras);
+                    $(".to-put-inside").find('.alert.alert-danger').remove();
+                    //$($form).append($web);
+                    // Position field now displays the appropriate positions.
+                }
+            });
+        });
     </script>
 {% endblock javascripts %}
 

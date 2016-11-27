@@ -9,14 +9,86 @@ namespace AppBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\PropertyAccess\PropertyAccess;
 
 class RegistrationType extends AbstractType
 {
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('nombres');
-        $builder->add('apellidos');
-        $builder->add('dni');
+        //$type = $this->type;
+        $builder->add('isWhat', 'choice', array(
+            'choices' => array('Negocio' => 'n', 'Particular' => 'p'),
+            'choices_as_values' => true,
+            'placeholder' => '',
+            'multiple'      => false,
+            'expanded'      => true
+        ));
+
+        $formModifier = function ($form, $isWhat = null) {
+            //$positions = null === $sport ? array() : $sport->getAvailablePositions();
+            if($isWhat=='p'){
+                $form->add('nombres','Symfony\Component\Form\Extension\Core\Type\TextType');
+                $form->add('apellidos','Symfony\Component\Form\Extension\Core\Type\TextType');
+                $form->add('dni','Symfony\Component\Form\Extension\Core\Type\TextType');
+
+            }
+            else if($isWhat == 'n'){
+                $form->add('nombreEmpresa','Symfony\Component\Form\Extension\Core\Type\TextType');
+                $form->add('ruc','Symfony\Component\Form\Extension\Core\Type\TextType');
+            }
+
+        };
+
+        $builder->addEventListener(
+            FormEvents::PRE_SET_DATA,
+            function (FormEvent $event) use ($formModifier) {
+                $data = $event->getData();
+                $form = $event->getForm();
+
+                if (null === $data) {
+                    return false;
+                }
+                //var_dump($data->getIsWhat());
+                //exit;
+                //$accessor    = PropertyAccess::createPropertyAccessor();
+
+                //$test        = $accessor->getValue($data, 'isWhat');
+
+                //var_dump($test);
+                // this would be your entity, i.e. SportMeetup
+                //$data = $event->getData();
+                //$form = $event->getForm()->getData();
+                //var_dump($data);
+                $formModifier($event->getForm(), $data->getIsWhat());
+            }
+        );
+
+        $builder->get('isWhat')->addEventListener(
+            FormEvents::POST_SUBMIT,
+            function (FormEvent $event) use ($formModifier) {
+                $event->stopPropagation();
+                //var_dump($event->getData());
+                $isWhat = $event->getData();
+                $formModifier($event->getForm()->getParent(), $isWhat);
+                //$state = $event->getData();
+                //$provincia_id = array_key_exists('provincia', $state) ? $data['isNegocio'] : null;
+
+                //if(isset($state[1])){
+
+                //    $event->getForm()->add('nombres');
+                    /*$event->getForm()->add('apellidos');
+                    $event->getForm()->add('dni');*/
+                //}
+                /*else if($state=='n'){
+
+                }*/
+            },90000);
+
     }
 
     public function getParent()

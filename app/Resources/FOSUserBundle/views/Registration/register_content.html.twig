@@ -47,34 +47,73 @@
         {{ form_widget(form.plainPassword.second,{ 'attr': {'class': 'form-control','placeholder':'**********'}}) }}
     </div>
 
-    <div class="form-group">
-        {{ form_label(form.nombres,'Nombres') }}
-        {% if form.nombres.vars.errors|length>0 %}
-            <div class="alert alert-danger" role="alert">
-                <div> <i class="fa fa-exclamation-circle" aria-hidden="true"></i>{{ form_errors(form.nombres) }}</div>
-            </div>
-        {% endif %}
-        {{ form_widget(form.nombres,{ 'attr': {'class': 'form-control','placeholder':'Carlos'}}) }}
-    </div>
-    <div class="form-group">
-        {{ form_label(form.apellidos,'Apellidos') }}
-        {% if form.apellidos.vars.errors|length>0 %}
-            <div class="alert alert-danger" role="alert">
-                <div> <i class="fa fa-exclamation-circle" aria-hidden="true"></i>{{ form_errors(form.apellidos) }}</div>
-            </div>
-        {% endif %}
-        {{ form_widget(form.apellidos,{ 'attr': {'class': 'form-control','placeholder':'García'}}) }}
-    </div>
-    <div class="form-group">
-        {{ form_label(form.dni,'DNI') }}
+<div class="form-group">
+    {{ form_label(form.isWhat,'Negocio o Particular ?') }}
+    {% if form.isWhat.vars.errors|length>0 %}
+        <div class="alert alert-danger" role="alert">
+            <div> <i class="fa fa-exclamation-circle" aria-hidden="true"></i>{{ form_errors(form.isWhat) }}</div>
+        </div>
+    {% endif %}
+    {{ form_widget(form.isWhat) }}
+</div>
+<div class="to-put-inside">
+    {% if form.nombres is defined %}
+        <div class="form-group extra-input">
+            {{ form_label(form.nombres,'Nombres') }}
+            {% if form.nombres.vars.errors|length>0 %}
+                <div class="alert alert-danger" role="alert">
+                    <div> <i class="fa fa-exclamation-circle" aria-hidden="true"></i>{{ form_errors(form.nombres) }}</div>
+                </div>
+            {% endif %}
+            {{ form_widget(form.nombres,{ 'attr': {'class': 'form-control','placeholder':'Jorge'}}) }}
+        </div>
+    {% endif %}
+    {% if form.apellidos is defined %}
+        <div class="form-group extra-input">
+            {{ form_label(form.apellidos,'Apellidos') }}
+            {% if form.apellidos.vars.errors|length>0 %}
+                <div class="alert alert-danger" role="alert">
+                    <div> <i class="fa fa-exclamation-circle" aria-hidden="true"></i>{{ form_errors(form.apellidos) }}</div>
+                </div>
+            {% endif %}
+            {{ form_widget(form.apellidos,{ 'attr': {'class': 'form-control','placeholder':'Gonzales'}})  }}
+        </div>
+    {% endif %}
+    {% if form.dni is defined %}
+        <div class="form-group extra-input">
+            {{ form_label(form.dni,'DNI') }}
+            {% if form.dni.vars.errors|length>0 %}
+                <div class="alert alert-danger" role="alert">
+                    <div> <i class="fa fa-exclamation-circle" aria-hidden="true"></i>{{ form_errors(form.dni) }}</div>
+                </div>
+            {% endif %}
+            {{ form_widget(form.dni,{ 'attr': {'class': 'form-control','placeholder':'47775563'}})  }}
+        </div>
+    {% endif %}
+    {% if form.nombreEmpresa is defined %}
+        <div class="form-group extra-input">
+            {{ form_label(form.nombreEmpresa,'Nombre Empresa') }}
+            {% if form.nombreEmpresa.vars.errors|length>0 %}
+                <div class="alert alert-danger" role="alert">
+                    <div> <i class="fa fa-exclamation-circle" aria-hidden="true"></i>{{ form_errors(form.nombreEmpresa) }}</div>
+                </div>
+            {% endif %}
+            {{ form_widget(form.nombreEmpresa,{ 'attr': {'class': 'form-control','placeholder':'konstruye'}})  }}
+        </div>
+    {% endif %}
+    {% if form.ruc is defined %}
+        <div class="form-group extra-input">
+            {{ form_label(form.ruc,'Numero de RUC') }}
+            {% if form.ruc.vars.errors|length>0 %}
+                <div class="alert alert-danger" role="alert">
+                    <div> <i class="fa fa-exclamation-circle" aria-hidden="true"></i>{{ form_errors(form.ruc) }}</div>
+                </div>
+            {% endif %}
+            {{ form_widget(form.ruc,{ 'attr': {'class': 'form-control','placeholder':'15789545258'}})  }}
+        </div>
+    {% endif %}
+</div>
 
-        {% if form.dni.vars.errors|length>0 %}
-            <div class="alert alert-danger" role="alert">
-                <div> <i class="fa fa-exclamation-circle" aria-hidden="true"></i>{{ form_errors(form.dni) }}</div>
-            </div>
-        {% endif %}
-        {{ form_widget(form.dni,{ 'attr': {'class': 'form-control','placeholder':'73110949'}}) }}
-    </div>
 
 
     <div class="form-group">

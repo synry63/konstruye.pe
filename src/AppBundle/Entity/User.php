@@ -29,19 +29,31 @@ class User extends BaseUser
     /**
      * @ORM\Column(type="string", length=255)
      *
-     * @Assert\NotBlank(message="Ingrese sus Nombres", groups={"Registration", "Profile"})
+     * @Assert\NotBlank(message="Ingrese sus Nombres.", groups={"Registration", "Profile"})
      * @Assert\Length(
      *     min=3,
      *     max=64,
      *     minMessage="The name is too short.",
      *     maxMessage="The name is too long.",
-     *     groups={"Registration", "Profile"}
      * )
      */
     protected $nombres;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string",nullable=true, length=255)
+     *
+     * @Assert\NotBlank(message="Ingrese el nombre de su empresa.", groups={"Registration", "Profile"})
+     * @Assert\Length(
+     *     min=3,
+     *     max=64,
+     *     minMessage="The name is too short.",
+     *     maxMessage="The name is too long.",
+     * )
+     */
+    protected $nombreEmpresa;
+
+    /**
+     * @ORM\Column(type="string",nullable=true, length=255)
      *
      * @Assert\NotBlank(message="Ingrese sus Apellidos", groups={"Registration", "Profile"})
      * @Assert\Length(
@@ -55,7 +67,7 @@ class User extends BaseUser
     protected $apellidos;
 
     /**
-     * @ORM\Column(type="string", length=8)
+     * @ORM\Column(type="string",nullable=true, length=8)
      *
      * @Assert\NotBlank(message="Ingrese su DNI.", groups={"Registration", "Profile"})
      * @Assert\Length(
@@ -69,6 +81,22 @@ class User extends BaseUser
     protected $dni;
 
     /**
+     * @ORM\Column(type="string",nullable=true, length=11)
+     *
+     * @Assert\NotBlank(message="Ingrese su RUC.", groups={"Registration", "Profile"})
+     * @Assert\Length(
+     *     min=11,
+     *     max=11,
+     *     minMessage="Must be exactly 11.",
+     *     maxMessage="Must be exactly 11.",
+     *     groups={"Registration", "Profile"}
+     * )
+     */
+    protected $ruc;
+
+
+
+    /**
      * @ORM\OneToOne(targetEntity="FotoProfile",mappedBy="user",cascade={"persist"})
      */
     private $profile;
@@ -78,6 +106,43 @@ class User extends BaseUser
      *
      */
     protected $telefono;
+
+    /**
+     * @return mixed
+     */
+    public function getNombreEmpresa()
+    {
+        return $this->nombreEmpresa;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getRuc()
+    {
+        return $this->ruc;
+    }
+
+    /**
+     * @param mixed $ruc
+     */
+    public function setRuc($ruc)
+    {
+        $this->ruc = $ruc;
+    }
+    /**
+     * @param mixed $nombreEmpresa
+     */
+    public function setNombreEmpresa($nombreEmpresa)
+    {
+        $this->nombreEmpresa = $nombreEmpresa;
+    }
+
+    /**
+     * @ORM\Column(type="string", length=1)
+     *
+     */
+    protected $isWhat;
 
     /**
      * @ORM\OneToMany(targetEntity="Negocio", mappedBy="user")
@@ -98,6 +163,22 @@ class User extends BaseUser
     public function getFacebookId()
     {
         return $this->facebook_id;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIsWhat()
+    {
+        return $this->isWhat;
+    }
+
+    /**
+     * @param mixed $isWhat
+     */
+    public function setIsWhat($isWhat)
+    {
+        $this->isWhat = $isWhat;
     }
 
     /**
