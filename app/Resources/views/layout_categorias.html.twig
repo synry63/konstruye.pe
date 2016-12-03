@@ -23,12 +23,7 @@
             {{ wo_render_breadcrumbs() }}
         </div>
         <div class="col-md-3">
-            <div class="filtro">
-                {% for cmain in categorias_hijas %}
-                    {#{{ dump(cmain) }}#}
-                    {{ include('includes/filtros_negocios.html.twig', { 'cmain': cmain,'name':app.request.get('_route'),'search':app.request.get('search') }) }}
-                {% endfor %}
-            </div>
+            {{ out|raw }}
         </div>
 
         <div class="col-md-9 body-negocios">

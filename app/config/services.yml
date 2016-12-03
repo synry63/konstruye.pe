@@ -22,9 +22,12 @@ services:
 
   form_serializer:
     class:        AppBundle\Form\FormErrorsSerializer
-
   slugify:
     class:        AppBundle\Tool\SlugifyClass
+
+  menu_filter:
+    class:        AppBundle\Tool\GenerateMenuFilter
+    arguments:    [@router]
   swiftmailer.command.spool_send:
       class: Symfony\Bundle\SwiftmailerBundle\Command\SendEmailCommand
       calls:

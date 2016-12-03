@@ -32,75 +32,6 @@ use Symfony\Component\Console\Output\ConsoleOutput;
 
 class NegocioController extends Controller
 {
-    /**
-     * @param $text
-     * @return mixed|string
-     * slugify a text
-     */
-    private function slugify($text)
-    {
-        // replace non letter or digits by -
-        $text = preg_replace('~[^\pL\d]+~u', '-', $text);
-
-        // transliterate
-        $text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
-
-        // remove unwanted characters
-        $text = preg_replace('~[^-\w]+~', '', $text);
-
-        // trim
-        $text = trim($text, '-');
-
-        // remove duplicate -
-        $text = preg_replace('~-+~', '-', $text);
-
-        // lowercase
-        $text = strtolower($text);
-
-        if (empty($text))
-        {
-            return 'n-a';
-        }
-
-        return $text;
-    }
-
-    /*public function listadoSeccionCategoriaAction(Request $request,$slug_seccion,$slug_categoria,$page)
-    {
-
-        $twig = 'layout_categorias.html.twig';
-        $categoria = $this->getDoctrine()->getRepository('AppBundle:CategoriaListado')->findOneBy(array('slug'=>$slug_categoria));
-
-        if($slug_seccion=="constructoras-e-inmobiliarias"){
-            $negocios = $this->getDoctrine()->getRepository('AppBundle:ConstructoraInmobiliaria')->getNegociosByCategoria($categoria);
-            $categorias = $this->getDoctrine()->getRepository('AppBundle:CategoriaListado')->getCategoriasChildren('constructura-inmobiliaria');
-        }
-        else if($slug_seccion=="compra-venta-y-alquiler-inmuebles"){
-            $negocios = $this->getDoctrine()->getRepository('AppBundle:Inmueble')->getNegociosByCategoria($categoria);
-            $categorias = $this->getDoctrine()->getRepository('AppBundle:CategoriaListado')->getCategoriasChildren('inmueble');
-            $twig = 'layout_compra_y_venta.html.twig';
-
-        }
-        else if($slug_seccion=="especialistas-servicios-personales"){
-            $negocios = $this->getDoctrine()->getRepository('AppBundle:Especialista')->getNegociosByCategoria($categoria);
-            $categorias = $this->getDoctrine()->getRepository('AppBundle:CategoriaListado')->getCategoriasChildren('especialista');
-        }
-        else{
-            $negocios = $this->getDoctrine()->getRepository('AppBundle:Proveedor')->getNegociosByCategoria($categoria);
-            $categorias = $this->getDoctrine()->getRepository('AppBundle:CategoriaListado')->getCategoriasChildren('proveedor');
-        }
-        $paginator  = $this->get('knp_paginator');
-        $pagination = $paginator->paginate(
-            $negocios,
-            $page,
-            9
-        );
-        return $this->render($twig,array(
-            'negocios'=>$pagination,
-            'categorias_hijas'=>$categorias
-        ));
-
-    }*/
 
     public function listadoSeccionAction(Request $request,$slug_seccion,$page)
     {
@@ -110,10 +41,17 @@ class NegocioController extends Controller
         if($slug_seccion=="constructoras-e-inmobiliarias"){
             $slug_categoria = $request->query->get('slug_categoria');
             $negocios = $this->getDoctrine()->getRepository('AppBundle:ConstructoraInmobiliaria')->getNegocios($slug_categoria);
-            $categorias = $this->getDoctrine()->getRepository('AppBundle:CategoriaListado')->getCategoriasChildren('constructura-inmobiliaria');
+            $categorias_main = $this->getDoctrine()->getRepository('AppBundle:CategoriaListado')->getCategoriasChildren('constructura-inmobiliaria');
             $renderOut['negocios'] = $negocios;
-            $renderOut['categorias_hijas'] = $categorias;
+            $out = $this->get('menu_filter')->menuMain($request->get('_route'),'slug_seccion',$slug_seccion,$categorias_main);
+            if($slug_categoria!=null){
+                $categorias_child = $this->getDoctrine()->getRepository('AppBundle:CategoriaListado')->getCategoriasChildren($slug_categoria);
+                $renderOut['sub_categorias'] = $categorias_child;
+                $out = $this->get('menu_filter')->menuChild($request->get('_route'),'slug_seccion',$slug_seccion,$categorias_main,$slug_categoria);
 
+            }
+
+            $renderOut['out'] = $out;
         }
         else if($slug_seccion=="compra-venta-y-alquiler-inmuebles"){
             $dormi = $request->query->get('dormi');
@@ -199,18 +137,35 @@ class NegocioController extends Controller
         else if($slug_seccion=="especialistas-servicios-personales"){
 
             $slug_categoria = $request->query->get('slug_categoria');
-            //var_dump($slug_categoria);
             $negocios = $this->getDoctrine()->getRepository('AppBundle:Especialista')->getNegocios($slug_categoria);
-            $categorias = $this->getDoctrine()->getRepository('AppBundle:CategoriaListado')->getCategoriasChildren('especialista');
+            $categorias_main = $this->getDoctrine()->getRepository('AppBundle:CategoriaListado')->getCategoriasChildren('especialista');
+
             $renderOut['negocios'] = $negocios;
-            $renderOut['categorias_hijas'] = $categorias;
+            $out = $this->get('menu_filter')->menuMain($request->get('_route'),'slug_seccion',$slug_seccion,$categorias_main);
+            if($slug_categoria!=null){
+                $categorias_child = $this->getDoctrine()->getRepository('AppBundle:CategoriaListado')->getCategoriasChildren($slug_categoria);
+                $renderOut['sub_categorias'] = $categorias_child;
+                $out = $this->get('menu_filter')->menuChild($request->get('_route'),'slug_seccion',$slug_seccion,$categorias_main,$slug_categoria);
+
+            }
+
+            $renderOut['out'] = $out;
         }
-        else{
+        else{ // proveedores
             $slug_categoria = $request->query->get('slug_categoria');
             $negocios = $this->getDoctrine()->getRepository('AppBundle:Proveedor')->getNegocios($slug_categoria);
-            $categorias = $this->getDoctrine()->getRepository('AppBundle:CategoriaListado')->getCategoriasChildren('proveedor');
+            $categorias_main = $this->getDoctrine()->getRepository('AppBundle:CategoriaListado')->getCategoriasChildren('proveedor');
+
             $renderOut['negocios'] = $negocios;
-            $renderOut['categorias_hijas'] = $categorias;
+            $out = $this->get('menu_filter')->menuMain($request->get('_route'),'slug_seccion',$slug_seccion,$categorias_main);
+            if($slug_categoria!=null){
+                $categorias_child = $this->getDoctrine()->getRepository('AppBundle:CategoriaListado')->getCategoriasChildren($slug_categoria);
+                $renderOut['sub_categorias'] = $categorias_child;
+                $out = $this->get('menu_filter')->menuChild($request->get('_route'),'slug_seccion',$slug_seccion,$categorias_main,$slug_categoria);
+
+            }
+
+            $renderOut['out'] = $out;
         }
 
         $paginator  = $this->get('knp_paginator');
@@ -222,6 +177,7 @@ class NegocioController extends Controller
         $renderOut['negocios'] = $pagination;
         return $this->render($twig,$renderOut);
     }
+
 
     private function initGoogleMap($negocio,$slug_site = NULL){
         $map = $this->get('ivory_google_map.map');
@@ -469,15 +425,14 @@ class NegocioController extends Controller
                 foreach ($best_productos as $p){
                     $ids[] = $p['producto']->getId();
                 }
-                $categorias_main_products = $this->getDoctrine()->getRepository('AppBundle:CategoriaListadoProducto')->getCategoriasMainFromProducts($ids);
-                if($slug_categoria!=null){
-                    $productos_categoria = $this->getDoctrine()->getRepository('AppBundle:Producto')->getProductosByNegocioCategoria($negocio,$slug_categoria)->getResult();
-                    $categorias_child = $this->getDoctrine()->getRepository('AppBundle:CategoriaListadoProducto')->getCategoriasChildren($slug_categoria);
-                    $renderOut['sub_categorias'] = $categorias_child;
-                    $renderOut['productos_categoria'] = $productos_categoria;
-                }
 
-                $renderOut['categorias'] = $categorias_main_products;
+                $categorias_main_products = $this->getDoctrine()->getRepository('AppBundle:CategoriaListadoProducto')->getCategoriasMainFromProducts($ids);
+                $out = $this->get('menu_filter')->menuMain($request->get('_route'),'slug_negocio',$slug_negocio,$categorias_main_products);
+                if($slug_categoria!=null){
+                    $best_productos = $this->getDoctrine()->getRepository('AppBundle:Producto')->getProductosByNegocioCategoria($negocio,$slug_categoria)->getResult();
+                    $out = $this->get('menu_filter')->menuChild($request->get('_route'),'slug_negocio',$slug_negocio,$categorias_main_products,$slug_categoria);
+                }
+                $renderOut['out'] = $out;
                 $renderOut['productos_destacados'] = $best_productos;
                 return $this->render('show_proveedores.html.twig',$renderOut);
             }
@@ -494,21 +449,35 @@ class NegocioController extends Controller
         $search = $request->query->get('search');
         $seccion = $request->query->get('slug_seccion');
         $slug_categoria = $request->query->get('slug_categoria');
+
         if(empty($search)){
             $negocios = array();
         }
         else{
             if($seccion=="especialistas-servicios-personales"){
                 $negocios = $this->getDoctrine()->getRepository('AppBundle:Especialista')->getNegociosBy($search,$slug_categoria);
-                $categorias = $this->getDoctrine()->getRepository('AppBundle:CategoriaListado')->getCategoriasChildren('especialista');
+                $categorias_main = $this->getDoctrine()->getRepository('AppBundle:CategoriaListado')->getCategoriasChildren('especialista');
+                $out = $this->get('menu_filter')->menuMain($request->get('_route'),'slug_seccion',$request->query->get('slug_seccion'),$categorias_main,$search);
+                if($slug_categoria!=null){
+                    $out = $this->get('menu_filter')->menuChild($request->get('_route'),'slug_seccion',$seccion,$categorias_main,$slug_categoria,$search);
+                }
             }
-            else if($seccion=="proveedor"){
+            else if($seccion=="proveedores"){
                 $negocios = $this->getDoctrine()->getRepository('AppBundle:Proveedor')->getNegociosBy($search,$slug_categoria);
-                $categorias = $this->getDoctrine()->getRepository('AppBundle:CategoriaListado')->getCategoriasChildren('proveedor');
+                $categorias_main = $this->getDoctrine()->getRepository('AppBundle:CategoriaListado')->getCategoriasChildren('proveedor');
+                $out = $this->get('menu_filter')->menuMain($request->get('_route'),'slug_seccion',$request->query->get('slug_seccion'),$categorias_main,$search);
+                if($slug_categoria!=null){
+                    $out = $this->get('menu_filter')->menuChild($request->get('_route'),'slug_seccion',$seccion,$categorias_main,$slug_categoria,$search);
+                }
+
             }
             else if($seccion=="constructoras-e-inmobiliarias"){
                 $negocios = $this->getDoctrine()->getRepository('AppBundle:ConstructoraInmobiliaria')->getNegociosBy($search,$slug_categoria);
-                $categorias = $this->getDoctrine()->getRepository('AppBundle:CategoriaListado')->getCategoriasChildren('constructura-inmobiliaria');
+                $categorias_main = $this->getDoctrine()->getRepository('AppBundle:CategoriaListado')->getCategoriasChildren('constructura-inmobiliaria');
+                $out = $this->get('menu_filter')->menuMain($request->get('_route'),'slug_seccion',$request->query->get('slug_seccion'),$categorias_main,$search);
+                if($slug_categoria!=null){
+                    $out = $this->get('menu_filter')->menuChild($request->get('_route'),'slug_seccion',$seccion,$categorias_main,$slug_categoria,$search);
+                }
             }
 
 
@@ -526,7 +495,7 @@ class NegocioController extends Controller
         );
         return $this->render('layout_categorias.html.twig',array(
             'negocios'=>$pagination,
-            'categorias_hijas'=>$categorias
+            'out'=>$out
         ));
     }
     public function registerConfirmationAction(Request $request){

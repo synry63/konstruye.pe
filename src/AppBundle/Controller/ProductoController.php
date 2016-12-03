@@ -29,6 +29,7 @@ class ProductoController extends Controller
         }
         else{
             $productos = $this->getDoctrine()->getRepository('AppBundle:Producto')->getProductosBy($search)->getResult();
+
         }
         if(!empty($productos))
         {
@@ -37,15 +38,14 @@ class ProductoController extends Controller
                 $ids[] = $p['producto']->getId();
             }
             $categorias_main_products = $this->getDoctrine()->getRepository('AppBundle:CategoriaListadoProducto')->getCategoriasMainFromProducts($ids);
-            $renderOut['categorias'] = $categorias_main_products;
-
+            $out = $this->get('menu_filter')->menuMain($request->get('_route'),'slug_seccion','proveedores',$categorias_main_products,$search);
             if($slug_categoria!=null){
-                $categorias_child = $this->getDoctrine()->getRepository('AppBundle:CategoriaListadoProducto')->getCategoriasChildren($slug_categoria);
+                //$categorias_child = $this->getDoctrine()->getRepository('AppBundle:CategoriaListadoProducto')->getCategoriasChildren($slug_categoria);
                 $productos = $this->getDoctrine()->getRepository('AppBundle:Producto')->getProductosBy($search,$slug_categoria);
-                $renderOut['sub_categorias'] = $categorias_child;
+                $out = $this->get('menu_filter')->menuChild($request->get('_route'),'slug_seccion','proveedores',$categorias_main_products,$slug_categoria,$search);
             }
         }
-
+        $renderOut['out'] = $out;
         $paginator  = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
             $productos,
@@ -232,12 +232,14 @@ class ProductoController extends Controller
             $ids[] = $p['producto']->getId();
         }
         $categorias_main_products = $this->getDoctrine()->getRepository('AppBundle:CategoriaListadoProducto')->getCategoriasMainFromProducts($ids);
-        $renderOut['categorias'] = $categorias_main_products;
+        $out = $this->get('menu_filter')->menuMain($request->get('_route'),'slug_negocio',$slug_negocio,$categorias_main_products);
         if($slug_categoria!=null){
-            $categorias_child = $this->getDoctrine()->getRepository('AppBundle:CategoriaListadoProducto')->getCategoriasChildren($slug_categoria);
+            //$categorias_child = $this->getDoctrine()->getRepository('AppBundle:CategoriaListadoProducto')->getCategoriasChildren($slug_categoria);
             $productos = $this->getDoctrine()->getRepository('AppBundle:Producto')->getProductosByNegocioCategoria($negocio,$slug_categoria);
-            $renderOut['sub_categorias'] = $categorias_child;
+            $out = $this->get('menu_filter')->menuChild($request->get('_route'),'slug_negocio',$slug_negocio,$categorias_main_products,$slug_categoria);
         }
+
+        $renderOut['out'] = $out;
 
         $breadcrumbs = $this->get("white_october_breadcrumbs");
         $breadcrumbs->addItem('Proveedores', $this->get("router")->generate("lisdato_seccion",array('slug_seccion'=>'proveedores')));

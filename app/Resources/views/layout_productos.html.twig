@@ -20,17 +20,7 @@
         </div>
         <div class="col-md-3">
             <div class="filtro">
-                {#
-                {% for cmain in categorias %}
-                    {{ include('includes/filtros_productos.html.twig', { 'cmain': cmain,'name':app.request.get('_route'),'search':app.request.get('search') }) }}
-                {% endfor %}
-                #}
-
-
-                {{ dump(categorias) }}
-                {% if sub_categorias is defined %}
-                    {{ dump(sub_categorias) }}
-                {% endif %}
+                {{ out|raw }}
             </div>
         </div>
         <div class="col-md-9 body-negocios">
