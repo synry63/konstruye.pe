@@ -11,6 +11,9 @@ hwi_oauth_redirect:
 
 facebook_login:
     path: /secured/login_facebook
+my_test:
+    path:      /test
+    defaults:  { _controller: AppBundle:Default:test}
 homepage:
     path:      /
     defaults:  { _controller: AppBundle:Default:index}
@@ -39,7 +42,9 @@ show_negocio:
 search_global_negocios:
     path:      /resultado-busqueda/negocios/{page}
     defaults:  { _controller: AppBundle:Negocio:searchNegocio,page:1}
-
+profile_public:
+    path:      /perfil-publico/{id}
+    defaults:  { _controller: AppBundle:User:PerfilPublico}
 search_global_productos:
     path:      /resultado-busqueda/productos/{page}
     defaults:  { _controller: AppBundle:Producto:searchProducto,page:1}

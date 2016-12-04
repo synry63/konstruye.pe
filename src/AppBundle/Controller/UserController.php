@@ -22,7 +22,14 @@ class UserController extends Controller
 {
 
 
-
+    public function  PerfilPublicoAction(Request $request,$id){
+        $user = $this->getDoctrine()->getRepository('AppBundle:User')->find($id);
+        return $this->render(
+            'public_profile.html.twig',array(
+                'usuario'=>$user
+            )
+        );
+    }
     public function userCommentEditAction($slug_negocio,Request $request){
         $user = $this->container->get('security.context')->getToken()->getUser();
         $negocio = $this->getDoctrine()->getRepository('AppBundle:Negocio')->findOneBy(array('slug'=>$slug_negocio));

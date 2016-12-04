@@ -2,6 +2,11 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\ConstructoraInmobiliaria;
+use AppBundle\Entity\Especialista;
+use AppBundle\Entity\Inmueble;
+use AppBundle\Entity\Proveedor;
+use AppBundle\Entity\User;
 use AppBundle\Form\Type\ContactType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -27,6 +32,50 @@ class DefaultController extends Controller
             'especialistas'=>$especialistas,
             'inmuebles'=>$inmuebles
         ));
+    }
+    public function testAction(Request $request)
+    {
+        $r = $this->getDoctrine()->getRepository('AppBundle:User')->searchAllUsers('pa');
+        $r2 = $this->getDoctrine()->getRepository('AppBundle:Negocio')->searchAllNegocios('pa');
+        $merged = array_merge($r, $r2);
+        $arr_out = array();
+        foreach ($merged as $value){
+            $obj = new \stdClass();
+            $label = '';
+            if($value instanceof User){
+                $obj->type = 'Perfil';
+                if(!empty($value->getNombreEmpresa())){
+                    $label = $value->getNombreEmpresa();
+                }
+                else{
+                    $label = $value->getNombres().' '.$value->getApellidos();
+                }
+            }
+            else if($value instanceof Proveedor){
+                $obj->type = 'Proveedor';
+                $label = $value->getNombre();
+            }
+            else if($value instanceof Especialista){
+                $obj->type = 'Especialista';
+                $label = $value->getNombre();
+            }
+            else if($value instanceof ConstructoraInmobiliaria){
+                $obj->type = 'Constructura e Inmobiliaria';
+                $label = $value->getNombre();
+            }
+            /*else if($value instanceof Inmueble){
+                $obj->type = 'Inmueble';
+                $label = $value->getNombre();
+            }*/
+            $obj->value = $value->getId();
+            $obj->label = $label;
+            $arr_out[] = $obj;
+        }
+        $response = new JsonResponse($arr_out);
+        return $response;
+        /*return $this->render('temp.html.twig',array(
+            'r'=>$merged,
+        ));*/
     }
     public function ubicacionesAction(Request $request)
     {

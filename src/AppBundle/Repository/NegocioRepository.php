@@ -12,6 +12,20 @@ use Doctrine\ORM\EntityRepository;
 
 class NegocioRepository extends EntityRepository
 {
+    public function searchAllNegocios($search){
+        $em = $this->getEntityManager();
+        $dql = 'SELECT  n FROM AppBundle\Entity\Negocio n';
+        //$dql.= ' LEFT JOIN u.negocios n';
+        $dql.= ' WHERE n.nombre LIKE ?1';
+
+        $query = $em->createQuery($dql);
+        $query->setParameters(array(
+            1 => '%'.$search.'%'
+        ));
+        $r = $query->getResult();
+
+        return $r;
+    }
     /**
      * @param int $limit
      * @return mixed

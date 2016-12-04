@@ -10,9 +10,11 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\ComentarioNegocio;
 use AppBundle\Entity\ConstructoraInmobiliaria;
 use AppBundle\Entity\Especialista;
+use AppBundle\Entity\Inmueble;
 use AppBundle\Entity\Operacion;
 use AppBundle\Entity\Proveedor;
 use AppBundle\Entity\Structure;
+use AppBundle\Entity\User;
 use AppBundle\Form\Type\ComentarioNegocioType;
 use AppBundle\Form\Type\CotizacionType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -228,26 +230,90 @@ class NegocioController extends Controller
     }
     public function buscarListaNegociosAction(Request $request,$slug_seccion)
     {
-
         $out = array();
         $search = $request->query->get('q');
+        if($slug_seccion=="todos"){
+            $users = $this->getDoctrine()->getRepository('AppBundle:User')->searchAllUsers($search);
+            $negocios = $this->getDoctrine()->getRepository('AppBundle:Negocio')->searchAllNegocios($search);
+            $merged = array_merge($users, $negocios);
+            foreach ($merged as $value){
+                $obj = new \stdClass();
+                $label = '';
 
-        if($slug_seccion=="constructoras-e-inmobiliarias"){
-            $out = $this->getDoctrine()->getRepository('AppBundle:ConstructoraInmobiliaria')->searchNegociosNames($search);
+                if($value instanceof User){
+                    $obj->type = 'Perfil';
+                    $obj->instance = 'User';
+                    $obj->seccion = 'todos';
+                    if(!empty($value->getNombreEmpresa())){
+                        $label = $value->getNombreEmpresa();
+                    }
+                    else{
+                        $label = $value->getNombres().' '.$value->getApellidos();
+                    }
+                }
+                else if($value instanceof Proveedor){
+                    $obj->type = 'Proveedor';
+                    $obj->instance = 'Proveedor';
+                    $obj->seccion = 'proveedores';
+                    $label = $value->getNombre();
+                }
+                else if($value instanceof Especialista){
+                    $obj->type = 'Especialista';
+                    $obj->instance = 'Especialista';
+                    $obj->seccion = 'especialistas-servicios-personales';
+                    $label = $value->getNombre();
+                }
+                else if($value instanceof ConstructoraInmobiliaria){
+                    $obj->type = 'Constructura e Inmobiliaria';
+                    $obj->instance = 'ConstructoraInmobiliaria';
+                    $obj->seccion = 'constructoras-e-inmobiliarias';
+                    $label = $value->getNombre();
+                }
+                else if($value instanceof Inmueble){
+                    continue;
+                }
+                $obj->identifier = $value->getId();
+                $obj->label = $label;
+                $out[] = $obj;
+            }
         }
-        else if($slug_seccion=="compra-venta-y-alquiler-inmuebles"){
+        else if($slug_seccion=="constructoras-e-inmobiliarias"){
+            $negocios = $this->getDoctrine()->getRepository('AppBundle:ConstructoraInmobiliaria')->searchNegociosNames($search);
+            foreach ($negocios as $value){
+                $obj = new \stdClass();
+                $obj->seccion = $slug_seccion;
+                $obj->type = 'Constructura e Inmobiliaria';
+                $obj->instance = 'ConstructoraInmobiliaria';
+                $obj->identifier = $value->getId();
+                $obj->label = $value->getNombre();
+                $out[] = $obj;
+            }
 
         }
         else if($slug_seccion=="especialistas-servicios-personales"){
-            $out = $this->getDoctrine()->getRepository('AppBundle:Especialista')->searchNegociosNames($search);
+            $negocios = $this->getDoctrine()->getRepository('AppBundle:Especialista')->searchNegociosNames($search);
+            foreach ($negocios as $value){
+                $obj = new \stdClass();
+                $obj->seccion = $slug_seccion;
+                $obj->type = 'Especialista';
+                $obj->instance = 'Especialista';
+                $obj->identifier = $value->getId();
+                $obj->label = $value->getNombre();
+                $out[] = $obj;
+            }
         }
         else if($slug_seccion=="proveedores"){
-            $out = $this->getDoctrine()->getRepository('AppBundle:Proveedor')->searchNegociosNames($search);
+            $negocios = $this->getDoctrine()->getRepository('AppBundle:Proveedor')->searchNegociosNames($search);
+            foreach ($negocios as $value){
+                $obj = new \stdClass();
+                $obj->seccion = $slug_seccion;
+                $obj->type = 'Proveedor';
+                $obj->instance = 'Proveedor';
+                $obj->identifier = $value->getId();
+                $obj->label = $value->getNombre();
+                $out[] = $obj;
+            }
         }
-
-
-        //if($slug_seccion=="null"){
-        //}
 
         $response = new JsonResponse($out);
 
@@ -449,11 +515,20 @@ class NegocioController extends Controller
         $search = $request->query->get('search');
         $seccion = $request->query->get('slug_seccion');
         $slug_categoria = $request->query->get('slug_categoria');
+        $instance = $request->query->get('instance');
+        $id = $request->query->get('id');
+
 
         if(empty($search)){
             $negocios = array();
         }
         else{
+            if($seccion=="todos"){
+                $obj = $this->getDoctrine()->getRepository('AppBundle:'.$instance)->find($id);
+                if($obj instanceof User){
+                    return $this->redirectToRoute('profile_public',array('id'=>$obj->getId()));
+                }
+            }
             if($seccion=="especialistas-servicios-personales"){
                 $negocios = $this->getDoctrine()->getRepository('AppBundle:Especialista')->getNegociosBy($search,$slug_categoria);
                 $categorias_main = $this->getDoctrine()->getRepository('AppBundle:CategoriaListado')->getCategoriasChildren('especialista');

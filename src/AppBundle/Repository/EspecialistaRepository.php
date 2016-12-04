@@ -75,15 +75,15 @@ class EspecialistaRepository extends EntityRepository
     public function searchNegociosNames($search){
         $em = $this->getEntityManager();
         $qb = $em->createQueryBuilder();
-        $qb->select('n.nombre as nombre')
+        $qb->select('n')
             ->from('AppBundle\Entity\Especialista', 'n')
             ->where($qb->expr()->like('n.nombre', ':search'))
             ->setParameter('search', '%' . $search . '%');
         $query = $qb->getQuery();
         $negocios = $query->getResult();
-
-        $nombres = array_column($negocios, 'nombre');
-        return $nombres;
+        return $negocios;
+        //$nombres = array_column($negocios, 'nombre');
+        //return $nombres;
     }
     public function getNegociosBy($search,$slug_categoria = null){
 
