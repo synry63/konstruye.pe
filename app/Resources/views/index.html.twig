@@ -88,30 +88,30 @@
 
 
                     <div id="buscador1">
-                        <form method="GET" data-buscar-url="{{ path('buscar_negocios_by_seccion_null') }}" action="{{ path('search_global_negocios') }}" role="search">
+                        <form class="searcher" method="GET" action="{{ path('search_global_negocios') }}" role="search">
 
                             <!--<i class="fa fa-chevron-down" aria-hidden="true"></i>-->
-                            <select name="slug_seccion"  id="select-buscador" class="selectpicker">
+                            <select name="slug_seccion"  class="selectpicker">
                                 <option value="todos">Buscar en Todo</option>
                                 <option value="constructoras-e-inmobiliarias">Constructoras e Inmobiliarias</option>
                                 <option value="especialistas-servicios-personales">Especialistas y Servicios Personales</option>
                                 <option value="proveedores">Proveedores</option>
                             </select>
-                            <input name="search" id="search" type="text" placeholder="Ejemplo: Carpintero, Trebol Celima"/>
-                            <input name="id" id="id" type="hidden"/>
-                            <input name="instance" id="instance" type="hidden"/>
+                            <input name="search" class="search" type="text" placeholder="Ejemplo: Carpintero, Trebol Celima"/>
+                            <input name="id" class="id" type="hidden"/>
+                            <input name="instance" class="instance" type="hidden"/>
                         </form>
                     </div>
 
 
                     <div id="buscador2">
-                        <form method="GET" data-buscar-url="{{ path('buscar_productos') }}"  action="{{ path('search_global_productos') }}" role="search">
+                        <form method="GET" class="searcher-products"  action="{{ path('search_global_productos') }}" role="search">
 
 
-                            <select name="slug_seccion" id="select-buscador2" class="selectpicker">
+                            <select name="slug_seccion" class="selectpicker">
                                 <option selected value="proveedores">Proveedores</option>
                             </select>
-                            <input name="search" type="text" placeholder="Ejemplo: Marmol, Madera, Mesas"/>
+                            <input name="search" class="search" type="text" placeholder="Ejemplo: Marmol, Madera, Mesas"/>
                         </form>
                     </div>
 
@@ -413,10 +413,6 @@
             $("#buscador1").hide();
             $("#buscador2").show();
         });
-
-
-
-
         /*function monkeyPatchAutocomplete() {
 
             // Don't really need to save the old fn,
@@ -433,65 +429,8 @@
             };
         }
         monkeyPatchAutocomplete();*/
-        var s1_found_data = false;
-        $( "#buscador1 form input#search" ).autocomplete({
-            source: function( request, response ) {
-                var seccion = $("#buscador1 form .selectpicker").val();
-                /*if(seccion==""){
-                    noty({
-                        text: '¡Escoja una categoria primero!',
-                        animation: {
-                            open: 'animated bounceInLeft', // Animate.css class names
-                            close: 'animated bounceOutRight', // Animate.css class names
-                            easing: 'swing', // easing
-                            speed: 800 // opening & closing animation speed
-                        },
-                        theme:'defaultTheme',
-                        'layout':'bottomCenter',
-                        type: 'alerta',
-                        timeout:5000
-                    });
-                }*/
-                var url = $("#buscador1 form").attr('data-buscar-url');
-                s1_found_data = false;
-                $.ajax( {
-                    url: url+seccion,
-                    //dataType: "jsonp",
-                    data: {
-                        q: request.term
-                    },
-                    success: function( data ) {
-                        //console.log(data);
-                        // Handle 'no match' indicated by [ "" ] response
-                        response( data.length === 0 ? ['Ningun resultado encontrado'] : data );
-                        if(data.length>0) s1_found_data = true;
-                    }
-                } );
-            },
-            focus: function( event, ui ) {
-                $( "#buscador1 form input#search" ).val( ui.item.label );
-                return false;
-            },
-            minLength: 1,
-            select: function( event, ui ) {
-                if(!s1_found_data) return false;
-                $( "#buscador1 form input#id").val(ui.item.identifier);
-                $( "#buscador1 form input#search").val(ui.item.label);
-                $( "#buscador1 form select#select-buscador").val(ui.item.seccion);
-                $( "#buscador1 form input#instance").val(ui.item.instance);
-                $( "#buscador1 form").submit();
-            }
-        }).autocomplete( "instance" )._renderItem = function( ul, item ) {
 
-            var re = new RegExp("^" + this.term, "i") ;
-            var t = item.label.replace(re,"<span style='font-weight:bold;color:#009FE3'>" + this.term + "</span>");
-            return $( "<li></li>" )
-                    .data( "item.autocomplete", item )
-                    .append( "<div>" + t + "<br><span style='font-weight: 100;font-size: 11px;font-style: italic'>" +(item.type!=undefined ? item.type : "") + "</span></div>" )//append( "<a>" + t + "</a>" )
-                    .appendTo( ul );
-
-        };
-        var s2_found_data = false;
+        /*var s2_found_data = false;
         $( "#buscador2 form input" ).autocomplete({
             source: function( request, response ) {
                 var url = $("#buscador2 form").attr('data-buscar-url');
@@ -521,7 +460,7 @@
                 //alert(ui.item.label);
                 //log( "Selected: " + ui.item.label );
             }
-        } );
+        } );*/
 
             $(document).ready(function() {
                 var slider = new MasterSlider();

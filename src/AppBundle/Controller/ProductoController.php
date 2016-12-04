@@ -63,7 +63,15 @@ class ProductoController extends Controller
     public function buscarListaProductosAction(Request $request){
 
         $search = $request->query->get('q');
-        $out = $this->getDoctrine()->getRepository('AppBundle:Producto')->searchProductosNames($search);
+        $productos = $this->getDoctrine()->getRepository('AppBundle:Producto')->searchProductosNames($search);
+        $out = array();
+        foreach ($productos as $value){
+            $obj = new \stdClass();
+            $obj->type = 'Producto';
+            $obj->identifier = $value->getId();
+            $obj->label = $value->getNombre();
+            $out[] = $obj;
+        }
         $response = new JsonResponse($out);
 
         return $response;

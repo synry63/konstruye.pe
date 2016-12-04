@@ -147,10 +147,6 @@
 
 
                     <div class="form-stiky">
-
-
-
-
                         <div class="buttons-change">
                             <div id="hide3" class="tooltip2" title="Buscador de Negocios"><i class="fa fa-briefcase" aria-hidden="true"></i></div>
                             <div id="hide4" class="tooltip2" title="Buscador de Productos"><i class="fa fa-shopping-bag" aria-hidden="true"></i></div>
@@ -159,22 +155,24 @@
 
 
 
-                        <form id="s4" data-buscar-url="{{ path('buscar_negocios_by_seccion_null') }}" action="{{ path('search_global_negocios') }}" class="s1" role="search">
+                        <form id="s4" class="searcher"  action="{{ path('search_global_negocios') }}" role="search">
 
                             <select name="slug_seccion" class="selectpicker">
-                                <option value="">Selecciona una Categoria</option>
+                                <option value="todos">Buscar en Todo</option>
                                 <option value="constructoras-e-inmobiliarias" style="overflow: hidden">Constructoras e Inmobiliarias</option>
                                 <option value="especialistas-servicios-personales">Especialistas y Servicios Personales</option>
                                 <option value="proveedores">Proveedores</option>
                             </select>
-                            <input name="search" class="form-control" type="text" placeholder="Ejemplo: Carpintero, Trebol Celima">
+                            <input name="search" class="form-control search" type="text" placeholder="Ejemplo: Carpintero, Trebol Celima"/>
+                            <input name="id" class="id" type="hidden"/>
+                            <input name="instance" class="instance" type="hidden"/>
                         </form>
-                        <form id="s3" data-buscar-url="{{ path('buscar_productos') }}"  action="{{ path('search_global_productos') }}" class="s2" role="search">
+                        <form id="s3" class="searcher-products" action="{{ path('search_global_productos') }}" role="search">
 
                             <select name="slug_seccion" class="selectpicker">
                                 <option selected value="proveedores">Proveedores</option>
                             </select>
-                            <input name="search" class="form-control" type="text"  placeholder="Ejemplo: Marmol, Madera, Mesas">
+                            <input name="search" class="form-control search" type="text"  placeholder="Ejemplo: Marmol, Madera, Mesas">
                         </form>
                     </div>
 
@@ -273,109 +271,91 @@
             <script src="{{ asset('js/default_noty.js') }}" type="text/javascript"></script>
             <script>
 
-                $(document).ready(function() {
-                    $('.tooltip2').tooltipster({
-                        theme: 'tooltipster-shadow'
+                var seccion = 'todos';
+                $( ".selectpicker" ).change(function() {
+                    seccion = $(this).val();
+                });
+                $( document ).ready(function() {
+
+                    function monkeyPatchAutocomplete() {
+
+                        // Don't really need to save the old fn,
+                        // but I could chain if I wanted to
+                        var oldFn = $.ui.autocomplete.prototype._renderItem;
+
+                        $.ui.autocomplete.prototype._renderItem = function( ul, item) {
+                            var re = new RegExp("^" + this.term, "i") ;
+                            var t = item.label.replace(re,"<span style='font-weight:bold;color:#009FE3'>" + this.term + "</span>");
+                            return $( "<li></li>" )
+                                    .data( "item.autocomplete", item )
+                                    .append( "<div>" + t + "<br><span style='font-weight: 100;font-size: 11px;font-style: italic'>" +(item.type!=undefined ? item.type : "") + "</span></div>" )//append( "<a>" + t + "</a>" )
+                                    .appendTo( ul );
+                        };
+                    }
+                    monkeyPatchAutocomplete();
+                    // autocomplete for products
+                    $( ".searcher-products input.search" ).autocomplete({
+                        source: function( request, response ) {
+                            var url = '{{ path('buscar_productos') }}'
+                            $.ajax( {
+                                url: url,
+                                data: {
+                                    q: request.term
+                                },
+                                success: function( data ) {
+                                    //console.log(data);
+                                    // Handle 'no match' indicated by [ "" ] response
+                                    response( data.length === 0 ? ['Ningun resultado encontrado'] : data );
+                                }
+                            } );
+                        },
+                        focus: function( event, ui ) {
+                            $( ".searcher-products input.search" ).val( ui.item.label );
+                            return false;
+                        },
+                        minLength: 1,
+                        select: function( event, ui ) {
+                            $( ".searcher-products input.search").val(ui.item.label);
+                            $( ".searcher-products").submit();
+                        }
+                    });
+                    // autocomplete for negocios
+                    $( ".searcher input.search" ).autocomplete({
+                        source: function( request, response ) {
+                            var url = '{{ path('buscar_negocios_by_seccion_null') }}'
+                            //s1_found_data = false;
+                            $.ajax( {
+                                url: url+seccion,
+                                data: {
+                                    q: request.term
+                                },
+                                success: function( data ) {
+                                    //console.log(data);
+                                    // Handle 'no match' indicated by [ "" ] response
+                                    response( data.length === 0 ? ['Ningun resultado encontrado'] : data );
+                                    //if(data.length>0) s1_found_data = true;
+                                }
+                            } );
+                        },
+                        focus: function( event, ui ) {
+                            $( ".searcher input.search" ).val( ui.item.label );
+                            return false;
+                        },
+                        minLength: 1,
+                        select: function( event, ui ) {
+                            //if(!s1_found_data) return false;
+                            $( ".searcher input.id").val(ui.item.identifier);
+                            $( ".searcher input.search").val(ui.item.label);
+                            $( ".searcher input.instance").val(ui.item.instance);
+                            $( ".searcher").submit();
+                        }
                     });
                 });
 
-                function monkeyPatchAutocomplete() {
-
-                    // Don't really need to save the old fn,
-                    // but I could chain if I wanted to
-                    var oldFn = $.ui.autocomplete.prototype._renderItem;
-
-                    $.ui.autocomplete.prototype._renderItem = function( ul, item) {
-                        var re = new RegExp("^" + this.term, "i") ;
-                        var t = item.label.replace(re,"<span style='font-weight:bold;color:#009FE3'>" + this.term + "</span>");
-                        return $( "<li></li>" )
-                                .data( "item.autocomplete", item )
-                                .append( "<a>" + t + "</a>" )
-                                .appendTo( ul );
-                    };
-                }
-                monkeyPatchAutocomplete();
-                var s1_found_data = false;
-                $( ".s1 input" ).autocomplete({
-                    source: function( request, response ) {
-                        var seccion = $(".s1 .selectpicker").val();
-                        if(seccion==""){
-                            noty({
-                                text: '¡Escoja una categoria primero!',
-                                animation: {
-                                    open: 'animated bounceInLeft', // Animate.css class names
-                                    close: 'animated bounceOutRight', // Animate.css class names
-                                    easing: 'swing', // easing
-                                    speed: 800 // opening & closing animation speed
-                                },
-                                theme:'defaultTheme',
-                                'layout':'bottomCenter',
-                                type: 'alerta',
-                                timeout:5000
-                            });
-                        }
-                        var url = $(".s1").attr('data-buscar-url');
-                        s1_found_data = false;
-                        $.ajax( {
-                            url: url+seccion,
-                            //dataType: "jsonp",
-                            data: {
-                                q: request.term
-                            },
-                            success: function( data ) {
-                                //console.log(data);
-                                // Handle 'no match' indicated by [ "" ] response
-                                response( data.length === 0 ? ['Ningun resultado encontrado'] : data );
-                                if(data.length>0) s1_found_data = true;
-                            }
-                        } );
-                    },
-                    minLength: 1,
-                    select: function( event, ui ) {
-                        if(!s1_found_data) return false;
-
-                        $( ".s1 input").val(ui.item.label);
-                        $( ".s1").submit();
-                        //$('#s2').submit();
-                        //alert(ui.item.label);
-                        //log( "Selected: " + ui.item.label );
-                    }
+                // AFTER
+                $('.tooltip2').tooltipster({
+                    theme: 'tooltipster-shadow'
                 });
-
-                var s2_found_data = false;
-                $( ".s2 input" ).autocomplete({
-                    source: function( request, response ) {
-                        var url = $(".s2").attr('data-buscar-url');
-                        s2_found_data = false;
-                        $.ajax( {
-                            url: url,
-                            //dataType: "jsonp",
-                            data: {
-                                q: request.term
-                            },
-                            success: function( data ) {
-                                // Handle 'no match' indicated by [ "" ] response
-                                response( data.length === 0 ? ['Ningun resultado encontrado'] : data );
-                                if(data.length>0) s2_found_data = true;
-                                //response( data.length === 1 && data[ 0 ].length === 0 ? ['Ningun resultado encontrado'] : data );
-                            }
-                        } );
-                    },
-                    minLength: 1,
-                    select: function( event, ui ) {
-                        if(!s2_found_data) return false;
-                        $( ".s2 input").val(ui.item.label);
-                        $( ".s2").submit();
-                        //$( ".s2 input").attr('value',ui.item.label);
-                        //var url = $('.s2').attr('action');
-                        //var search = ui.item.label;
-                        //window.open(url+'/'+search,'_self',false);
-                        //$('#s2').submit();
-                        //alert(ui.item.label);
-                        //log( "Selected: " + ui.item.label );
-                    }
-                } );
-
 
                 $('.selectpicker').selectpicker({
                     style: 'btn btn-default',
@@ -398,7 +378,6 @@
                     $("#s3").show();
                 });
 
-
                 $("#search-brand").click(function(){
                     $("#search-cop").slideToggle();
                     $("#bs-example-navbar-collapse-1").slideUp();
@@ -410,59 +389,6 @@
                     $("#bs-example-navbar-collapse-1").slideToggle();
                 });
 
-
-                /*
-                $(".menu-stiky ul").addClass("dropdown-menu")
-                */
-
-
-
-
-
-
-
-
-
-                var dev = "/app_dev.php";
-                var cropperOptions = {
-                    uploadUrl:dev+'/profile/image-processing',
-                    cropUrl:dev+'/profile/image-crop',
-                    //uploadUrl:'/profile/image-processing',
-                    //cropUrl:'/profile/image-crop',
-                    modal:false,
-                    zoomFactor:0,
-                    doubleZoomControls:false,
-                    rotateControls: false,
-                    loaderHtml:'<div class="loader bubblingG"><span id="bubblingG_1"></span><span id="bubblingG_2"></span><span id="bubblingG_3"></span></div> ',
-                    onBeforeImgUpload: function(){  },
-                    onAfterImgUpload: function(){  },
-                    onImgDrag: function(){  },
-                    onImgZoom: function(){  },
-                    onBeforeImgCrop: function(){  },
-                    onAfterImgCrop:function(data){
-                        noty({
-                            text: data.message,
-                            'layout':'bottom',
-                            type:'theevent',
-                            timeout:2000});
-                        setTimeout(function(){
-                            window.location.href = data.targetUrl;
-                        }, 3000);
-                        var n = noty({
-                            theme: 'default_noty',
-                        });
-                    },
-                    onReset:function(){  },
-                    onError:function(errormessage){ }
-                }
-
-                var cropperHeader = new Croppic('cropContainerMinimal', cropperOptions);
-
-                $('.popup-modal').magnificPopup({
-                    type: 'inline',
-                    preloader: false,
-                    //modal: true
-                });
 
             </script>
 

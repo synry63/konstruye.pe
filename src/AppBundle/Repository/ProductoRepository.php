@@ -35,16 +35,16 @@ class ProductoRepository extends EntityRepository
     public function searchProductosNames($search){
         $em = $this->getEntityManager();
         $qb = $em->createQueryBuilder();
-        $qb->select('p.nombre as nombre')
+        $qb->select('p')
             ->from('AppBundle\Entity\Producto', 'p')
             ->where($qb->expr()->like('p.nombre', ':search'))
             ->setParameter('search', '%' . $search . '%');
-        $qb->addOrderBy('nombre', 'ASC');
+        $qb->addOrderBy('p.nombre', 'ASC');
         $query = $qb->getQuery();
         $productos = $query->getResult();
-
-        $nombres = array_column($productos, 'nombre');
-        return $nombres;
+        return $productos;
+        //$nombres = array_column($productos, 'nombre');
+        //return $nombres;
     }
     public function getProductosByNegocioCategoria($n,$c){
         $em = $this->getEntityManager();

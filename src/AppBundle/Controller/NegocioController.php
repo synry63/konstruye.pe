@@ -528,6 +528,18 @@ class NegocioController extends Controller
                 if($obj instanceof User){
                     return $this->redirectToRoute('profile_public',array('id'=>$obj->getId()));
                 }
+                else if($obj instanceof ConstructoraInmobiliaria){
+                    return $this->redirectToRoute('search_global_negocios',
+                        array('slug_seccion'=>'constructoras-e-inmobiliarias','search'=>$search));
+                }
+                else if ($obj instanceof Especialista){
+                    return $this->redirectToRoute('search_global_negocios',
+                        array('slug_seccion'=>'especialistas-servicios-personales','search'=>$search));
+                }
+                else if($obj instanceof Proveedor){
+                    return $this->redirectToRoute('search_global_negocios',
+                        array('slug_seccion'=>'proveedores','search'=>$search));
+                }
             }
             if($seccion=="especialistas-servicios-personales"){
                 $negocios = $this->getDoctrine()->getRepository('AppBundle:Especialista')->getNegociosBy($search,$slug_categoria);
