@@ -92,7 +92,7 @@ class RegistrationController extends Controller
         return $this->render('FOSUserBundle:Registration:checkEmail.html.twig', array(
             'user' => $user,
         ));
-        return $this->render('FOSUserBundle:Registration:checkEmail.html.twig');
+        //return $this->render('FOSUserBundle:Registration:checkEmail.html.twig');
     }
 
     /**

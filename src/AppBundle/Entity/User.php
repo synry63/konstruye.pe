@@ -10,11 +10,23 @@ namespace AppBundle\Entity;
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\Mapping\AttributeOverrides;
+use Doctrine\ORM\Mapping\AttributeOverride;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
  * @ORM\Table(name="usuarios")
+ * @AttributeOverrides({
+ *     @AttributeOverride(name="password",
+ *         column=@ORM\Column(
+ *             name="password",
+ *             type="string",
+ *             length=255,
+ *             nullable=true
+ *         )
+ *     )
+ * })
  */
 class User extends BaseUser
 {
@@ -27,9 +39,9 @@ class User extends BaseUser
     protected $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string",nullable=true, length=255)
      *
-     * @Assert\NotBlank(message="Ingrese sus Nombres.", groups={"Registration", "Profile"})
+     *
      * @Assert\Length(
      *     min=3,
      *     max=64,
@@ -42,7 +54,7 @@ class User extends BaseUser
     /**
      * @ORM\Column(type="string",nullable=true, length=255)
      *
-     * @Assert\NotBlank(message="Ingrese el nombre de su empresa.", groups={"Registration", "Profile"})
+     *
      * @Assert\Length(
      *     min=3,
      *     max=64,
@@ -55,7 +67,7 @@ class User extends BaseUser
     /**
      * @ORM\Column(type="string",nullable=true, length=255)
      *
-     * @Assert\NotBlank(message="Ingrese sus Apellidos", groups={"Registration", "Profile"})
+     *
      * @Assert\Length(
      *     min=3,
      *     max=64,
@@ -69,7 +81,6 @@ class User extends BaseUser
     /**
      * @ORM\Column(type="string",nullable=true, length=8)
      *
-     * @Assert\NotBlank(message="Ingrese su DNI.", groups={"Registration", "Profile"})
      * @Assert\Length(
      *     min=8,
      *     max=8,
@@ -83,7 +94,6 @@ class User extends BaseUser
     /**
      * @ORM\Column(type="string",nullable=true, length=11)
      *
-     * @Assert\NotBlank(message="Ingrese su RUC.", groups={"Registration", "Profile"})
      * @Assert\Length(
      *     min=11,
      *     max=11,
@@ -93,9 +103,6 @@ class User extends BaseUser
      * )
      */
     protected $ruc;
-
-
-
     /**
      * @ORM\OneToOne(targetEntity="FotoProfile",mappedBy="user",cascade={"persist"})
      */
