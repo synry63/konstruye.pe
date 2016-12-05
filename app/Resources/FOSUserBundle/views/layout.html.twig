@@ -274,6 +274,7 @@
                 var seccion = 'todos';
                 $( ".selectpicker" ).change(function() {
                     seccion = $(this).val();
+                    $(".searcher input.search").val("");
                 });
                 $( document ).ready(function() {
 
