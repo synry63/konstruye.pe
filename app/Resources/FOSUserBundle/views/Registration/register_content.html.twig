@@ -6,49 +6,11 @@
 
 {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register','novalidate': 'novalidate'}}) }}
 
-    <div class="form-group">
-        {{ form_label(form.email,'Email') }}
-        {% if form.email.vars.errors|length>0 %}
-        <div class="alert alert-danger" role="alert">
-            <div> <i class="fa fa-exclamation-circle" aria-hidden="true"></i>{{ form_errors(form.email) }}</div>
-        </div>
-        {% endif %}
-        {{ form_widget(form.email,{ 'attr': {'class': 'form-control','placeholder':'cgarcia@gmail.com'}}) }}
-    </div>
 
-    <div class="form-group">
-        {{ form_label(form.username,'Nombre de Usuario') }}
 
-        {% if form.username.vars.errors|length>0 %}
-            <div class="alert alert-danger" role="alert">
-                <div> <i class="fa fa-exclamation-circle" aria-hidden="true"></i>{{ form_errors(form.username) }}</div>
-            </div>
-        {% endif %}
-        {{ form_widget(form.username,{ 'attr': {'class': 'form-control','placeholder':'cgarcia'}}) }}
-    </div>
+<div class="form-group choose-business">
+    {{ form_label(form.isWhat,'Elija tipo de Negocio') }}
 
-    <div class="form-group">
-        {{ form_label(form.plainPassword.first,'Contraseña') }}
-        {% if form.plainPassword.first.vars.errors|length>0 %}
-            <div class="alert alert-danger" role="alert">
-                <div> <i class="fa fa-exclamation-circle" aria-hidden="true"></i>{{ form_errors(form.plainPassword.first) }}</div>
-            </div>
-        {% endif %}
-        {{ form_widget(form.plainPassword.first,{ 'attr': {'class': 'form-control','placeholder':'**********'}}) }}
-    </div>
-
-    <div class="form-group">
-        {{ form_label(form.plainPassword.second,'Confirmar Contraseña') }}
-        {% if form.plainPassword.second.vars.errors|length>0 %}
-            <div class="alert alert-danger" role="alert">
-                <div> <i class="fa fa-exclamation-circle" aria-hidden="true"></i>{{ form_errors(form.plainPassword.second) }}</div>
-            </div>
-        {% endif %}
-        {{ form_widget(form.plainPassword.second,{ 'attr': {'class': 'form-control','placeholder':'**********'}}) }}
-    </div>
-
-<div class="form-group">
-    {{ form_label(form.isWhat,'Negocio o Particular ?') }}
     {% if form.isWhat.vars.errors|length>0 %}
         <div class="alert alert-danger" role="alert">
             <div> <i class="fa fa-exclamation-circle" aria-hidden="true"></i>{{ form_errors(form.isWhat) }}</div>
@@ -56,6 +18,8 @@
     {% endif %}
     {{ form_widget(form.isWhat) }}
 </div>
+
+
 <div class="to-put-inside">
     {% if form.nombres is defined %}
         <div class="form-group extra-input">
@@ -113,6 +77,51 @@
         </div>
     {% endif %}
 </div>
+
+
+    <div class="form-group">
+        {{ form_label(form.email,'Email') }}
+        {% if form.email.vars.errors|length>0 %}
+        <div class="alert alert-danger" role="alert">
+            <div> <i class="fa fa-exclamation-circle" aria-hidden="true"></i>{{ form_errors(form.email) }}</div>
+        </div>
+        {% endif %}
+        {{ form_widget(form.email,{ 'attr': {'class': 'form-control','placeholder':'cgarcia@gmail.com'}}) }}
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.username,'Nombre de Usuario') }}
+
+        {% if form.username.vars.errors|length>0 %}
+            <div class="alert alert-danger" role="alert">
+                <div> <i class="fa fa-exclamation-circle" aria-hidden="true"></i>{{ form_errors(form.username) }}</div>
+            </div>
+        {% endif %}
+        {{ form_widget(form.username,{ 'attr': {'class': 'form-control','placeholder':'cgarcia'}}) }}
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.plainPassword.first,'Contraseña') }}
+        {% if form.plainPassword.first.vars.errors|length>0 %}
+            <div class="alert alert-danger" role="alert">
+                <div> <i class="fa fa-exclamation-circle" aria-hidden="true"></i>{{ form_errors(form.plainPassword.first) }}</div>
+            </div>
+        {% endif %}
+        {{ form_widget(form.plainPassword.first,{ 'attr': {'class': 'form-control','placeholder':'**********'}}) }}
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.plainPassword.second,'Confirmar Contraseña') }}
+        {% if form.plainPassword.second.vars.errors|length>0 %}
+            <div class="alert alert-danger" role="alert">
+                <div> <i class="fa fa-exclamation-circle" aria-hidden="true"></i>{{ form_errors(form.plainPassword.second) }}</div>
+            </div>
+        {% endif %}
+        {{ form_widget(form.plainPassword.second,{ 'attr': {'class': 'form-control','placeholder':'**********'}}) }}
+    </div>
+
+
+
 
 
 
