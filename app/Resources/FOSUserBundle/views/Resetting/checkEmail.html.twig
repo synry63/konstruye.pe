@@ -3,7 +3,18 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
 {% block fos_user_content %}
-<p>
-{{ 'resetting.check_email'|trans({'%email%': email}) }}
-</p>
+    <title>Recuperar Contraseña</title>
+
+<div class="contenedor-confirmacion">
+    <div class="contenedor-icon-confirmacion">
+        <i class="fa fa-envelope animated tada infinite" aria-hidden="true"></i>
+    </div>
+    <div class="contenedor-confirmacion-cuenta">
+        <p>{{ 'resetting.check_email'|trans({'%email%': email}) }}</p>
+    </div>
+</div>
+
+
+
+
 {% endblock %}
