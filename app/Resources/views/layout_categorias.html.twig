@@ -18,12 +18,18 @@
 
 
 
-    <div class="container">
-        <div class="col-md-12 container-breadcrumb marging-top" style="padding-right: 0px;">
+    <div class="container" style="padding: 0">
+        {#
+         <div class="col-md-12 container-breadcrumb marging-top" style="padding: 0;">
             {{ wo_render_breadcrumbs() }}
         </div>
-        <div class="col-md-3">
-            {{ out|raw }}
+        #}
+
+        <div class="col-md-3" style="padding: 0;padding-right: 10px">
+            <div class="filtro three-filtro">
+                {{ out|raw }}
+            </div>
+
         </div>
 
         <div class="col-md-9 body-negocios">

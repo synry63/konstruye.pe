@@ -4,8 +4,83 @@
 }
 
 /*===============
+Filtro Nuevo
+================*/
+/* Primer Nivel */
+.three-filtro>ul>li{
+    padding: 5px 0;
+    font-weight: bold;
+
+}
+.three-filtro>ul>li>a{
+    color: #009fe3;
+    position: relative;
+}
+.three-filtro>ul>li>a:before{
+    content: '·';
+    margin-right: 5px;
+    font-size: 30px;
+    position: absolute;
+    left: -12px;
+    top: -4px;
+}
+
+
+/* segundo Nivel */
+.three-filtro>ul>li.selected ul{
+    margin-top: 10px;
+    margin-left: 10px;
+}
+.three-filtro>ul>li.selected ul li{
+    padding: 5px 0;
+    font-weight: 100;
+}
+/* si el segundo nivel es seleccionado */
+.three-filtro>ul>li ul li.selected>a{
+    font-weight: bold;
+    border-bottom: solid 1px #009fe3;
+}
+
+
+
+/* Tercer Nivel */
+
+.three-filtro>ul>li  ul{
+    margin-top: 10px;
+    margin-left: 10px;
+    font-weight: 100;
+    height: auto;
+}
+
+.three-filtro>ul>li  ul li{
+    padding: 5px 0;
+}
+
+.three-filtro>ul>li  ul li>a{
+    color: #009fe3;
+}
+
+.three-filtro>ul>li  ul li:before{
+    content: '·';
+    margin-right: 5px;
+}
+
+.three-filtro>ul>li ul li.selected ul li{
+    padding: 5px 0;
+    font-weight: bold;
+}
+/* si el tercer nivel es seleccionado */
+.three-filtro>ul>li ul li ul li.selected a{
+    padding: 0;
+    font-weight: bold;
+    color: #009fe3;
+    border-bottom: solid 1px #009fe3;
+}
+
+/*===============
 Filtro X
 ================*/
+
 .container-filtro .body-filtro ul li .default-a{
     padding: 3px 0;
 }
@@ -28,8 +103,8 @@ Filtro X
     opacity: 0;
 }
 .body-filtro .select{
+    background-color: #009fe3;
     float: left;
-    background: red;
     font-size: 11px;
     height: 20px;
     line-height: 20px;
@@ -883,7 +958,7 @@ Listado de Negocios
 .body-negocios{
     background: #fff;
     margin: 15px 0;
-    padding: 10px;
+    padding: 20px 25px;
 }
 .negocio-box{
     border-radius: 5px;
@@ -1025,7 +1100,9 @@ Menu Index
     border-bottom: solid 1px rgba(0,0,0,.2);
 }
 #menu-index-bottom ul{
-    /*padding: 0 100px;*/
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
 }
 
 #menu-index-bottom ul li:first-child{
@@ -1033,23 +1110,36 @@ Menu Index
     border-left: solid 1px rgba(0,0,0,.1);
 }
 #menu-index-bottom ul li{
-    display: inline-block;
+    box-sizing: border-box;
     border-right: solid 1px rgba(0,0,0,.1);
-    width: 24.5%;
     text-align: center;
     vertical-align: middle;
     font-size: 13px;
+    width: 25%;
+    transition: all .5s ease;
 }
 #menu-index-bottom ul li a{
     color: rgba(0,0,0,.7);
     font-weight: 600;
-    padding: 15px 0;
+    padding: 20px 0;
     display: inline-block;
+    transition: all .5s ease;
 }
 #menu-index-bottom ul li a i{
     font-size: 19px;
     color: rgb(0, 159, 227);
+    transition: all .5s ease;
 }
+
+#menu-index-bottom ul li:hover{
+    background-color: rgb(0, 159, 227);
+}
+
+
+#menu-index-bottom ul li:hover a i, #menu-index-bottom ul li:hover a{
+    color: #fff;
+}
+
 /*=============
 Buscador Principal
 =============*/
@@ -1058,7 +1148,7 @@ Buscador Principal
     width: 55%;
     position: absolute;
     z-index: 3;
-    top: 50%;
+    top: 60%;
     left: 50%;
     transform: translate(-50%,-50%);
     background: rgba(0, 159, 227,.5);
@@ -1727,7 +1817,7 @@ Index
     margin-right: 78px;
     position: absolute;
     z-index: 1;
-    right: 0;
+    right: -40px;
     padding: 10px;
     width: 120px;
     color: #fff;
@@ -1743,7 +1833,7 @@ Index
 
 
 .about-text{
-    padding: 10px;
+    padding: 10px 0;
     text-align: justify;
     font-family: 'Open Sans', sans-serif;
     font-weight: 100;
@@ -1753,7 +1843,7 @@ Index
 }
 .about-us-container .about-us-text{
     text-align: left;
-    padding: 10px;
+    padding: 10px 0;
     font-weight: bold;
 }
 .about-us-container .about-us-text h1{
@@ -1920,7 +2010,7 @@ Form Stiky
     width: 600px;
     position: absolute;
     top: 50%;
-    left: 53%;
+    left: 54%;
     transform: translate(-52%,-50%);
 
 }
@@ -2007,7 +2097,7 @@ Form Stiky
 .logi-reg .login-stiky{
     position: absolute;
     width: 17%;
-    right: 38px;
+    right: 13px;
     top: 50%;
     transform: translateY(-50%);
 }
@@ -2054,7 +2144,7 @@ Form Stiky
     transform: translateX(-50%);
 }
 ul#menu-stiky{
-    width: 81%;
+    width: 83%;
     padding: 10px;
     position: absolute;
     left: 200px;
@@ -2090,14 +2180,14 @@ Index Menu
 }
 .index-menu .login-index{
     position: absolute;
-    right: 0;
+    right: -25px;
     top: 0;
     z-index: 99999;
-    padding: 20px 15px;
+    padding: 20px 0;
     border-radius: 0 0 5px 5px;
 }
 .index-menu .login-index a{
-    padding: 10px 5px;
+    padding: 10px;
     color: #fff;
     position: relative;
     font-weight: 600;

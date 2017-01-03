@@ -63,9 +63,9 @@
     </div>
 
 {#{{ dump(negocios) }}#}
-    <div class="container">
+    <div class="container" style="padding: 0">
 
-        <div class="col-md-3">
+        <div class="col-md-3" style="padding: 0;padding-right: 10px">
             {#{% for cmain in categorias_hijas %}#}
                 {#{{ include('includes/filtros_negocios.html.twig', { 'cmain': cmain }) }}#}
             {#{% endfor %}#}
@@ -98,7 +98,7 @@
                                 <input type="hidden" name="preciomax"  value="{{ precio_max_default }}" />
                             {% endif %}
 
-                            <button class="btn btn-konstruye">Buscar Rango de Precio</button>
+                            <button class="btn btn-konstruye" style="margin-top: 10px">Buscar Rango de Precio</button>
                         </form>
                     </div>
                     {#{{ dump(structures) }}

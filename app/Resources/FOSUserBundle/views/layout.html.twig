@@ -181,7 +181,7 @@
 
                         <div class="logi-reg" >
                             {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                                <div class="dropdown" style="margin-right: 38px">
+                                <div class="dropdown" style="margin-right: 10px">
                                     <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                                         {% if app.user.profile is not null %}
                                             <img class="img-circle" width="50px" src="{{ vich_uploader_asset(app.user.profile, 'profileFile') }}" alt="">

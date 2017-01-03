@@ -497,7 +497,8 @@ Filtro Compra Venta Y Alquiler Inmuebles
 .filtro {
     background-color: #fff;
     margin-top: 15px;
-    padding: 41px 20px;
+    padding: 41px 35px;
+
 }
 .filtro .container-filtro {
     position: relative;

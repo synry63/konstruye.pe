@@ -122,16 +122,16 @@
         
             <div class="master-slider ms-skin-default" id="masterslider">
                 <!-- new slide -->
-                <div class="ms-slide">
+                <div class="ms-slide" data-delay="10">
                     <img src="{{ asset('images/assets/blank.gif') }}" data-src="{{ asset('images/assets/banner6.jpg') }}" alt="lorem ipsum dolor sit"/>
                 </div>
-                <div class="ms-slide">
+                <div class="ms-slide" data-delay="10">
                     <img src="{{ asset('images/assets/blank.gif') }}" data-src="{{ asset('images/assets/banner2.jpg') }}" alt="lorem ipsum dolor sit"/>
                 </div>
-                <div class="ms-slide">
+                <div class="ms-slide" data-delay="10">
                     <img src="{{ asset('images/assets/blank.gif') }}" data-src="{{ asset('images/assets/banner4.jpg') }}" alt="lorem ipsum dolor sit"/>
                 </div>
-                <div class="ms-slide">
+                <div class="ms-slide" data-delay="10">
                     <img src="{{ asset('images/assets/blank.gif') }}" data-src="{{ asset('images/assets/banner7.jpg') }}" alt="lorem ipsum dolor sit"/>
                 </div>
             </div>
@@ -142,7 +142,7 @@
 
 
     <div class="container-fluid"  id="menu-index-bottom">
-        <div class="container">
+        <div class="container" style="padding: 0">
             <ul>
                 <li><a href="{{ path('lisdato_seccion',{'slug_seccion':'proveedores'}) }}"><i class="fa fa-truck" aria-hidden="true"></i> Proveedores</a></li>
                 <li><a href="{{ path('lisdato_seccion',{'slug_seccion':'compra-venta-y-alquiler-inmuebles'}) }}"><i class="fa fa-home" aria-hidden="true"></i> Compra venta y alquiler de inmuebles</a></li>
@@ -164,7 +164,7 @@
                     <h1>Lorem <span>ipsum</span></h1>
                     <h2>dolor <span>sit</span> amet</h2>
                 </div>
-                <div class="col-md-8">
+                <div class="col-md-8" style="padding: 0;">
                     <p class="about-text">
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                     </p>
@@ -181,9 +181,9 @@
         <div class="container">
             <h1 class="mejores_tittle">Los Mejores Proveedores</h1>
         </div>
-        <div class="container" style="position: relative">
+        <div class="container" style="position: relative; padding: 0">
             <img width="280px" style="position: absolute;bottom: -15px;" src="{{ asset('images/proveedor_home.jpg') }}" alt=""/>
-            <div class="col-md-8 col-md-offset-4">
+            <div class="col-md-8 col-md-offset-4" style="padding: 0">
 
                 <div class="ms-staff-carousel ms-round">
                     {% if proveedores|length >= 5 %}
@@ -238,9 +238,9 @@
        <div class="container">
            <h1 class="mejores_tittle"><span>Mejores Inmuebles</span></h1>
        </div>
-       <div class="container" style="position: relative">
-           <img width="338px" style="position: absolute;bottom: -15px;right: 0" src="{{ asset('images/inmobiliarias_home.png') }}" alt=""/>
-           <div class="col-md-8">
+       <div class="container" style="position: relative; padding: 0">
+           <img width="338px" style="position: absolute;bottom: -15px;right: -23px" src="{{ asset('images/inmobiliarias_home.png') }}" alt=""/>
+           <div class="col-md-8" style="padding: 0;">
                <div class="ms-staff-carousel ms-round">
                    {% if inmuebles|length >= 5 %}
                    <!-- masterslider -->
@@ -287,9 +287,9 @@
         <div class="container">
             <h1 class="mejores_tittle">Mejores Especialistas</h1>
         </div>
-        <div class="container" style="position: relative">
+        <div class="container" style="position: relative; padding: 0">
             <img width="280px" style="position: absolute;bottom: -15px;" src="{{ asset('images/especialista_home.jpg') }}" alt=""/>
-            <div class="col-md-8 col-md-offset-4">
+            <div class="col-md-8 col-md-offset-4" style="padding: 0">
                 <div class="ms-staff-carousel ms-round">
                     {% if especialistas|length >= 5 %}
                     <!-- masterslider -->
@@ -336,11 +336,11 @@
         <div class="container">
             <h1 class="mejores_tittle"><span>Mejores Constructoras e Inmobiliarias</span></h1>
         </div>
-        <div class="container" style="position: relative">
-            <img width="280px" style="position: absolute;bottom: -15px;right: 0" src="{{ asset('images/comprayventa_home.png') }}" alt=""/>
-            <div class="col-md-8">
+        <div class="container" style="position: relative; padding: 0">
+            <img width="280px" style="position: absolute;bottom: -15px;right: -23px" src="{{ asset('images/comprayventa_home.png') }}" alt=""/>
+            <div class="col-md-8" style="padding: 0;">
                 <div class="ms-staff-carousel ms-round">
-                    {% if imobiliarias|length >= 5 %}
+                    {% if imobiliarias|length >= 7 %}
                     <!-- masterslider -->
                     <div class="master-slider2 " id="masterslider2">
                         {% for im in imobiliarias %}
@@ -470,14 +470,13 @@
 
                 slider.setup('masterslider' , {
                     width:1024,
-                    height:768,
+                    height:600,
                     space:5,
                     grabCursor:false,
                     view:'basic',
                     loop:true,
                     autoplay:true,
-                    layout:'fullscreen',
-                    fullscreenMargin:50,
+                    layout:'fullwidth',
                     speed:20
                 });
 
