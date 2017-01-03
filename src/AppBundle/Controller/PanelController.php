@@ -38,23 +38,6 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 class PanelController extends Controller
 {
-    private function getArrayAcordingToTypeOf($n){
-        $arr_out = ['inmueble'=>false,'constructura-inmobiliaria'=>false,'especialista'=>false,'proveedor'=>false];
-        if($n instanceof Inmueble){
-            $arr_out['inmueble'] = true;
-        }
-        else if($n instanceof ConstructoraInmobiliaria){
-            $arr_out['constructura-inmobiliaria'] = true;
-        }
-        else if($n instanceof Proveedor){
-            $arr_out['proveedor'] = true;
-        }
-        else if($n instanceof Especialista){
-            $arr_out['especialista'] = true;
-        }
-
-        return $arr_out;
-    }
 
     /*public function menuAllowedAction(){
         $menu_items = array('dashboard'=>true,'negocio'=>true,'proyectos'=>false,'inmueble'=>false,'productos'=>false);
@@ -102,7 +85,7 @@ class PanelController extends Controller
         //$menu = $this->menuAllowedAction($negocio_current);
         return $this->render(
             'FOSUserBundle:Profile:Panel/dashboard.html.twig',
-            array('negocio'=>$negocio_current,'tipo'=>$this->getArrayAcordingToTypeOf($negocio_current))
+            array('negocio'=>$negocio_current,'tipo'=>$this->get('negocio_type')->getArrayAcordingToTypeOf($negocio_current))
         );
     }
     public function showPanelNegocioUserDatosAction(Request $request){
@@ -134,7 +117,7 @@ class PanelController extends Controller
         }
         return $this->render(
             'FOSUserBundle:Profile:Panel/cambiar_datos.html.twig',
-            array('negocio'=>$negocio_current,'form'=>$form->createView(),'tipo'=>$this->getArrayAcordingToTypeOf($negocio_current))
+            array('negocio'=>$negocio_current,'form'=>$form->createView(),'tipo'=>$this->get('negocio_type')->getArrayAcordingToTypeOf($negocio_current))
         );
     }
     public function showPanelNegocioUserBannerAction(Request $request){
@@ -160,7 +143,7 @@ class PanelController extends Controller
         }
         return $this->render(
             'FOSUserBundle:Profile:Panel/cambiar_banner.html.twig',
-            array('negocio'=>$negocio_current,'banner'=>$banner,'form'=>$form->createView(),'tipo'=>$this->getArrayAcordingToTypeOf($negocio_current))
+            array('negocio'=>$negocio_current,'banner'=>$banner,'form'=>$form->createView(),'tipo'=>$this->get('negocio_type')->getArrayAcordingToTypeOf($negocio_current))
         );
     }
     public function showPanelNegocioUserFotosAction(Request $request){
@@ -184,7 +167,7 @@ class PanelController extends Controller
         }
         return $this->render(
             'FOSUserBundle:Profile:Panel/cambiar_fotos.html.twig',
-            array('negocio'=>$negocio_current,'fotos'=>$fotos,'form'=>$form->createView(),'tipo'=>$this->getArrayAcordingToTypeOf($negocio_current))
+            array('negocio'=>$negocio_current,'fotos'=>$fotos,'form'=>$form->createView(),'tipo'=>$this->get('negocio_type')->getArrayAcordingToTypeOf($negocio_current))
         );
     }
     public function showPanelNegocioUserFotoDeleteAction(Request $request,$id){
@@ -222,7 +205,7 @@ class PanelController extends Controller
         }
         return $this->render(
             'FOSUserBundle:Profile:Panel/cambiar_mapa.html.twig',
-            array('form'=>$form->createView(),'negocio'=>$negocio_current,'tipo'=>$this->getArrayAcordingToTypeOf($negocio_current))
+            array('form'=>$form->createView(),'negocio'=>$negocio_current,'tipo'=>$this->get('negocio_type')->getArrayAcordingToTypeOf($negocio_current))
         );
     }
     public function showPanelNegocioUserListFotosAction(Request $request){
@@ -236,7 +219,7 @@ class PanelController extends Controller
 
         return $this->render(
             'FOSUserBundle:Profile:Panel/sort_fotos.html.twig',
-            array('fotos'=>$fotos,'negocio'=>$negocio_current,'tipo'=>$this->getArrayAcordingToTypeOf($negocio_current))
+            array('fotos'=>$fotos,'negocio'=>$negocio_current,'tipo'=>$this->get('negocio_type')->getArrayAcordingToTypeOf($negocio_current))
         );
     }
     /** START GESTION PROYECTOS INMUEBLES  **/
@@ -251,7 +234,7 @@ class PanelController extends Controller
         );
         return $this->render(
             'FOSUserBundle:Profile:Panel/inmuebles_ver.html.twig',
-            array('inmuebles'=>$inmuebles,'negocio'=>$negocio_current,'tipo'=>$this->getArrayAcordingToTypeOf($negocio_current))
+            array('inmuebles'=>$inmuebles,'negocio'=>$negocio_current,'tipo'=>$this->get('negocio_type')->getArrayAcordingToTypeOf($negocio_current))
         );
     }
     public function showPanelNegocioUserListInmueblesAction(Request $request){
@@ -265,7 +248,7 @@ class PanelController extends Controller
 
         return $this->render(
             'FOSUserBundle:Profile:Panel/sort_inmuebles.html.twig',
-            array('inmuebles'=>$inmuebles,'negocio'=>$negocio_current,'tipo'=>$this->getArrayAcordingToTypeOf($negocio_current))
+            array('inmuebles'=>$inmuebles,'negocio'=>$negocio_current,'tipo'=>$this->get('negocio_type')->getArrayAcordingToTypeOf($negocio_current))
         );
     }
     public function showPanelNegocioUserInmuebleAddAction(Request $request){
@@ -289,7 +272,7 @@ class PanelController extends Controller
         }
         return $this->render(
             'FOSUserBundle:Profile:Panel/inmueble_form.html.twig',
-            array('form'=>$form->createView(),'negocio'=>$negocio_current,'tipo'=>$this->getArrayAcordingToTypeOf($negocio_current))
+            array('form'=>$form->createView(),'negocio'=>$negocio_current,'tipo'=>$this->get('negocio_type')->getArrayAcordingToTypeOf($negocio_current))
         );
 
     }
@@ -319,7 +302,7 @@ class PanelController extends Controller
                 'form'=>$form->createView(),
                 'negocio'=>$negocio_current,
                 'inmueble'=>$inm,
-                'tipo'=>$this->getArrayAcordingToTypeOf($negocio_current)
+                'tipo'=>$this->get('negocio_type')->getArrayAcordingToTypeOf($negocio_current)
             )
         );
 
@@ -382,7 +365,7 @@ class PanelController extends Controller
             array(
                 'negocio'=>$negocio_current,
                 'generales'=>$generales,
-                'tipo'=>$this->getArrayAcordingToTypeOf($negocio_current)
+                'tipo'=>$this->get('negocio_type')->getArrayAcordingToTypeOf($negocio_current)
             )
         );
     }
@@ -400,7 +383,7 @@ class PanelController extends Controller
             array(
                 'negocio'=>$negocio_current,
                 'servicios'=>$servicios,
-                'tipo'=>$this->getArrayAcordingToTypeOf($negocio_current)
+                'tipo'=>$this->get('negocio_type')->getArrayAcordingToTypeOf($negocio_current)
             )
         );
 
@@ -454,7 +437,7 @@ class PanelController extends Controller
             array(
                 'negocio'=>$negocio_current,
                 'proyectos'=>$proyectos,
-                'tipo'=>$this->getArrayAcordingToTypeOf($negocio_current)
+                'tipo'=>$this->get('negocio_type')->getArrayAcordingToTypeOf($negocio_current)
             )
         );
     }
@@ -493,7 +476,7 @@ class PanelController extends Controller
             array(
                 'form'=>$form->createView(),
                 'negocio'=>$negocio_current,
-                'tipo'=>$this->getArrayAcordingToTypeOf($negocio_current)
+                'tipo'=>$this->get('negocio_type')->getArrayAcordingToTypeOf($negocio_current)
             )
         );
 
@@ -526,7 +509,7 @@ class PanelController extends Controller
                 'form'=>$form->createView(),
                 'fotos'=>$fotos_proyectos,
                 'negocio'=>$negocio_current,
-                'tipo'=>$this->getArrayAcordingToTypeOf($negocio_current)
+                'tipo'=>$this->get('negocio_type')->getArrayAcordingToTypeOf($negocio_current)
             )
         );
     }
@@ -566,7 +549,7 @@ class PanelController extends Controller
                 'form'=>$form->createView(),
                 'proyecto'=>$proyecto,
                 'negocio'=>$negocio_current,
-                'tipo'=>$this->getArrayAcordingToTypeOf($negocio_current)
+                'tipo'=>$this->get('negocio_type')->getArrayAcordingToTypeOf($negocio_current)
             )
         );
 
@@ -582,7 +565,7 @@ class PanelController extends Controller
 
         return $this->render(
             'FOSUserBundle:Profile:Panel/sort_proyectos.html.twig',
-            array('proyectos'=>$proyectos,'negocio'=>$negocio_current,'tipo'=>$this->getArrayAcordingToTypeOf($negocio_current))
+            array('proyectos'=>$proyectos,'negocio'=>$negocio_current,'tipo'=>$this->get('negocio_type')->getArrayAcordingToTypeOf($negocio_current))
         );
     }
     public function showPanelNegocioUserProductosAction(Request $request){
@@ -599,7 +582,7 @@ class PanelController extends Controller
             array(
                 'negocio'=>$negocio_current,
                 'productos'=>$productos,
-                'tipo'=>$this->getArrayAcordingToTypeOf($negocio_current)
+                'tipo'=>$this->get('negocio_type')->getArrayAcordingToTypeOf($negocio_current)
             )
         );
     }
@@ -614,7 +597,7 @@ class PanelController extends Controller
 
         return $this->render(
             'FOSUserBundle:Profile:Panel/sort_productos.html.twig',
-            array('productos'=>$productos,'negocio'=>$negocio_current,'tipo'=>$this->getArrayAcordingToTypeOf($negocio_current))
+            array('productos'=>$productos,'negocio'=>$negocio_current,'tipo'=>$this->get('negocio_type')->getArrayAcordingToTypeOf($negocio_current))
         );
     }
     public function showPanelNegocioUserProductoAddAction(Request $request){
@@ -639,7 +622,7 @@ class PanelController extends Controller
             array(
                 'form'=>$form->createView(),
                 'negocio'=>$negocio_current,
-                'tipo'=>$this->getArrayAcordingToTypeOf($negocio_current)
+                'tipo'=>$this->get('negocio_type')->getArrayAcordingToTypeOf($negocio_current)
             )
         );
     }
@@ -666,7 +649,7 @@ class PanelController extends Controller
                 'form'=>$form->createView(),
                 'producto'=>$producto,
                 'negocio'=>$negocio_current,
-                'tipo'=>$this->getArrayAcordingToTypeOf($negocio_current)
+                'tipo'=>$this->get('negocio_type')->getArrayAcordingToTypeOf($negocio_current)
             )
         );
     }
@@ -710,7 +693,7 @@ class PanelController extends Controller
                 'form'=>$form->createView(),
                 'fotos'=>$fotos_productos,
                 'negocio'=>$negocio_current,
-                'tipo'=>$this->getArrayAcordingToTypeOf($negocio_current)
+                'tipo'=>$this->get('negocio_type')->getArrayAcordingToTypeOf($negocio_current)
             )
         );
     }

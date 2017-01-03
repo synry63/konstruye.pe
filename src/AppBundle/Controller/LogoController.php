@@ -47,7 +47,8 @@ class LogoController extends Controller
             'FOSUserBundle:Profile:Panel/cambiar_logo.html.twig',
             array(
                 'logo' => $logo,
-                'negocio'=>$negocio_current
+                'negocio'=>$negocio_current,
+                'tipo'=>$this->get('negocio_type')->getArrayAcordingToTypeOf($negocio_current)
         ));
     }
     /**

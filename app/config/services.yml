@@ -24,7 +24,8 @@ services:
     class:        AppBundle\Form\FormErrorsSerializer
   slugify:
     class:        AppBundle\Tool\SlugifyClass
-
+  negocio_type:
+    class:        AppBundle\Tool\NegocioType
   menu_filter:
     class:        AppBundle\Tool\GenerateMenuFilter
     arguments:    [@router]
