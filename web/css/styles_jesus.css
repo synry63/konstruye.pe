@@ -20,7 +20,7 @@ Perfil
 .perfil figure.perfil-fondo-izquierda {
     float: left;
     margin-top: 1rem;
-    margin-left: 2rem;
+    margin-left: 3rem;
 }
 .perfil figure.perfil-fondo-izquierda img {
     width: 100px;
@@ -49,7 +49,7 @@ Perfil
     float: right;
     text-align: right;
     margin-top: 2rem;
-    margin-right: 2.3rem;
+    /*margin-right: 2.3rem;*/
 }
 .perfil .perfil-fondo-derecha p {
     font-size: 22px;
@@ -497,7 +497,8 @@ Filtro Compra Venta Y Alquiler Inmuebles
 .filtro {
     background-color: #fff;
     margin-top: 15px;
-    padding: 41px 35px;
+    padding: 30px 25px;
+    margin-bottom: 15px;
 
 }
 .filtro .container-filtro {
@@ -585,7 +586,7 @@ Mensaje-Not Fount
     color: #009fe3;
 }
 .mensaje-notfound .text-nf {
-    font-weight: 400;
+    font-weight: 300;
     color: #A0A0A0;
-
+    padding-bottom: 5px;
 }

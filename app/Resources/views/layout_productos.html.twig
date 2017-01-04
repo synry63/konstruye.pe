@@ -14,12 +14,13 @@
             <img width="100%" src="{{ asset('images/assets/celima_banner.jpg') }}" alt="">
         </div>
     </div>
-    <div class="container product-section">
+    <div class="container product-section" style="padding: 0">
         <div class="container-breadcrumb marging-top">
             {{ wo_render_breadcrumbs() }}
         </div>
-        <div class="col-md-3">
-            <div class="filtro">
+        <div class="col-md-3" style="padding: 0;padding-right: 10px">
+            <div class="filtro three-filtro">
+                <h1 class="titulo-filtros">Filtros</h1>
                 {{ out|raw }}
             </div>
         </div>
