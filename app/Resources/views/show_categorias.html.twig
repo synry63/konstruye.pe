@@ -18,7 +18,7 @@
     {#{{ dump(app.user) }}#}
     {#{{ dump(myc) }}#}
 
-    <div class="container">
+    <div class="container" style="padding: 0">
         <div class="container-breadcrumb marging-top">
             {{ wo_render_breadcrumbs() }}
         </div>
@@ -120,7 +120,7 @@
 
 
 
-    <div class="container detail_description">
+    <div class="container detail_description" style="padding: 0">
         <div class="box-description">
             <div class="col-md-4 about-us-text">
                 <h1>Sobre</h1>
@@ -133,13 +133,10 @@
 
     </div>
 
-    <div class="container proyects-links">
-
-    </div>
 
 
     {% if negocio.proyectos|length>0  %}
-        <div class="container proyect-slider">
+        <div class="container proyect-slider" style="padding: 20px 0">
                 <h1>Nuestros <span>Proyectos</span></h1>
             <div class="col-md-12">
                 {{ render(controller(
@@ -210,7 +207,7 @@
             {% else %}
                 <section class="alerta-mensaje-ninguno">
                     <p><i class="fa fa-exclamation-triangle" aria-hidden="true"></i></p>
-                    <p>Aun no ha realizado ninguna comentario.</p>
+                    <p>Aun no se ha realizado ningún comentario.</p>
                 </section>
             {% endif %}
 
@@ -224,9 +221,9 @@
                 </p>
             {% else %}
                 <span class="media contenedor-registrate">
-                    <a   href="{{ path('fos_user_registration_register') }}">Registrarse</a>
+                    <a style="display: inline-block" id="registro" href="{{ path('fos_user_registration_register') }}">Registrarse</a>
                     ó
-                    <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+                    <a style="color:#009FE3" href="{{ path('fos_user_security_login') }}">Inicia Sesión</a>
                     para poder comentar.
                 </span>
             {% endif %}

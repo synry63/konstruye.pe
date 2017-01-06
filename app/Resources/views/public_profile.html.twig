@@ -1,1 +1,72 @@
-{{ dump(usuario) }}
+{% extends "FOSUserBundle::layout.html.twig" %}
+{% block title %}
+    <title>Konstruye.pe | Mi Perfil Público</title>
+{% endblock title %}
+{% block stylesheets %}
+    {{ parent() }}
+    {#Noty#}
+    <link rel="stylesheet" href="{{ asset('css/animate.css') }}">
+    {#Magnific Popup#}
+    {#<link rel="stylesheet" href="{{ asset('css/magnific-popup.css') }}">#}
+{% endblock stylesheets %}
+{% block fos_user_content %}
+
+    {% for type, messages in app.session.flashbag.all() %}
+        {% for message in messages %}
+            <div id="error" data-error="{{ message }}"></div>
+        {% endfor %}
+    {% endfor %}
+
+    <header class="perfil">
+        <div class="container-fluid position">
+            <div class="row ">
+                <div class="imagen-fondo-perfil fondo-defaults">
+                    {#imagen fondo#}
+                </div>
+                <div class="container flex-container-perfil" style="padding: 0">
+                    <div class="perfil-fondo-izquierda2">
+                        {% if usuario.profile is not null %}
+                            <img alt="user icon" src="{{ vich_uploader_asset(usuario.profile, 'profileFile','AppBundle\\Entity\\FotoProfile') }}">
+                        {% else %}
+                            <img width="60px" src="{{ asset('images/assets/user_icon.svg') }}" alt="">
+                        {% endif %}
+                        <p class="perfil-nombre2">{{ usuario.nombres}} <strong>{{ usuario.apellidos }}</strong>
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container time-line">
+        <div class="middle-line">
+
+        </div>
+        <div class="ctl-social-timeline-content">
+
+            <div class="feed_img feed_left" style="">
+                <a target="_blank" href="http://tcrn.ch/2hWzcxJ" style="position: relative; overflow: hidden; display: block;">
+                    <img src="https://external.xx.fbcdn.net/safe_image.php?d=AQAQByOp_l0rnL1b&amp;url=https%3A%2F%2Ftctechcrunch2011.files.wordpress.com%2F2017%2F01%2F8b46d373295eedf02f17f8840b2b5444057af27f.jpeg%3Fw%3D750%26h%3D400%26crop%3D1&amp;_nc_hash=AQDus2MPlz4gQJrs" alt="Feed Image" title="Coming later this year">
+                </a>
+                <div class="ctl_social_cont">
+                    <h2>Microsoft launches a new cloud platform for connected cars</h2>
+                    Coming later this year
+                </div>
+            </div>
+            <span class="cd-date">January 6, 2017</span>
+        </div>
+    </div>
+
+    {#
+    {{ dump(usuario) }}
+    {{ dump(negocios) }}
+    #}
+
+
+
+
+
+
+
+{% endblock fos_user_content %}

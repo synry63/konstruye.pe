@@ -18,7 +18,7 @@
 
 {% block fos_user_content %}
 
-    <div class="container">
+    <div class="container" style="padding: 0">
         <div class="container-breadcrumb marging-top">
             {{ wo_render_breadcrumbs() }}
         </div>
@@ -191,7 +191,7 @@
     #}
 
 
-    <div class="container detail_description">
+    <div class="container detail_description" style="padding: 0">
         <div class="box-description">
             <div class="col-md-4 about-us-text">
                 <h1>Sobre</h1>
@@ -204,7 +204,7 @@
 
     </div>
 
-    <div class="container product-section">
+    <div class="container product-section" style="padding: 0">
         <div class="product-content">
             <h1 class="title-default" style="margin-bottom: 10px">Productos <span>Destacados</span></h1>
             <div class="row">
@@ -263,7 +263,7 @@
 
     </div>
 
-    <div class="container-fluid googlemaps">
+    <div class="container-fluid googlemaps" style="padding: 0">
         <div class="row">
             {% if map is defined %}
                 {{ google_map(map) }}
@@ -272,7 +272,7 @@
         </div>
     </div>
 
-    <div class="container comments_details">
+    <div class="container comments_details" style="padding: 0">
         <div class="col-md-8 col-md-offset-2">
             <h1 style="text-transform: uppercase;font-weight: bold;color: #009FE3;margin: 10px 0;">Comentarios ({{ comentarios|length }})</h1>
             {% if comentarios|length > 0 %}
@@ -325,9 +325,9 @@
                 </p>
             {% else %}
                 <span class="media contenedor-registrate">
-                    <a id="registro" href="{{ path('fos_user_registration_register') }}">Registrarse</a>
+                    <a style="display: inline-block" id="registro" href="{{ path('fos_user_registration_register') }}">Registrarse</a>
                     ó
-                    <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+                    <a style="color:#009FE3" href="{{ path('fos_user_security_login') }}">Inicia Sesión</a>
                     para poder comentar.
                 </span>
             {% endif %}

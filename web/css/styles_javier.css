@@ -24,7 +24,6 @@ Filtro Nuevo
 /* Primer Nivel */
 
 
-
 .three-filtro>ul>li{
     padding: 5px 10px;
     font-weight: bold;
@@ -94,13 +93,17 @@ Filtro Nuevo
 
 .three-filtro>ul>li ul li.selected ul li{
     padding: 5px 0;
-    font-weight: bold;
+    /*font-weight: bold;*/
 }
+
+
 /* si el tercer nivel es seleccionado */
+
 .three-filtro>ul>li ul li ul li.selected a{
     padding: 0;
     font-weight: bold;
     color: #009fe3;
+    padding-bottom: 3px;
     border-bottom: solid 1px #009fe3;
 }
 .three-filtro>ul>li ul li ul li.selected ul{
@@ -1120,6 +1123,9 @@ Elegir Empresa - Registro
     display: none;
 }
 
+
+
+
 /*=============
 Menu Index
 =============*/
@@ -1151,6 +1157,7 @@ Menu Index
     color: rgba(0,0,0,.7);
     font-weight: 600;
     padding: 20px 0;
+    width: 100%;
     display: inline-block;
     transition: all .5s ease;
 }
@@ -1167,6 +1174,53 @@ Menu Index
 
 #menu-index-bottom ul li:hover a i, #menu-index-bottom ul li:hover a{
     color: #fff;
+}
+
+
+/*=============
+Perfil Publico
+=============*/
+
+.perfil .perfil-nombre2{
+    font-size: 22px;
+    font-weight: bold;
+    text-align: left;
+    margin-top: -85px;
+    padding-left: 185px;
+}
+
+.perfil .perfil-nombre2 strong {
+    color: #009fe3;
+}
+
+.perfil .perfil-fondo-izquierda2 img {
+    width: 150px;
+    margin-top: 25px;
+    margin-left: 22px;
+    border: 3px solid #fff;
+    border-radius: 2px;
+    box-shadow: 0 0 1px 1px rgba(0,0,0,.2);
+}
+
+.middle-line{
+    position: absolute;
+    height: 400px;
+    width: 4px;
+    background: #333333;
+    top: 32%;
+    left: 50%;
+}
+.ctl-social-timeline-content{
+    position: absolute;
+    width: 468px;
+    top: 32%;
+    margin-left: 60px;
+    background: #f9f9f9;
+    padding: 0;
+    border: 1px solid #ddd;
+}
+.ctl-social-timeline-content img{
+    width: 100%;
 }
 
 /*=============

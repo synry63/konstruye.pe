@@ -16,70 +16,74 @@
 {% block fos_user_content %}
     {#{{ dump(myc) }}#}
     {#{{ wo_render_breadcrumbs() }}#}
-    <div class="container product-detail-section">
+    <div class="container product-detail-section" style="padding: 0">
         <div class="container-breadcrumb marging-top">
             {{ wo_render_breadcrumbs() }}
         </div>
-        <div class="col-md-6">
-            <div class="ms-showcase2-template ms-showcase2-vertical">
-                <!-- masterslider -->
-                <div class="master-slider ms-skin-default" id="masterslider">
-                    <div class="ms-slide">
-                        <img src="{{ asset('css/loading-2.gif') }}" data-src="http://placehold.it/450x450" alt="lorem ipsum dolor sit"/>
-                        <img class="ms-thumb" src="http://placehold.it/100x100" alt="thumb" />
-                    </div>
-                    <div class="ms-slide">
-                        <img src="{{ asset('css/loading-2.gif') }}" data-src="http://placehold.it/450x450" alt="lorem ipsum dolor sit"/>
-                        <img class="ms-thumb" src="http://placehold.it/100x100" alt="thumb" />
-                    </div>
-                    <div class="ms-slide">
-                        <img src="{{ asset('css/loading-2.gif') }}" data-src="http://placehold.it/450x450" alt="lorem ipsum dolor sit"/>
-                        <img class="ms-thumb" src="http://placehold.it/100x100" alt="thumb" />
-                    </div>
-                    <div class="ms-slide">
-                        <img src="{{ asset('css/loading-2.gif') }}" data-src="http://placehold.it/450x450" alt="lorem ipsum dolor sit"/>
-                        <img class="ms-thumb" src="http://placehold.it/100x100" alt="thumb" />
-                    </div>
-                    <div class="ms-slide">
-                        <img src="{{ asset('css/loading-2.gif') }}" data-src="http://placehold.it/450x450" alt="lorem ipsum dolor sit"/>
-                        <img class="ms-thumb" src="http://placehold.it/100x100" alt="thumb" />
-                    </div>
-                    <div class="ms-slide">
-                        <img src="{{ asset('css/loading-2.gif') }}" data-src="http://placehold.it/450x450" alt="lorem ipsum dolor sit"/>
-                        <img class="ms-thumb" src="http://placehold.it/100x100" alt="thumb" />
-                    </div>
-                    <div class="ms-slide">
-                        <img src="{{ asset('css/loading-2.gif') }}" data-src="http://placehold.it/450x450" alt="lorem ipsum dolor sit"/>
-                        <img class="ms-thumb" src="http://placehold.it/100x100" alt="thumb" />
-                    </div>
+
+        <div class="col-md-12" style="padding: 0; background:#fff; padding: 20px 0" >
+            <div class="col-md-6">
+                <div class="ms-showcase2-template ms-showcase2-vertical">
+                    <!-- masterslider -->
+                    <div class="master-slider ms-skin-default" id="masterslider">
+                        <div class="ms-slide">
+                            <img src="{{ asset('css/loading-2.gif') }}" data-src="http://placehold.it/450x450" alt="lorem ipsum dolor sit"/>
+                            <img class="ms-thumb" src="http://placehold.it/100x100" alt="thumb" />
+                        </div>
+                        <div class="ms-slide">
+                            <img src="{{ asset('css/loading-2.gif') }}" data-src="http://placehold.it/450x450" alt="lorem ipsum dolor sit"/>
+                            <img class="ms-thumb" src="http://placehold.it/100x100" alt="thumb" />
+                        </div>
+                        <div class="ms-slide">
+                            <img src="{{ asset('css/loading-2.gif') }}" data-src="http://placehold.it/450x450" alt="lorem ipsum dolor sit"/>
+                            <img class="ms-thumb" src="http://placehold.it/100x100" alt="thumb" />
+                        </div>
+                        <div class="ms-slide">
+                            <img src="{{ asset('css/loading-2.gif') }}" data-src="http://placehold.it/450x450" alt="lorem ipsum dolor sit"/>
+                            <img class="ms-thumb" src="http://placehold.it/100x100" alt="thumb" />
+                        </div>
+                        <div class="ms-slide">
+                            <img src="{{ asset('css/loading-2.gif') }}" data-src="http://placehold.it/450x450" alt="lorem ipsum dolor sit"/>
+                            <img class="ms-thumb" src="http://placehold.it/100x100" alt="thumb" />
+                        </div>
+                        <div class="ms-slide">
+                            <img src="{{ asset('css/loading-2.gif') }}" data-src="http://placehold.it/450x450" alt="lorem ipsum dolor sit"/>
+                            <img class="ms-thumb" src="http://placehold.it/100x100" alt="thumb" />
+                        </div>
+                        <div class="ms-slide">
+                            <img src="{{ asset('css/loading-2.gif') }}" data-src="http://placehold.it/450x450" alt="lorem ipsum dolor sit"/>
+                            <img class="ms-thumb" src="http://placehold.it/100x100" alt="thumb" />
+                        </div>
 
 
+                    </div>
+                    <!-- end of masterslider -->
                 </div>
-                <!-- end of masterslider -->
+
+
             </div>
 
+            <div class="col-md-6" style="padding: 20px">
 
+                <h1>{{ producto.nombre }}</h1>
+                <div id="rateYo" data-rating="{{ moy }}" style="margin: 5px 0; padding-left:0 "></div>
+                <a href="{{ path('show_negocio',{"slug_negocio":producto.negocio.slug}) }}">
+                    <h2>{{ producto.negocio.nombre }}</h2>
+                </a>
+                <p>{{ producto.description|nl2br }}</p>
+
+                {#Solicitar Cotizacion#}
+                {% set ajax_popup = '' %}
+                {% if app.user is not null %}
+                    {% set ajax_popup = 'simple-ajax-popup' %}
+                {% endif %}
+                <a class="{{ ajax_popup }}" href="{{ path('producto_solicitar_cotizacion',{'slug_producto':producto.slug}) }}">
+                    <button class="btn btn-konstruye btn-cotizacion"> Solicitar Cotización</button>
+                </a>
+                {#<a class="simple-ajax-popup" href="{{ path('producto_solicitar_cotizacion',{'slug_producto':producto.slug}) }}">Solicitar Cotizacion</a>#}
+            </div>
         </div>
 
-        <div class="col-md-6" style="padding: 20px">
-
-            <h1>{{ producto.nombre }}</h1>
-            <div id="rateYo" data-rating="{{ moy }}" style="margin: 5px 0; padding-left:0 "></div>
-            <a href="{{ path('show_negocio',{"slug_negocio":producto.negocio.slug}) }}">
-                <h2>{{ producto.negocio.nombre }}</h2>
-            </a>
-            <p>{{ producto.description|nl2br }}</p>
-
-            {#Solicitar Cotizacion#}
-            {% set ajax_popup = '' %}
-            {% if app.user is not null %}
-                {% set ajax_popup = 'simple-ajax-popup' %}
-            {% endif %}
-            <a class="{{ ajax_popup }}" href="{{ path('producto_solicitar_cotizacion',{'slug_producto':producto.slug}) }}">
-                <button class="btn btn-konstruye btn-cotizacion"> Solicitar Cotización</button>
-            </a>
-            {#<a class="simple-ajax-popup" href="{{ path('producto_solicitar_cotizacion',{'slug_producto':producto.slug}) }}">Solicitar Cotizacion</a>#}
-        </div>
     </div>
 
     {#<div class="container">#}
@@ -220,9 +224,9 @@
                 </p>
             {% else %}
                 <span class="media contenedor-registrate">
-                    <a id="registro" href="{{ path('fos_user_registration_register') }}">Registrarse</a>
+                    <a style="display: inline-block" id="registro" href="{{ path('fos_user_registration_register') }}">Registrarse</a>
                     ó
-                    <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+                    <a style="color:#009FE3" href="{{ path('fos_user_security_login') }}">Inicia Sesión</a>
                     para poder comentar.
                 </span>
             {% endif %}

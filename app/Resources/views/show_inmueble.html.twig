@@ -23,8 +23,8 @@
 {% block fos_user_content %}
 {#{{ dump(negocio) }}#}
 {#<div class="container">#}
-    <div class="container">
-        <div class="container-breadcrumb marging-top" style="margin-right: 15px">
+    <div class="container" style="padding: 0">
+        <div class="container-breadcrumb marging-top">
             {{ wo_render_breadcrumbs() }}
         </div>
         <section class="header">
@@ -47,7 +47,7 @@
 
                         </div>
                     </div>
-                    <div class="col-md-4 zona-precio">
+                    <div class="col-md-4 zona-precio" style="padding: 0">
                             <div class="zona-precio-contenido">
                                 <div class="precio">
                                     <span class="titulo-zona-inmueble">Desde:</span>
@@ -65,9 +65,8 @@
 
         <!-- SLIDER -->
         <section class="slider-inmueble">
-            <div class="col-md-12">
-                <div class="row">
-                    <div class="ms-gallery-template" id="ms-gallery-1" style="max-width: 1125px">
+            <div class="col-md-12" style="padding: 0">
+                    <div class="ms-gallery-template" id="ms-gallery-1" >
                         <!-- masterslider -->
                         <div class="master-slider ms-skin-black-2 round-skin" id="masterslider" >
                             <div class="ms-slide">
@@ -94,13 +93,12 @@
                         </div>
                         <!-- end of masterslider -->
                     </div>
-                </div>
             </div>
         </section>
         
         <section class="body">
-            <div class="col-md-12 top-margin">
-                <div class="row">
+            <div class="col-md-12 top-margin" style="padding: 0">
+
                     <div class="col-md-8 padding-left-right">
                         <div class="col-md-6 padding-left-right">
                             <div class="data-izquierda">
@@ -207,7 +205,7 @@
                     </div>
 
 
-                    <div class="col-md-4 zona-contactanos">
+                    <div class="col-md-4 zona-contactanos" style="padding-right: 0">
                             <div class="zona-contactanos-contenido">
                                 <div class="zona-contactanos-header">
                                     {% if negocio.constructora is not null %}
@@ -237,8 +235,6 @@
                             </div>
                     </div>
 
-
-                </div>
             </div>
             <div class="col-md-12 comments_details">
                 {#FlashBack#}
@@ -347,6 +343,7 @@
             width:1125,
             height:500,
             space:0,
+            layout : 'fillwidth',
             preload:3,
             view:'basic',
             grabCursor:false,
