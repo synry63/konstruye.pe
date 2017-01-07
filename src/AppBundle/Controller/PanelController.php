@@ -88,6 +88,41 @@ class PanelController extends Controller
             array('negocio'=>$negocio_current,'tipo'=>$this->get('negocio_type')->getArrayAcordingToTypeOf($negocio_current))
         );
     }
+    public function showPanelNegocioUserCategoriasAction(Request $request){
+        $negocio_id = $this->getRequest()->getSession()->get('negocio_id');
+        if($negocio_id==null) return $this->redirectToRoute('profile_negocios_panel');
+        $negocio_current = $this->getDoctrine()->getRepository('AppBundle:Negocio')->find($negocio_id);
+
+        if($this->getRequest()->isMethod('POST'))
+        {
+            $categoriasListadosIds = $this->get('request')->request->get('categoriasListado');
+            $categoriasListado = $this->getDoctrine()->getRepository('AppBundle:CategoriaListado')->findById($categoriasListadosIds);
+            $negocio_current->setCategoriasListado($categoriasListado);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($negocio_current);
+            $em->flush();
+            $request->getSession()->getFlashBag()->add('success', 'categorias actualizadas !');
+            return $this->redirectToRoute('profile_negocios_panel_gestion_negocio_cambiar_categorias');
+        }
+        else
+        {
+            $categoriasListadoNegocio = $negocio_current->getCategoriasListado();
+            if($negocio_current instanceof Proveedor){
+                $categorias_main = $this->getDoctrine()->getRepository('AppBundle:CategoriaListado')->getCategoriasChildren('proveedor');
+            }
+            else if($negocio_current instanceof Especialista){
+                $categorias_main = $this->getDoctrine()->getRepository('AppBundle:CategoriaListado')->getCategoriasChildren('especialista');
+            }
+            else if($negocio_current instanceof ConstructoraInmobiliaria){
+                $categorias_main = $this->getDoctrine()->getRepository('AppBundle:CategoriaListado')->getCategoriasChildren('constructura-inmobiliaria');
+            }
+            $out = $this->get('menu_filter')->menuChildPanel($categorias_main,$categoriasListadoNegocio);
+            return $this->render(
+                'FOSUserBundle:Profile:Panel/cambiar_categorias.html.twig',
+                array('out'=>$out)
+            );
+        }
+    }
     public function showPanelNegocioUserDatosAction(Request $request){
         $negocio_id = $this->getRequest()->getSession()->get('negocio_id');
         if($negocio_id==null) return $this->redirectToRoute('profile_negocios_panel');

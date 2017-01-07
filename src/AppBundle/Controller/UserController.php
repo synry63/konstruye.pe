@@ -24,9 +24,14 @@ class UserController extends Controller
 
     public function  PerfilPublicoAction(Request $request,$id){
         $user = $this->getDoctrine()->getRepository('AppBundle:User')->find($id);
+        $negocios = $this->getDoctrine()->getRepository('AppBundle:Negocio')->findBy(
+            array('user'=>$user),
+            array('registeredAt' => 'DESC')
+        );
         return $this->render(
             'public_profile.html.twig',array(
-                'usuario'=>$user
+                'usuario'=>$user,
+                'negocios'=>$negocios
             )
         );
     }

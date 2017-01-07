@@ -49,7 +49,13 @@ class Builder implements ContainerAwareInterface
                 'icon' => 'fa fa-pencil-square-o'
             )
         ));
-
+        $menu['gestion-negocio']->addChild('cambiar-categorias', array(
+            'label'=>'Cambiar Categorias',
+            'route' => 'profile_negocios_panel_gestion_negocio_cambiar_categorias',
+            'extras' => array(
+                'icon' => 'fa fa-pencil-square-o'
+            )
+        ));
         $menu['gestion-negocio']->addChild('cambiar-banner', array(
             'label'=>'Cambiar Banner',
             'route' => 'profile_negocios_panel_gestion_negocio_cambiar_banner',

@@ -43,9 +43,18 @@ class RegistrationType extends AbstractType
         $formModifier = function ($form, $isWhat = null) {
             //$positions = null === $sport ? array() : $sport->getAvailablePositions();
             if($isWhat=='p'){
-                $form->add('nombres','Symfony\Component\Form\Extension\Core\Type\TextType');
-                $form->add('apellidos','Symfony\Component\Form\Extension\Core\Type\TextType');
-                $form->add('dni','Symfony\Component\Form\Extension\Core\Type\TextType');
+                $form->add('nombres','Symfony\Component\Form\Extension\Core\Type\TextType',array(
+                    'constraints' => array(
+                        new NotBlank()
+                    )));
+                $form->add('apellidos','Symfony\Component\Form\Extension\Core\Type\TextType',array(
+                    'constraints' => array(
+                        new NotBlank()
+                    )));
+                $form->add('dni','Symfony\Component\Form\Extension\Core\Type\TextType',array(
+                    'constraints' => array(
+                        new NotBlank()
+                    )));
 
             }
             else if($isWhat == 'n'){

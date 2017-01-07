@@ -18,6 +18,18 @@ class GenerateMenuFilter
         $this->router = $router;
     }
 
+    public function menuChildPanel($menu,$categoriasListado = array()){
+        $out = '<ul>';
+        foreach ($menu as $menu_item){
+            $checked = '';
+            if($this->isChecked($menu_item,$categoriasListado)) $checked = 'checked';
+            $out.='<li><input '.$checked.' type="checkbox" name="categoriasListado[]" value="'.$menu_item->getId().'"/>'.$menu_item->getNombre();
+                $out.= $this->menuChildPanel($menu_item->getChildren(),$categoriasListado);
+            $out.='</li>';
+        }
+        $out.='</ul>';
+        return $out;
+    }
     public function menuChild($route,$key,$value,$menu,$slug,$search = null){
         $out = '<ul>';
         foreach ($menu as $menu_item){
@@ -49,6 +61,14 @@ class GenerateMenuFilter
         $out.='</ul>';
 
         return $out;
+    }
+    private function isChecked($item,$categoriasListado){
+        foreach ($categoriasListado as $c){
+            if($c->getId()==$item->getId()){
+                return true;
+            }
+        }
+        return false;
     }
     private function isInside($menu,$slug){
         $trouve = false;
