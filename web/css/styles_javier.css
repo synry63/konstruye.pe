@@ -1201,27 +1201,146 @@ Perfil Publico
     border-radius: 2px;
     box-shadow: 0 0 1px 1px rgba(0,0,0,.2);
 }
-
+.time-line{
+    min-height: 1000px;
+    position: relative;
+}
 .middle-line{
     position: absolute;
-    height: 400px;
+    height: 850px;
     width: 4px;
     background: #333333;
-    top: 32%;
+    top: 10%;
     left: 50%;
 }
-.ctl-social-timeline-content{
+.tl-content-home{
     position: absolute;
-    width: 468px;
-    top: 32%;
-    margin-left: 60px;
-    background: #f9f9f9;
-    padding: 0;
-    border: 1px solid #ddd;
+    top: 15%;
+    width: 45%;
 }
-.ctl-social-timeline-content img{
+.tl-content-home2{
+    position: absolute;
+    top: 55%;
+    right:0;
+    width: 45%;
+    float: right;
+}
+
+
+.content-iz{
+    border-right: solid 5px #1C9CD9;
+}
+.content-iz:before{
+    content: '';
+    position: absolute;
+    top: 25px;
+    right: 100%;
+    height: 0;
+    width: 0;
+    border: 11px solid transparent;
+    left: 100%;
+    border-left-color: #1C9CD9;
+}
+.content-iz a{
+    width: 100%;
+    display: inline-block;
+}
+.content-iz a img{
     width: 100%;
 }
+.content-iz .content-desc{
+    width: 100%;
+    background: #fff;
+    padding: 15px;
+    margin-top: -3px;
+}
+.content-iz .content-desc a{
+    color: #1C9CD9;
+    padding: 10px 0;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+.content-iz .date-line-iz{
+    position: absolute;
+    right: -222px;
+    top: 26px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #1C9CD9;
+}
+.content-iz .icon-middle{
+    position: absolute;
+    right: -69px;
+    top: 10px;
+    background: #1C9CD9;
+    padding: 5px;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    line-height: 52px;
+    box-shadow: 0 0 0 4px;
+}
+
+
+
+
+.content-dr{
+    border-left: solid 5px #1C9CD9;
+}
+.content-dr:before{
+    content: '';
+    position: absolute;
+    top: 25px;
+    height: 0;
+    width: 0;
+    border: 11px solid transparent;
+    right: 100%;
+    border-right-color: #1C9CD9;
+}
+.content-dr a{
+    width: 100%;
+    display: inline-block;
+}
+.content-dr a img{
+    width: 100%;
+}
+.content-dr .content-desc{
+    width: 100%;
+    background: #fff;
+    padding: 15px;
+    margin-top: -3px;
+}
+.content-dr .content-desc a{
+    color: #1C9CD9;
+    padding: 10px 0;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+.content-dr .date-line-dr{
+    position: absolute;
+    left: -222px;
+    top: 26px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #1C9CD9;
+}
+.content-dr .icon-middle{
+    position: absolute;
+    left: -82px;
+    top: 10px;
+    background: #1C9CD9;
+    padding: 5px;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    line-height: 52px;
+    box-shadow: 0 0 0 4px;
+}
+
+
+
 
 /*=============
 Buscador Principal
