@@ -24,6 +24,14 @@ class CategoriaListadoProductoRepository extends EntityRepository
 
         return $query->getResult();
     }
+    function getCategoriasMain(){
+        $qb = $this->createQueryBuilder('c')
+            ->where("c.parent is NULL");
+
+        $query = $qb->getQuery();
+
+        return $query->getResult();
+    }
     function getCategoriasChildren($type,$order = "ASC"){
         $cate =  $this->findOneBy(array('slug'=>$type));
         $qb = $this->createQueryBuilder('c')

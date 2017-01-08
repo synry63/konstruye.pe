@@ -119,7 +119,33 @@ class PanelController extends Controller
             $out = $this->get('menu_filter')->menuChildPanel($categorias_main,$categoriasListadoNegocio);
             return $this->render(
                 'FOSUserBundle:Profile:Panel/cambiar_categorias.html.twig',
-                array('out'=>$out)
+                array('out'=>$out,'negocio'=>$negocio_current,'tipo'=>$this->get('negocio_type')->getArrayAcordingToTypeOf($negocio_current))
+            );
+        }
+    }
+    public function showPanelNegocioUserProductosCategoriasAction(Request $request,$id){
+        $negocio_id = $this->getRequest()->getSession()->get('negocio_id');
+        if($negocio_id==null) return $this->redirectToRoute('profile_negocios_panel');
+        $negocio_current = $this->getDoctrine()->getRepository('AppBundle:Negocio')->find($negocio_id);
+        $producto = $this->getDoctrine()->getRepository('AppBundle:Producto')->find($id);
+        if($this->getRequest()->isMethod('POST'))
+        {
+            $categoriasListadosIds = $this->get('request')->request->get('categoriasListado');
+            $categoriasListado = $this->getDoctrine()->getRepository('AppBundle:CategoriaListadoProducto')->findById($categoriasListadosIds);
+            $producto->setCategoriasListado($categoriasListado);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($producto);
+            $em->flush();
+            $request->getSession()->getFlashBag()->add('success', 'categorias actualizadas !');
+            return $this->redirectToRoute('profile_negocios_panel_gestion_negocio_cambiar_categorias_producto',array('id'=>$id));
+        }
+        else
+        {
+            $categorias_main = $this->getDoctrine()->getRepository('AppBundle:CategoriaListadoProducto')->getCategoriasMain();
+            $out = $this->get('menu_filter')->menuChildPanel($categorias_main,$producto->getCategoriasListado());
+            return $this->render(
+                'FOSUserBundle:Profile:Panel/producto_categorias.html.twig',
+                array('out'=>$out,'producto'=>$producto,'negocio'=>$negocio_current,'tipo'=>$this->get('negocio_type')->getArrayAcordingToTypeOf($negocio_current))
             );
         }
     }

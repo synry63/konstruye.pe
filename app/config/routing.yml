@@ -138,6 +138,9 @@ profile_negocios_panel_gestion_negocio_cambiar_datos:
 profile_negocios_panel_gestion_negocio_cambiar_categorias:
     path: /profile/panel/auth/categorias
     defaults:  { _controller: AppBundle:Panel:showPanelNegocioUserCategorias}
+profile_negocios_panel_gestion_negocio_cambiar_categorias_producto:
+    path: /profile/panel/auth/producto/{id}/categorias
+    defaults:  { _controller: AppBundle:Panel:showPanelNegocioUserProductosCategorias}
 profile_negocios_panel_gestion_negocio_cambiar_banner:
     path: /profile/panel/auth/banner
     defaults:  { _controller: AppBundle:Panel:showPanelNegocioUserBanner}
