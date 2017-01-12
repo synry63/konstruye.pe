@@ -23,7 +23,7 @@ class RegistrationType extends AbstractType
     {
         //$type = $this->type;
         $builder->add('isWhat', 'choice', array(
-            'choices' => array('Negocio' => 'n', 'Particular' => 'p'),
+            'choices' => array('Sociedad' => 'n', 'Particular' => 'p'),
             'choices_as_values' => true,
             'placeholder' => '',
             'constraints' => array(

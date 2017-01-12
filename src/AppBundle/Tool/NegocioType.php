@@ -7,6 +7,11 @@
  */
 namespace AppBundle\Tool;
 
+use AppBundle\Entity\ConstructoraInmobiliaria;
+use AppBundle\Entity\Especialista;
+use AppBundle\Entity\Inmueble;
+use AppBundle\Entity\Proveedor;
+
 class NegocioType {
 
     public function getArrayAcordingToTypeOf($n)
