@@ -5,7 +5,31 @@
     {% if proyecto is defined %}
         {{ dump(proyecto) }}
     {% endif %}
-    {{ form(form, {'attr': {'novalidate': 'novalidate'}}) }}
 
+    <h1 class="title-dashboard">Agregar Producto</h1>
+
+    <div class="col-md-6 col-md-offset-3" style="padding-top: 20px">
+        {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+        <div class="form-group" >
+            {{ form_label(form.imgFile,'Elija Una Foto') }}
+            {{ form_errors(form.imgFile) }}
+            {{ form_widget(form.imgFile,{ 'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="form-group textarea-resize" >
+            {{ form_label(form.description,'Descripción') }}
+            {{ form_errors(form.description) }}
+            {{ form_widget(form.description,{ 'attr': {'class': 'form-control', 'rows':'7'}}) }}
+        </div>
+        <div class="form-group" >
+            {{ form_label(form.nombre,'Elija Una Foto') }}
+            {{ form_errors(form.nombre) }}
+            {{ form_widget(form.nombre,{ 'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="form-group">
+            {{ form_widget(form.submit,{ 'attr': {'class': 'btn btn-konstruye2'},'label': 'Agregar Producto'}) }}
+        </div>
+
+        {{ form_end(form) }}
+    </div>
 
 {% endblock %}

@@ -11,75 +11,87 @@
         <h1 class="title-dashboard">Agregar Proyecto</h1>
     {% endif %}
 
+    <div class="col-md-12" style="padding: 20px 0">
+        <div class="col-md-6" style="padding: 0 20px">
 
+            {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
 
-    <div class="col-md-6 col-md-offset-3">
+            <div class="form-group textarea-resize" >
+                {{ form_label(form.description,'Descripción') }}
+                {{ form_errors(form.description) }}
+                {{ form_widget(form.description,{ 'attr': {'class': 'form-control', 'rows':'7'}}) }}
+            </div>
+            <div class="form-group">
+                {{ form_label(form.structure,'Estructura') }}
+                {{ form_errors(form.structure) }}
+                {{ form_widget(form.structure,{ 'attr': {'class': 'form-control'}}) }}
+            </div>
+            <div class="form-group">
+                {{ form_label(form.operacion,'Tipo de Operación') }}
+                {{ form_errors(form.operacion) }}
+                {{ form_widget(form.operacion,{ 'attr': {'class': 'form-control'}}) }}
+            </div>
 
-        {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+            <div class="form-group">
+                {{ form_label(form.precioSoles,'Precio Soles (S/.)') }}
+                {{ form_errors(form.precioSoles) }}
+                {{ form_widget(form.precioSoles,{ 'attr': {'class': 'form-control'}}) }}
+            </div>
 
-        <div class="form-group">
-            {{ form_label(form.description,'Descripción') }}
-            {{ form_errors(form.description) }}
-            {{ form_widget(form.description,{ 'attr': {'class': 'form-control'}}) }}
+            <div class="form-group">
+                {{ form_label(form.nombre,'Nombre') }}
+                {{ form_errors(form.nombre) }}
+                {{ form_widget(form.nombre,{ 'attr': {'class': 'form-control'}}) }}
+            </div>
+
         </div>
-        <div class="form-group">
-            {{ form_label(form.structure,'Estructura') }}
-            {{ form_errors(form.structure) }}
-            {{ form_widget(form.structure,{ 'attr': {'class': 'form-control'}}) }}
-        </div>
-        <div class="form-group">
-            {{ form_label(form.operacion,'Para Uso Tipo') }}
-            {{ form_errors(form.operacion) }}
-            {{ form_widget(form.operacion,{ 'attr': {'class': 'form-control'}}) }}
-        </div>
-        <div class="form-group">
-            {{ form_label(form.nombre,'Nombre') }}
-            {{ form_errors(form.nombre) }}
-            {{ form_widget(form.nombre,{ 'attr': {'class': 'form-control'}}) }}
-        </div>
-        <div class="form-group">
-            {{ form_label(form.direccion,'Dirección') }}
-            {{ form_errors(form.direccion) }}
-            {{ form_widget(form.direccion,{ 'attr': {'class': 'form-control'}}) }}
-        </div>
+        <div class="col-md-6" style="padding: 0 20px">
+            <div class="form-group">
+                {{ form_label(form.direccion,'Dirección') }}
+                {{ form_errors(form.direccion) }}
+                {{ form_widget(form.direccion,{ 'attr': {'class': 'form-control'}}) }}
+            </div>
 
 
 
 
-        <div class="form-group">
-            {{ form_label(form.telefono,'Teléfono') }}
-            {{ form_errors(form.telefono) }}
-            {{ form_widget(form.telefono,{ 'attr': {'class': 'form-control'}}) }}
-        </div>
-        <div class="form-group">
-            {{ form_label(form.email,'Email') }}
-            {{ form_errors(form.email) }}
-            {{ form_widget(form.email,{ 'attr': {'class': 'form-control'}}) }}
-        </div>
 
-        <div class="form-group">
-            {{ form_label(form.departamento,'Departamento') }}
-            {{ form_errors(form.departamento) }}
-            {{ form_widget(form.departamento,{ 'attr': {'class': 'form-control'}}) }}
-        </div>
-        <div class="form-group">
-            {{ form_label(form.provincia,'Provincia') }}
-            {{ form_errors(form.provincia) }}
-            {{ form_widget(form.provincia,{ 'attr': {'class': 'form-control'}}) }}
-        </div>
-        <div class="form-group">
-            {{ form_label(form.distrito,'Distrito') }}
-            {{ form_errors(form.distrito) }}
-            {{ form_widget(form.distrito,{ 'attr': {'class': 'form-control'}}) }}
-        </div>
+            <div class="form-group">
+                {{ form_label(form.telefono,'Teléfono') }}
+                {{ form_errors(form.telefono) }}
+                {{ form_widget(form.telefono,{ 'attr': {'class': 'form-control'}}) }}
+            </div>
+            <div class="form-group">
+                {{ form_label(form.email,'Email') }}
+                {{ form_errors(form.email) }}
+                {{ form_widget(form.email,{ 'attr': {'class': 'form-control'}}) }}
+            </div>
 
-        <div class="form-group">
-            {{ form_widget(form.submit,{ 'attr': {'class': 'btn btn-konstruye2'},'label': 'Guardar'}) }}
+            <div class="form-group">
+                {{ form_label(form.departamento,'Departamento') }}
+                {{ form_errors(form.departamento) }}
+                {{ form_widget(form.departamento,{ 'attr': {'class': 'form-control'}}) }}
+            </div>
+            <div class="form-group">
+                {{ form_label(form.provincia,'Provincia') }}
+                {{ form_errors(form.provincia) }}
+                {{ form_widget(form.provincia,{ 'attr': {'class': 'form-control'}}) }}
+            </div>
+            <div class="form-group">
+                {{ form_label(form.distrito,'Distrito') }}
+                {{ form_errors(form.distrito) }}
+                {{ form_widget(form.distrito,{ 'attr': {'class': 'form-control'}}) }}
+            </div>
+
+            <div class="form-group">
+                {{ form_widget(form.submit,{ 'attr': {'class': 'btn btn-konstruye2'},'label': 'Guardar'}) }}
+            </div>
+
+            {{ form_end(form) }}
         </div>
-
-        {{ form_end(form) }}
-
     </div>
+
+
 
 
 

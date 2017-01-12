@@ -1,6 +1,27 @@
-<form action="{{ path('profile_negocios_panel_gestion_negocio_cambiar_categorias') }}" method="post">
 
-{{ out|raw }}
-    <input type="submit"/>
 
-</form>
+
+{% extends "FOSUserBundle::Profile/Panel/panel_layout.html.twig" %}
+
+{% block content_section %}
+
+
+    <h1 class="title-dashboard">Cambiar Categoría</h1>
+
+    <form action="{{ path('profile_negocios_panel_gestion_negocio_cambiar_categorias') }}" method="post">
+
+        {{ out|raw }}
+        <input type="submit"/>
+
+    </form>
+
+
+{% endblock %}
+
+
+{% block javascripts %}
+    {{ parent() }}
+
+
+{% endblock javascripts %}
+

@@ -14,6 +14,9 @@
             <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300italic,300,400italic,800italic,800,700italic,700,600italic,600' rel='stylesheet' type='text/css'>
             <link rel="stylesheet" href="{{ asset('css/styles_javier.css') }}">
             <style>
+                *{
+                    font-family: 'Open Sans', sans-serif;
+                }
                 #mobile-header {
                     display: none;
                 }
@@ -28,14 +31,25 @@
     <body>
         {% block top_section %}
             <div class="container-fluid top-seccion top-responsive">
+                {% if tipo.inmueble == true %}
+                    <div class="line-1"></div>
+                {% elseif tipo.especialista == true %}
+                    <div class="line-2"></div>
+                {% elseif tipo.proveedor == true %}
+                    <div class="line-3"></div>
+                {% else %}
+                    <div class="line-4"></div>
+                {% endif %}
+
                 <div class="row">
                     <div class="header-logo">
                         {% if tipo.inmueble == true %}
                             <h1 class="hl-i">{{ negocio.nombre|truncate(1,false,"") }}</h1>
-                                {% elseif tipo.especialista == true %}
-                                    <h1 class="hl-e">{{ negocio.nombre|truncate(1,false,"") }}</h1>
-                                {% elseif tipo.proveedor == true %}
-                                    <h1 class="hl-p">{{ negocio.nombre|truncate(1,false,"") }}</h1>
+
+                            {% elseif tipo.especialista == true %}
+                                <h1 class="hl-e">{{ negocio.nombre|truncate(1,false,"") }}</h1>
+                            {% elseif tipo.proveedor == true %}
+                                <h1 class="hl-p">{{ negocio.nombre|truncate(1,false,"") }}</h1>
                         {% else %}
                             <h1 class="hl-c">{{ negocio.nombre|truncate(1,false,"") }}</h1>
                         {% endif %}

@@ -1,7 +1,28 @@
 {% extends "FOSUserBundle::Profile/Panel/panel_layout.html.twig" %}
 
 {% block content_section %}
-    {{ dump(productos) }}
+
+    <h1 class="title-dashboard">Productos de <span>{{ negocio.nombre }}</span></h1>
+
+    {% for p in productos %}
+
+        <div class="col-md-3" style="padding: 0 20px">
+
+            <a class="editar" href="{{ path('profile_negocios_panel_gestion_negocio_edit_producto',{'id':p.id}) }}"><i class="fa fa-pencil-square" aria-hidden="true"></i> Editar</a>
+            <a class="eliminar" onclick="return confirm('¿Estas seguro de eliminar este Inmueble?');" href="{{ path('profile_negocios_panel_gestion_negocio_delete_producto',{'id':p.id}) }}"><i class="fa fa-trash" aria-hidden="true"></i> Eliminar</a>
+
+            <div class="listado-inmuebles">
+                <div class="banner">
+                    <img src="{{ vich_uploader_asset(p, 'imgFile') }}" alt="{{ p.nombre }}" />
+                </div>
+                <h1 class="inmueble-title">
+                    {{ p.nombre }}
+                </h1>
+            </div>
+        </div>
+
+    {% endfor %}
+
 
 
 {% endblock %}

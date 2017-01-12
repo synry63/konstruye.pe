@@ -1,1 +1,66 @@
-{{ dump(productos) }}
+{% extends "FOSUserBundle::Profile/Panel/panel_layout.html.twig" %}
+
+{% block content_section %}
+
+    <h1 class="title-dashboard">Ordenar Productos</h1>
+
+    <div class="col-md-8 col-md-offset-2">
+        <div class="recomendacion">
+            <i class="fa fa-lightbulb-o" aria-hidden="true"></i>
+            <div class="pright">
+                <ul>
+                    <li>Drag & Drop - Arrastre y suelte para ordenar las fotos automáticamente</li>
+                </ul>
+            </div>
+        </div>
+
+        <ul id="grid">
+            {% for p in productos %}
+                <li  id="{{"foto_"~ p.id }}" data-insp="{{ p.id }}" class="ui-state-default" style="width: 400px; height: 400px;overflow: hidden;cursor: pointer">
+                    <img src="{{ vich_uploader_asset(p, 'imgFile') }}" alt=""/>
+                </li>
+            {% endfor %}
+        </ul>
+
+    </div>
+
+
+
+{% endblock %}
+
+
+{#
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+
+        $( "#grid" ).sortable({
+            update: function( event, ui ) {
+                //var id = $(ui.item).attr('data-insp');
+                //alert("New position: " + ui.item.index());
+                var sorted = $( "#grid" ).sortable( "serialize" );
+                $.ajax({
+                    type: "POST",
+                    url: '{{ path("profile_negocios_panel_gestion_negocio_sort") }}',
+                    data: {
+                        sort:sorted,
+                        what:"Foto"
+                        //sort: ui.item.index(),
+                        //id_inspiracion: $(ui.item).attr('data-insp')
+
+                    },
+                    //data:sorted,
+                    dataType: "json",
+                    success: function(response) {
+                        //console.log(response.sort);
+                        //$(ui.item).children('span').text(response.sort);
+                    }
+                });
+            }
+        });
+        $( "#grid" ).disableSelection();
+
+
+    </script>
+{% endblock javascripts %}
+#}
