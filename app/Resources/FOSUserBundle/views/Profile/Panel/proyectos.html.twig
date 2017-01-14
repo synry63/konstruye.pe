@@ -1,1 +1,36 @@
-{{ dump(proyectos) }}
+{% extends "FOSUserBundle::Profile/Panel/panel_layout.html.twig" %}
+
+{% block content_section %}
+
+    <h1 class="title-dashboard">Proyectos de <span>{{ negocio.nombre }}</span></h1>
+    {% if proyectos|length>1 %}
+        {% for p in proyectos %}
+
+            <div class="col-md-3" style="padding: 0 20px">
+
+                <a class="editar" href="{{ path('profile_negocios_panel_gestion_negocio_edit_proyecto',{'id':p.id}) }}"><i class="fa fa-pencil-square" aria-hidden="true"></i> Editar</a>
+                <a class="eliminar" onclick="return confirm('¿Estas seguro de eliminar este Inmueble?');" href="{{ path('profile_negocios_panel_gestion_negocio_delete_proyecto',{'id':p.id}) }}"><i class="fa fa-trash" aria-hidden="true"></i> Eliminar</a>
+
+                <div class="listado-inmuebles">
+                    <div class="banner">
+                        <img src="{{ vich_uploader_asset(p, 'imgFile') }}" alt="{{ p.nombre }}" />
+                    </div>
+                    <h1 class="inmueble-title">
+                        {{ p.nombre }}
+                    </h1>
+                </div>
+            </div>
+
+        {% endfor %}
+
+    {% else %}
+        <div class="mensaje-notfound">
+            <p><i class="fa fa-exclamation-triangle" aria-hidden="true"></i></p>
+            <p class="text-nf">Aún no tiene proyectos en su negocio</p>
+            <p class="text-nf">Agrege su proyecto ahora: <a href="{{ path('profile_negocios_panel_gestion_negocio_add_proyecto') }}">AGREGAR PROYECTO</a> </p>
+        </div>
+    {% endif %}
+
+
+
+{% endblock %}
