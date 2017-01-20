@@ -40,42 +40,185 @@
     </header>
 
     <div class="container time-line">
-        <div class="middle-line">
+        <div class="col-md-12 banner">
+            <a href="javascript:void(0)">
+                <img class="img-responsive" src="{{ asset('images/assets/sol-cemento.jpg') }}" alt="" />
+            </a>
 
         </div>
 
-        <div class="tl-content-home">
-            <div class="content-iz">
-                <div class="icon-middle">
-                    <img src="http://www.cooltimeline.com/wp-content/plugins/cool-timeline-pro//images/cd-icon-picture.svg" alt="Picture">
-                </div>
-                <a href="">
-                    <img src="http://placehold.it/400x200" alt="time-line-photo">
-                </a>
-                <div class="content-desc">
-                    <a href=""><h2>Titulo del negocio</h2></a>
-                    <p>Microsoft launches a new cloud platform for connected cars</h2>
-                        Coming later this year</p>
-                </div>
-                <span class="date-line-iz">25 Abril, 2016</span>
-            </div>
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-5" style="padding-left: 0;">
+                    <div class="filtros">
 
-        </div>
+                    </div>
+                </div>
+                <div class="col-md-7" style="padding-right:0;">
+                    <div class="time-general">
+                        <div class="destacados">
+                            <img class="img-circle" width="100px" src="{{ asset('images/assets/cosapi_logo.jpg') }}" alt="" />
+                            <img class="img-circle" width="100px" src="{{ asset('images/assets/pro1.png') }}" alt="" />
+                            <img class="img-circle" width="100px" src="{{ asset('images/assets/pro2.png') }}" alt="" />
+                            <img class="img-circle" width="100px" src="{{ asset('images/assets/pro4.png') }}" alt="" />
+                            <img class="img-circle" width="100px" src="{{ asset('images/assets/pro3.png') }}" alt="" />
+                        </div>
+                        <div class="time-detail">
+                            <div class="timeline-box">
+                                <div class="box-top">
+                                    <div class="box-pic">
+                                        {% if usuario.profile is not null %}
+                                            <img alt="user icon" width="40px" src="{{ vich_uploader_asset(usuario.profile, 'profileFile','AppBundle\\Entity\\FotoProfile') }}">
+                                        {% else %}
+                                            <img width="40px" src="{{ asset('images/assets/user_icon.svg') }}" alt="">
+                                        {% endif %}
+                                    </div>
+                                    <div class="box-data">
+                                        <p>{{ usuario.nombres}} {{ usuario.apellidos }} <strong><span> · </span>Ha añadido un nuevo negocio</strong></p>
+                                        <p>26 de Abril del 2016</p>
+                                    </div>
+                                </div>
+                                <div class="box-bottom">
+                                    <a href="javascript:void(0)">
+                                        <img class="img-responsive" src="http://placehold.it/660x300" alt="" />
+                                        <h1>Titulo del Negocio</h1>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid aperiam consectetur eius incidunt ipsam ipsum iste, itaque iusto magni maiores, molestias officiis qui quibusdam reiciendis reprehenderit, saepe suscipit! Accusantium, deserunt.</p>
+                                    </a>
+                                    <div class="box-reaction">
+                                        <div class="like-share">
+                                            <a href="">
+                                                <i class="fa fa-thumbs-up" aria-hidden="true"></i> Me gusta
+                                            </a>
+                                        </div>
+                                        <div class="coments-total">
+                                            <a href="">
+                                                <i class="fa fa-comment" aria-hidden="true"></i> 100 Comentarios
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="comments">
 
-        <div class="tl-content-home2">
-            <div class="content-dr">
-                <div class="icon-middle">
-                    <img src="http://www.cooltimeline.com/wp-content/plugins/cool-timeline-pro//images/cd-icon-picture.svg" alt="Picture">
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="timeline-box">
+                                <div class="box-top">
+                                    <div class="box-pic">
+                                        {% if usuario.profile is not null %}
+                                            <img alt="user icon" width="40px" src="{{ vich_uploader_asset(usuario.profile, 'profileFile','AppBundle\\Entity\\FotoProfile') }}">
+                                        {% else %}
+                                            <img width="40px" src="{{ asset('images/assets/user_icon.svg') }}" alt="">
+                                        {% endif %}
+                                    </div>
+                                    <div class="box-data">
+                                        <p>{{ usuario.nombres}} {{ usuario.apellidos }} <strong><span> · </span>Ha añadido un nuevo negocio</strong></p>
+                                        <p>26 de Abril del 2016</p>
+                                    </div>
+                                </div>
+                                <div class="box-bottom">
+                                    <a href="javascript:void(0)">
+                                        <img class="img-responsive" src="http://placehold.it/660x300" alt="" />
+                                        <h1>Titulo del Negocio</h1>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid aperiam consectetur eius incidunt ipsam ipsum iste, itaque iusto magni maiores, molestias officiis qui quibusdam reiciendis reprehenderit, saepe suscipit! Accusantium, deserunt.</p>
+                                    </a>
+                                    <div class="box-reaction">
+                                        <div class="like-share">
+                                            <a href="">
+                                                <i class="fa fa-thumbs-up" aria-hidden="true"></i> Me gusta
+                                            </a>
+                                        </div>
+                                        <div class="coments-total">
+                                            <a href="">
+                                                <i class="fa fa-comment" aria-hidden="true"></i> 100 Comentarios
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="comments">
+
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="timeline-box">
+                                <div class="box-top">
+                                    <div class="box-pic">
+                                        {% if usuario.profile is not null %}
+                                            <img alt="user icon" width="40px" src="{{ vich_uploader_asset(usuario.profile, 'profileFile','AppBundle\\Entity\\FotoProfile') }}">
+                                        {% else %}
+                                            <img width="40px" src="{{ asset('images/assets/user_icon.svg') }}" alt="">
+                                        {% endif %}
+                                    </div>
+                                    <div class="box-data">
+                                        <p>{{ usuario.nombres}} {{ usuario.apellidos }} <strong><span> · </span>Ha añadido un nuevo negocio</strong></p>
+                                        <p>26 de Abril del 2016</p>
+                                    </div>
+                                </div>
+                                <div class="box-bottom">
+                                    <a href="javascript:void(0)">
+                                        <img class="img-responsive" src="http://placehold.it/660x300" alt="" />
+                                        <h1>Titulo del Negocio</h1>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid aperiam consectetur eius incidunt ipsam ipsum iste, itaque iusto magni maiores, molestias officiis qui quibusdam reiciendis reprehenderit, saepe suscipit! Accusantium, deserunt.</p>
+                                    </a>
+                                    <div class="box-reaction">
+                                        <div class="like-share">
+                                            <a href="">
+                                                <i class="fa fa-thumbs-up" aria-hidden="true"></i> Me gusta
+                                            </a>
+                                        </div>
+                                        <div class="coments-total">
+                                            <a href="">
+                                                <i class="fa fa-comment" aria-hidden="true"></i> 100 Comentarios
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="comments">
+
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="timeline-box">
+                                <div class="box-top">
+                                    <div class="box-pic">
+                                        {% if usuario.profile is not null %}
+                                            <img alt="user icon" width="40px" src="{{ vich_uploader_asset(usuario.profile, 'profileFile','AppBundle\\Entity\\FotoProfile') }}">
+                                        {% else %}
+                                            <img width="40px" src="{{ asset('images/assets/user_icon.svg') }}" alt="">
+                                        {% endif %}
+                                    </div>
+                                    <div class="box-data">
+                                        <p>{{ usuario.nombres}} {{ usuario.apellidos }} <strong><span> · </span>Ha añadido un nuevo negocio</strong></p>
+                                        <p>26 de Abril del 2016</p>
+                                    </div>
+                                </div>
+                                <div class="box-bottom">
+                                    <a href="javascript:void(0)">
+                                        <img class="img-responsive" src="http://placehold.it/660x300" alt="" />
+                                        <h1>Titulo del Negocio</h1>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid aperiam consectetur eius incidunt ipsam ipsum iste, itaque iusto magni maiores, molestias officiis qui quibusdam reiciendis reprehenderit, saepe suscipit! Accusantium, deserunt.</p>
+                                    </a>
+                                    <div class="box-reaction">
+                                        <div class="like-share">
+                                            <a href="">
+                                                <i class="fa fa-thumbs-up" aria-hidden="true"></i> Me gusta
+                                            </a>
+                                        </div>
+                                        <div class="coments-total">
+                                            <a href="">
+                                                <i class="fa fa-comment" aria-hidden="true"></i> 100 Comentarios
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="comments">
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <a href="">
-                    <img src="http://placehold.it/400x200" alt="time-line-photo">
-                </a>
-                <div class="content-desc">
-                    <a href=""><h2>Titulo del negocio</h2></a>
-                    <p>Microsoft launches a new cloud platform for connected cars</h2>
-                        Coming later this year</p>
-                </div>
-                <span class="date-line-dr">26 Abril, 2016</span>
             </div>
         </div>
 
