@@ -1,24 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 19.1.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="-179 -20 600 600" style="enable-background:new -179 -20 600 600;" xml:space="preserve">
+<!-- Generator: Adobe Illustrator 20.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 150 150" style="enable-background:new 0 0 150 150;" xml:space="preserve">
 <style type="text/css">
-	.st0{fill:#9B9B9B;}
-	.st1{fill:#FFFFFF;}
-	.st2{clip-path:url(#SVGID_2_);fill:#FFFFFF;}
+	.st0{fill:#F9F9F9;}
+	.st1{fill:#1C9CD9;}
+	.st2{fill:#808080;}
 </style>
-<title>Abstract user icon</title>
+<rect class="st0" width="150" height="149.8"/>
 <g>
-	<circle class="st0" cx="121" cy="280" r="280"/>
-	<circle class="st1" cx="121" cy="210" r="100"/>
-	<g>
-		<defs>
-			<circle id="SVGID_1_" cx="121" cy="280" r="250"/>
-		</defs>
-		<clipPath id="SVGID_2_">
-			<use xlink:href="#SVGID_1_"  style="overflow:visible;"/>
-		</clipPath>
-		<circle class="st2" cx="121" cy="530" r="190"/>
-	</g>
+	<path class="st1" d="M138.5,123.4L113.8,111c-3.2-1.6-5.2-4.9-5.2-8.4v-9.7c0.7-0.8,1.5-1.8,2.3-3c3.4-4.8,5.9-10,7.7-15.5
+		c3.2-1,5.5-3.9,5.5-7.4V56.7c0-2.3-1-4.3-2.6-5.7V36c0,0,3.1-23.3-28.5-23.3S64.7,36,64.7,36v15c-1.6,1.4-2.6,3.4-2.6,5.7V67
+		c0,2.7,1.4,5.1,3.6,6.5C68.2,84.8,75,92.9,75,92.9v9.4c0,3.4-1.9,6.6-4.9,8.3L47,123.2c-6.7,3.6-10.8,10.6-10.8,18.2v8.4H150v-7.9
+		C150,134.1,145.6,126.9,138.5,123.4L138.5,123.4z M138.5,123.4"/>
+	<path class="st2" d="M47,123.2l15.4-8.4c-0.1-0.1,0-0.1,0.2-0.1l7.5-4.1c3-1.6,4.9-4.8,4.9-8.3v-9.4c0,0-2.7-3.3-5.4-8.6
+		c-0.4-0.7-0.7-1.4-1-2.2c-0.1-0.1-0.1-0.2-0.1-0.3c-0.3-0.8-0.7-1.6-1-2.4c0-0.1,0-0.1-0.1-0.2c-0.3-0.7-0.5-1.5-0.8-2.3
+		c-0.1-0.2-0.1-0.4-0.2-0.7c-0.3-0.9-0.5-1.8-0.7-2.7c-2.1-1.4-3.6-3.8-3.6-6.5V56.7c0-2.3,1-4.3,2.6-5.7V36.3
+		c-3.7-2.8-9.3-5.5-18.1-5.5c-24.7,0-25.9,20.7-25.9,20.7v12.9c-1.4,1.2-2.6,3-2.6,4.9v8.9c0,2.4,1.2,4.4,3.1,5.6
+		c2.2,9.7,9.7,16.7,9.7,16.7v8.2c0,3-1.6,5.7-4.2,7.1L9.3,126.8C3.6,130,0,136,0,142.6v7.2h36.2v-8.4
+		C36.2,133.8,40.3,126.8,47,123.2L47,123.2z M47,123.2"/>
 </g>
 </svg>

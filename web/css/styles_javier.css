@@ -1303,7 +1303,6 @@ Perfil Publico
     padding-top: 5px;
     border-top: solid 1px #F1F1F1;
     margin-top: 11px;
-    color
 }
 .box-bottom a p{
     text-align: justify;
@@ -1313,6 +1312,68 @@ Perfil Publico
 }
 .coments-total{
     float: right;
+}
+.coments-total a:focus{
+    color: #90949c;
+}
+.comments{
+    height: auto;
+    background: #F6F7F9;
+    margin-top: 6px;
+}
+.comentario-publico{
+    margin-bottom: 5px;
+    display: inline-block;
+}
+.comentario-publico .pic-thumb{
+    padding: 10px;
+    float: left;
+}
+.comentario-publico .pic-thumb img{
+    width: 40px;
+    height: 40px;
+}
+.comentario-publico .comment-detail{
+    padding: 10px 10px 0 60px;
+}
+
+
+.comentario-publico a h1{
+    font-weight: 500;
+    color: rgb(0, 159, 227);
+    display: inline;
+    font-size: 14px;
+    padding-right: 5px;
+}
+.public-comentar{
+    padding: 15px 10px;
+    font-size: 14px;
+    border-bottom: 1px solid rgba(0,0,0,.07);
+}
+.public-comentar a{
+    color: rgb(0, 159, 227);
+}
+.comentario-publico span{
+    line-height: 16px;
+    font-size: 14px;
+}
+.box-bottom img{
+    width: 100%;
+    overflow: hidden;
+}
+.c-form {
+    width: 100%;
+    margin-bottom: 0;
+}
+.comment-form{
+    padding: 10px 10px 0 60px;
+    width: 100%;
+}
+.c-form input{
+    height: 40px;
+    width: 100%;
+    padding-left: 10px;
+    font-size: 14px;
 }
 /*=============
 Buscador Principal
