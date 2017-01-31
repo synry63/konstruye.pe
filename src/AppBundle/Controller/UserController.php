@@ -23,15 +23,28 @@ class UserController extends Controller
 
 
     public function  PerfilPublicoAction(Request $request,$id){
+        $slug_categoria = $request->query->get('slug_categoria');
         $user = $this->getDoctrine()->getRepository('AppBundle:User')->find($id);
-        $negocios = $this->getDoctrine()->getRepository('AppBundle:Negocio')->findBy(
-            array('user'=>$user),
-            array('registeredAt' => 'DESC')
-        );
+        // filter negocios
+        if($slug_categoria!=null){
+            $cate = $this->getDoctrine()->getRepository('AppBundle:CategoriaListado')->findOneBy(array('slug'=>$slug_categoria));
+            $negocios = $this->getDoctrine()->getRepository('AppBundle:Negocio')->getNegociosUserByCategory($cate,$user);
+        }
+        else{
+            $negocios = $this->getDoctrine()->getRepository('AppBundle:Negocio')->findBy(
+                array('user'=>$user),
+                array('registeredAt' => 'DESC')
+            );
+        }
+
+        $bestNegocios  = $this->getDoctrine()->getRepository('AppBundle:Negocio')->getBestNegociosByUser($user);
+        $categoriasUser  = $this->getDoctrine()->getRepository('AppBundle:CategoriaListado')->getCategoriasNegociosUser($user);
         return $this->render(
             'public_profile.html.twig',array(
                 'usuario'=>$user,
-                'negocios'=>$negocios
+                'negocios'=>$negocios,
+                'bestNegocios'=>$bestNegocios,
+                'categoriasUser'=>$categoriasUser
             )
         );
     }

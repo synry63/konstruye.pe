@@ -23,4 +23,15 @@ class CategoriaListadoRepository extends EntityRepository
 
         return $query->getResult();
     }
+    function getCategoriasNegociosUser($user){
+        $qb = $this->createQueryBuilder('c')
+            ->join('c.negocios','n')
+            ->where('n.user = :user')
+            ->setParameter('user', $user)
+            ->orderBy('c.nombre', 'ASC');
+
+        $query = $qb->getQuery();
+
+        return $query->getResult();
+    }
 }

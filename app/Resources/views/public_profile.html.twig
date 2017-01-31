@@ -52,22 +52,22 @@
             <div class="row">
                 <div class="col-md-5" style="padding-left: 0;">
                     <div class="filtros">
-
+                        <h3>categorias negocios</h3>
+                        {% for c in categoriasUser %}
+                            <a href="{{ path('profile_public',{id:usuario.id,slug_categoria:c.slug}) }}">{{ c.nombre }}</a>
+                        {% endfor %}
                     </div>
                 </div>
                 <div class="col-md-7" style="padding-right:0;">
                     <div class="time-general">
                         <div class="destacados">
-                            <img class="img-circle" width="100px" src="{{ asset('images/assets/cosapi_logo.jpg') }}" alt="" />
-                            <img class="img-circle" width="100px" src="{{ asset('images/assets/pro1.png') }}" alt="" />
-                            <img class="img-circle" width="100px" src="{{ asset('images/assets/pro2.png') }}" alt="" />
-                            <img class="img-circle" width="100px" src="{{ asset('images/assets/pro4.png') }}" alt="" />
-                            <img class="img-circle" width="100px" src="{{ asset('images/assets/pro3.png') }}" alt="" />
+                            {% for bn in bestNegocios %}
+                                <img class="img-circle" width="100px" src="{{ vich_uploader_asset(bn.negocio.logo, 'logoFile','AppBundle\\Entity\\Logo') }}"alt=""/>
+                            {% endfor %}
                         </div>
                         <div class="time-detail">
 
-
-                            {% for un in usuario.negocios | reverse %}
+                            {% for un in negocios %}
                                 <div class="timeline-box">
                                     <div class="box-top">
                                         <div class="box-pic">
@@ -122,7 +122,6 @@
                                                     {% else %}
                                                         <a href=""><img src="http://placehold.it/40x40" alt=""></a>
                                                     {% endif %}
-
                                                 </div>
 
                                                 <div class="comment-form">

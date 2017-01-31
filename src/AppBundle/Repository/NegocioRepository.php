@@ -48,7 +48,23 @@ class NegocioRepository extends EntityRepository
 
         return $query->getResult();
     }
+    public function getBestNegociosByUser($user,$limit = 5){
+        $em = $this->getEntityManager();
 
+        $qb = $em->createQueryBuilder();
+        $qb->select('p as negocio,avg(cp.nota) as mymoy')
+            ->from('AppBundle\Entity\Proveedor', 'p')
+            ->join('p.comentarios','cp')
+            ->join('p.categoriasListado','cl')
+            ->where('p.user = :user')
+            ->setParameter('user', $user)
+            ->setMaxResults( $limit );
+        $qb->addOrderBy('mymoy', 'DESC');
+        $qb->addGroupBy('p');
+        $query = $qb->getQuery();
+
+        return $query->getResult();
+    }
     public function getNegociosOrderRecent(){
         $qb = $this->createQueryBuilder('p')
             ->orderBy('p.registeredAt', 'DESC')
@@ -66,7 +82,6 @@ class NegocioRepository extends EntityRepository
      */
     public function getNegociosByCategory($cate){
 
-
         $qb = $this->createQueryBuilder('p')
             ->join('p.categoriasListado','cl')
             ->where('cl = :cate')
@@ -79,6 +94,23 @@ class NegocioRepository extends EntityRepository
 
 
         return $query;
+    }
+    public function getNegociosUserByCategory($cate,$user){
+        $qb = $this->createQueryBuilder('p')
+            ->join('p.categoriasListado','cl')
+            ->where('cl = :cate')
+            ->andWhere('p.isAccepted = :state')
+            ->andWhere('p.user = :user')
+            ->orderBy('p.registeredAt', 'DESC')
+            ->setParameters(array(
+                'cate' => $cate,
+                'state' => true,
+                'user' => $user,
+            ));
+        $query = $qb->getQuery();
+        $result = $query->getResult();
+
+        return $result;
     }
 
     /**
