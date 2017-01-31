@@ -51,18 +51,23 @@
         <div class="col-md-12">
             <div class="row">
                 <div class="col-md-5" style="padding-left: 0;">
-                    <div class="filtros">
-                        <h3>categorias negocios</h3>
+                    <div class="filtros public-filtros">
+                        <h3 class="title-public">Categorias <span>Negocios</span></h3>
                         {% for c in categoriasUser %}
-                            <a href="{{ path('profile_public',{id:usuario.id,slug_categoria:c.slug}) }}">{{ c.nombre }}</a>
+                            <a href="{{ path('profile_public',{id:usuario.id,slug_categoria:c.slug}) }}"> <span>·</span> {{ c.nombre }}</a>
                         {% endfor %}
                     </div>
                 </div>
                 <div class="col-md-7" style="padding-right:0;">
                     <div class="time-general">
                         <div class="destacados">
+
                             {% for bn in bestNegocios %}
-                                <img class="img-circle" width="100px" src="{{ vich_uploader_asset(bn.negocio.logo, 'logoFile','AppBundle\\Entity\\Logo') }}"alt=""/>
+                                {% if bn.negocio.logo is not null %}
+                                    <img class="img-circle" width="100px" src="{{ vich_uploader_asset(bn.negocio.logo, 'logoFile','AppBundle\\Entity\\Logo') }}"alt=""/>
+                                {%else%}
+                                    <img class="img-circle" src="http://placehold.it/100x100" alt="" />
+                                {% endif %}
                             {% endfor %}
                         </div>
                         <div class="time-detail">
@@ -84,6 +89,7 @@
                                     </div>
                                     <div class="box-bottom">
                                         <a href="{{ path('show_negocio',{"slug_negocio":un.slug}) }}">
+                                            <p style="padding-bottom: 10px">{{ un.description }}</p>
                                             {% if un.banner is not null %}
                                                 <img class="img-responsive" src="{{ vich_uploader_asset(un.banner, 'bannerFile','AppBundle\\Entity\\Banner') }}" alt="" />
                                             {% else %}
@@ -91,7 +97,7 @@
                                             {% endif %}
 
                                             <h1>{{ un.nombre }}</h1>
-                                            <p>{{ un.description }}</p>
+
                                         </a>
                                         <div class="box-reaction">
                                             <div class="like-share">
@@ -105,7 +111,13 @@
                                             </div>
                                             <div class="coments-total">
                                                 <a href="javascript:void(0)" class="comment-click">
-                                                    <i class="fa fa-comment" aria-hidden="true"></i> 10 Comentarios
+                                                    <i class="fa fa-comment" aria-hidden="true"></i>
+                                                    {% if un.comentarios|length == 0 %}
+                                                        No existen comentarios aún
+                                                    {% else %}
+                                                        {{ un.comentarios|length }} Comentario{% if un.comentarios|length > 2 %}s{% endif %}
+                                                    {% endif %}
+
                                                 </a>
                                             </div>
                                         </div>
@@ -125,8 +137,7 @@
                                                 </div>
 
                                                 <div class="comment-form">
-
-                                                    <a class="simple-ajax-popup" href="{{ path('negocio_me_comentar_new',{'slug_negocio':un.slug}) }}">Comentar</a>
+                                                    {#<a class="simple-ajax-popup" href="{{ path('negocio_me_comentar_new',{'slug_negocio':un.slug}) }}">Comentar</a>#}
                                                     <input id="popup-comment" type="text" placeholder="Escribe un comentario">
                                                 </div>
                                             </div>
