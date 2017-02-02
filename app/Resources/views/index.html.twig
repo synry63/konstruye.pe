@@ -14,9 +14,7 @@
         .nav-principal2{
             display: none;
         }
-        .ui-autocomplete-loading {
-            background: white url("/images/assets/ui-anim_basic_16x16.gif") right center no-repeat;
-        }
+
     </style>
 {% endblock %}
 
@@ -37,7 +35,8 @@
                 <div class="index-menu">
                     <div class="decoration"></div>
                     <a href="{{ path('homepage') }}" class="logo-index">
-                        <img src="{{ asset('images/logo-sq-color.svg') }}" alt="">
+                        <img class="hidden-element" src="{{ asset('images/logo-sq-color.svg') }}" alt="">
+                        <img class="responsive-element" src="{{ asset('images/logo-min-color.svg') }}" alt="">
                     </a>
 
                         {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
@@ -182,7 +181,7 @@
             <h1 class="mejores_tittle">Los Mejores Proveedores</h1>
         </div>
         <div class="container" style="position: relative; padding: 0">
-            <img width="280px" style="position: absolute;bottom: -15px;" src="{{ asset('images/proveedor_home.jpg') }}" alt=""/>
+            <img class="hidden-element" width="280px" style="position: absolute;bottom: -15px;" src="{{ asset('images/proveedor_home.jpg') }}" alt=""/>
             <div class="col-md-8 col-md-offset-4" style="padding: 0">
 
                 <div class="ms-staff-carousel ms-round">
@@ -239,7 +238,7 @@
            <h1 class="mejores_tittle"><span>Mejores Inmuebles</span></h1>
        </div>
        <div class="container" style="position: relative; padding: 0">
-           <img width="338px" style="position: absolute;bottom: -15px;right: -23px" src="{{ asset('images/inmobiliarias_home.png') }}" alt=""/>
+           <img class="hidden-element" width="338px" style="position: absolute;bottom: -15px;right: -23px" src="{{ asset('images/inmobiliarias_home.png') }}" alt=""/>
            <div class="col-md-8" style="padding: 0;">
                <div class="ms-staff-carousel ms-round">
                    {% if inmuebles|length >= 5 %}
@@ -288,7 +287,7 @@
             <h1 class="mejores_tittle">Mejores Especialistas</h1>
         </div>
         <div class="container" style="position: relative; padding: 0">
-            <img width="280px" style="position: absolute;bottom: -15px;" src="{{ asset('images/especialista_home.jpg') }}" alt=""/>
+            <img class="hidden-element" width="280px" style="position: absolute;bottom: -15px;" src="{{ asset('images/especialista_home.jpg') }}" alt=""/>
             <div class="col-md-8 col-md-offset-4" style="padding: 0">
                 <div class="ms-staff-carousel ms-round">
                     {% if especialistas|length >= 5 %}
@@ -337,7 +336,7 @@
             <h1 class="mejores_tittle"><span>Mejores Constructoras e Inmobiliarias</span></h1>
         </div>
         <div class="container" style="position: relative; padding: 0">
-            <img width="280px" style="position: absolute;bottom: -15px;right: -23px" src="{{ asset('images/comprayventa_home.png') }}" alt=""/>
+            <img class="hidden-element" width="280px" style="position: absolute;bottom: -15px;right: -23px" src="{{ asset('images/comprayventa_home.png') }}" alt=""/>
             <div class="col-md-8" style="padding: 0;">
                 <div class="ms-staff-carousel ms-round">
                     {% if imobiliarias|length >= 7 %}
@@ -463,22 +462,50 @@
         } );*/
 
             $(document).ready(function() {
-                var slider = new MasterSlider();
 
-                slider.control('arrows' ,{insertTo:'#masterslider'});
-                slider.control('bullets');
+                if( /Android|iPhone|iPod|webOS|iPad|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
 
-                slider.setup('masterslider' , {
-                    width:1024,
-                    height:40,
-                    space:5,
-                    grabCursor:false,
-                    view:'basic',
-                    loop:true,
-                    autoplay:true,
-                    layout:'fullwidth',
-                    speed:20
-                });
+
+                    var slider = new MasterSlider();
+
+                    slider.control('arrows' ,{insertTo:'#masterslider'});
+                    slider.control('bullets');
+
+                    slider.setup('masterslider' , {
+                        space:5,
+                        grabCursor:false,
+                        loop:true,
+                        autoplay:true,
+                        layout:'fullscreen',
+                        fullscreenMargin: 85,
+                        speed:20
+                    });
+
+
+                }
+                else
+                {
+
+                    var slider = new MasterSlider();
+
+                    slider.control('arrows' ,{insertTo:'#masterslider'});
+                    slider.control('bullets');
+
+                    slider.setup('masterslider' , {
+                        width:1024,
+                        height:500,
+                        space:5,
+                        grabCursor:false,
+                        view:'basic',
+                        loop:true,
+                        autoplay:true,
+                        layout:'fullwidth',
+                        speed:20
+                    });
+
+
+
+                }
 
 
                 var slider2 = new MasterSlider();

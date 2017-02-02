@@ -1485,7 +1485,7 @@ Buscador Principal
     color: rgba(255,255,255,.8);
     border-radius: 5px 5px 0 0;
     padding: 10px 20px;
-    background: rgba(0, 0, 0,.4);
+    background: rgba(0, 0, 0,.6);
 }
 
 .buscador-principal #button2{
@@ -1496,7 +1496,7 @@ Buscador Principal
     left: 250px;
     border-radius: 5px 5px 0 0;
     padding: 10px 20px;
-    background: rgba(0, 0, 0,.2);
+    background: rgba(0, 0, 0,.6);
 }
 .buscador-principal #button1.active,.buscador-principal #button2.active{
     background: rgba(0, 159, 227,.5);
@@ -2614,8 +2614,60 @@ Footer Menu
     background: none;
 }
 
+.responsive-element{
+    display: none;
+}
 
-@media only screen and (min-width : 320px) and (max-width : 736px){
+
+@media only screen and (min-width : 320px) and (max-width : 736px) {
+    #menu-index-bottom ul li{
+        width: 50%;
+    }
+    .index-menu .login-index{
+        padding: 10px 0;
+    }
+    .index-menu .login-index a:first-child::after{
+        display: none;
+    }
+    .login-stiky{
+        width: 140px;
+        text-align: center;
+        line-height: 25px;
+    }
+    .index-menu .logo-index {
+        padding: 10px 10px;
+        left: 0;
+        top: -2px;
+    }
+
+    .index-menu .logo-index img{
+        height: 50px;
+    }
+    .responsive-element{
+       display: inline-block;
+    }
+    .buscador-principal{
+        display: none;
+    }
+    .footer-menu{
+        height: auto;
+    }
+    .menu-footer{
+        width: 100%;
+    }
+    .footer-menu li{
+        width: 100%;
+    }
+    .gecko-firm{
+        margin-bottom: 20px;
+        line-height: 20px;
+    }
+    .socials{
+        margin-bottom: 10px;
+    }
+    .hidden-element{
+        display: none;
+    }
 
     .top-responsive{
         display: none;
