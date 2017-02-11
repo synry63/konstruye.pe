@@ -3,6 +3,12 @@
     src:   url('../fonts/icomoon.ttf') format('truetype');
 }
 
+@font-face {
+    font-family: 'Konstruye Sans';
+    src:   url('../fonts/konstruye-font.ttf') format('truetype');
+}
+
+
 /*===============
 Filtro Nuevo
 ================*/
@@ -156,71 +162,74 @@ Filtro X
 /*===============
 Icomoon
 ================*/
-
-.icon-Intercomunicador:before {
-    content: "\e901";
+.konstruye-font span{
+    font-family: 'Konstruye Sans';
+    font-size: 35px;
+    vertical-align: middle;
+    color: rgba(0,0,0,.5);
 }
-.icon-Ascensor:before {
-    content: "\e902";
-}
-.icon-juegos.infantiles:before {
-    content: "\e900";
-}
-.icon-Gimnasio:before {
-    content: "\e906";
-}
-.icon-Control:before {
-    content: "\e915";
-}
-.icon-Jardin:before {
+.icon-2:before {
     content: "\e905";
 }
-.icon-Parrilla:before {
-    content: "\e907";
+.icon-6:before {
+    content: "\e900";
 }
-.icon-Video.vigilancia:before {
-    content: "\e908";
+.icon-2b:before {
+    content: "\e901";
 }
-.icon-Piscina:before {
-    content: "\e909";
+.icon-1:before {
+    content: "\e902";
 }
-
-.icon-Reposteros:before {
-    content: "\e90b";
+.icon-3:before {
+    content: "\e903";
 }
-.icon-Terraza:before {
-    content: "\e90a";
+.icon-4:before {
+    content: "\e904";
+}
+.icon-8:before {
+     content: "\e91b";
+}
+.icon-4b:before {
+    content: "\e91c";
+}
+.icon-5b:before {
+    content: "\e91d";
+}
+.icon-1b:before {
+    content: "\e91e";
+}
+.icon-3b:before {
+    content: "\e91f";
 }
 /*===============
 SHOW INMUEBLE ICONS
 ================*/
 
 .icomoon span{
-    font-family: 'icomoon';
-    font-size: 23px;
+    font-family: 'Konstruye Sans';
+    font-size: 35px;
     vertical-align: middle;
     color: rgba(0,0,0,.5);
-}
-.icon-areate:before {
-    content: "\e90b";
-}
-
-.icon-areato:before {
-    content: "\e90c";
-}
-.icon-dolares:before {
-    content: "\e90d";
-}
-.icon-soles:before {
-    content: "\e90e";
-}
-.icon-bano:before {
-    content: "\e90f";
+    line-height: 40px;
 }
 .icon-proyecto:before {
-    content: "\e916";
+    content: "\e907";
 }
-
+.icon-soles:before {
+    content: "\e908";
+}
+.icon-dolar:before {
+    content: "\e909";
+}
+.icon-area:before {
+    content: "\e90a";
+}
+.icon-bed:before {
+    content: "\e90b";
+}
+.icon-bano:before {
+     content: "\e906";
+}
 
 /*===============
 SHOW INMUEBLE
@@ -297,7 +306,7 @@ SHOW INMUEBLE
     text-align: right;
     color: #fff;
     font-weight: normal;
-    font-size: 14px;
+    font-size: 20px;
     margin-top: 8px;
 }
 .zona-precio-contenido span.titulo-zona-inmueble {
@@ -331,6 +340,7 @@ SHOW INMUEBLE
 }
 .zona-contactanos-contenido a.link-inmobiliaria img {
     float: right;
+    border: solid 1px #f1f1f1;
 }
 .zona-contactanos-contenido .zona-formulario {
     margin-top: 20px;
@@ -340,6 +350,7 @@ SHOW INMUEBLE
     background-color: #fff;
     border: solid 1px rgba(0,0,0,.2);
 }
+
 .data-izquierda_b .datos-descripcion-titulo {
     padding-bottom: 20px;
 }
@@ -348,6 +359,7 @@ SHOW INMUEBLE
     line-height: 20px;
     /*text-align: justify;*/
 }
+
 .datos-izquierda .lista-datos-principales {
     line-height: 28px;
     font-size: 16px;
@@ -359,12 +371,17 @@ SHOW INMUEBLE
     /*border: 1px solid #d1d1d1;*/
     padding-bottom: 20px;
 }
-.datos-ubicacion {
-    padding:20px;
-    background-color: #fff;
-    border: solid 1px rgba(0,0,0,.2);
-    margin-top: 20px;
+.block-a{
+    width: 49%;
+    display: inline-block;
+    vertical-align: top;
 }
+.block-b{
+    width: 49%;
+    display: inline-block;
+    float: right;
+}
+
 .zona-telefono {
     color: #009FE3;
     font-weight: normal;
@@ -2181,14 +2198,14 @@ Index
     z-index: 1;
     right: -40px;
     padding: 10px;
-    width: 120px;
+    width: 90px;
     color: #fff;
     text-shadow: 0 1px 2px rgba(0,0,0,.5);
     font-weight: 600;
 }
 .index-logeado .stiky-name{
     position: absolute;
-    right: 38px;
+    right: 12px;
     top: 50%;
     transform: translateY(-50%);
 }
@@ -2376,8 +2393,9 @@ Form Stiky
     transform: translate(-52%,-50%);
 
 }
-
-
+.navbar-brand-responsive{
+   display: none;
+}
 
 .form-stiky .form-control{
     width: 48%;
@@ -2639,9 +2657,159 @@ Footer Menu
 .responsive-element{
     display: none;
 }
-
-
+#dropdownMenustiky-responsive{
+    display: none;
+}
+.card-header-responsive{
+    display: none;
+}
+.datos-principales div{
+    padding: 0;
+}
+#menu-index-bottom-responsive{
+    display: none;
+}
 @media only screen and (min-width : 320px) and (max-width : 736px) {
+    #menu-index-bottom{
+        display: none;
+    }
+    #menu-index-bottom-responsive{
+        display: block;
+    }
+    .about-us-container{
+        padding: 140px 15px 20px;
+    }
+    .index-logeado{
+        margin-right: 0 !important;
+        right: 0;
+        width:70px;
+        padding: 10px 0;
+        text-align: center;
+    }
+    .link-home{
+        vertical-align: middle;
+        width: 50%;
+        position: relative;
+        display: inline-block;
+        float: left;
+        text-align: center;
+    }
+    .link-home:first-child{
+        line-height: 60px;
+        border-right: solid 1px #f1f1f1;
+    }
+    .link-home:nth-child(2){
+        border-bottom: solid 1px #f1f1f1;
+    }
+    .link-home:nth-child(3){
+        border-right: solid 1px #f1f1f1;
+    }
+
+    #dropdownMenu2 .stiky-name{
+        display: none;
+    }
+    .logi-reg .drop-menu{
+        left: -150px;
+    }
+    .index-logeado .dropdown-menu{
+        left: -140px;
+    }
+    .index-logeado .stiky-name{
+        display: none;
+    }
+    .link-det{
+        background: #fff;
+        min-height: 60px;
+        font-size: 14px;
+        font-weight: 600;
+        padding-right: 5px;
+        padding-left: 5px;
+    }
+    .link-det.pad{
+        padding-top: 15px;
+    }
+    .link-det i{
+        font-weight: 100;
+        font-size: 16px;
+        color: rgb(15, 135, 191);
+    }
+    .comments_details .comentarios-personales  .date{
+        position: relative;
+        margin-bottom: 0;
+        margin-top: 10px;
+        top:0;
+        right: 0;
+    }
+    .datos-principales div{
+        padding: 0;
+    }
+
+    .col-md-12.comments_details{
+        margin: 15px 0 0 0;
+    }
+    .block-a, .block-b{
+        width: 100%;
+    }
+    .block-b{
+        float: none;
+        margin-top: 15px;
+    }
+    .zona-contactanos{
+        padding:0;
+        margin-bottom: 15px;
+    }
+    .card-header{
+        display: none;
+    }
+    .card-header-responsive{
+        display: block;
+    }
+    .card-header-responsive .datos-direccion h1{
+        max-width: 225px;
+    }
+    .datos-icon-header{
+        right: 10px;
+        top: 20px;
+    }
+    .card-header-responsive .datos-header{
+        margin-bottom: 0;
+        height: auto;
+    }
+    #marker{
+        position: absolute;
+        left: 7px;
+    }
+    .container-breadcrumb{
+        display: none;
+    }
+    #dropdownMenustiky-responsive{
+        display: inline-block;
+        color: #fff;
+        font-size: 30px;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    #dropdownMenustiky{
+        display: none;
+    }
+    .navbar-brand{
+        display: none;
+    }
+    .navbar-brand-responsive img{
+        height: 60px;
+    }
+    .navbar-brand-responsive{
+        display: inline-block;
+        position: absolute;
+        left: 50%;
+        top:50%;
+        transform: translate(-50%,-50%);
+    }
+    .form-stiky{
+        display: none;
+    }
+
     #menu-index-bottom ul li{
         width: 50%;
     }

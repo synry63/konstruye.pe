@@ -332,6 +332,7 @@ Mensaje de Alert - Ninguno Elemento
 ===================================*/
 .alerta-mensaje-ninguno {
     text-align: center;
+    padding: 40px 20px;
 }
 .alerta-mensaje-ninguno p i {
     text-align: center;

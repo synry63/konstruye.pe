@@ -151,8 +151,11 @@
 
         </div>
     {% else %}
-        <h1 style="text-align:center;font-size: 50px;margin-bottom: 15px;color: #1C9CD9"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i></h1>
-        <h2 style="text-align:center;">Este Negocio no tiene proyectos</h2>
+        <div style="padding: 40px 20px 0">
+            <h1 style="text-align:center;font-size: 50px;margin-bottom: 15px;color: #1C9CD9"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i></h1>
+            <h2 style="text-align:center;">Este Negocio no tiene proyectos</h2>
+        </div>
+
     {% endif %}
 
 
@@ -206,7 +209,7 @@
                 {% endfor %}
             {% else %}
                 <section class="alerta-mensaje-ninguno">
-                    <p><i class="fa fa-exclamation-triangle" aria-hidden="true"></i></p>
+                    <p><i class="fa fa-comments" aria-hidden="true"></i></p>
                     <p>Aun no se ha realizado ningún comentario.</p>
                 </section>
             {% endif %}

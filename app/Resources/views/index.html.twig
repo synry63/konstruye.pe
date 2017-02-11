@@ -40,7 +40,7 @@
                     </a>
 
                         {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                            <div class="dropdown index-logeado" style="margin-right: -12px">
+                            <div class="dropdown index-logeado" style="margin-right: 10px">
                                 <div class="dropdown-toggle" type="button" id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                                     {% if app.user.profile is not null %}
                                         <img class="img-circle" width="50px" src="{{ vich_uploader_asset(app.user.profile, 'profileFile') }}" alt="">
@@ -153,6 +153,29 @@
 
     </div>
 
+    <div  id="menu-index-bottom-responsive">
+        <a class="link-home" href="{{ path('lisdato_seccion',{'slug_seccion':'proveedores'}) }}">
+            <div class="link-det">
+                <i class="fa fa-truck" aria-hidden="true"></i> Proveedores
+            </div>
+        </a>
+        <a class="link-home" href="{{ path('lisdato_seccion',{'slug_seccion':'compra-venta-y-alquiler-inmuebles'}) }}">
+            <div class="link-det pad">
+                <i class="fa fa-home" aria-hidden="true"></i> Compra venta y alquiler de inmuebles
+            </div>
+        </a>
+        <a class="link-home" href="{{ path('lisdato_seccion',{'slug_seccion':'especialistas-servicios-personales'}) }}">
+            <div class="link-det pad">
+                <i class="fa fa-users" aria-hidden="true"></i> Especialistas servicios personales
+            </div>
+        </a>
+        <a class="link-home" href="{{ path('lisdato_seccion',{'slug_seccion':'constructoras-e-inmobiliarias'}) }}">
+            <div class="link-det pad">
+                <i class="fa fa-building-o" aria-hidden="true"></i> Constructoras e inmobiliarias
+            </div>
+        </a>
+
+    </div>
 
 
 
@@ -477,7 +500,7 @@
                         loop:true,
                         autoplay:true,
                         layout:'fullscreen',
-                        fullscreenMargin: 85,
+                        fullscreenMargin: 127,
                         speed:20
                     });
 

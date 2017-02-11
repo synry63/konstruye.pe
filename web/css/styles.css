@@ -682,7 +682,7 @@ Slider
 Show_Proveedores
 =======================*/
 .btn-comentar {
-    width: 98px;
+    width: auto;
     margin-top: 15px;
 }
 
@@ -885,51 +885,4 @@ Contáctenos
     background: url(../images/assets/contactenos_fondo.jpg) center/cover fixed;
 }
 
-
-/*=============
-Responsive
-=============*/
-@media only screen and (max-width:700px){
-
-    .menu-principal ul:first-child li:first-child, .menu-principal ul:first-child li:last-child{
-        margin-top: 0;
-        padding-top: 0;
-    }
-    .menu-principal .navbar-left li{
-        width: auto;
-        text-align: center;
-    }
-    .nav-principal2{
-        display: none !important;
-    }
-    .menu-principal2{
-        display: none;
-    }
-    .nav-principal .menu-principal .navbar-right li{
-        width: 100%;
-    }
-    .nav-principal .navbar-right #registro{
-        border-radius: 0;
-    }
-    /*
-    .content-slider{
-        margin-top: 50px;
-    }*/
-    #search-cop{
-        display: none;
-    }
-    .buscador_principal{
-        margin: 5px auto 25px auto;
-        padding: 5px;
-        border-radius: 5px;
-    }
-
-    .logo_prin{
-        display: none;
-    }
-    .logo_resp{
-        display: block;
-    }
-
-}
 

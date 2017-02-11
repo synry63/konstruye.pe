@@ -27,9 +27,10 @@
         <div class="container-breadcrumb marging-top">
             {{ wo_render_breadcrumbs() }}
         </div>
-        <section class="header">
-            <div class="col-md-12">
-                <div class="row">
+
+
+        <div class="row">
+            <div class="col-md-12 card-header">
                     <div class="col-md-8 datos-header">
 
                         <div class="datos-direccion">
@@ -48,256 +49,279 @@
                         </div>
                     </div>
                     <div class="col-md-4 zona-precio" style="padding: 0">
-                            <div class="zona-precio-contenido">
-                                <div class="precio">
-                                    <span class="titulo-zona-inmueble">Desde:</span>
-                                    <span class="precio-zona-inmueble"> S/ {{ negocio.precioSoles|number_format(2, '.', ',') }}</span>
-                                </div>
-
-                                <div class="zona-calcula-hipoteca">
-                                    <a class="calcula-hipoteca" href="#">CALCULA TU HIPOTECA</a>
-                                </div>
+                        <div class="zona-precio-contenido">
+                            <div class="precio">
+                                <span class="titulo-zona-inmueble">Desde:</span>
+                                <span class="precio-zona-inmueble"> S/ {{ negocio.precioSoles|number_format(2, '.', ',') }}</span>
                             </div>
+                            <div class="zona-calcula-hipoteca">
+                                <p class="calcula-hipoteca">ó $ 500,000.00</p>
+                            </div>
+
+                        </div>
                     </div>
-                </div>
+
             </div>
-        </section>
+        </div>
+
 
         <!-- SLIDER -->
-        <section class="slider-inmueble">
-            <div class="col-md-12" style="padding: 0">
-                    <div class="ms-gallery-template" id="ms-gallery-1" >
-                        <!-- masterslider -->
-                        <div class="master-slider ms-skin-black-2 round-skin" id="masterslider" >
-                            <div class="ms-slide">
-                                <img src="{{ asset('css/blank.gif') }}" data-src="{{ asset('images/comprayventa.jpg') }}" alt="lorem ipsum dolor sit"/>
-                                <img src="{{ asset('images/comprayventa.jpg') }}" alt="thumb-1" class="ms-thumb"/>
-                                <div class="ms-info">
-                                    {{ negocio.nombre }}
-                                </div>
-                            </div>
-                            <div class="ms-slide">
-                                <img src="{{ asset('css/blank.gif') }}" data-src="{{ asset('images/comprayventa.jpg') }}" alt="lorem ipsum dolor sit"/>
-                                <img src="{{ asset('images/comprayventa.jpg') }}" alt="thumb-1" class="ms-thumb"/>
-                                <div class="ms-info">
-                                    {{ negocio.nombre }}
-                                </div>
-                            </div>
-                            <div class="ms-slide">
-                                <img src="{{ asset('css/blank.gif') }}" data-src="{{ asset('images/comprayventa.jpg') }}" alt="lorem ipsum dolor sit"/>
-                                <img src="{{ asset('images/comprayventa.jpg') }}" alt="thumb-1" class="ms-thumb"/>
-                                <div class="ms-info">
-                                    {{ negocio.nombre }}
-                                </div>
-                            </div>
-                        </div>
-                        <!-- end of masterslider -->
-                    </div>
+
+        <div class="master-slider ms-skin-default" id="masterslider">
+            <div class="ms-slide">
+                <img src="{{ asset('images/comprayventa.jpg') }}" alt="" />
             </div>
-        </section>
-        
-        <section class="body">
-            <div class="col-md-12 top-margin" style="padding: 0">
-
-                    <div class="col-md-8 padding-left-right">
-                        <div class="col-md-6 padding-left-right">
-                            <div class="data-izquierda">
-                                <div class="datos-izquierda">
-                                    <div class="datos-principales">
-                                        <h3 class="datos-principales-titulo">Datos Principales</h3>
-                                        <ul>
-                                            <li class="lista-datos-principales">
-                                                <span class="icomoon">
-                                                    <span class="icon-proyecto"></span> Proyecto Inmobiliario
-                                                </span>
-                                                <span></span>
-                                            </li>
-                                            <li class="lista-datos-principales">
-                                               <span class="icomoon">
-                                                   <span class="icon-soles"></span> Precio Desde {{ negocio.precioSoles }}
-                                               </span>
-                                                <span></span>
-                                            </li>
-                                            <li class="lista-datos-principales">
-                                               <span class="icomoon">
-                                                   <span class="icon-dolares"></span> Precio en Dólares desde US$ {{ negocio.precioDolares }}
-                                               </span>
-                                                <span></span>
-                                            </li>
-                                            <li class="lista-datos-principales">
-                                               <span class="icomoon">
-                                                   <span class="icon-areato"></span> {{ negocio.areaTotal }} Área Total
-                                               </span>
-                                                <span></span>
-                                            </li>
-                                            <li class="lista-datos-principales">
-                                               <span class="icomoon">
-                                                   <span class="icon-areate"></span> {{ negocio.areaTechada }} Área Techada
-                                               </span>
-                                                <span></span>
-                                            </li>
-                                            <li class="lista-datos-principales">
-                                               <span class="icomoon">
-                                                   <i class="fa fa-bed" aria-hidden="true"></i> {{ negocio.dormitorios }} Dormitorios
-                                               </span>
-                                                <span></span>
-                                            </li>
-                                            <li class="lista-datos-principales">
-                                               <span class="icomoon">
-                                                   <span class="icon-bano"></span> {{ negocio.banos }} Baños
-                                               </span>
-                                                <span></span>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div id="mapa" class="datos-ubicacion">
-                                    <div class="contenedor-ubicacion">
-                                        <h3 class="datos-titulo-ubicacion">Ubicación</h3>
-                                        <div class="datos-direc">
-                                            <p><i class="fa fa-map-marker" aria-hidden="true"></i> {{ negocio.direccion~", "~negocio.distrito.nombre~", "~negocio.provincia.nombre}}</p><br>
-                                            <div>
-                                                {% if map is defined %}
-                                                    {{ google_map(map) }}
-                                                {% endif %}
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 padding-right">
-                            <div class="data-izquierda_b">
-                                <div class="datos-derecha">
-                                    <div class="datos-descripcion">
-                                        <h3 class="datos-descripcion-titulo">Descripción</h3>
-                                        <p class="descripcion-negocio">{{ negocio.description|nl2br  }}</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="datos-servicios">
-                                <div class="contenedor-servicios">
-                                    <h3 class="datos-titulo-servicios">Servicios</h3>
-                                    <div class="">
-                                        {#{{ dump(negocio.sevicios[0]) }}#}
-
-                                            {% for servicio in negocio.sevicios%}
-                                                {% if servicio.servicio.nombre is not null %}
-                                                    <p style="padding: 5px;"><span class="icon-{{ servicio.servicio.nombre }}" style="font-family: 'icomoon'"></span> {{ servicio.servicio.nombre }}</p>
-                                                {% endif %}
-                                            {% endfor %}
-
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="datos-generales">
-                                <div class="contenedor-generales">
-                                    <h3 class="datos-titulo-generales">Generales</h3>
-                                    <div class="">
-                                        {% for general in negocio.generales %}
-                                            <p style="padding: 5px;"><span class="icon-{{general.general.nombre }}" style="font-family: 'icomoon'"></span> {{ general.general.nombre }}</p>
-                                        {% endfor %}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="col-md-4 zona-contactanos" style="padding-right: 0">
-                            <div class="zona-contactanos-contenido">
-                                <div class="zona-contactanos-header">
-                                    {% if negocio.constructora is not null %}
-                                        <a class="link-inmobiliaria" href="{{ path('show_negocio',
-                                        {"slug_negocio":negocio.constructora.slug}) }}" target="_blank">
-                                            <div class="col-md-4" style="padding: 10px">
-                                                <img class="img-responsive" width="100%" src="{{ vich_uploader_asset(negocio.constructora.logo, 'logoFile') }}" alt=""/>
-                                            </div>
-                                            <div class="col-md-8">
-                                                <h1 style="font-size: 20px;font-weight: bold;padding: 10px 0">{{ negocio.constructora.nombre }}</h1>
-                                            </div>
-
-                                        </a>
-                                    {% endif %}
-
-                                </div>
-                                <div class="zona-telefono">
-                                    <i class="fa fa-phone" aria-hidden="true"></i> VER TELÉFONO
-                                </div>
-                                <div class="zona-formulario">
-                                    {% set ajax_popup = '' %}
-                                    {% if app.user is not null %}
-                                        {% set ajax_popup = 'simple-ajax-popup' %}
-                                    {% endif %}
-                                    <a class="{{ajax_popup~ ' btn btn-konstruye' }}" href="{{ path('negocio_solicitar_cotizacion',{'slug_negocio':negocio.slug}) }}">Contactar Anunciante</a>
-                                </div>
-                            </div>
-                    </div>
-
+            <div class="ms-slide">
+                <img src="{{ asset('images/comprayventa.jpg') }}" alt="" />
             </div>
-            <div class="col-md-12 comments_details">
-                {#FlashBack#}
-                {% for label, flash in app.session.flashbag.get('success') %}
-                    <div id="success" data-success="{{ flash }}"> </div>
-                {% endfor %}
-                <div class="row">
-                    <div class="col-md-8" style="background: #fff;padding: 20px;border: solid 1px rgba(0,0,0,.2);">
-                        <h2 class="datos-titulo-comentarios">Comentarios ({{ comentarios|length }})</h2>
-                        {% if negocio.comentarios|length > 0 %}
-                            {% for comentario in negocio.comentarios %}
-                                <div class="media comment">
-                                    <div class="media-left">
-                                        {% if comentario.user.profile is not null %}
-                                            <img class="img-circle" width="70px" src="{{ vich_uploader_asset(comentario.user.profile, 'profileFile') }}">
-                                        {% else %}
-                                            <img class="img-circle" alt="user icon" width="70px" src="http://placehold.it/100x100x?text=Foto+Perfil">
-                                        {% endif %}
+            <div class="ms-slide">
+                <img src="{{ asset('images/comprayventa.jpg') }}" alt="" />
+            </div>
+            <div class="ms-slide">
+                <img src="{{ asset('images/comprayventa.jpg') }}" alt="" />
+            </div>
 
+        </div>
 
-                                    </div>
-                                    <div class="media-body comentarios-personales" style="border: 1px solid rgba(0,0,0,.1)">
-                                        <h3>{{ comentario.titulo }}</h3>
-                                        <div class="seccion-nombre-rating">
-                                            <span>{{ comentario.user.nombres }} -</span>
-                                            <div class="rateYo_comments" data-rating="{{ comentario.nota }}"></div>
-                                        </div>
-                                        <div class="date">{{ comentario.adedAt|date("d F, Y") }}</div>
-                                        <p style="line-height: 18px">
-                                            {{ comentario.comentario }}
-                                        </p>
-                                    </div>
-                                </div>
-                            {% endfor %}
+        <div class="row">
+            <div class="col-md-12 card-header-responsive">
+                <div class="col-md-8 datos-header">
+
+                    <div class="datos-direccion">
+                        <h1> {{ negocio.nombre }}</h1>
+                        <div>
+                            <a href="#mapa"><i id="marker" class="fa fa-map-marker" aria-hidden="true"></i> <p>{{ negocio.direccion~", "~negocio.distrito.nombre~", "~negocio.provincia.nombre}}</p></a>
+                        </div>
+                    </div>
+                    <div class="datos-icon-header">
+                        {% if moy is null %}
+                            <div id="rateYo2" data-rating="0"></div>
                         {% else %}
-                            <section class="alerta-mensaje-ninguno">
-                                <p><i class="fa fa-exclamation-triangle" aria-hidden="true"></i></p>
-                                <p>Se el primero en dejar tú comentario.</p>
-                            </section>
+                            <div id="rateYo2" data-rating="{{ moy }}"></div>
                         {% endif %}
 
-                        {% if app.user is not null %}
-                            <p>
-                                {% if myc is not null %}
-                                    <a class="simple-ajax-popup btn btn-konstruye btn-comentar" href="{{ path('negocio_me_comentar_edit',{'slug_negocio':negocio.slug}) }}">Editar</a>
-                                {% else %}
-                                    {#No entra por que nunca es Null#}
-                                    <a class="simple-ajax-popup btn btn-konstruye btn-comentar" href="{{ path('negocio_me_comentar_new',{'slug_negocio':negocio.slug}) }}">Comentar</a>
-                                {% endif %}
-                            </p>
-
-                        {% else %}
-                            <span class="media contenedor-registrate">
-                                <a style="color: #009FE3;font-weight: 500" href="{{ path('fos_user_registration_register') }}">Registrarse</a>
-                                ó
-                                <a style="color: #009FE3;font-weight: 500" href="{{ path('fos_user_security_login') }}">Inicia Sesión</a>
-                                para poder comentar.
-                            </span>
-                        {% endif %}
                     </div>
                 </div>
+                <div class="col-md-4 zona-precio" style="padding: 0">
+                    <div class="zona-precio-contenido">
+                        <div class="precio">
+                            <span class="titulo-zona-inmueble">Desde:</span>
+                            <span class="precio-zona-inmueble"> S/ {{ negocio.precioSoles|number_format(2, '.', ',') }}</span>
+                        </div>
+                        <div class="zona-calcula-hipoteca">
+                            <p class="calcula-hipoteca">ó $ 500,000.00</p>
+                        </div>
+
+                    </div>
+                </div>
+
             </div>
-        </section>
+        </div>
+
+
+
+        <div class="col-md-8 padding-left-right" style="margin-top: 15px; display: inline-block">
+
+                <div class="col-md-12 datos-izquierda" style="margin-bottom: 15px">
+                    <div class="datos-descripcion">
+                        <h3 class="datos-descripcion-titulo">Descripción</h3>
+                        <p class="descripcion-negocio">{{ negocio.description|nl2br  }}1</p>
+                    </div>
+                </div>
+
+                <div class="col-md-12 datos-izquierda" style="margin-bottom: 15px">
+                    <div class="datos-principales">
+                        <h3 class="datos-principales-titulo">Datos Principales</h3>
+                        <div class="col-md-6">
+                            <ul>
+                                <li class="lista-datos-principales">
+                                    <span class="icomoon">
+                                        <span class="icon-proyecto"></span> Proyecto Inmobiliario
+                                    </span>
+                                    <span></span>
+                                </li>
+                                <li class="lista-datos-principales">
+                                   <span class="icomoon">
+                                       <span class="icon-soles"></span> Precio en Soles desde S/. {{ negocio.precioSoles |number_format(2, '.', ',') }}
+                                   </span>
+                                    <span></span>
+                                </li>
+                                <li class="lista-datos-principales">
+                                   <span class="icomoon">
+                                       <span class="icon-dolar"></span> Precio en Dólares desde US$ {{ negocio.precioDolares |number_format(2, '.', ',') }}
+                                   </span>
+                                    <span></span>
+                                </li>
+                                <li class="lista-datos-principales">
+                                   <span class="icomoon">
+                                       <span class="icon-bano"></span> {{ negocio.banos }} Baños
+                                   </span>
+                                    <span></span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <ul>
+                                <li class="lista-datos-principales">
+                                   <span class="icomoon">
+                                       <span class="icon-area"></span>  Área Total {{ negocio.areaTotal }} m2
+                                   </span>
+                                    <span></span>
+                                </li>
+                                <li class="lista-datos-principales">
+                                   <span class="icomoon">
+                                       <span class="icon-area"></span>  Área Techada {{ negocio.areaTechada }} m2
+                                   </span>
+                                    <span></span>
+                                </li>
+                                <li class="lista-datos-principales">
+                                   <span class="icomoon">
+                                       <span class="icon-bed"></span> {{ negocio.dormitorios }} Dormitorios
+                                   </span>
+                                    <span></span>
+                                </li>
+
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <div class="col-md-12 padding-left-right" style="margin-bottom: 15px">
+
+                    <div class="datos-servicios datos-izquierda block-a">
+                        <h3 class="datos-titulo-servicios">Servicios</h3>
+                        <div class="konstruye-font">
+
+                            {% for servicio in negocio.sevicios%}
+                                {% if servicio.servicio.nombre is not null %}
+                                    <p style="padding: 5px;"><span class="icon-{{ servicio.servicio.id }}b"></span> {{ servicio.servicio.nombre }}</p>
+                                {% endif %}
+                            {% endfor %}
+
+                        </div>
+
+                    </div>
+                    <div class="datos-generales datos-izquierda block-b">
+
+                        <h3 class="datos-titulo-generales">Generales</h3>
+                        <div class="konstruye-font">
+
+                            {% for general in negocio.generales %}
+                                <p style="padding: 5px;"><span class="icon-{{general.general.id }}"></span> {{ general.general.nombre }}</p>
+                            {% endfor %}
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-md-12 datos-izquierda">
+                    <div id="mapa" class="datos-ubicacion">
+                        <h3 class="datos-titulo-ubicacion">Ubicación</h3>
+                        <div class="datos-direc">
+                            <p style="margin-bottom: 10px"><i class="fa fa-map-marker" aria-hidden="true"></i> {{ negocio.direccion~", "~negocio.distrito.nombre~", "~negocio.provincia.nombre}}</p>
+                            <div>
+                                {% if map is defined %}
+                                    {{ google_map(map) }}
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-12 comments_details">
+                    {#FlashBack#}
+                    {% for label, flash in app.session.flashbag.get('success') %}
+                        <div id="success" data-success="{{ flash }}"> </div>
+                    {% endfor %}
+                    <div class="row">
+                        <div class="col-md-12" style="background: #fff;padding: 20px;border: solid 1px rgba(0,0,0,.2);">
+                            <h2 class="datos-titulo-comentarios">Comentarios ({{ comentarios|length }})</h2>
+                            {% if negocio.comentarios|length > 0 %}
+                                {% for comentario in negocio.comentarios %}
+                                    <div class="media comment">
+                                        <div class="media-left">
+                                            {% if comentario.user.profile is not null %}
+                                                <img class="img-circle" width="70px" src="{{ vich_uploader_asset(comentario.user.profile, 'profileFile') }}">
+                                            {% else %}
+                                                <img class="img-circle" alt="user icon" width="70px" src="http://placehold.it/100x100x?text=Foto+Perfil">
+                                            {% endif %}
+
+
+                                        </div>
+                                        <div class="media-body comentarios-personales" style="border: 1px solid rgba(0,0,0,.1)">
+                                            <h3>{{ comentario.titulo }}</h3>
+                                            <div class="seccion-nombre-rating">
+                                                <span>{{ comentario.user.nombres }} -</span>
+                                                <div class="rateYo_comments" data-rating="{{ comentario.nota }}"></div>
+                                            </div>
+                                            <div class="date">{{ comentario.adedAt|date("d F, Y") }}</div>
+                                            <p style="line-height: 18px">
+                                                {{ comentario.comentario }}
+                                            </p>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            {% else %}
+                                <section class="alerta-mensaje-ninguno">
+                                    <p><i class="fa fa-exclamation-triangle" aria-hidden="true"></i></p>
+                                    <p>Se el primero en dejar tú comentario.</p>
+                                </section>
+                            {% endif %}
+
+                            {% if app.user is not null %}
+                                <p>
+                                    {% if myc is not null %}
+                                        <a class="simple-ajax-popup btn btn-konstruye btn-comentar" href="{{ path('negocio_me_comentar_edit',{'slug_negocio':negocio.slug}) }}">Editar mi comentario</a>
+                                    {% else %}
+                                        {#No entra por que nunca es Null#}
+                                        <a class="simple-ajax-popup btn btn-konstruye btn-comentar" href="{{ path('negocio_me_comentar_new',{'slug_negocio':negocio.slug}) }}">Comentar</a>
+                                    {% endif %}
+                                </p>
+
+                            {% else %}
+                                <span class="media contenedor-registrate">
+                    <a style="color: #009FE3;font-weight: 500" href="{{ path('fos_user_registration_register') }}">Registrarse</a>
+                    ó
+                    <a style="color: #009FE3;font-weight: 500" href="{{ path('fos_user_security_login') }}">Inicia Sesión</a>
+                    para poder comentar.
+                </span>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        <div class="col-md-4 zona-contactanos" style="padding-right: 0; margin-top: 15px">
+            <div class="zona-contactanos-contenido">
+                <div class="zona-contactanos-header">
+                    <h3 class="datos-descripcion-titulo">Datos del Anunciante</h3>
+                    {% if negocio.constructora is not null %}
+                        <a class="link-inmobiliaria" href="{{ path('show_negocio',
+                        {"slug_negocio":negocio.constructora.slug}) }}" target="_blank">
+                            <div class="col-md-4 col-xs-6" style="padding: 10px">
+                                <img class="img-responsive" width="100%" src="{{ vich_uploader_asset(negocio.constructora.logo, 'logoFile') }}" alt=""/>
+                            </div>
+                            <div class="col-md-8 col-xs-6">
+                                <h1 style="font-size: 20px;font-weight: bold;padding: 10px 0">{{ negocio.constructora.nombre }}</h1>
+                            </div>
+
+                        </a>
+                    {% endif %}
+
+                </div>
+                <div class="zona-formulario">
+                    {% set ajax_popup = '' %}
+                    {% if app.user is not null %}
+                        {% set ajax_popup = 'simple-ajax-popup' %}
+                    {% endif %}
+                    <a class="{{ajax_popup~ ' btn btn-konstruye' }}" href="{{ path('negocio_solicitar_cotizacion',{'slug_negocio':negocio.slug}) }}">Contactar Anunciante</a>
+                </div>
+            </div>
+        </div>
+
     </div>
 {#</div>#}
 {% endblock fos_user_content %}
@@ -310,7 +334,11 @@
     <script type="text/javascript" src="{{ asset('js/jquery.rateyo.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/fixto.min.js') }}"></script>
 <script>
+
+
+
     $(document).ready(function(){
+
 
         //Noty
         var flashMessage= $('#success').attr('data-success');
@@ -327,9 +355,6 @@
             });
         }
 
-        $('.zona-contactanos').fixTo('.padding-left-right', {
-           top: 80
-        });
 
 
         {#Magnific Popup#}
@@ -337,24 +362,19 @@
             type: 'ajax'
         });
 
-        {#Slider#}
+
         var slider = new MasterSlider();
+        slider.control('arrows' ,{insertTo:'#masterslider'});
+        slider.control('bullets');
+
         slider.setup('masterslider' , {
-            width:1125,
+            width:1170,
             height:500,
             space:0,
-            layout : 'fillwidth',
-            preload:3,
-            view:'basic',
             grabCursor:false,
-            autoplay: true
-
+            view:'basic',
+            speed:20
         });
-        slider.control('arrows');
-
-        var gallery = new MSGallery('ms-gallery-1' , slider);
-        gallery.setup();
-
 
 
         {#Rateyo#}
@@ -372,7 +392,7 @@
 
 
         var rating = $("#rateYo").attr("data-rating");
-
+        var rating2 = $("#rateYo2").attr("data-rating");
 
         $("#rateYo").rateYo({
             rating: rating,
@@ -380,6 +400,19 @@
             starWidth: "20px",
             normalFill: "#A0A0A0",
             readOnly: true
+        });
+
+        $("#rateYo2").rateYo({
+            rating: rating2,
+            ratedFill: color,
+            starWidth: "20px",
+            normalFill: "#A0A0A0",
+            readOnly: true
+        });
+
+
+        $('.zona-contactanos').fixTo('.padding-left-right', {
+            top: 80
         });
 
     });
