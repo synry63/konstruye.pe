@@ -5,7 +5,7 @@
     <h1 class="title-dashboard">Cambiar Banner</h1>
 
 
-    <div class="col-md-6">
+    <div class="col-md-8 col-md-offset-2">
         <h2 class="preview-title">Vista Previa</h2>
         <div class="col-md-12 listado-negocios">
             <div class="col-md-2" style="text-align: center">
@@ -60,7 +60,7 @@
                 {% if negocio.banner is not null %}
                     <img style="border: dotted red 3px" src="{{ vich_uploader_asset(negocio.banner, 'bannerFile','AppBundle\\Entity\\Banner') }}" alt="{{ negocio.nombre }}" />
                 {% else %}
-                    <img style="border: dotted red 3px" src="http://placehold.it/350x150" alt="{{ negocio.nombre }}" />
+                    <img style="border: dotted red 3px" src="http://placehold.it/350x170" alt="{{ negocio.nombre }}" />
                 {% endif %}
             </div>
 
@@ -75,13 +75,13 @@
     </div>
 
 
-    <div class="col-md-6" style="padding: 20px 0">
+    <div class="col-md-6 col-md-offset-3" style="padding: 20px 0">
 
         <div class="recomendacion">
             <i class="fa fa-lightbulb-o" aria-hidden="true"></i>
             <div class="pright">
                 <ul>
-                    <li>El Tamaño recomendado del banner es de 275x175px</li>
+                    <li>El Tamaño recomendado del banner es de 350x170px</li>
                     <li>Formato requerido JPG</li>
                 </ul>
             </div>

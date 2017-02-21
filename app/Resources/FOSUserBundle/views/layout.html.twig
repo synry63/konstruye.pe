@@ -1,408 +1,431 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        {% block stylesheets %}
-            <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
-            <link rel="stylesheet" href="{{ asset('css/bootstrap-select.min.css') }}">
-            <link rel="stylesheet" href="{{ asset('css/jquery-ui.css') }}">
-            <link rel="stylesheet" href="{{ asset('css/main.css') }}">
-            <link rel="stylesheet" href="{{ asset('css/animate.css') }}">
-            <link rel="stylesheet" href="{{ asset('css/croppic.css') }}">
-            <link rel="stylesheet" href="{{ asset('css/tooltipster.bundle.min.css') }}">
-            <link rel="stylesheet" href="{{ asset('css/tooltipster-sideTip-shadow.min.css') }}">
-            {#Font-awesome CDN#}
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
-            <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
-            <link rel="stylesheet" href="{{ asset('css/styles_javier.css') }}">
-            <link rel="stylesheet" href="{{ asset('css/styles_jesus.css') }}">
-            <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300italic,300,400italic,800italic,800,700italic,700,600italic,600' rel='stylesheet' type='text/css'>        {% endblock %}
-        {% block title %}
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/bootstrap-select.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/jquery-ui.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/main.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/animate.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/croppic.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/tooltipster.bundle.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/tooltipster-sideTip-shadow.min.css') }}">
+        {#Font-awesome CDN#}
+        <link rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+        <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/styles_javier.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/styles_jesus.css') }}">
+        <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300italic,300,400italic,800italic,800,700italic,700,600italic,600'
+              rel='stylesheet' type='text/css'>        {% endblock %}
+    {% block title %}
 
-        {% endblock title %}
-        <style>
-            #cropContainerMinimal {
-                width: 150px;
-                height: 150px;
-                position:relative; /* or fixed or absolute */
-            }
-            .white-popup-block {
-                background: #FFF;
-                padding: 20px 30px;
-                text-align: left;
-                max-width: 650px;
-                margin: 40px auto;
-                position: relative;
-            }
-        </style>
+    {% endblock title %}
+    <style>
+        #cropContainerMinimal {
+            width: 150px;
+            height: 150px;
+            position: relative; /* or fixed or absolute */
+        }
 
-    </head>
+        .white-popup-block {
+            background: #FFF;
+            padding: 20px 30px;
+            text-align: left;
+            max-width: 650px;
+            margin: 40px auto;
+            position: relative;
+        }
+    </style>
 
-
-    <body class="background-image">
-    <script>
-        window.fbAsyncInit = function() {
-            FB.init({
-                appId      : '1586864594952225',
-                xfbml      : true,
-                version    : 'v2.8'
-            });
-        };
-
-        (function(d, s, id){
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) {return;}
-            js = d.createElement(s); js.id = id;
-            js.src = "//connect.facebook.net/en_US/sdk.js";
-            fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));
-    </script>
-
-        <div id="wrap">
-            {#
-            <nav  class="navbar navbar-default nav-principal">
-                <div class="container">
-                    <div class="navbar-header">
-
-                        <button id="menu-brand" type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-
-                        <button id="search-brand" type="button" class="navbar-toggle collapsed">
-                            <i class="fa fa-search" aria-hidden="true"></i>
-                        </button>
-
-                        <a class="navbar-brand logo_prin" href="{{ path('homepage') }}"><img width="200" alt="Brand" src="{{ asset('images/logo-rc-color.svg') }}"></a>
-                        <a class="navbar-brand logo_resp" href="{{ path('homepage') }}"><img width="150"alt="Brand" src="{{ asset('images/logo-min-color.svg') }}"></a>
-
-                    </div>
-
-                    <div class="collapse navbar-collapse menu-principal" id="bs-example-navbar-collapse-1">
-                        {% set menuItem = knp_menu_get('AppBundle:Builder:mainMenu', [], {'nav': true}) %}
-                        {{ knp_menu_render(menuItem) }}
-                        <ul class="nav navbar-nav navbar-right">
-
-                            <li>
-                                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                                    <div class="dropdown">
-                                        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                            {% if app.user.profile is not null %}
-                                                <img class="img-circle" width="50px" src="{{ vich_uploader_asset(app.user.profile, 'profileFile') }}" alt="">
-                                            {% else %}
-                                                <img class="img-circle" width="50px" src="{{ asset('images/assets/perfil_icon.png') }}" alt="">
-                                            {% endif %}
-                                            <i class="fa fa-chevron-down" aria-hidden="true" style="position: absolute;top: 50%;transform: translate(30%,-50%);color: #808080;"></i>
-                                        </button>
-                                        <ul class="dropdown-menu drop-menu" aria-labelledby="dropdownMenu1">
-                                            <a href="{{ path('profile_negocios_panel') }}"><i class="fa fa-briefcase" aria-hidden="true"></i> Panel de Negocios</a>
-                                            <a href="{{ path('fos_user_profile_show') }}"><i class="fa fa-user" aria-hidden="true"></i> Mi Perfil</a>
-                                            <a href="{{ path('fos_user_security_logout') }}">
-                                                <i class="fa fa-sign-out" aria-hidden="true"></i> {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
-                                            </a>
-
-                                        </ul>
-                                    </div>
+</head>
 
 
-                                {% else %}
-                                    <a id="registro" href="{{ path('fos_user_registration_register') }}">Registrarse</a>
-                                    <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+<body class="background-image">
+<script>
+    window.fbAsyncInit = function () {
+        FB.init({
+            appId: '1586864594952225',
+            xfbml: true,
+            version: 'v2.8'
+        });
+    };
 
-                                {% endif %}
-                            </li>
-                        </ul>
-                    </div><!-- /.navbar-collapse -->
+    (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {
+            return;
+        }
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div id="wrap">
+    {#
+    <nav  class="navbar navbar-default nav-principal">
+        <div class="container">
+            <div class="navbar-header">
+
+                <button id="menu-brand" type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+                <button id="search-brand" type="button" class="navbar-toggle collapsed">
+                    <i class="fa fa-search" aria-hidden="true"></i>
+                </button>
+
+                <a class="navbar-brand logo_prin" href="{{ path('homepage') }}"><img width="200" alt="Brand" src="{{ asset('images/logo-rc-color.svg') }}"></a>
+                <a class="navbar-brand logo_resp" href="{{ path('homepage') }}"><img width="150"alt="Brand" src="{{ asset('images/logo-min-color.svg') }}"></a>
+
+            </div>
+
+            <div class="collapse navbar-collapse menu-principal" id="bs-example-navbar-collapse-1">
+                {% set menuItem = knp_menu_get('AppBundle:Builder:mainMenu', [], {'nav': true}) %}
+                {{ knp_menu_render(menuItem) }}
+                <ul class="nav navbar-nav navbar-right">
+
+                    <li>
+                        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                            <div class="dropdown">
+                                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                    {% if app.user.profile is not null %}
+                                        <img class="img-circle" width="50px" src="{{ vich_uploader_asset(app.user.profile, 'profileFile') }}" alt="">
+                                    {% else %}
+                                        <img class="img-circle" width="50px" src="{{ asset('images/assets/perfil_icon.png') }}" alt="">
+                                    {% endif %}
+                                    <i class="fa fa-chevron-down" aria-hidden="true" style="position: absolute;top: 50%;transform: translate(30%,-50%);color: #808080;"></i>
+                                </button>
+                                <ul class="dropdown-menu drop-menu" aria-labelledby="dropdownMenu1">
+                                    <a href="{{ path('profile_negocios_panel') }}"><i class="fa fa-briefcase" aria-hidden="true"></i> Panel de Negocios</a>
+                                    <a href="{{ path('fos_user_profile_show') }}"><i class="fa fa-user" aria-hidden="true"></i> Mi Perfil</a>
+                                    <a href="{{ path('fos_user_security_logout') }}">
+                                        <i class="fa fa-sign-out" aria-hidden="true"></i> {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+                                    </a>
+
+                                </ul>
+                            </div>
 
 
+                        {% else %}
+                            <a id="registro" href="{{ path('fos_user_registration_register') }}">Registrarse</a>
+                            <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+
+                        {% endif %}
+                    </li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+
+
+        </div>
+    </nav>
+    #}
+
+
+    <nav class="navbar navbar-default nav-principal2 navbar-fixed-top">
+        <div class="container menu-principal2" style="position: relative;">
+
+
+            <a class="navbar-brand" href="{{ path('homepage') }}">
+                <img alt="Brand" src="{{ asset('images/logo-min-color.svg') }}">
+
+            </a>
+            <a class="navbar-brand-responsive" href="{{ path('homepage') }}">
+                <img class="" alt="Brand" src="{{ asset('images/logo-min-white.svg') }}">
+            </a>
+
+
+            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenustiky" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="true">
+                Menu <i class="fa fa-chevron-down" aria-hidden="true"></i>
+            </button>
+
+            <a href="javascript:void(0)" id="dropdownMenustiky-responsive">
+                <i class="fa fa-bars" aria-hidden="true"></i>
+            </a>
+
+            <div id="menu-stiky" class="dropdown-menu drop-menu konstruye-font" aria-labelledby="dropdownMenustiky">
+                <a
+                        class="item-stiky" href="{{ path('lisdato_seccion',{'slug_seccion':'proveedores'}) }}"><span
+                            class="icon-proveedores"></span> Proveedores</a>
+                <a class="item-stiky"
+                   href="{{ path('lisdato_seccion',{'slug_seccion':'compra-venta-y-alquiler-inmuebles'}) }}"><span
+                            class="icon-inmuebles"></span> Compra venta y alquiler de inmuebles</a>
+                <a class="item-stiky"
+                   href="{{ path('lisdato_seccion',{'slug_seccion':'especialistas-servicios-personales'}) }}"><span
+                            class="icon-especialistas"></span> Especialistas servicios personales</a>
+                <a class="item-stiky"
+                   href="{{ path('lisdato_seccion',{'slug_seccion':'constructoras-e-inmobiliarias'}) }}"><span
+                            class="icon-constructoras"></span> Constructoras e inmobiliarias</a>
+
+            </div>
+
+
+            <div class="form-stiky">
+                <div class="buttons-change">
+                    <div id="hide3" class="tooltip2" title="Buscador de Negocios"><i class="fa fa-briefcase"
+                                                                                     aria-hidden="true"></i></div>
+                    <div id="hide4" class="tooltip2" title="Buscador de Productos"><i class="fa fa-shopping-bag"
+                                                                                      aria-hidden="true"></i></div>
                 </div>
-            </nav>
-            #}
 
 
-            <nav  class="navbar navbar-default nav-principal2 navbar-fixed-top">
-                <div class="container menu-principal2" style="position: relative;">
+                <form id="s4" class="searcher" action="{{ path('search_global_negocios') }}" role="search">
+
+                    <select name="slug_seccion" class="selectpicker">
+                        <option value="todos">Buscar en Todo</option>
+                        <option value="constructoras-e-inmobiliarias" style="overflow: hidden">Constructoras e
+                            Inmobiliarias
+                        </option>
+                        <option value="especialistas-servicios-personales">Especialistas y Servicios Personales</option>
+                        <option value="proveedores">Proveedores</option>
+                    </select>
+                    <input name="search" class="form-control search" type="text"
+                           placeholder="Ejemplo: Carpintero, Trebol Celima"/>
+                    <input name="id" class="id" type="hidden"/>
+                    <input name="instance" class="instance" type="hidden"/>
+                </form>
+                <form id="s3" class="searcher-products" action="{{ path('search_global_productos') }}" role="search">
+
+                    <select name="slug_seccion" class="selectpicker">
+                        <option selected value="proveedores">Proveedores</option>
+                    </select>
+                    <input name="search" class="form-control search" type="text"
+                           placeholder="Ejemplo: Marmol, Madera, Mesas">
+                </form>
+            </div>
 
 
-                        <a class="navbar-brand" href="{{ path('homepage') }}">
-                            <img alt="Brand" src="{{ asset('images/logo-min-color.svg') }}">
-
-                        </a>
-                        <a class="navbar-brand-responsive" href="{{ path('homepage') }}">
-                            <img class="" alt="Brand" src="{{ asset('images/logo-min-white.svg') }}">
-                        </a>
-
-
-
-                    <button  class="btn btn-default dropdown-toggle" type="button" id="dropdownMenustiky" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                        Menu <i class="fa fa-chevron-down" aria-hidden="true"></i>
-                    </button>
-
-                    <a href="javascript:void(0)" id="dropdownMenustiky-responsive">
-                        <i class="fa fa-bars" aria-hidden="true"></i>
-                    </a>
-
-                    <ul id="menu-stiky" class="dropdown-menu drop-menu" aria-labelledby="dropdownMenustiky">
-                        <li><a href="{{ path('lisdato_seccion',{'slug_seccion':'proveedores'}) }}"><div><i class="fa fa-truck" aria-hidden="true"></i></div>Proveedores</a></li>
-                        <li><a href="{{ path('lisdato_seccion',{'slug_seccion':'compra-venta-y-alquiler-inmuebles'}) }}"><div><i class="fa fa-home" aria-hidden="true"></i></div>Compra venta y alquiler de inmuebles</a></li>
-                        <li><a style="padding-top: 32px;position: relative;" href="{{ path('lisdato_seccion',{'slug_seccion':'especialistas-servicios-personales'}) }}"><div><img src="{{ asset('images/esp_icon.svg') }}" alt=""></div>Especialistas servicios personales</a></li>
-                        <li><a href="{{ path('lisdato_seccion',{'slug_seccion':'constructoras-e-inmobiliarias'}) }}"><div><i class="fa fa-building-o" aria-hidden="true"></i></div>Constructoras e inmobiliarias</a></li>
-
-                    </ul>
-
-
-                    <div class="form-stiky">
-                        <div class="buttons-change">
-                            <div id="hide3" class="tooltip2" title="Buscador de Negocios"><i class="fa fa-briefcase" aria-hidden="true"></i></div>
-                            <div id="hide4" class="tooltip2" title="Buscador de Productos"><i class="fa fa-shopping-bag" aria-hidden="true"></i></div>
-                        </div>
-
-
-
-
-                        <form id="s4" class="searcher"  action="{{ path('search_global_negocios') }}" role="search">
-
-                            <select name="slug_seccion" class="selectpicker">
-                                <option value="todos">Buscar en Todo</option>
-                                <option value="constructoras-e-inmobiliarias" style="overflow: hidden">Constructoras e Inmobiliarias</option>
-                                <option value="especialistas-servicios-personales">Especialistas y Servicios Personales</option>
-                                <option value="proveedores">Proveedores</option>
-                            </select>
-                            <input name="search" class="form-control search" type="text" placeholder="Ejemplo: Carpintero, Trebol Celima"/>
-                            <input name="id" class="id" type="hidden"/>
-                            <input name="instance" class="instance" type="hidden"/>
-                        </form>
-                        <form id="s3" class="searcher-products" action="{{ path('search_global_productos') }}" role="search">
-
-                            <select name="slug_seccion" class="selectpicker">
-                                <option selected value="proveedores">Proveedores</option>
-                            </select>
-                            <input name="search" class="form-control search" type="text"  placeholder="Ejemplo: Marmol, Madera, Mesas">
-                        </form>
-                    </div>
-
-
-
-
-                        <div class="logi-reg" >
-                            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                                <div class="dropdown" style="margin-right: 10px">
-                                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                        {% if app.user.profile is not null %}
-                                            <img class="img-circle" width="50px" src="{{ vich_uploader_asset(app.user.profile, 'profileFile') }}" alt="">
-                                            <div class="stiky-name"><i class="fa fa-chevron-down" aria-hidden="true"></i></div>
-                                        {% else %}
-                                            <img class="img-circle" width="50px" src="{{ asset('images/assets/perfil_icon.png') }}" alt="">
-                                            <div class="stiky-name"><i class="fa fa-chevron-down" aria-hidden="true"></i></div>
-
-                                        {% endif %}
-
-
-                                    </button>
-                                    <ul class="dropdown-menu drop-menu" aria-labelledby="dropdownMenu2">
-                                        <li><a href="{{ path('profile_negocios_panel') }}"><i class="fa fa-briefcase" aria-hidden="true"></i> Panel de Negocios</a></li>
-                                        <li><a href="{{ path('fos_user_profile_show')}}"><i class="fa fa-user" aria-hidden="true"></i> Mi Perfil</a></li>
-                                        <li>
-                                            <a href="{{ path('fos_user_security_logout') }}">
-                                                <i class="fa fa-sign-out" aria-hidden="true"></i> {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
-                                            </a>
-                                        </li>
-
-                                    </ul>
-                                </div>
+            <div class="logi-reg">
+                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                    <div class="dropdown" style="margin-right: 10px">
+                        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            {% if app.user.profile is not null %}
+                                <img class="img-circle" width="50px"
+                                     src="{{ vich_uploader_asset(app.user.profile, 'profileFile') }}" alt="">
+                                <div class="stiky-name"><i class="fa fa-chevron-down" aria-hidden="true"></i></div>
                             {% else %}
-                                <div class="login-stiky">
-                                    <a href="{{ path('fos_user_registration_register') }}">Registrarse</a>
-                                    <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
-
-                                </div>
+                                <img class="img-circle" width="50px" src="{{ asset('images/assets/perfil_icon.png') }}"
+                                     alt="">
+                                <div class="stiky-name"><i class="fa fa-chevron-down" aria-hidden="true"></i></div>
 
                             {% endif %}
-                        </div>
 
 
+                        </button>
+                        <ul class="dropdown-menu drop-menu" aria-labelledby="dropdownMenu2">
+                            <li><a href="{{ path('profile_negocios_panel') }}"><i class="fa fa-briefcase"
+                                                                                  aria-hidden="true"></i> Panel de
+                                    Negocios</a></li>
+                            <li><a href="{{ path('fos_user_profile_show') }}"><i class="fa fa-user"
+                                                                                 aria-hidden="true"></i> Mi Perfil</a>
+                            </li>
+                            <li>
+                                <a href="{{ path('fos_user_security_logout') }}">
+                                    <i class="fa fa-sign-out"
+                                       aria-hidden="true"></i> {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+                                </a>
+                            </li>
 
+                        </ul>
+                    </div>
+                {% else %}
+                    <div class="login-stiky">
+                        <a href="{{ path('fos_user_registration_register') }}">Registrarse</a>
+                        <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
 
-                </div>
-            </nav>
+                    </div>
 
-
-            <div class="content-inside">
-                {% block fos_user_content %}
-                {% endblock fos_user_content %}
+                {% endif %}
             </div>
+
+
+        </div>
+    </nav>
+
+
+    <div class="content-inside">
+        {% block fos_user_content %}
+        {% endblock fos_user_content %}
+    </div>
+
+</div>
+
+{% block footer %}
+    <footer class="container-fluid footer-menu">
+
+        <div class="menu-footer">
+            {{ knp_menu_render('AppBundle:Builder:footerMenu') }}
+        </div>
+
+
+        <div class="col-md-4 col-md-offset-4 socials">
+            <a href="#"><i class="fa fa-facebook" style="color: #fff"></i></a>
+            <a href="#"><i class="fa fa-twitter" style="color: #fff"></i></a>
+            <a href="#"><i class="fa fa-youtube-play" style="color: #fff"></i></a>
 
         </div>
 
-        {% block footer %}
-            <footer class="container-fluid footer-menu">
+        <div class="col-md-6 col-md-offset-3 gecko-firm">
+            <p class="gecko-firm">Todos los Derechos Reservados &copy | Powered by <a href="http://www.gecko-btl.com"
+                                                                                      target="_blank">Gecko BTL</a></p>
 
-                        <div class="menu-footer">
-                            {{ knp_menu_render('AppBundle:Builder:footerMenu') }}
-                        </div>
-
-
-
-                        <div class="col-md-4 col-md-offset-4 socials">
-                            <a href="#"><i class="fa fa-facebook" style="color: #fff"></i></a>
-                            <a href="#"><i class="fa fa-twitter" style="color: #fff"></i></a>
-                            <a href="#"><i class="fa fa-youtube-play" style="color: #fff"></i></a>
-
-                        </div>
-
-                        <div class="col-md-6 col-md-offset-3 gecko-firm">
-                            <p class="gecko-firm">Todos los Derechos Reservados &copy | Powered by <a href="http://www.gecko-btl.com" target="_blank">Gecko BTL</a></p>
-
-                        </div>
-            </footer>
-        {% endblock %}
+        </div>
+    </footer>
+{% endblock %}
 
 
 
-        {% block javascripts %}
-            <script type="text/javascript" src="{{ asset('js/jquery-1.11.0.min.js') }}"></script>
-            <script type="text/javascript" src="{{ asset('js/jquery-ui.js') }}"></script>
-            <script type="text/javascript" src="{{ asset('js/bootstrap.js') }}"></script>
-            <script type="text/javascript" src="{{ asset('js/bootstrap-select.min.js') }}"></script>
-            <script type="text/javascript" src="{{ asset('js/croppic.min.js') }}"></script>
-            <script type="text/javascript" src="{{ asset('js/jquery.magnific-popup.min.js') }}"></script>
-            <script type="text/javascript" src="{{ asset('js/main.js') }}"></script>
-            <script type="text/javascript" src="{{ asset('js/tooltipster.bundle.min.js') }}"></script>
-            {#Noty#}
-            <script src="{{ asset('js/jquery.noty.packaged.min.js') }}" type="text/javascript"></script>
-            {#Defaut Noty - ESTO ESTUVO OCASIONANDO ERROR#}
-            {#<script src="{{ asset('js/default_noty.js') }}" type="text/javascript"></script>#}
-            <script src="{{ asset('js/default_noty.js') }}" type="text/javascript"></script>
-            <script>
+{% block javascripts %}
+    <script type="text/javascript" src="{{ asset('js/jquery-1.11.0.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/jquery-ui.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/bootstrap.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/bootstrap-select.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/croppic.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/jquery.magnific-popup.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/main.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/tooltipster.bundle.min.js') }}"></script>
+    {#Noty#}
+    <script src="{{ asset('js/jquery.noty.packaged.min.js') }}" type="text/javascript"></script>
+    {#Defaut Noty - ESTO ESTUVO OCASIONANDO ERROR#}
+    {#<script src="{{ asset('js/default_noty.js') }}" type="text/javascript"></script>#}
+    <script src="{{ asset('js/default_noty.js') }}" type="text/javascript"></script>
+    <script>
 
-                var seccion = 'todos';
-                $( ".selectpicker" ).change(function() {
-                    seccion = $(this).val();
-                    $(".searcher input.search").val("");
-                });
-                $( document ).ready(function() {
+        var seccion = 'todos';
+        $(".selectpicker").change(function () {
+            seccion = $(this).val();
+            $(".searcher input.search").val("");
+        });
+        $(document).ready(function () {
 
-                    function monkeyPatchAutocomplete() {
+            function monkeyPatchAutocomplete() {
 
-                        // Don't really need to save the old fn,
-                        // but I could chain if I wanted to
-                        var oldFn = $.ui.autocomplete.prototype._renderItem;
+                // Don't really need to save the old fn,
+                // but I could chain if I wanted to
+                var oldFn = $.ui.autocomplete.prototype._renderItem;
 
-                        $.ui.autocomplete.prototype._renderItem = function( ul, item) {
-                            var re = new RegExp("^" + this.term, "i") ;
-                            var t = item.label.replace(re,"<span style='font-weight:bold;color:#009FE3'>" + this.term + "</span>");
-                            return $( "<li></li>" )
-                                    .data( "item.autocomplete", item )
-                                    .append( "<div>" + t + "<br><span style='font-weight: 100;font-size: 11px;font-style: italic'>" +(item.type!=undefined ? item.type : "") + "</span></div>" )//append( "<a>" + t + "</a>" )
-                                    .appendTo( ul );
-                        };
-                    }
-                    monkeyPatchAutocomplete();
-                    // autocomplete for products
-                    $( ".searcher-products input.search" ).autocomplete({
-                        source: function( request, response ) {
-                            var url = '{{ path('buscar_productos') }}'
-                            $.ajax( {
-                                url: url,
-                                data: {
-                                    q: request.term
-                                },
-                                success: function( data ) {
-                                    //console.log(data);
-                                    // Handle 'no match' indicated by [ "" ] response
-                                    response( data.length === 0 ? ['Ningun resultado encontrado'] : data );
-                                }
-                            } );
+                $.ui.autocomplete.prototype._renderItem = function (ul, item) {
+                    var re = new RegExp("^" + this.term, "i");
+                    var t = item.label.replace(re, "<span style='font-weight:bold;color:#009FE3'>" + this.term + "</span>");
+                    return $("<li></li>")
+                        .data("item.autocomplete", item)
+                        .append("<div>" + t + "<br><span style='font-weight: 100;font-size: 11px;font-style: italic'>" + (item.type != undefined ? item.type : "") + "</span></div>")//append( "<a>" + t + "</a>" )
+                        .appendTo(ul);
+                };
+            }
+
+            monkeyPatchAutocomplete();
+            // autocomplete for products
+            $(".searcher-products input.search").autocomplete({
+                source: function (request, response) {
+                    var url = '{{ path('buscar_productos') }}'
+                    $.ajax({
+                        url: url,
+                        data: {
+                            q: request.term
                         },
-                        focus: function( event, ui ) {
-                            $( ".searcher-products input.search" ).val( ui.item.label );
-                            return false;
-                        },
-                        minLength: 1,
-                        select: function( event, ui ) {
-                            $( ".searcher-products input.search").val(ui.item.label);
-                            $( ".searcher-products").submit();
+                        success: function (data) {
+                            //console.log(data);
+                            // Handle 'no match' indicated by [ "" ] response
+                            response(data.length === 0 ? ['Ningun resultado encontrado'] : data);
                         }
                     });
-                    // autocomplete for negocios
-                    $( ".searcher input.search" ).autocomplete({
-                        source: function( request, response ) {
-                            var url = '{{ path('buscar_negocios_by_seccion_null') }}'
-                            //s1_found_data = false;
-                            $.ajax( {
-                                url: url+seccion,
-                                data: {
-                                    q: request.term
-                                },
-                                success: function( data ) {
-                                    //console.log(data);
-                                    // Handle 'no match' indicated by [ "" ] response
-                                    response( data.length === 0 ? ['Ningun resultado encontrado'] : data );
-                                    //if(data.length>0) s1_found_data = true;
-                                }
-                            } );
+                },
+                focus: function (event, ui) {
+                    $(".searcher-products input.search").val(ui.item.label);
+                    return false;
+                },
+                minLength: 1,
+                select: function (event, ui) {
+                    $(".searcher-products input.search").val(ui.item.label);
+                    $(".searcher-products").submit();
+                }
+            });
+            // autocomplete for negocios
+            $(".searcher input.search").autocomplete({
+                source: function (request, response) {
+                    var url = '{{ path('buscar_negocios_by_seccion_null') }}'
+                    //s1_found_data = false;
+                    $.ajax({
+                        url: url + seccion,
+                        data: {
+                            q: request.term
                         },
-                        focus: function( event, ui ) {
-                            $( ".searcher input.search" ).val( ui.item.label );
-                            return false;
-                        },
-                        minLength: 1,
-                        select: function( event, ui ) {
-                            //if(!s1_found_data) return false;
-                            $( ".searcher input.id").val(ui.item.identifier);
-                            $( ".searcher input.search").val(ui.item.label);
-                            $( ".searcher input.instance").val(ui.item.instance);
-                            $( ".searcher").submit();
+                        success: function (data) {
+                            //console.log(data);
+                            // Handle 'no match' indicated by [ "" ] response
+                            response(data.length === 0 ? ['Ningun resultado encontrado'] : data);
+                            //if(data.length>0) s1_found_data = true;
                         }
                     });
-                });
+                },
+                focus: function (event, ui) {
+                    $(".searcher input.search").val(ui.item.label);
+                    return false;
+                },
+                minLength: 1,
+                select: function (event, ui) {
+                    //if(!s1_found_data) return false;
+                    $(".searcher input.id").val(ui.item.identifier);
+                    $(".searcher input.search").val(ui.item.label);
+                    $(".searcher input.instance").val(ui.item.instance);
+                    $(".searcher").submit();
+                }
+            });
+        });
 
-                // AFTER
-                $('.tooltip2').tooltipster({
-                    theme: 'tooltipster-shadow'
-                });
+        // AFTER
+        $('.tooltip2').tooltipster({
+            theme: 'tooltipster-shadow'
+        });
 
-                $('.selectpicker').selectpicker({
-                    style: 'btn btn-default',
-                    size: 4
-                });
-
-
-                $("#hide3").addClass("active");
-
-                $("#hide3").click(function(){
-                    $("#hide4").removeClass("active");
-                    $("#hide3").addClass("active");
-                    $("#s3").hide();
-                    $("#s4").show();
-                });
-                $("#hide4").click(function(){
-                    $("#hide3").removeClass("active")
-                    $("#hide4").addClass("active");
-                    $("#s4").hide();
-                    $("#s3").show();
-                });
-
-                $("#search-brand").click(function(){
-                    $("#search-cop").slideToggle();
-                    $("#bs-example-navbar-collapse-1").slideUp();
-                });
-
-                $("#menu-brand").click(function(){
-                    event.preventDefault();
-                    $("#search-cop").slideUp();
-                    $("#bs-example-navbar-collapse-1").slideToggle();
-                });
+        $('.selectpicker').selectpicker({
+            style: 'btn btn-default',
+            size: 4
+        });
 
 
-            </script>
+        $("#hide3").addClass("active");
 
-        {% endblock javascripts %}
+        $("#hide3").click(function () {
+            $("#hide4").removeClass("active");
+            $("#hide3").addClass("active");
+            $("#s3").hide();
+            $("#s4").show();
+        });
+        $("#hide4").click(function () {
+            $("#hide3").removeClass("active")
+            $("#hide4").addClass("active");
+            $("#s4").hide();
+            $("#s3").show();
+        });
 
-    </body>
+        $("#search-brand").click(function () {
+            $("#search-cop").slideToggle();
+            $("#bs-example-navbar-collapse-1").slideUp();
+        });
+
+        $("#menu-brand").click(function () {
+            event.preventDefault();
+            $("#search-cop").slideUp();
+            $("#bs-example-navbar-collapse-1").slideToggle();
+        });
+
+
+    </script>
+
+{% endblock javascripts %}
+
+</body>
 
 
 </html>

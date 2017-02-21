@@ -72,75 +72,108 @@
 
 
 <div class="col-md-12 listado-negocios">
-   <div class="row">
-       <div class="col-md-2" style="text-align: center">
-           <a href="{{ path('show_negocio',{"slug_negocio":n.negocio.slug}) }}">
-               {% if n.negocio.logo is not null %}
-                   <img width="100px" src="{{ vich_uploader_asset(n.negocio.logo, 'logoFile','AppBundle\\Entity\\Logo') }}" alt="{{ n.negocio.nombre }}" />
-               {% else %}
-                   <img src="http://placehold.it/100x100" alt="{{ n.negocio.nombre }}" />
-               {% endif %}
-           </a>
-           {% if n.mymoy is null %}
-               <div style="margin: 5px auto" class="rateYo_negocios" data-rating="0"></div>
-           {% else %}
-               <div style="margin: 5px auto" class="rateYo_negocios" data-rating="{{ n.mymoy }}"></div>
-           {% endif %}
-       </div>
-       <div class="col-md-5">
-           <div class="detalle-datos">
-               <a href="{{ path('show_negocio',
-               {"slug_negocio":n.negocio.slug}) }}">
-                   <h1 style="line-height: 25px;">
-                       {{ n.negocio.nombre }}
-                   </h1>
-               </a>
-               {% if type is defined %}
-                   <p><i class="fa fa-user" aria-hidden="true"></i> Javier Díaz</p>
-                   <p><i class="fa fa-location-arrow" aria-hidden="true"></i> {{ n.negocio.distrito.nombre}} - {{ n.negocio.provincia.nombre}}</p>
-                   {% if n.negocio.areaTotal is not null %}
-                       <p><i class="fa fa-arrows-alt" aria-hidden="true"></i> {{ n.negocio.areaTotal }} m²</p>
-                   {% else %}
-                       <p><i class="fa fa-arrows-alt" aria-hidden="true"></i> - m²</p>
-                   {% endif %}
-
-                   {% if n.negocio.dormitorios is not null %}
-                       <p><i class="fa fa-bed" aria-hidden="true"></i> {{ n.negocio.dormitorios}} Dormitorios</p>
-                   {% else %}
-                       <p><i class="fa fa-bed" aria-hidden="true"></i> - Dormitorios</p>
-                   {% endif %}
+    <div class="row">
+        <div class="col-md-2" style="text-align: center">
+            <a href="{{ path('show_negocio',{"slug_negocio":n.negocio.slug}) }}">
+                {% if n.negocio.logo is not null %}
+                    <img style="border: solid 1px #f1f1f1" width="100px"
+                         src="{{ vich_uploader_asset(n.negocio.logo, 'logoFile','AppBundle\\Entity\\Logo') }}"
+                         alt="{{ n.negocio.nombre }}"/>
+                {% else %}
+                    {% set slug = app.request.get('slug_seccion') %}
+                    {% if slug == "compra-venta-y-alquiler-inmuebles" %}
+                        <img style="border: solid 1px #f1f1f1" src="{{ asset('images/inmueble_mini.jpg') }}" alt="{{ n.negocio.nombre }}"/>
+                    {% elseif slug == "proveedores" %}
+                        <img style="border: solid 1px #f1f1f1" src="{{ asset('images/proveedor_mini.jpg') }}" alt="{{ n.negocio.nombre }}"/>
+                    {% elseif slug == "especialistas-servicios-personales" %}
+                        <img style="border: solid 1px #f1f1f1" src="{{ asset('images/especialista_mini.jpg') }}" alt="{{ n.negocio.nombre }}"/>
+                    {% else %}
+                        <img style="border: solid 1px #f1f1f1" src="{{ asset('images/constructora_mini.jpg') }}" alt="{{ n.negocio.nombre }}"/>
+                    {% endif %}
 
 
-               {% else %}
-                   <p><i class="fa fa-map-marker" aria-hidden="true"></i> {{ n.negocio.direccion | truncate(30,false) }} - {{ n.negocio.distrito.nombre }} - {{ n.negocio.provincia.nombre }}</p>
-                   <p><i class="fa fa-phone" aria-hidden="true"></i> {{ n.negocio.telefono }}</p>
-                   {% if n.negocio.web is not null %}
-                       <p><i class="fa fa-globe" aria-hidden="true"></i> {{ n.negocio.web }}</p>
-                   {% endif %}
-                   <p><i class="fa fa-envelope" aria-hidden="true"></i> {{ n.negocio.email }}</p>
-               {% endif %}
+                {% endif %}
+            </a>
+            {% if n.mymoy is null %}
+                <div style="margin: 5px auto" class="rateYo_negocios" data-rating="0"></div>
+            {% else %}
+                <div style="margin: 5px auto" class="rateYo_negocios" data-rating="{{ n.mymoy }}"></div>
+            {% endif %}
+        </div>
+        <div class="col-md-5">
 
-           </div>
 
 
-       </div>
 
-       <div class="banner">
-           {% if n.negocio.banner is not null %}
-               <img src="{{ vich_uploader_asset(n.negocio.banner, 'bannerFile','AppBundle\\Entity\\Banner') }}" alt="{{ n.negocio.nombre }}" />
-           {% else %}
-               <img src="http://placehold.it/350x150" alt="{{ n.negocio.nombre }}" />
-           {% endif %}
-       </div>
 
-       {% if type is defined %}
-           {% if n.negocio.precioSoles is not null %}
-               <p class="precio-listado">Desde S/.{{ n.negocio.precioSoles|number_format(2, '.', ',')}}</p>
-           {% else %}
-               <p class="precio-listado">Desde S/.</p>
-           {% endif %}
-       {% endif %}
-   </div>
+
+            <div class="detalle-datos">
+                <a href="{{ path('show_negocio',
+                {"slug_negocio":n.negocio.slug}) }}">
+                    <h1 style="line-height: 25px;">
+                        {{ n.negocio.nombre }}
+                    </h1>
+                </a>
+                {% if type is defined %}
+                    <p><i class="fa fa-user" aria-hidden="true"></i> Javier Díaz</p>
+                    <p><i class="fa fa-location-arrow" aria-hidden="true"></i> {{ n.negocio.distrito.nombre }}
+                        - {{ n.negocio.provincia.nombre }}</p>
+                    {% if n.negocio.areaTotal is not null %}
+                        <p><i class="fa fa-arrows-alt" aria-hidden="true"></i> {{ n.negocio.areaTotal }} m²</p>
+                    {% else %}
+                        <p><i class="fa fa-arrows-alt" aria-hidden="true"></i> - m²</p>
+                    {% endif %}
+
+                    {% if n.negocio.dormitorios is not null %}
+                        <p><i class="fa fa-bed" aria-hidden="true"></i> {{ n.negocio.dormitorios }} Dormitorios</p>
+                    {% else %}
+                        <p><i class="fa fa-bed" aria-hidden="true"></i> - Dormitorios</p>
+                    {% endif %}
+
+
+                {% else %}
+                    <p><i class="fa fa-map-marker"
+                          aria-hidden="true"></i> {{ n.negocio.direccion | truncate(30,false) }}
+                        - {{ n.negocio.distrito.nombre }} - {{ n.negocio.provincia.nombre }}</p>
+                    <p><i class="fa fa-phone" aria-hidden="true"></i> {{ n.negocio.telefono }}</p>
+                    {% if n.negocio.web is not null %}
+                        <p><i class="fa fa-globe" aria-hidden="true"></i> {{ n.negocio.web }}</p>
+                    {% endif %}
+                    <p><i class="fa fa-envelope" aria-hidden="true"></i> {{ n.negocio.email }}</p>
+                {% endif %}
+
+            </div>
+
+
+        </div>
+
+        <div class="banner">
+            {% if n.negocio.banner is not null %}
+                <img src="{{ vich_uploader_asset(n.negocio.banner, 'bannerFile','AppBundle\\Entity\\Banner') }}"
+                     alt="{{ n.negocio.nombre }}"/>
+            {% else %}
+                {% set slug = app.request.get('slug_seccion') %}
+                {% if slug == "compra-venta-y-alquiler-inmuebles" %}
+                    <img src="{{ asset('images/banner-default-inmueble.jpg') }}" alt="{{ n.negocio.nombre }}"/>
+                {% elseif slug == "proveedores" %}
+                    <img src="{{ asset('images/banner-default-proveedor.jpg') }}" alt="{{ n.negocio.nombre }}"/>
+                {% elseif slug == "especialistas-servicios-personales" %}
+                    <img src="{{ asset('images/banner-default-especialista.jpg') }}" alt="{{ n.negocio.nombre }}"/>
+                {% else %}
+                    <img src="{{ asset('images/banner-default-constructora.jpg') }}" alt="{{ n.negocio.nombre }}"/>
+                {% endif %}
+
+            {% endif %}
+        </div>
+
+        {% if type is defined %}
+            {% if n.negocio.precioSoles is not null %}
+                <p class="precio-listado">Desde S/.{{ n.negocio.precioSoles|number_format(2, '.', ',') }}</p>
+            {% else %}
+                <p class="precio-listado">Desde S/.</p>
+            {% endif %}
+        {% endif %}
+    </div>
 </div>
 
 

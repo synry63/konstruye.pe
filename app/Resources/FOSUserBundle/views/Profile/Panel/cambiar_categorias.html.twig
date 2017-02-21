@@ -8,12 +8,26 @@
 
     <h1 class="title-dashboard">Cambiar Categoría</h1>
 
-    <form action="{{ path('profile_negocios_panel_gestion_negocio_cambiar_categorias') }}" method="post">
 
-        {{ out|raw }}
-        <input type="submit"/>
+    <div class="col-md-8 col-md-offset-2">
+        <div class="recomendacion">
+            <i class="fa fa-lightbulb-o" aria-hidden="true"></i>
+            <div class="pright">
+                <ul>
+                    <li>Seleccione la categoria a la cual quiera pertenecer</li>
+                </ul>
+            </div>
+        </div>
 
-    </form>
+        <form action="{{ path('profile_negocios_panel_gestion_negocio_cambiar_categorias') }}" method="post">
+            <div class="categorias-change">
+                {{ out|raw }}
+                <input class="btn btn-konstruye2" type="submit"/>
+            </div>
+        </form>
+
+    </div>
+
 
 
 {% endblock %}

@@ -168,6 +168,22 @@ Icomoon
     vertical-align: middle;
     color: rgba(0,0,0,.5);
 }
+
+.icon-constructoras:before {
+    content: "\e90c";
+}
+.icon-especialistas:before {
+     content: "\e90d";
+}
+.icon-inmuebles:before {
+    content: "\e90e";
+}
+.icon-proveedores:before {
+    content: "\e90f";
+}
+
+
+
 .icon-2:before {
     content: "\e905";
 }
@@ -1230,10 +1246,11 @@ Menu Index
     display: inline-block;
     transition: all .5s ease;
 }
-#menu-index-bottom ul li a i{
-    font-size: 19px;
+#menu-index-bottom ul li a span{
+    font-size: 37px;
     color: rgb(0, 159, 227);
     transition: all .5s ease;
+    font-weight: 400;
 }
 
 #menu-index-bottom ul li:hover{
@@ -1241,7 +1258,7 @@ Menu Index
 }
 
 
-#menu-index-bottom ul li:hover a i, #menu-index-bottom ul li:hover a{
+#menu-index-bottom ul li:hover a span, #menu-index-bottom ul li:hover a{
     color: #fff;
 }
 
@@ -1960,7 +1977,7 @@ Dashboard Negocios
     border-bottom: solid 1px rgba(255,255,255,.05);
     width: 100%;
     color: #737373;
-    padding: 15px 10px;
+    padding: 10px;
 }
 .menu-dashboard-principal .menu_level_1{
     background: #232323;
@@ -1970,7 +1987,7 @@ Dashboard Negocios
 }
 .menu-dashboard-principal .menu_level_1 li a{
     color: #737373;
-    padding: 10px;
+    padding: 8px 10px;
 }
 .content-dashboard{
     position: relative;
@@ -2131,9 +2148,14 @@ h1.title-dashboard span{
 }
 .servicios a.active{
     color: #009FE3;
-
+}
+.categorias-change ul, .categorias-change li{
+    list-style: none;
 }
 
+.categorias-change li input{
+    margin-right: 5px;
+}
 /*=============
 Index
 =============*/
@@ -2498,6 +2520,46 @@ Form Stiky
     cursor:pointer;
 }
 
+.nav-principal2 div#menu-stiky{
+    width: 83%;
+    padding: 0;
+    position: absolute;
+    left: 200px;
+}
+div#menu-stiky .item-stiky {
+    display: inline-block;
+    width: 25%;
+    float: left;
+    height: 85px;
+    text-align: center;
+    padding: 50px 10px 0 10px;
+    vertical-align: top;
+    position: relative;
+    opacity: .8;
+    transition: all .5s;
+}
+
+div#menu-stiky .item-stiky:hover{
+    opacity: 1;
+    background: #1C9CD9;
+    color: #fff;
+}
+div#menu-stiky .item-stiky:hover span{
+    color: #fff;
+}
+
+
+.item-stiky span {
+    color: #1C9CD9;
+    position: absolute;
+    top: 7px;
+    font-size: 45px;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: all 1s;
+}
+
+/*
 #menu-stiky li{
     display: inline-block;
     width: 24.5%;
@@ -2506,9 +2568,13 @@ Form Stiky
 }
 
 #menu-stiky li a{
+
     white-space: pre-wrap;
     display: inline-block;
     vertical-align: top;
+}
+#menu-stiky li a span{
+    font-family: "Konstruye Sans";
 }
 #menu-stiky li a:hover{
     background: none;
@@ -2516,19 +2582,7 @@ Form Stiky
 #menu-stiky li a div i{
     font-size: 30px;
 }
-#menu-stiky li a div img{
-    position: absolute;
-    top: 3px;
-    height: 32px;
-    left: 50%;
-    transform: translateX(-50%);
-}
-ul#menu-stiky{
-    width: 83%;
-    padding: 10px;
-    position: absolute;
-    left: 200px;
-}
+*/
 
 /*=============
 Index Menu

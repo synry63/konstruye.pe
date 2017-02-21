@@ -8,10 +8,11 @@
     <link rel="stylesheet" href="{{ asset('css/ms-staff-style.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <style>
-        #wrap{
+        #wrap {
             margin-top: 0;
         }
-        .nav-principal2{
+
+        .nav-principal2 {
             display: none;
         }
 
@@ -21,10 +22,10 @@
 {% block fos_user_content %}
     {#SPINNER#}
     {#<div id="loader-wrapper">#}
-        {#<div id="loader"></div>#}
+    {#<div id="loader"></div>#}
 
-        {#<div class="loader-section section-left"></div>#}
-        {#<div class="loader-section section-right"></div>#}
+    {#<div class="loader-section section-left"></div>#}
+    {#<div class="loader-section section-right"></div>#}
 
     {#</div>#}
 
@@ -39,39 +40,46 @@
                         <img class="responsive-element" src="{{ asset('images/logo-min-color.svg') }}" alt="">
                     </a>
 
-                        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                            <div class="dropdown index-logeado" style="margin-right: 10px">
-                                <div class="dropdown-toggle" type="button" id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                    {% if app.user.profile is not null %}
-                                        <img class="img-circle" width="50px" src="{{ vich_uploader_asset(app.user.profile, 'profileFile') }}" alt="">
-                                        <div class="stiky-name"><i class="fa fa-chevron-down" aria-hidden="true"></i></div>
+                    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                        <div class="dropdown index-logeado" style="margin-right: 10px">
+                            <div class="dropdown-toggle" type="button" id="dropdownMenu3" data-toggle="dropdown"
+                                 aria-haspopup="true" aria-expanded="true">
+                                {% if app.user.profile is not null %}
+                                    <img class="img-circle" width="50px"
+                                         src="{{ vich_uploader_asset(app.user.profile, 'profileFile') }}" alt="">
+                                    <div class="stiky-name"><i class="fa fa-chevron-down" aria-hidden="true"></i></div>
 
-                                    {% else %}
-                                        <img class="img-circle" width="50px" src="{{ asset('images/assets/perfil_icon.png') }}" alt="">
-                                        <div class="stiky-name"><i class="fa fa-chevron-down" aria-hidden="true"></i></div>
-                                    {% endif %}
-                                </div>
-                                <ul class="dropdown-menu drop-menu" aria-labelledby="dropdownMenu3">
-                                    <li><a href="{{ path('profile_negocios_panel') }}"><i class="fa fa-briefcase" aria-hidden="true"></i> Panel de Negocios</a></li>
-                                    <li><a href="{{ path('fos_user_profile_show')}}"><i class="fa fa-user" aria-hidden="true"></i> Mi Perfil</a></li>
-                                    <li>
-                                        <a href="{{ path('fos_user_security_logout') }}">
-                                            <i class="fa fa-sign-out" aria-hidden="true"></i> {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
-                                        </a>
-                                    </li>
-
-                                </ul>
+                                {% else %}
+                                    <img class="img-circle" width="50px"
+                                         src="{{ asset('images/assets/perfil_icon.png') }}" alt="">
+                                    <div class="stiky-name"><i class="fa fa-chevron-down" aria-hidden="true"></i></div>
+                                {% endif %}
                             </div>
-                        {% else %}
-                            <div class="login-index">
-                                    <div class="login-stiky">
-                                        <a href="{{ path('fos_user_registration_register') }}">Registrate</a>
-                                        <a href="{{ path('fos_user_security_login') }}">Inicia Sesión</a>
+                            <ul class="dropdown-menu drop-menu" aria-labelledby="dropdownMenu3">
+                                <li><a href="{{ path('profile_negocios_panel') }}"><i class="fa fa-briefcase"
+                                                                                      aria-hidden="true"></i> Panel de
+                                        Negocios</a></li>
+                                <li><a href="{{ path('fos_user_profile_show') }}"><i class="fa fa-user"
+                                                                                     aria-hidden="true"></i> Mi
+                                        Perfil</a></li>
+                                <li>
+                                    <a href="{{ path('fos_user_security_logout') }}">
+                                        <i class="fa fa-sign-out"
+                                           aria-hidden="true"></i> {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+                                    </a>
+                                </li>
 
-                                    </div>
+                            </ul>
+                        </div>
+                    {% else %}
+                        <div class="login-index">
+                            <div class="login-stiky">
+                                <a href="{{ path('fos_user_registration_register') }}">Registrate</a>
+                                <a href="{{ path('fos_user_security_login') }}">Inicia Sesión</a>
+
                             </div>
-                        {% endif %}
-
+                        </div>
+                    {% endif %}
 
 
                 </div>
@@ -79,59 +87,68 @@
 
 
             {# Buscador Principal #}
-        
-                <div class="buscador-principal">
 
-                    <a href="javascript:void(0)" id="button1"><i class="fa fa-briefcase" aria-hidden="true"></i> Buscador de Negocios</a>
-                    <a href="javascript:void(0)" id="button2"><i class="fa fa-shopping-bag" aria-hidden="true"></i> Buscador de Productos</a>
+            <div class="buscador-principal">
 
-
-                    <div id="buscador1">
-                        <form class="searcher" method="GET" action="{{ path('search_global_negocios') }}" role="search">
-
-                            <!--<i class="fa fa-chevron-down" aria-hidden="true"></i>-->
-                            <select name="slug_seccion"  class="selectpicker">
-                                <option value="todos">Buscar en Todo</option>
-                                <option value="constructoras-e-inmobiliarias">Constructoras e Inmobiliarias</option>
-                                <option value="especialistas-servicios-personales">Especialistas y Servicios Personales</option>
-                                <option value="proveedores">Proveedores</option>
-                            </select>
-                            <input name="search" class="search" type="text" placeholder="Ejemplo: Carpintero, Trebol Celima"/>
-                            <input name="id" class="id" type="hidden"/>
-                            <input name="instance" class="instance" type="hidden"/>
-                        </form>
-                    </div>
+                <a href="javascript:void(0)" id="button1"><i class="fa fa-briefcase" aria-hidden="true"></i> Buscador de
+                    Negocios</a>
+                <a href="javascript:void(0)" id="button2"><i class="fa fa-shopping-bag" aria-hidden="true"></i> Buscador
+                    de Productos</a>
 
 
-                    <div id="buscador2">
-                        <form method="GET" class="searcher-products"  action="{{ path('search_global_productos') }}" role="search">
+                <div id="buscador1">
+                    <form class="searcher" method="GET" action="{{ path('search_global_negocios') }}" role="search">
 
-
-                            <select name="slug_seccion" class="selectpicker">
-                                <option selected value="proveedores">Proveedores</option>
-                            </select>
-                            <input name="search" class="search" type="text" placeholder="Ejemplo: Marmol, Madera, Mesas"/>
-                        </form>
-                    </div>
-
-
+                        <!--<i class="fa fa-chevron-down" aria-hidden="true"></i>-->
+                        <select name="slug_seccion" class="selectpicker">
+                            <option value="todos">Buscar en Todo</option>
+                            <option value="constructoras-e-inmobiliarias">Constructoras e Inmobiliarias</option>
+                            <option value="especialistas-servicios-personales">Especialistas y Servicios Personales
+                            </option>
+                            <option value="proveedores">Proveedores</option>
+                        </select>
+                        <input name="search" class="search" type="text"
+                               placeholder="Ejemplo: Carpintero, Trebol Celima"/>
+                        <input name="id" class="id" type="hidden"/>
+                        <input name="instance" class="instance" type="hidden"/>
+                    </form>
                 </div>
-            
+
+
+                <div id="buscador2">
+                    <form method="GET" class="searcher-products" action="{{ path('search_global_productos') }}"
+                          role="search">
+
+
+                        <select name="slug_seccion" class="selectpicker">
+                            <option selected value="proveedores">Proveedores</option>
+                        </select>
+                        <input name="search" class="search" type="text" placeholder="Ejemplo: Marmol, Madera, Mesas"/>
+                    </form>
+                </div>
+
+
+            </div>
+
             {# Fin Buscador Principal #}
-        
+
             <div class="master-slider ms-skin-default" id="masterslider">
                 <!-- new slide -->
                 <div class="ms-slide" data-delay="10">
-                    <img src="{{ asset('images/assets/blank.gif') }}" data-src="{{ asset('images/assets/banner6.jpg') }}" alt="lorem ipsum dolor sit"/>
+                    <img src="{{ asset('images/assets/blank.gif') }}"
+                         data-src="{{ asset('images/assets/banner6.jpg') }}" alt="lorem ipsum dolor sit"/>
                 </div>
                 <div class="ms-slide" data-delay="10">
-                    <img src="{{ asset('images/assets/blank.gif') }}" data-src="{{ asset('images/assets/banner2.jpg') }}" alt="lorem ipsum dolor sit"/>
+                    <img src="{{ asset('images/assets/blank.gif') }}"
+                         data-src="{{ asset('images/assets/banner2.jpg') }}" alt="lorem ipsum dolor sit"/>
                 </div>
                 <div class="ms-slide" data-delay="10">
-                    <img src="{{ asset('images/assets/blank.gif') }}" data-src="{{ asset('images/assets/banner4.jpg') }}" alt="lorem ipsum dolor sit"/>
+                    <img src="{{ asset('images/assets/blank.gif') }}"
+                         data-src="{{ asset('images/assets/banner4.jpg') }}" alt="lorem ipsum dolor sit"/>
                 </div>
                 <div class="ms-slide" data-delay="10">
-                    <img src="{{ asset('images/assets/blank.gif') }}" data-src="{{ asset('images/assets/banner7.jpg') }}" alt="lorem ipsum dolor sit"/>
+                    <img src="{{ asset('images/assets/blank.gif') }}"
+                         data-src="{{ asset('images/assets/banner7.jpg') }}" alt="lorem ipsum dolor sit"/>
                 </div>
             </div>
         </div>
@@ -140,20 +157,36 @@
 
 
 
-    <div class="container-fluid"  id="menu-index-bottom">
+    <div class="container-fluid" id="menu-index-bottom">
         <div class="container" style="padding: 0">
-            <ul>
-                <li><a href="{{ path('lisdato_seccion',{'slug_seccion':'proveedores'}) }}"><i class="fa fa-truck" aria-hidden="true"></i> Proveedores</a></li>
-                <li><a href="{{ path('lisdato_seccion',{'slug_seccion':'compra-venta-y-alquiler-inmuebles'}) }}"><i class="fa fa-home" aria-hidden="true"></i> Compra venta y alquiler de inmuebles</a></li>
-                <li><a href="{{ path('lisdato_seccion',{'slug_seccion':'especialistas-servicios-personales'}) }}"><i class="fa fa-users" aria-hidden="true"></i> Especialistas servicios personales</a></li>
-                <li><a href="{{ path('lisdato_seccion',{'slug_seccion':'constructoras-e-inmobiliarias'}) }}"><i class="fa fa-building-o" aria-hidden="true"></i> Constructoras e inmobiliarias</a></li>
+            <ul class="konstruye-font">
+                <li>
+                    <a href="{{ path('lisdato_seccion',{'slug_seccion':'proveedores'}) }}">
+                        <span class="icon-proveedores"></span> Proveedores
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ path('lisdato_seccion',{'slug_seccion':'compra-venta-y-alquiler-inmuebles'}) }}">
+                        <span style="margin-left: -10px" class="icon-inmuebles"></span> <div  style="margin-left: -5px;display: inline-block">Compra venta y alquiler de inmuebles</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ path('lisdato_seccion',{'slug_seccion':'especialistas-servicios-personales'}) }}">
+                        <span class="icon-especialistas"></span> Especialistas servicios personales
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ path('lisdato_seccion',{'slug_seccion':'constructoras-e-inmobiliarias'}) }}">
+                        <span class="icon-constructoras"></span> Constructoras e inmobiliarias
+                    </a>
+                </li>
 
             </ul>
         </div>
 
     </div>
 
-    <div  id="menu-index-bottom-responsive">
+    <div id="menu-index-bottom-responsive">
         <a class="link-home" href="{{ path('lisdato_seccion',{'slug_seccion':'proveedores'}) }}">
             <div class="link-det">
                 <i class="fa fa-truck" aria-hidden="true"></i> Proveedores
@@ -188,7 +221,11 @@
                 </div>
                 <div class="col-md-8" style="padding: 0;">
                     <p class="about-text">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+                        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
+                        non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                     </p>
                 </div>
             </div>
@@ -204,7 +241,8 @@
             <h1 class="mejores_tittle">Los Mejores Proveedores</h1>
         </div>
         <div class="container" style="position: relative; padding: 0">
-            <img class="hidden-element" width="280px" style="position: absolute;bottom: -15px;" src="{{ asset('images/proveedor_home.jpg') }}" alt=""/>
+            <img class="hidden-element" width="280px" style="position: absolute;bottom: -15px;"
+                 src="{{ asset('images/proveedor_home.jpg') }}" alt=""/>
             <div class="col-md-8 col-md-offset-4" style="padding: 0">
 
                 <div class="ms-staff-carousel ms-round">
@@ -216,15 +254,19 @@
                                     <a href="{{ path('show_negocio',
                                     {"slug_negocio":pro.negocio.slug}) }}">
                                         {% if pro.negocio.logo is not null %}
-                                            <img src="{{ asset('images/assets/blank.gif') }}" data-src="{{ vich_uploader_asset(pro.negocio.logo, 'logoFile','AppBundle\\Entity\\Logo') }}" alt="lorem ipsum dolor sit"/>
+                                            <img src="{{ asset('images/assets/blank.gif') }}"
+                                                 data-src="{{ vich_uploader_asset(pro.negocio.logo, 'logoFile','AppBundle\\Entity\\Logo') }}"
+                                                 alt="lorem ipsum dolor sit"/>
                                         {% else %}
-                                            <img src="http://placehold.it/150x150" alt="" />
+                                            <img src="{{ asset('images/proveedor_mini.jpg') }}" alt=""/>
                                         {% endif %}
                                     </a>
                                     {% if pro.negocio.logo is not null %}
-                                        <img src="{{ asset('images/assets/blank.gif') }}" data-src="{{ vich_uploader_asset(pro.negocio.logo, 'logoFile','AppBundle\\Entity\\Logo') }}" alt="lorem ipsum dolor sit"/>
+                                        <img src="{{ asset('images/assets/blank.gif') }}"
+                                             data-src="{{ vich_uploader_asset(pro.negocio.logo, 'logoFile','AppBundle\\Entity\\Logo') }}"
+                                             alt="lorem ipsum dolor sit"/>
                                     {% else %}
-                                        <img src="http://placehold.it/150x150" alt="" />
+                                        <img src="{{ asset('images/proveedor_mini.jpg') }}" alt=""/>
                                     {% endif %}
 
 
@@ -241,7 +283,8 @@
                         <div class="mensaje-default-blanco">
                             <h1>¡Descrube nuevos proveedores!</h1>
                             <h2>y hazlos tus favoritos</h2>
-                            <a href="{{ path('lisdato_seccion',{'slug_seccion': 'proveedores'}) }}" class="btn btn-konstruye2">Empieza aquí</a>
+                            <a href="{{ path('lisdato_seccion',{'slug_seccion': 'proveedores'}) }}"
+                               class="btn btn-konstruye2">Empieza aquí</a>
                         </div>
 
 
@@ -256,53 +299,59 @@
 
 
 
-   <div class="container-fluid contenedor-transparente">
-       <div class="container">
-           <h1 class="mejores_tittle"><span>Mejores Inmuebles</span></h1>
-       </div>
-       <div class="container" style="position: relative; padding: 0">
-           <img class="hidden-element" width="338px" style="position: absolute;bottom: -15px;right: -23px" src="{{ asset('images/inmobiliarias_home.png') }}" alt=""/>
-           <div class="col-md-8" style="padding: 0;">
-               <div class="ms-staff-carousel ms-round">
-                   {% if inmuebles|length >= 5 %}
-                   <!-- masterslider -->
-                   <div class="master-slider5" id="masterslider5">
-                       {% for inm in inmuebles %}
-                           <div class="ms-slide">
-                               <a href="{{ path('show_negocio',
-                               {"slug_negocio":inm.negocio.slug}) }}">
-                                   {% if inm.negocio.logo is not null %}
-                                       <img src="{{ asset('images/assets/blank.gif') }}" data-src="{{ vich_uploader_asset(inm.negocio.logo, 'logoFile','AppBundle\\Entity\\Logo') }}" alt="lorem ipsum dolor sit"/>
-                                   {% else %}
-                                       <img src="http://placehold.it/150x150" alt="" />
-                                   {% endif %}
-                               </a>
-                               {% if inm.negocio.logo is not null %}
-                                   <img src="{{ asset('images/assets/blank.gif') }}" data-src="{{ vich_uploader_asset(inm.negocio.logo, 'logoFile','AppBundle\\Entity\\Logo') }}" alt="lorem ipsum dolor sit"/>
-                               {% else %}
-                                   <img src="http://placehold.it/150x150" alt="" />
-                               {% endif %}
-                               <div class="ms-info">
-                                   <a href="{{ path('show_negocio',
-                                   {"slug_negocio":inm.negocio.slug}) }}"><h3>{{ inm.negocio.nombre }}</h3></a>
-                               </div>
-                           </div>
-                       {% endfor %}
-                   </div>
-                   <!-- end of masterslider -->
-                   <div class="ms-staff-info" id="staff-info5"></div>
-                   {% else %}
-                       <div class="mensaje-default-transparente">
-                           <h1>¡Descrube asombrosos inmuebles!</h1>
-                           <h2>y hazlos tus favoritos</h2>
-                           <a href="{{ path('lisdato_seccion',{'slug_seccion': 'compra-venta-y-alquiler-inmuebles'}) }}" class="btn btn-konstruye2">Empieza aquí</a>
-                       </div>
-                   {% endif %}
-               </div>
-           </div>
+    <div class="container-fluid contenedor-transparente">
+        <div class="container">
+            <h1 class="mejores_tittle"><span>Mejores Inmuebles</span></h1>
+        </div>
+        <div class="container" style="position: relative; padding: 0">
+            <img class="hidden-element" width="338px" style="position: absolute;bottom: -15px;right: -23px"
+                 src="{{ asset('images/inmobiliarias_home.png') }}" alt=""/>
+            <div class="col-md-8" style="padding: 0;">
+                <div class="ms-staff-carousel ms-round">
+                    {% if inmuebles|length >= 5 %}
+                        <!-- masterslider -->
+                        <div class="master-slider5" id="masterslider5">
+                            {% for inm in inmuebles %}
+                                <div class="ms-slide">
+                                    <a href="{{ path('show_negocio',
+                                    {"slug_negocio":inm.negocio.slug}) }}">
+                                        {% if inm.negocio.logo is not null %}
+                                            <img src="{{ asset('images/assets/blank.gif') }}"
+                                                 data-src="{{ vich_uploader_asset(inm.negocio.logo, 'logoFile','AppBundle\\Entity\\Logo') }}"
+                                                 alt="lorem ipsum dolor sit"/>
+                                        {% else %}
+                                            <img src="{{ asset('images/inmueble_mini.jpg') }}" alt=""/>
+                                        {% endif %}
+                                    </a>
+                                    {% if inm.negocio.logo is not null %}
+                                        <img src="{{ asset('images/assets/blank.gif') }}"
+                                             data-src="{{ vich_uploader_asset(inm.negocio.logo, 'logoFile','AppBundle\\Entity\\Logo') }}"
+                                             alt="lorem ipsum dolor sit"/>
+                                    {% else %}
+                                        <img src="{{ asset('images/inmueble_mini.jpg') }}" alt=""/>
+                                    {% endif %}
+                                    <div class="ms-info">
+                                        <a href="{{ path('show_negocio',
+                                        {"slug_negocio":inm.negocio.slug}) }}"><h3>{{ inm.negocio.nombre }}</h3></a>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                        <!-- end of masterslider -->
+                        <div class="ms-staff-info" id="staff-info5"></div>
+                    {% else %}
+                        <div class="mensaje-default-transparente">
+                            <h1>¡Descrube asombrosos inmuebles!</h1>
+                            <h2>y hazlos tus favoritos</h2>
+                            <a href="{{ path('lisdato_seccion',{'slug_seccion': 'compra-venta-y-alquiler-inmuebles'}) }}"
+                               class="btn btn-konstruye2">Empieza aquí</a>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
 
-       </div>
-   </div>
+        </div>
+    </div>
 
 
     <div class="container-fluid contenedor-blanco">
@@ -310,41 +359,47 @@
             <h1 class="mejores_tittle">Mejores Especialistas</h1>
         </div>
         <div class="container" style="position: relative; padding: 0">
-            <img class="hidden-element" width="280px" style="position: absolute;bottom: -15px;" src="{{ asset('images/especialista_home.jpg') }}" alt=""/>
+            <img class="hidden-element" width="280px" style="position: absolute;bottom: -15px;"
+                 src="{{ asset('images/especialista_home.jpg') }}" alt=""/>
             <div class="col-md-8 col-md-offset-4" style="padding: 0">
                 <div class="ms-staff-carousel ms-round">
                     {% if especialistas|length >= 5 %}
-                    <!-- masterslider -->
-                    <div class="master-slider4 " id="masterslider4">
-                        {% for es in especialistas %}
-                            <div class="ms-slide">
-                                <a href="{{ path('show_negocio',
-                                {"slug_negocio":es.negocio.slug}) }}">
-                                    {% if es.negocio.logo is not null %}
-                                        <img src="{{ asset('images/assets/blank.gif') }}" data-src="{{ vich_uploader_asset(es.negocio.logo, 'logoFile','AppBundle\\Entity\\Logo') }}" alt="lorem ipsum dolor sit"/>
-                                    {% else %}
-                                        <img src="http://placehold.it/150x150" alt="" />
-                                    {% endif %}
-                                </a>
-                                {% if es.negocio.logo is not null %}
-                                    <img src="{{ asset('images/assets/blank.gif') }}" data-src="{{ vich_uploader_asset(es.negocio.logo, 'logoFile','AppBundle\\Entity\\Logo') }}" alt="lorem ipsum dolor sit"/>
-                                {% else %}
-                                    <img src="http://placehold.it/150x150" alt="" />
-                                {% endif %}
-                                <div class="ms-info">
+                        <!-- masterslider -->
+                        <div class="master-slider4 " id="masterslider4">
+                            {% for es in especialistas %}
+                                <div class="ms-slide">
                                     <a href="{{ path('show_negocio',
-                                    {"slug_negocio":es.negocio.slug}) }}"><h3>{{ es.negocio.nombre }}</h3></a>
+                                    {"slug_negocio":es.negocio.slug}) }}">
+                                        {% if es.negocio.logo is not null %}
+                                            <img src="{{ asset('images/assets/blank.gif') }}"
+                                                 data-src="{{ vich_uploader_asset(es.negocio.logo, 'logoFile','AppBundle\\Entity\\Logo') }}"
+                                                 alt="lorem ipsum dolor sit"/>
+                                        {% else %}
+                                            <img src="{{ asset('images/especialista_mini.jpg') }}" alt=""/>
+                                        {% endif %}
+                                    </a>
+                                    {% if es.negocio.logo is not null %}
+                                        <img src="{{ asset('images/assets/blank.gif') }}"
+                                             data-src="{{ vich_uploader_asset(es.negocio.logo, 'logoFile','AppBundle\\Entity\\Logo') }}"
+                                             alt="lorem ipsum dolor sit"/>
+                                    {% else %}
+                                        <img src="{{ asset('images/especialista_mini.jpg') }}" alt=""/>
+                                    {% endif %}
+                                    <div class="ms-info">
+                                        <a href="{{ path('show_negocio',
+                                        {"slug_negocio":es.negocio.slug}) }}"><h3>{{ es.negocio.nombre }}</h3></a>
+                                    </div>
                                 </div>
-                            </div>
-                        {% endfor %}
-                    </div>
-                    <!-- end of masterslider -->
-                    <div class="ms-staff-info" id="staff-info4"></div>
+                            {% endfor %}
+                        </div>
+                        <!-- end of masterslider -->
+                        <div class="ms-staff-info" id="staff-info4"></div>
                     {% else %}
                         <div class="mensaje-default-blanco">
                             <h1>¡Descrube excelentes especialistas!</h1>
                             <h2>y hazlos tus favoritos</h2>
-                            <a href="{{ path('lisdato_seccion',{'slug_seccion': 'especialistas-servicios-personales'}) }}" class="btn btn-konstruye2">Empieza aquí</a>
+                            <a href="{{ path('lisdato_seccion',{'slug_seccion': 'especialistas-servicios-personales'}) }}"
+                               class="btn btn-konstruye2">Empieza aquí</a>
                         </div>
                     {% endif %}
                 </div>
@@ -359,42 +414,48 @@
             <h1 class="mejores_tittle"><span>Mejores Constructoras e Inmobiliarias</span></h1>
         </div>
         <div class="container" style="position: relative; padding: 0">
-            <img class="hidden-element" width="280px" style="position: absolute;bottom: -15px;right: -23px" src="{{ asset('images/comprayventa_home.png') }}" alt=""/>
+            <img class="hidden-element" width="280px" style="position: absolute;bottom: -15px;right: -23px"
+                 src="{{ asset('images/comprayventa_home.png') }}" alt=""/>
             <div class="col-md-8" style="padding: 0;">
                 <div class="ms-staff-carousel ms-round">
                     {% if imobiliarias|length >= 7 %}
-                    <!-- masterslider -->
-                    <div class="master-slider2 " id="masterslider2">
-                        {% for im in imobiliarias %}
-                            <div class="ms-slide">
-                                <a href="{{ path('show_negocio',
-                                {"slug_negocio":im.negocio.slug}) }}">
-                                    {% if im.negocio.logo is not null %}
-                                        <img src="{{ asset('images/assets/blank.gif') }}" data-src="{{ vich_uploader_asset(im.negocio.logo, 'logoFile','AppBundle\\Entity\\Logo') }}" alt="lorem ipsum dolor sit"/>
-                                    {% else %}
-                                        <img src="http://placehold.it/150x150" alt="" />
-                                    {% endif %}
-
-                                </a>
-                                {% if im.negocio.logo is not null %}
-                                    <img src="{{ asset('images/assets/blank.gif') }}" data-src="{{ vich_uploader_asset(im.negocio.logo, 'logoFile','AppBundle\\Entity\\Logo') }}" alt="lorem ipsum dolor sit"/>
-                                {% else %}
-                                    <img src="http://placehold.it/150x150" alt="" />
-                                {% endif %}
-                                <div class="ms-info">
+                        <!-- masterslider -->
+                        <div class="master-slider2 " id="masterslider2">
+                            {% for im in imobiliarias %}
+                                <div class="ms-slide">
                                     <a href="{{ path('show_negocio',
-                                    {"slug_negocio":im.negocio.slug}) }}"><h3>{{ im.negocio.nombre }}</h3></a>
+                                    {"slug_negocio":im.negocio.slug}) }}">
+                                        {% if im.negocio.logo is not null %}
+                                            <img src="{{ asset('images/assets/blank.gif') }}"
+                                                 data-src="{{ vich_uploader_asset(im.negocio.logo, 'logoFile','AppBundle\\Entity\\Logo') }}"
+                                                 alt="lorem ipsum dolor sit"/>
+                                        {% else %}
+                                            <img src="{{ asset('images/constructora_mini.jpg') }}" alt=""/>
+                                        {% endif %}
+
+                                    </a>
+                                    {% if im.negocio.logo is not null %}
+                                        <img src="{{ asset('images/assets/blank.gif') }}"
+                                             data-src="{{ vich_uploader_asset(im.negocio.logo, 'logoFile','AppBundle\\Entity\\Logo') }}"
+                                             alt="lorem ipsum dolor sit"/>
+                                    {% else %}
+                                        <img src="{{ asset('images/constructora_mini.jpg') }}" alt=""/>
+                                    {% endif %}
+                                    <div class="ms-info">
+                                        <a href="{{ path('show_negocio',
+                                        {"slug_negocio":im.negocio.slug}) }}"><h3>{{ im.negocio.nombre }}</h3></a>
+                                    </div>
                                 </div>
-                            </div>
-                        {% endfor %}
-                    </div>
-                    <!-- end of masterslider -->
-                    <div class="ms-staff-info" id="staff-info"></div>
+                            {% endfor %}
+                        </div>
+                        <!-- end of masterslider -->
+                        <div class="ms-staff-info" id="staff-info"></div>
                     {% else %}
                         <div class="mensaje-default-transparente">
                             <h1>¡Descrube destacadas inmobiliarias!</h1>
                             <h2>y hazlos tus favoritos</h2>
-                            <a href="{{ path('lisdato_seccion',{'slug_seccion': 'constructoras-e-inmobiliarias'}) }}" class="btn btn-konstruye2">Empieza aquí</a>
+                            <a href="{{ path('lisdato_seccion',{'slug_seccion': 'constructoras-e-inmobiliarias'}) }}"
+                               class="btn btn-konstruye2">Empieza aquí</a>
                         </div>
                     {% endif %}
                 </div>
@@ -422,14 +483,13 @@
         $("#button1").addClass("active");
 
 
-
-        $("#button1").click(function(){
+        $("#button1").click(function () {
             $("#button2").removeClass("active");
             $("#button1").addClass("active");
             $("#buscador2").hide();
             $("#buscador1").show();
         });
-        $("#button2").click(function(){
+        $("#button2").click(function () {
             $("#button1").removeClass("active");
             $("#button2").addClass("active");
             $("#buscador1").hide();
@@ -437,183 +497,177 @@
         });
         /*function monkeyPatchAutocomplete() {
 
-            // Don't really need to save the old fn,
-            // but I could chain if I wanted to
-            var oldFn = $.ui.autocomplete.prototype._renderItem;
+         // Don't really need to save the old fn,
+         // but I could chain if I wanted to
+         var oldFn = $.ui.autocomplete.prototype._renderItem;
 
-            $.ui.autocomplete.prototype._renderItem = function( ul, item) {
-                var re = new RegExp("^" + this.term, "i") ;
-                var t = item.label.replace(re,"<span style='font-weight:bold;color:#009FE3'>" + this.term + "</span>");
-                return $( "<li></li>" )
-                        .data( "item.autocomplete", item )
-                        .append( "<a>" + t + "</a>" )
-                        .appendTo( ul );
-            };
-        }
-        monkeyPatchAutocomplete();*/
+         $.ui.autocomplete.prototype._renderItem = function( ul, item) {
+         var re = new RegExp("^" + this.term, "i") ;
+         var t = item.label.replace(re,"<span style='font-weight:bold;color:#009FE3'>" + this.term + "</span>");
+         return $( "<li></li>" )
+         .data( "item.autocomplete", item )
+         .append( "<a>" + t + "</a>" )
+         .appendTo( ul );
+         };
+         }
+         monkeyPatchAutocomplete();*/
 
         /*var s2_found_data = false;
-        $( "#buscador2 form input" ).autocomplete({
-            source: function( request, response ) {
-                var url = $("#buscador2 form").attr('data-buscar-url');
-                s2_found_data = false;
-                $.ajax( {
-                    url: url,
-                    //dataType: "jsonp",
-                    data: {
-                        q: request.term
-                    },
-                    success: function( data ) {
-                        // Handle 'no match' indicated by [ "" ] response
-                        response( data.length === 0 ? ['Ningun resultado encontrado'] : data );
-                        if(data.length>0) s2_found_data = true;
-                        //response( data.length === 1 && data[ 0 ].length === 0 ? ['Ningun resultado encontrado'] : data );
-                    }
-                } );
-            },
-            minLength: 1,
-            select: function( event, ui ) {
-                if(!s2_found_data) return false;
-                $( "#buscador2 form input").attr('value',ui.item.label);
-                var url = $('#buscador2 form').attr('action');
-                var search = ui.item.label;
-                //window.open(url+'/'+search,'_self',false);
-                $('#buscador2 form').submit();
-                //alert(ui.item.label);
-                //log( "Selected: " + ui.item.label );
+         $( "#buscador2 form input" ).autocomplete({
+         source: function( request, response ) {
+         var url = $("#buscador2 form").attr('data-buscar-url');
+         s2_found_data = false;
+         $.ajax( {
+         url: url,
+         //dataType: "jsonp",
+         data: {
+         q: request.term
+         },
+         success: function( data ) {
+         // Handle 'no match' indicated by [ "" ] response
+         response( data.length === 0 ? ['Ningun resultado encontrado'] : data );
+         if(data.length>0) s2_found_data = true;
+         //response( data.length === 1 && data[ 0 ].length === 0 ? ['Ningun resultado encontrado'] : data );
+         }
+         } );
+         },
+         minLength: 1,
+         select: function( event, ui ) {
+         if(!s2_found_data) return false;
+         $( "#buscador2 form input").attr('value',ui.item.label);
+         var url = $('#buscador2 form').attr('action');
+         var search = ui.item.label;
+         //window.open(url+'/'+search,'_self',false);
+         $('#buscador2 form').submit();
+         //alert(ui.item.label);
+         //log( "Selected: " + ui.item.label );
+         }
+         } );*/
+
+        $(document).ready(function () {
+
+            if (/Android|iPhone|iPod|webOS|iPad|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+
+
+                var slider = new MasterSlider();
+
+                slider.control('arrows', {insertTo: '#masterslider'});
+                slider.control('bullets');
+
+                slider.setup('masterslider', {
+                    space: 5,
+                    grabCursor: false,
+                    loop: true,
+                    autoplay: true,
+                    layout: 'fullscreen',
+                    fullscreenMargin: 127,
+                    speed: 20
+                });
+
+
             }
-        } );*/
+            else {
 
-            $(document).ready(function() {
+                var slider = new MasterSlider();
 
-                if( /Android|iPhone|iPod|webOS|iPad|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+                slider.control('arrows', {insertTo: '#masterslider'});
+                slider.control('bullets');
 
-
-                    var slider = new MasterSlider();
-
-                    slider.control('arrows' ,{insertTo:'#masterslider'});
-                    slider.control('bullets');
-
-                    slider.setup('masterslider' , {
-                        space:5,
-                        grabCursor:false,
-                        loop:true,
-                        autoplay:true,
-                        layout:'fullscreen',
-                        fullscreenMargin: 127,
-                        speed:20
-                    });
+                slider.setup('masterslider', {
+                    width: 1024,
+                    height: 500,
+                    space: 5,
+                    grabCursor: false,
+                    view: 'basic',
+                    loop: true,
+                    autoplay: true,
+                    layout: 'fullwidth',
+                    speed: 20
+                });
 
 
+            }
+
+
+            var slider2 = new MasterSlider();
+            slider2.setup('masterslider2', {
+                loop: true,
+                width: 150,
+                height: 150,
+                speed: 20,
+                view: 'focus',
+                preload: 0,
+                grabCursor: false,
+                space: 0,
+                space: 35,
+                viewOptions: {centerSpace: 1.6}
+            });
+            slider2.control('arrows');
+            slider2.control('slideinfo', {insertTo: '#staff-info'});
+
+
+            var slider3 = new MasterSlider();
+            slider3.setup('masterslider3', {
+                loop: true,
+                width: 150,
+                height: 150,
+                speed: 20,
+                view: 'focus',
+                preload: 0,
+                grabCursor: false,
+                space: 0,
+                space: 35,
+                viewOptions: {centerSpace: 1.6}
+            });
+            slider3.control('arrows');
+            slider3.control('slideinfo', {insertTo: '#staff-info3'});
+
+
+            var slider4 = new MasterSlider();
+            slider4.setup('masterslider4', {
+                loop: true,
+                width: 150,
+                height: 150,
+                speed: 20,
+                view: 'focus',
+                preload: 0,
+                grabCursor: false,
+                space: 0,
+                space: 35,
+                viewOptions: {centerSpace: 1.6}
+            });
+            slider4.control('arrows');
+            slider4.control('slideinfo', {insertTo: '#staff-info4'});
+
+            var slider5 = new MasterSlider();
+            slider5.setup('masterslider5', {
+                loop: true,
+                width: 150,
+                height: 150,
+                speed: 20,
+                view: 'focus',
+                preload: 0,
+                grabCursor: false,
+                space: 0,
+                space: 35,
+                viewOptions: {centerSpace: 1.6}
+            });
+            slider5.control('arrows');
+            slider5.control('slideinfo', {insertTo: '#staff-info5'});
+
+
+            $(window).bind('scroll', function () {
+                if ($(window).scrollTop() > 420) {
+                    $('.nav-principal2').fadeIn("slow");
+                    $('.nav-principal2').addClass("navbar-fixed-top");
+                } else {
+                    $('.nav-principal2').fadeOut("slow");
                 }
-                else
-                {
-
-                    var slider = new MasterSlider();
-
-                    slider.control('arrows' ,{insertTo:'#masterslider'});
-                    slider.control('bullets');
-
-                    slider.setup('masterslider' , {
-                        width:1024,
-                        height:500,
-                        space:5,
-                        grabCursor:false,
-                        view:'basic',
-                        loop:true,
-                        autoplay:true,
-                        layout:'fullwidth',
-                        speed:20
-                    });
-
-
-
-                }
-
-
-                var slider2 = new MasterSlider();
-                slider2.setup('masterslider2' , {
-                    loop:true,
-                    width:150,
-                    height:150,
-                    speed:20,
-                    view:'focus',
-                    preload:0,
-                    grabCursor:false,
-                    space:0,
-                    space:35,
-                    viewOptions:{centerSpace:1.6}
-                });
-                slider2.control('arrows');
-                slider2.control('slideinfo',{insertTo:'#staff-info'});
-
-
-                var slider3 = new MasterSlider();
-                slider3.setup('masterslider3' , {
-                    loop:true,
-                    width:150,
-                    height:150,
-                    speed:20,
-                    view:'focus',
-                    preload:0,
-                    grabCursor:false,
-                    space:0,
-                    space:35,
-                    viewOptions:{centerSpace:1.6}
-                });
-                slider3.control('arrows');
-                slider3.control('slideinfo',{insertTo:'#staff-info3'});
-
-
-                var slider4 = new MasterSlider();
-                slider4.setup('masterslider4' , {
-                    loop:true,
-                    width:150,
-                    height:150,
-                    speed:20,
-                    view:'focus',
-                    preload:0,
-                    grabCursor:false,
-                    space:0,
-                    space:35,
-                    viewOptions:{centerSpace:1.6}
-                });
-                slider4.control('arrows');
-                slider4.control('slideinfo',{insertTo:'#staff-info4'});
-
-                var slider5 = new MasterSlider();
-                slider5.setup('masterslider5' , {
-                    loop:true,
-                    width:150,
-                    height:150,
-                    speed:20,
-                    view:'focus',
-                    preload:0,
-                    grabCursor:false,
-                    space:0,
-                    space:35,
-                    viewOptions:{centerSpace:1.6}
-                });
-                slider5.control('arrows');
-                slider5.control('slideinfo',{insertTo:'#staff-info5'});
-
-
-                $(window).bind('scroll', function () {
-                    if ($(window).scrollTop() > 420) {
-                        $('.nav-principal2').fadeIn("slow");
-                        $('.nav-principal2').addClass("navbar-fixed-top");
-                    } else {
-                        $('.nav-principal2').fadeOut("slow");
-                    }
-                });
-
-
-                $("#buscador1 .btn-group.bootstrap-select,#buscador2 .btn-group.bootstrap-select").prepend('<i class="fa fa-chevron-down" aria-hidden="true"></i>');
             });
 
 
-
-
+            $("#buscador1 .btn-group.bootstrap-select,#buscador2 .btn-group.bootstrap-select").prepend('<i class="fa fa-chevron-down" aria-hidden="true"></i>');
+        });
 
 
     </script>
