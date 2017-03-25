@@ -158,7 +158,9 @@ Filtro X
     content: "";
     display: none;
 }
-
+.img-current-wraper{
+    text-align: right;
+}
 /*===============
 Icomoon
 ================*/

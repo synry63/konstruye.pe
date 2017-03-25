@@ -40,7 +40,26 @@ class FotoProducto
      * @ORM\Column(type="string", length=100)
      */
     private $img;
+    /**
+     * @ORM\Column(type="integer",nullable=true)
+     */
+    private $sort;
 
+    /**
+     * @return mixed
+     */
+    public function getSort()
+    {
+        return $this->sort;
+    }
+
+    /**
+     * @param mixed $sort
+     */
+    public function setSort($sort)
+    {
+        $this->sort = $sort;
+    }
     /**
      * @ORM\Column(type="datetime")
      *
@@ -54,6 +73,26 @@ class FotoProducto
      **/
     private $producto;
 
+    /**
+     * @ORM\Column(type="string", length=100)
+     */
+    private $nombre;
+
+    /**
+     * @return mixed
+     */
+    public function getNombre()
+    {
+        return $this->nombre;
+    }
+
+    /**
+     * @param mixed $nombre
+     */
+    public function setNombre($nombre)
+    {
+        $this->nombre = $nombre;
+    }
     /**
      * @ORM\Column(type="text",nullable=true)
      */

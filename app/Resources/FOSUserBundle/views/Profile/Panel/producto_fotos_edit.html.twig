@@ -1,2 +1,33 @@
-{{ dump(fotos) }}
-{{ form(form, {'attr': {'novalidate': 'novalidate'}}) }}
+{% extends "FOSUserBundle::Profile/Panel/panel_layout.html.twig" %}
+
+{% block content_section %}
+
+    <h1 class="title-dashboard">Fotos de <span>{{ producto.nombre }}</span></h1>
+
+    {% for f in fotos %}
+
+        <div class="col-md-3" style="padding: 0 20px">
+
+            <a class="eliminar" onclick="return confirm('¿Estas seguro de eliminar esta foto?');" href="{{ path('profile_negocios_panel_gestion_negocio_producto_foto_delete',{'id':f.id}) }}"><i class="fa fa-trash" aria-hidden="true"></i> Eliminar</a>
+
+            <div class="listado-inmuebles">
+                <div class="banner">
+                    <img src="{{ vich_uploader_asset(f, 'imgFile') }}" alt="{{ f.nombre }}" />
+                </div>
+                <h1 class="inmueble-title">
+                    {{ f.nombre }}
+                </h1>
+            </div>
+        </div>
+
+    {% endfor %}
+
+    {{ form(form, {'attr': {'novalidate': 'novalidate'}}) }}
+
+
+
+
+
+
+{% endblock %}
+

@@ -688,11 +688,12 @@ class PanelController extends Controller
         );
     }
     public function showPanelNegocioUserProductoEditAction(Request $request,$id){
+
         $negocio_id = $this->getRequest()->getSession()->get('negocio_id');
         if($negocio_id==null) return $this->redirectToRoute('profile_negocios_panel');
         $negocio_current = $this->getDoctrine()->getRepository('AppBundle:Negocio')->find($negocio_id);
         $producto = $this->getDoctrine()->getRepository('AppBundle:Producto')->find($id);
-        $form = $this->createForm(new ProyectoType(true), $producto);
+        $form = $this->createForm(new ProductoType(true), $producto);
         $form->handleRequest($request);
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
@@ -753,6 +754,7 @@ class PanelController extends Controller
             array(
                 'form'=>$form->createView(),
                 'fotos'=>$fotos_productos,
+                'producto'=>$producto,
                 'negocio'=>$negocio_current,
                 'tipo'=>$this->get('negocio_type')->getArrayAcordingToTypeOf($negocio_current)
             )

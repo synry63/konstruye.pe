@@ -14,6 +14,7 @@
 {% endblock %}
 
 {% block fos_user_content %}
+    {{ dump(producto.fotos) }}
     {#{{ dump(myc) }}#}
     {#{{ wo_render_breadcrumbs() }}#}
     <div class="container product-detail-section" style="padding: 0">
@@ -26,34 +27,12 @@
                 <div class="ms-showcase2-template ms-showcase2-vertical">
                     <!-- masterslider -->
                     <div class="master-slider ms-skin-default" id="masterslider">
-                        <div class="ms-slide">
-                            <img src="{{ asset('css/loading-2.gif') }}" data-src="http://placehold.it/450x450" alt="lorem ipsum dolor sit"/>
-                            <img class="ms-thumb" src="http://placehold.it/100x100" alt="thumb" />
-                        </div>
-                        <div class="ms-slide">
-                            <img src="{{ asset('css/loading-2.gif') }}" data-src="http://placehold.it/450x450" alt="lorem ipsum dolor sit"/>
-                            <img class="ms-thumb" src="http://placehold.it/100x100" alt="thumb" />
-                        </div>
-                        <div class="ms-slide">
-                            <img src="{{ asset('css/loading-2.gif') }}" data-src="http://placehold.it/450x450" alt="lorem ipsum dolor sit"/>
-                            <img class="ms-thumb" src="http://placehold.it/100x100" alt="thumb" />
-                        </div>
-                        <div class="ms-slide">
-                            <img src="{{ asset('css/loading-2.gif') }}" data-src="http://placehold.it/450x450" alt="lorem ipsum dolor sit"/>
-                            <img class="ms-thumb" src="http://placehold.it/100x100" alt="thumb" />
-                        </div>
-                        <div class="ms-slide">
-                            <img src="{{ asset('css/loading-2.gif') }}" data-src="http://placehold.it/450x450" alt="lorem ipsum dolor sit"/>
-                            <img class="ms-thumb" src="http://placehold.it/100x100" alt="thumb" />
-                        </div>
-                        <div class="ms-slide">
-                            <img src="{{ asset('css/loading-2.gif') }}" data-src="http://placehold.it/450x450" alt="lorem ipsum dolor sit"/>
-                            <img class="ms-thumb" src="http://placehold.it/100x100" alt="thumb" />
-                        </div>
-                        <div class="ms-slide">
-                            <img src="{{ asset('css/loading-2.gif') }}" data-src="http://placehold.it/450x450" alt="lorem ipsum dolor sit"/>
-                            <img class="ms-thumb" src="http://placehold.it/100x100" alt="thumb" />
-                        </div>
+                        {% for f in producto.fotos  %}
+                            <div class="ms-slide">
+                                <img style="width: 450px;height: 450px;" src="{{ vich_uploader_asset(f, 'imgFile') }}" alt="" />
+                                <img class="ms-thumb" style="width: 100px;height: 100px;" src="{{ vich_uploader_asset(f, 'imgFile') }}"alt="thumb" />
+                            </div>
+                        {% endfor %}
 
 
                     </div>
