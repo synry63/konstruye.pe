@@ -1472,11 +1472,17 @@ Perfil Publico
 Buscador Principal
 =============*/
 
+.master-container{
+    width: 100%;
+    display: inline-block;
+    height: 550px;
+}
+
 .buscador-principal{
     width: 55%;
     position: absolute;
     z-index: 3;
-    top: 60%;
+    top: 40%;
     left: 50%;
     transform: translate(-50%,-50%);
     background: rgba(0, 159, 227,.5);
@@ -2725,15 +2731,462 @@ Footer Menu
 #menu-index-bottom-responsive{
     display: none;
 }
+.public-cyv{
+    height: 300px;
+    overflow: hidden;
+    position: relative;
+}
+.public-cyv img{
+    width: 100%;
+}
+
+@media only screen and (min-width : 995px) and (max-width : 1195px){
+    .product-section .producto-box img{
+        width: 100%;
+    }
+    .product-section .producto-box {
+        min-height: 324px;
+    }
+    .listado-negocios .banner{
+        width: 300px;
+    }
+    /* botones de sesion  */
+    .logi-reg .login-stiky{
+        position: fixed;
+        width: 100%;
+        bottom: 0;
+        left: 0;
+        top: inherit;
+    }
+
+    .logi-reg .login-stiky a{
+        background: #1c9cd9;
+        display: inline-block;
+        width: 45%;
+        float: none;
+        padding: 10px;
+        border-radius: 5px;
+        border: solid 1px rgba(0,0,0,.2);
+    }
+
+    /* Fin botones de sesion */
+
+    .nav-principal2 div#menu-stiky{
+        width: 100%;
+        left: 0;
+        top:70px;
+    }
+    .form-stiky{
+        width: 460px;
+        left: 57%;
+    }
+
+    .form-stiky .btn-group.bootstrap-select{
+        width: 150px !important;
+    }
+    .menu-principal2 #dropdownMenustiky{
+        left: 21%;
+    }
+    .menu-principal2 #dropdownMenustiky::after{
+        right: -40px;
+    }
+
+}
+@media only screen and (min-width : 736px) and (max-width : 995px){
+    .listado-negocios .precio-listado{
+        background: rgba(0, 159, 227,1);
+    }
+    #button-filtro{
+        padding: 15px 75px;
+        border: 5px;
+        position: fixed;
+        bottom: 60px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #d9534f;
+        color: #fff;
+        z-index: 100;
+        border-radius: 10px;
+    }
+
+    .filtros-responsive{
+        display: none;
+
+    }
+    #ex{
+        position: absolute;
+        top: 25px;
+        right: 35px;
+        font-size: 30px;
+        color: rgba(0,0,0,.5);
+        cursor: pointer;
+    }
+    .filtros-responsive .filtro{
+        padding: 60px 30px 30px 30px;
+    }
+
+    .filtros-responsive{
+        width: 100%;
+        max-height: 100%;
+        position: fixed;
+        overflow-y:scroll;
+        overflow-x:hidden;
+        left: 0;
+        z-index: 999999;
+        top: -10px;
+        padding: 0 !important;
+    }
+
+    .buscador_categorias{
+        width: 100%;
+    }
+    .public-cyv{
+        height: 300px;
+        overflow: hidden;
+        position: relative;
+    }
+    #search-cop3{
+        width: 90%;
+    }
+    #search-cop3 .bootstrap-select{
+        width: 50%;
+        float: left;
+    }
+    #search-cop3 .buscador{
+        margin-top: 10px;
+        width: 100%;
+    }
+    .product-section .producto-box img{
+        width: 100%;
+    }
+    .product-section .producto-box {
+        min-height: 324px;
+    }
+
+    .form-stiky .form-control{
+        width: 30%;
+    }
+    .buttons-change{
+        right: 86px;
+    }
+    .datos-detail .logo{
+        display: inline-block;
+    }
+    .datos-detail{
+        height: auto;
+    }
+
+    .datos-detail .info-negocio{
+        display: inline-block;
+        vertical-align: top;
+    }
+    .datos-detail .botones-sociales{
+        display: inline-block;
+        vertical-align: top;
+    }
+
+    .nav-principal2 div#menu-stiky{
+        width: 100%;
+        left: 0;
+        top:70px;
+    }
+
+    /* botones de sesion  */
+    .logi-reg .login-stiky{
+        position: fixed;
+        width: 100%;
+        bottom: 0;
+        left: 0;
+        top: inherit;
+    }
+
+    .logi-reg .login-stiky a{
+        background: #1c9cd9;
+        display: inline-block;
+        width: 45%;
+        float: none;
+        padding: 10px;
+        border-radius: 5px;
+        border: solid 1px rgba(0,0,0,.2);
+    }
+
+    /* Fin botones de sesion */
+
+
+    .form-stiky{
+        width: 460px;
+        left: 70%;
+    }
+
+    .form-stiky .btn-group.bootstrap-select{
+        width: 150px !important;
+    }
+    .menu-principal2 #dropdownMenustiky{
+        left: 26%;
+    }
+    .menu-principal2 #dropdownMenustiky::after{
+        right: -40px;
+    }
+
+
+    .buscador-principal{
+        top:43%;
+    }
+    .buscador-principal #button1,.buscador-principal #button2{
+        top:-45px;
+    }
+    .buscador-principal #button2{
+        left: 100px;
+    }
+    .buscador-principal #button1 span,.buscador-principal #button2 span{
+        display: none;
+    }
+    .buscador-principal #button1 i,.buscador-principal #button2 i{
+        font-size: 25px;
+    }
+    .buscador-principal .bootstrap-select{
+        width: 100% !important;
+        margin-bottom: 10px;
+    }
+    .buscador-principal form input{
+        width: 100%;
+    }
+
+
+    /* Banner Categorias */
+
+    .listado-negocios .banner{
+        display: none;
+    }
+    .listado-negocios .logotipe-box{
+        display: inline-block;
+    }
+    .listado-negocios .datos-box{
+        display: inline-block;
+        vertical-align: top;
+    }
+}
+
+
 @media only screen and (min-width : 320px) and (max-width : 736px) {
+
+    #ex{
+        position: absolute;
+        top: 25px;
+        right: 35px;
+        font-size: 30px;
+        color: rgba(0,0,0,.5);
+        cursor: pointer;
+    }
+    .filtros-responsive .filtro{
+        padding: 60px 30px 30px 30px;
+    }
+
+    .filtros-responsive{
+        width: 100%;
+        max-height: 100%;
+        position: fixed;
+        z-index: 999999;
+        top: -10px;
+        padding: 0 !important;
+        overflow-y:scroll;
+        overflow-x:hidden;
+    }
+
+
+    .listado-negocios .precio-listado{
+        position: relative;
+        bottom: -10px;
+        background: rgba(0, 159, 227,1);
+        left: 50%;
+        transform: translateX(-50%);
+        width: 90%;
+    }
+
+
+    #button-filtro{
+        padding: 15px 75px;
+        border: 5px;
+        position: fixed;
+        bottom: 60px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #d9534f;
+        color: #fff;
+        z-index: 100;
+        border-radius: 10px;
+    }
+
+    .filtros-responsive{
+        display: none;
+    }
+
+
+    .buscador_categorias{
+        width: 100%;
+    }
+    .public-cyv{
+        height: 300px;
+        overflow: hidden;
+        position: relative;
+    }
+    .public-cyv img{
+        height: 100%;
+        filter: blur(5px);
+    }
+    #search-cop3{
+        width: 90%;
+    }
+    #search-cop3 .bootstrap-select:first-child{
+        margin-bottom: 10px;
+    }
+    #search-cop3 .bootstrap-select{
+        width: 100%;
+        float: left;
+    }
+    #search-cop3 .buscador{
+        margin-top: 10px;
+        width: 100%;
+    }
+    .datos-detail{
+        height: auto;
+    }
+    .datos-detail .logo{
+        margin-top: -65px;
+        padding-bottom: 0;
+    }
+    .datos-detail .titulo-negocio{
+        text-align: center;
+        line-height: 30px;
+    }
+    .datos-detail .titulo-negocio h1{
+        text-align: center;
+        display: block;
+    }
+    .datos-detail .contacto{
+        text-align: center;
+    }
+    .datos-detail .contacto span{
+        display: block;
+    }
+
+
+    .datos-detail .logo img{
+        border: solid 1px rgba(0,0,0,.2);
+    }
+
+
+    .nav-principal2 div#menu-stiky{
+        width: 100%;
+        left: 0;
+        padding: 10px;
+    }
+    div#menu-stiky .item-stiky{
+        display: inline-block;
+        width: 100%;
+        text-align: left;
+        padding: 15px;
+        vertical-align: top;
+    }
+    .item-stiky span{
+        position: relative;
+        width: 60px;
+        display: inline-block;
+        transform: none;
+        left: 0;
+        top:0;
+    }
+    .footer-menu.pdf{
+        margin-bottom: 40px;
+    }
+
+    /* botones de sesion  */
+    .logi-reg .login-stiky{
+        position: fixed;
+        width: 100%;
+        bottom: -25px;
+        left: 0;
+        top: inherit;
+        border-top: solid 1px rgba(0,0,0,.2);
+    }
+
+    .logi-reg .login-stiky a{
+        background: #1c9cd9;
+        display: inline-block;
+        width: 50%;
+        float: left;
+        padding: 10px;
+    }
+
+    /* Fin botones de sesion */
+
+    /* Banner Categorias */
+
+    .listado-negocios .banner{
+        display: none;
+    }
+
+    .listado-negocios .datos-box{
+        display: inline-block;
+        vertical-align: top;
+    }
+    .listado-negocios .detalle-datos a h1{
+        font-size: 18px !important;
+    }
+
+    /* Fin Banner Categorias */
+
+    .table-filtros table{
+        float: none;
+        margin-top: 15px;
+    }
+
+
+    .buscador-principal{
+        top:39%;
+        width: 90%;
+        z-index: 99999999999;
+    }
+    .buscador-principal #button1,.buscador-principal #button2{
+        top:-45px;
+    }
+    .buscador-principal #button2{
+        left: 180px;
+    }
+    .buscador-principal #button1{
+        left: 100px;
+    }
+    .buscador-principal #button1 span,.buscador-principal #button2 span{
+        display: none;
+    }
+    .buscador-principal #button1 i,.buscador-principal #button2 i{
+        font-size: 25px;
+    }
+    .buscador-principal .bootstrap-select{
+        width: 100% !important;
+        margin-bottom: 10px;
+    }
+    .buscador-principal form input{
+        width: 100%;
+    }
+
+
+
+
+    .master-container{
+        width: 100%;
+        display: inline-block;
+        height: 500px;
+    }
     #menu-index-bottom{
         display: none;
     }
     #menu-index-bottom-responsive{
-        display: block;
+        display: inline-block;
+        margin-bottom: 35px;
     }
     .about-us-container{
-        padding: 140px 15px 20px;
+        padding: 0 15px 20px;
     }
     .index-logeado{
         margin-right: 0 !important;
@@ -2742,24 +3195,12 @@ Footer Menu
         padding: 10px 0;
         text-align: center;
     }
-    .link-home{
-        vertical-align: middle;
-        width: 50%;
-        position: relative;
-        display: inline-block;
-        float: left;
+
+
+    .mensaje-default-blanco, .mensaje-default-transparente{
         text-align: center;
     }
-    .link-home:first-child{
-        line-height: 60px;
-        border-right: solid 1px #f1f1f1;
-    }
-    .link-home:nth-child(2){
-        border-bottom: solid 1px #f1f1f1;
-    }
-    .link-home:nth-child(3){
-        border-right: solid 1px #f1f1f1;
-    }
+
 
     #dropdownMenu2 .stiky-name{
         display: none;
@@ -2773,22 +3214,36 @@ Footer Menu
     .index-logeado .stiky-name{
         display: none;
     }
+
+
+    .link-home{
+        width: 100%;
+        position: relative;
+        display: inline-block;
+        float: left;
+        line-height: 60px;
+        text-align: left;
+        border-bottom: solid 1px #f1f1f1;
+    }
     .link-det{
         background: #fff;
         min-height: 60px;
         font-size: 14px;
         font-weight: 600;
         padding-right: 5px;
-        padding-left: 5px;
+        padding-left: 15px;
     }
-    .link-det.pad{
-        padding-top: 15px;
-    }
-    .link-det i{
+
+    .link-det span{
+        display: inline-block;
+        width: 50px;
         font-weight: 100;
-        font-size: 16px;
-        color: rgb(15, 135, 191);
+        text-align: left;
+        color: #009FE3;
     }
+
+
+
     .comments_details .comentarios-personales  .date{
         position: relative;
         margin-bottom: 0;
@@ -2819,6 +3274,7 @@ Footer Menu
     }
     .card-header-responsive{
         display: block;
+        padding: 0;
     }
     .card-header-responsive .datos-direccion h1{
         max-width: 225px;
@@ -2871,6 +3327,8 @@ Footer Menu
     }
     .index-menu .login-index{
         padding: 10px 0;
+        right: -10px;
+
     }
     .index-menu .login-index a:first-child::after{
         display: none;
@@ -2892,9 +3350,7 @@ Footer Menu
     .responsive-element{
        display: inline-block;
     }
-    .buscador-principal{
-        display: none;
-    }
+
     .footer-menu{
         height: auto;
     }

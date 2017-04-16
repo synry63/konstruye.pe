@@ -10,7 +10,7 @@
 {% block fos_user_content %}
 
     <div class="container-fluid">
-        <div class="row" style="height: 300px;overflow: hidden">
+        <div class="row hidden-sm hidden-xs" style="height: 300px;overflow: hidden">
             <img width="100%" src="{{ asset('images/assets/celima_banner.jpg') }}" alt="">
         </div>
     </div>
@@ -41,7 +41,7 @@
 
             <div class="row">
                 {% for pro in productos %}
-                    <div class="col-md-4 producto-box">
+                    <div class="col-md-4 col-sm-4 producto-box">
                         <a href="{{ path('show_producto',{'slug_producto':pro.producto.slug}) }}">
                             <img src="http://placehold.it/220x220" alt="">
                         </a>

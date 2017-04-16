@@ -90,10 +90,10 @@
 
             <div class="buscador-principal">
 
-                <a href="javascript:void(0)" id="button1"><i class="fa fa-briefcase" aria-hidden="true"></i> Buscador de
-                    Negocios</a>
-                <a href="javascript:void(0)" id="button2"><i class="fa fa-shopping-bag" aria-hidden="true"></i> Buscador
-                    de Productos</a>
+                <a href="javascript:void(0)" id="button1"><i class="fa fa-briefcase" aria-hidden="true"></i>
+                    <span>Buscador de Negocios</span></a>
+                <a href="javascript:void(0)" id="button2"><i class="fa fa-shopping-bag" aria-hidden="true"></i>
+                    <span>Buscador de Productos</span></a>
 
 
                 <div id="buscador1">
@@ -132,25 +132,29 @@
 
             {# Fin Buscador Principal #}
 
-            <div class="master-slider ms-skin-default" id="masterslider">
-                <!-- new slide -->
-                <div class="ms-slide" data-delay="10">
-                    <img src="{{ asset('images/assets/blank.gif') }}"
-                         data-src="{{ asset('images/assets/banner6.jpg') }}" alt="lorem ipsum dolor sit"/>
-                </div>
-                <div class="ms-slide" data-delay="10">
-                    <img src="{{ asset('images/assets/blank.gif') }}"
-                         data-src="{{ asset('images/assets/banner2.jpg') }}" alt="lorem ipsum dolor sit"/>
-                </div>
-                <div class="ms-slide" data-delay="10">
-                    <img src="{{ asset('images/assets/blank.gif') }}"
-                         data-src="{{ asset('images/assets/banner4.jpg') }}" alt="lorem ipsum dolor sit"/>
-                </div>
-                <div class="ms-slide" data-delay="10">
-                    <img src="{{ asset('images/assets/blank.gif') }}"
-                         data-src="{{ asset('images/assets/banner7.jpg') }}" alt="lorem ipsum dolor sit"/>
+            <div class="master-container">
+                <div class="master-slider ms-skin-default" id="masterslider">
+                    <!-- new slide -->
+                    <div class="ms-slide" data-delay="10">
+                        <img src="{{ asset('images/assets/blank.gif') }}"
+                             data-src="{{ asset('images/assets/banner6.jpg') }}" alt="lorem ipsum dolor sit"/>
+                    </div>
+                    <div class="ms-slide" data-delay="10">
+                        <img src="{{ asset('images/assets/blank.gif') }}"
+                             data-src="{{ asset('images/assets/banner2.jpg') }}" alt="lorem ipsum dolor sit"/>
+                    </div>
+                    <div class="ms-slide" data-delay="10">
+                        <img src="{{ asset('images/assets/blank.gif') }}"
+                             data-src="{{ asset('images/assets/banner4.jpg') }}" alt="lorem ipsum dolor sit"/>
+                    </div>
+                    <div class="ms-slide" data-delay="10">
+                        <img src="{{ asset('images/assets/blank.gif') }}"
+                             data-src="{{ asset('images/assets/banner7.jpg') }}" alt="lorem ipsum dolor sit"/>
+                    </div>
                 </div>
             </div>
+
+
         </div>
 
     </div>
@@ -186,25 +190,25 @@
 
     </div>
 
-    <div id="menu-index-bottom-responsive">
+    <div id="menu-index-bottom-responsive" class="konstruye-font">
         <a class="link-home" href="{{ path('lisdato_seccion',{'slug_seccion':'proveedores'}) }}">
             <div class="link-det">
-                <i class="fa fa-truck" aria-hidden="true"></i> Proveedores
+                <span class="icon-proveedores"></span> Proveedores
             </div>
         </a>
         <a class="link-home" href="{{ path('lisdato_seccion',{'slug_seccion':'compra-venta-y-alquiler-inmuebles'}) }}">
-            <div class="link-det pad">
-                <i class="fa fa-home" aria-hidden="true"></i> Compra venta y alquiler de inmuebles
+            <div class="link-det">
+                <span class="icon-inmuebles"></span> Compra venta y alquiler de inmuebles
             </div>
         </a>
         <a class="link-home" href="{{ path('lisdato_seccion',{'slug_seccion':'especialistas-servicios-personales'}) }}">
-            <div class="link-det pad">
-                <i class="fa fa-users" aria-hidden="true"></i> Especialistas servicios personales
+            <div class="link-det">
+                <span class="icon-especialistas"></span> Especialistas servicios personales
             </div>
         </a>
         <a class="link-home" href="{{ path('lisdato_seccion',{'slug_seccion':'constructoras-e-inmobiliarias'}) }}">
-            <div class="link-det pad">
-                <i class="fa fa-building-o" aria-hidden="true"></i> Constructoras e inmobiliarias
+            <div class="link-det">
+                <span class="icon-constructoras"></span> Constructoras e inmobiliarias
             </div>
         </a>
 
@@ -546,44 +550,31 @@
 
         $(document).ready(function () {
 
+
+            var slider = new MasterSlider();
+
+            slider.control('arrows', {insertTo: '#masterslider'});
+            slider.control('bullets');
+
+            slider.setup('masterslider', {
+                width: 1024,
+                height: 550,
+                space: 5,
+                grabCursor: false,
+                view: 'basic',
+                loop: true,
+                autoplay: true,
+                layout: 'autofill',
+                speed: 20
+            });
+
+
+
             if (/Android|iPhone|iPod|webOS|iPad|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-
-
-                var slider = new MasterSlider();
-
-                slider.control('arrows', {insertTo: '#masterslider'});
-                slider.control('bullets');
-
-                slider.setup('masterslider', {
-                    space: 5,
-                    grabCursor: false,
-                    loop: true,
-                    autoplay: true,
-                    layout: 'fullscreen',
-                    fullscreenMargin: 127,
-                    speed: 20
-                });
 
 
             }
             else {
-
-                var slider = new MasterSlider();
-
-                slider.control('arrows', {insertTo: '#masterslider'});
-                slider.control('bullets');
-
-                slider.setup('masterslider', {
-                    width: 1024,
-                    height: 500,
-                    space: 5,
-                    grabCursor: false,
-                    view: 'basic',
-                    loop: true,
-                    autoplay: true,
-                    layout: 'fullwidth',
-                    speed: 20
-                });
 
 
             }

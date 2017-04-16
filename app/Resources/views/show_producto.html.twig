@@ -14,9 +14,6 @@
 {% endblock %}
 
 {% block fos_user_content %}
-    {{ dump(producto.fotos) }}
-    {#{{ dump(myc) }}#}
-    {#{{ wo_render_breadcrumbs() }}#}
     <div class="container product-detail-section" style="padding: 0">
         <div class="container-breadcrumb marging-top">
             {{ wo_render_breadcrumbs() }}
@@ -27,13 +24,22 @@
                 <div class="ms-showcase2-template ms-showcase2-vertical">
                     <!-- masterslider -->
                     <div class="master-slider ms-skin-default" id="masterslider">
-                        {% for f in producto.fotos  %}
-                            <div class="ms-slide">
-                                <img style="width: 450px;height: 450px;" src="{{ vich_uploader_asset(f, 'imgFile') }}" alt="" />
-                                <img class="ms-thumb" style="width: 100px;height: 100px;" src="{{ vich_uploader_asset(f, 'imgFile') }}"alt="thumb" />
-                            </div>
-                        {% endfor %}
+                        {% if producto.fotos | length > 1 %}
+                            {% for f in producto.fotos  %}
+                                <div class="ms-slide">
+                                    <img style="width: 450px;height: 450px;" src="{{ vich_uploader_asset(f, 'imgFile') }}" alt="" />
+                                    <img class="ms-thumb" style="width: 100px;height: 100px;" src="{{ vich_uploader_asset(f, 'imgFile') }}" alt="thumb" />
+                                </div>
+                            {% endfor %}
 
+                        {% else %}
+                            {% for f in producto.fotos  %}
+                                <div class="ms-slide">
+                                    <img style="width: 450px;height: 450px;" src="http://placehold.it/445x445" alt="" />
+                                    <img class="ms-thumb" style="width: 100px;height: 100px;" src="http://placehold.it/100x100" alt="thumb" />
+                                </div>
+                            {% endfor %}
+                        {% endif %}
 
                     </div>
                     <!-- end of masterslider -->

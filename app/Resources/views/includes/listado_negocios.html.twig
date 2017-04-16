@@ -73,7 +73,7 @@
 
 <div class="col-md-12 listado-negocios">
     <div class="row">
-        <div class="col-md-2" style="text-align: center">
+        <div class="col-md-2 logotipe-box" style="text-align: center">
             <a href="{{ path('show_negocio',{"slug_negocio":n.negocio.slug}) }}">
                 {% if n.negocio.logo is not null %}
                     <img style="border: solid 1px #f1f1f1" width="100px"
@@ -100,7 +100,7 @@
                 <div style="margin: 5px auto" class="rateYo_negocios" data-rating="{{ n.mymoy }}"></div>
             {% endif %}
         </div>
-        <div class="col-md-5">
+        <div class="col-md-5 datos-box">
 
 
 
@@ -133,8 +133,8 @@
 
                 {% else %}
                     <p><i class="fa fa-map-marker"
-                          aria-hidden="true"></i> {{ n.negocio.direccion | truncate(30,false) }}
-                        - {{ n.negocio.distrito.nombre }} - {{ n.negocio.provincia.nombre }}</p>
+                          aria-hidden="true"></i> {{ n.negocio.direccion | truncate(33,false) }}
+                        - {{ n.negocio.distrito.nombre }}</p>
                     <p><i class="fa fa-phone" aria-hidden="true"></i> {{ n.negocio.telefono }}</p>
                     {% if n.negocio.web is not null %}
                         <p><i class="fa fa-globe" aria-hidden="true"></i> {{ n.negocio.web }}</p>

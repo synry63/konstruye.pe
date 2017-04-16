@@ -25,8 +25,8 @@
     <input id="searchTextField" type="text" size="50" placeholder="Enter a location" autocomplete="on">
     #}
     <div class="container-fluid">
-        <div class="row" style="height: 300px;overflow: hidden;position: relative">
-            <img width="100%" src="{{ asset('images/assets/cosapi_banner.jpg') }}" alt="">
+        <div class="row public-cyv">
+            <img src="{{ asset('images/assets/cosapi_banner.jpg') }}" alt="">
 
             <div id="search-cop3">
                 <form class="buscador_categorias" method="get" action="{{ path('lisdato_seccion',negocios.params) }}" role="search">
@@ -65,7 +65,13 @@
 {#{{ dump(negocios) }}#}
     <div class="container" style="padding: 0">
 
-        <div class="col-md-3" style="padding: 0;padding-right: 10px">
+        <a href="javascript:void(0)" class="hidden-lg hidden-md" id="button-filtro">
+            Filtros
+        </a>
+
+
+        <div class="col-md-3 filtros-responsive" style="padding: 0;padding-right: 10px">
+            <i id="ex" class="fa fa-times hidden-lg hidde-sm hidden-md" aria-hidden="true"></i>
             {#{% for cmain in categorias_hijas %}#}
                 {#{{ include('includes/filtros_negocios.html.twig', { 'cmain': cmain }) }}#}
             {#{% endfor %}#}
@@ -273,6 +279,29 @@
     <script src="{{ asset('js/ion.rangeSlider.js') }}"></script>
     {#RangeSlide#}
     <script>
+
+
+        if ($(window).width() < 996) {
+            $( "#button-filtro" ).click(function() {
+                $(".filtros-responsive").fadeToggle("slow");
+            });
+        }
+        else {
+            $(".filtros-responsive").show("slow");
+        }
+
+
+        $( "#ex" ).click(function() {
+            $(".filtros-responsive").fadeOut("slow");
+        });
+
+
+
+
+
+
+
+
         $(document).ready( function(){
             var rangeSlider = $('.jsRangeSlider');
             var inpPreMin = $("input[name='preciomin']");
