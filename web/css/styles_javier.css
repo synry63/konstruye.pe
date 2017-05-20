@@ -1263,8 +1263,32 @@ Menu Index
 #menu-index-bottom ul li:hover a span, #menu-index-bottom ul li:hover a{
     color: #fff;
 }
-
-
+.edit-button{
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    z-index: 9;
+    font-size: 24px;
+    color: #fff;
+    text-shadow: 0px 2px 3px rgba(0,0,0,.4);
+    opacity: .5;
+    transition: all .5s;
+}
+.delete-button{
+    position: absolute;
+    top: 60px;
+    right: 30px;
+    z-index: 9;
+    font-size: 24px;
+    color: #fff;
+    text-shadow: 0px 2px 3px rgba(0,0,0,.4);
+    opacity: .5;
+    transition: all .5s;
+}
+.edit-button:hover, .delete-button:hover,.edit-button:focus, .delete-button:focus{
+    opacity: 1;
+    color: #fff;
+}
 /*=============
 Perfil Publico
 =============*/
@@ -1295,7 +1319,6 @@ Perfil Publico
 }
 .banner{
     text-align: center;
-    margin-bottom: 15px;
     padding: 0;
 }
 .banner img{
@@ -1756,6 +1779,38 @@ Mensaje-Not Fount
 /*=============
 Dashboard Negocios
 =============*/
+
+#mobile-header{
+    height:50px;
+    background: #009FE3;
+    color: #fff;
+}
+#mobile-header a:first-child{
+    position: relative;
+    top: 5px;
+    left: 10px;
+    color: #fff;
+    font-size: 30px;
+}
+#mobile-header a:last-child{
+    position: absolute;
+    height: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+#mobile-header a:last-child img{
+    height: 107%;
+}
+#sidr-id-select-negocio{
+    height: 50px !important;
+    background: #009FE3 !important;
+    color: #fff !important;
+    border-radius: 0 !important;
+    border-right: 1px solid #0082b9 !important;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
 .textarea-resize textarea{
     resize: none;
 }

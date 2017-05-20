@@ -1,4 +1,81 @@
-{{ dump(inmuebles) }}
+
+
+{% extends "FOSUserBundle::Profile/Panel/panel_layout.html.twig" %}
+{% block content_section %}
+
+    <h1 class="title-dashboard">Ordenar Inmuebles</h1>
+
+    <div class="col-md-8 col-md-offset-2">
+        <div class="recomendacion">
+            <i class="fa fa-lightbulb-o" aria-hidden="true"></i>
+            <div class="pright">
+                <ul>
+                    <li>Drag & Drop - Arrastre y suelte para ordenar los inmuebles automáticamente</li>
+                </ul>
+            </div>
+        </div>
+        <ul id="grid">
+            {% for f in inmuebles %}
+                <div class="col-md-3" style="padding: 0 20px;position: relative">
+                    <div class="listado-inmuebles">
+                        <div class="banner" style="filter:grayscale(100%)">
+                            {% if f.banner is not null %}
+                                <img src="{{ vich_uploader_asset(f.banner, 'bannerFile','AppBundle\\Entity\\Banner') }}" alt="{{ f.nombre }}" />
+                            {% else %}
+                                <img src="http://placehold.it/350x150" alt="{{ f.nombre }}" />
+                            {% endif %}
+                        </div>
+                        <h1 class="inmueble-title" style="font-size: 18px;">
+                            {{ f.nombre }}
+                        </h1>
+                    </div>
+                </div>
+            {% endfor %}
+        </ul>
+
+    </div>
+
+
+
+
+
+
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+
+        $( "#grid" ).sortable({
+            update: function( event, ui ) {
+                //var id = $(ui.item).attr('data-insp');
+                //alert("New position: " + ui.item.index());
+                var sorted = $( "#grid" ).sortable( "serialize" );
+                $.ajax({
+                    type: "POST",
+                    url: '{{ path("profile_negocios_panel_gestion_negocio_sort") }}',
+                    data: {
+                        sort:sorted,
+                        what:"Inmueble"
+                        //sort: ui.item.index(),
+                        //id_inspiracion: $(ui.item).attr('data-insp')
+
+                    },
+                    //data:sorted,
+                    dataType: "json",
+                    success: function(response) {
+                        //console.log(response.sort);
+                        //$(ui.item).children('span').text(response.sort);
+                    }
+                });
+            }
+        });
+        $( "#grid" ).disableSelection();
+
+
+    </script>
+{% endblock javascripts %}
 {#
  url: '{{ path("profile_negocios_panel_gestion_negocio_sort") }}',
  what:"Inmueble"

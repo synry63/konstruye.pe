@@ -6,10 +6,10 @@
 
     {% for n in inmuebles %}
 
-        <div class="col-md-3" style="padding: 0 20px">
+        <div class="col-md-3" style="padding: 0 20px;position: relative">
 
-            <a class="editar" href="{{ path('profile_negocios_panel_gestion_negocio_edit_inmueble',{'id':n.id}) }}"><i class="fa fa-pencil-square" aria-hidden="true"></i> Editar</a>
-            <a class="eliminar" onclick="return confirm('¿Estas seguro de eliminar este Inmueble?');" href="{{ path('profile_negocios_panel_gestion_negocio_delete_inmueble',{'id':n.id}) }}"><i class="fa fa-trash" aria-hidden="true"></i> Eliminar</a>
+            <a class="edit-button" href="{{ path('profile_negocios_panel_gestion_negocio_edit_inmueble',{'id':n.id}) }}"><i class="fa fa-pencil-square" aria-hidden="true"></i></a>
+            <a class="delete-button" onclick="return confirm('¿Estas seguro de eliminar este Inmueble?');" href="{{ path('profile_negocios_panel_gestion_negocio_delete_inmueble',{'id':n.id}) }}"><i class="fa fa-trash" aria-hidden="true"></i> </a>
 
             <div class="listado-inmuebles">
                 <div class="banner" style="filter:grayscale(100%)">
